@@ -1,5 +1,5 @@
 import { ExternalLink } from "lucide-react";
-import { type MCPServer } from "@/data/servers";
+import { type MCPServer, categories } from "@/data/servers";
 import CopyButton from "./CopyButton";
 
 interface ServerCardProps {
@@ -46,7 +46,7 @@ export default function ServerCard({ server }: ServerCardProps) {
             categoryColors[server.category] || categoryColors.other
           }`}
         >
-          {server.category.replace("-", " ").replace(/\b\w/g, (l) => l.toUpperCase())}
+          {categories.find((c) => c.value === server.category)?.label || server.category}
         </span>
       </div>
 
