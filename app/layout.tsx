@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-export const metadata: Metadata = {
+export const  metadata: Metadata = {
   title: "Best MCP Servers 2026 | Curated Directory for Claude & Cursor",
   description:
     "Discover the best MCP servers for Claude, Cursor, and AI agents. Browse 20+ curated Model Context Protocol servers with install guides, categories, and copy-paste setup.",
@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     "model context protocol",
     "mcp directory",
   ],
+  verification: {
+    google: "r79PY62ZMOSfpJOaPPb7ismHQA9KS2WupX3dwbYK8_o",
+  },
   openGraph: {
     title: "Best MCP Servers 2026 | Curated Directory for Claude & Cursor",
     description:
