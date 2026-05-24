@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mcp-server-directory.pages.dev/sitemap.xml
+Sitemap: https://mcp-server-directory-7t8.pages.dev/sitemap.xml
