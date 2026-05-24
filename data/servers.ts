@@ -21,7 +21,7 @@ export interface MCPServer {
 
 export const categories: { value: Category | 'all'; label: string }[] = [
   { value: 'all', label: 'All' },
-  { value: 'file-system', label: 'File System' },
+  { value: 'file-system', label: 'Filesystem' },
   { value: 'database', label: 'Database' },
   { value: 'web', label: 'Web' },
   { value: 'browser', label: 'Browser' },

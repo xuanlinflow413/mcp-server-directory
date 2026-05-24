@@ -4,7 +4,7 @@ import "./globals.css";
 export const  metadata: Metadata = {
   title: "Best MCP Servers 2026 | Curated Directory for Claude & Cursor",
   description:
-    "Discover the best MCP servers for Claude, Cursor, and AI agents. Browse 20+ curated Model Context Protocol servers with install guides, categories, and copy-paste setup.",
+    "Curated directory of 20+ MCP servers for Claude, Cursor, and AI agents. Find, compare, and install Model Context Protocol servers.",
   keywords: [
     "best mcp servers",
     "mcp server list",
@@ -20,15 +20,15 @@ export const  metadata: Metadata = {
   openGraph: {
     title: "Best MCP Servers 2026 | Curated Directory for Claude & Cursor",
     description:
-      "Discover the best MCP servers for Claude, Cursor, and AI agents. Browse 20+ curated Model Context Protocol servers with install guides, categories, and copy-paste setup.",
+      "Curated directory of 20+ MCP servers for Claude, Cursor, and AI agents. Find, compare, and install Model Context Protocol servers.",
     type: "website",
-    url: "https://mcp-server-directory.pages.dev",
+    url: "https://mcp-server-directory-7t8.pages.dev",
   },
   twitter: {
     card: "summary_large_image",
     title: "Best MCP Servers 2026 | Curated Directory for Claude & Cursor",
     description:
-      "Discover the best MCP servers for Claude, Cursor, and AI agents. Browse 20+ curated Model Context Protocol servers with install guides, categories, and copy-paste setup.",
+      "Curated directory of 20+ MCP servers for Claude, Cursor, and AI agents. Find, compare, and install Model Context Protocol servers.",
   },
   robots: {
     index: true,
