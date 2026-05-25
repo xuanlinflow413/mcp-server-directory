@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-export const  metadata: Metadata = {
+export const metadata: Metadata = {
+  metadataBase: new URL("https://bestmcpservers.com"),
   title: "Best MCP Servers 2026 | Curated Directory for Claude & Cursor",
   description:
     "Curated directory of 20+ MCP servers for Claude, Cursor, and AI agents. Find, compare, and install Model Context Protocol servers.",
@@ -22,7 +23,7 @@ export const  metadata: Metadata = {
     description:
       "Curated directory of 20+ MCP servers for Claude, Cursor, and AI agents. Find, compare, and install Model Context Protocol servers.",
     type: "website",
-    url: "https://mcp-server-directory-7t8.pages.dev",
+    url: "https://bestmcpservers.com",
   },
   twitter: {
     card: "summary_large_image",

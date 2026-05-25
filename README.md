@@ -1,6 +1,6 @@
 # MCP Server Directory
 
-[![Live Site](https://img.shields.io/badge/Live-mcp--server--directory-7t8.pages.dev-blue)](https://mcp-server-directory-7t8.pages.dev)
+[![Live Site](https://img.shields.io/badge/Live-bestmcpservers.com-blue)](https://bestmcpservers.com)
 [![Next.js](https://img.shields.io/badge/Built%20with-Next.js%2014-black?logo=next.js)](https://nextjs.org/)
 [![Cloudflare Pages](https://img.shields.io/badge/Deployed%20on-Cloudflare%20Pages-orange?logo=cloudflare)](https://pages.cloudflare.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
