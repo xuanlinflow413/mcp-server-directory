@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "mcp directory",
   ],
   verification: {
-    google: "r79PY62ZMOSfpJOaPPb7ismHQA9KS2WupX3dwbYK8_o",
+    google: "Zscg3HMWOVmKLvzwcgZGMd9ZoVZ0VKZnlG5azDqSUF8",
   },
   openGraph: {
     title: "Best MCP Servers 2026 | Curated Directory for Claude & Cursor",
