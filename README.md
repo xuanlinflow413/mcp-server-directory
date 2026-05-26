@@ -20,6 +20,12 @@ A curated directory of **20+ MCP (Model Context Protocol) servers** for Claude, 
 - **Static Export** — Blazing fast, no database, no backend required
 - **Fully Responsive** — Works on desktop, tablet, and mobile
 
+## Guides
+
+- [Best MCP Servers for Claude Desktop](https://bestmcpservers.com/guides/best-mcp-servers-for-claude/)
+- [How to Install MCP Servers in Cursor](https://bestmcpservers.com/guides/how-to-install-mcp-servers-in-cursor/)
+- [Browser MCP Servers: Puppeteer & Playwright](https://bestmcpservers.com/guides/browser-mcp-servers/)
+
 ## Tech Stack
 
 - [Next.js 14](https://nextjs.org/) — React framework with static export
