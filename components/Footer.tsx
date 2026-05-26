@@ -8,6 +8,12 @@ export default function Footer() {
           </p>
           <div className="flex gap-6">
             <a
+              href="/guides/best-mcp-servers-for-claude/"
+              className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
+            >
+              Guides
+            </a>
+            <a
               href="https://github.com/modelcontextprotocol"
               target="_blank"
               rel="noopener noreferrer"

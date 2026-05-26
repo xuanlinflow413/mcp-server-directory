@@ -6,6 +6,7 @@ import CategoryNav from "@/components/CategoryNav";
 import ServerGrid from "@/components/ServerGrid";
 import InstallGuide from "@/components/InstallGuide";
 import FAQ from "@/components/FAQ";
+import GuidesSection from "@/components/GuidesSection";
 import Footer from "@/components/Footer";
 import { type Category } from "@/data/servers";
 
@@ -21,6 +22,7 @@ export default function Home() {
       />
       <ServerGrid activeCategory={activeCategory} />
       <InstallGuide />
+      <GuidesSection />
       <FAQ />
       <Footer />
     </main>
