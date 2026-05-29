@@ -15,6 +15,9 @@ export const metadata: Metadata = {
     "model context protocol",
     "mcp directory",
   ],
+  alternates: {
+    canonical: "https://bestmcpservers.com/",
+  },
   verification: {
     google: "Zscg3HMWOVmKLvzwcgZGMd9ZoVZ0VKZnlG5azDqSUF8",
   },
@@ -23,7 +26,7 @@ export const metadata: Metadata = {
     description:
       "Curated directory of 20+ MCP servers for Claude, Cursor, and AI agents. Find, compare, and install Model Context Protocol servers.",
     type: "website",
-    url: "https://bestmcpservers.com",
+    url: "https://bestmcpservers.com/",
   },
   twitter: {
     card: "summary_large_image",

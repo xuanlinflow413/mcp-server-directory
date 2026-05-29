@@ -31,8 +31,12 @@ export default function CopyButton({ text }: CopyButtonProps) {
   return (
     <button
       onClick={handleCopy}
-      className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600 hover:bg-slate-200 transition-colors"
-      aria-label="Copy install command"
+      className={`inline-flex items-center gap-1 rounded-md px-2 py-1 text-xs font-medium transition-colors ${
+        copied
+          ? "bg-emerald-100 text-emerald-700"
+          : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+      }`}
+      aria-label={copied ? "Copied to clipboard" : "Copy install command"}
     >
       {copied ? (
         <>
