@@ -138,6 +138,12 @@ export default function PromptPage({ params }: Props) {
               >
                 AI Prompts
               </Link>
+              <Link
+                href="/tools/json-formatter/"
+                className="text-sm text-slate-600 hover:text-slate-900"
+              >
+                Tools
+              </Link>
             </nav>
           </div>
         </div>
@@ -315,6 +321,12 @@ export default function PromptPage({ params }: Props) {
                 className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
               >
                 AI Prompts
+              </Link>
+              <Link
+                href="/tools/json-formatter/"
+                className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
+              >
+                Tools
               </Link>
             </div>
           </div>

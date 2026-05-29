@@ -14,6 +14,12 @@ export default function Footer() {
               Guides
             </a>
             <a
+              href="/tools/json-formatter/"
+              className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
+            >
+              Tools
+            </a>
+            <a
               href="https://github.com/modelcontextprotocol"
               target="_blank"
               rel="noopener noreferrer"
