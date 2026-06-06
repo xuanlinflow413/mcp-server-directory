@@ -54,6 +54,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta property="og:image" content="https://bestmcpservers.com/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content="https://bestmcpservers.com/og-image.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
