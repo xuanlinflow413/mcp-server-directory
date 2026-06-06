@@ -182,7 +182,7 @@ export default function BestMcpServersForClaudePage() {
         </p>
         <p className="mt-2">
           <a
-            href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem"
+            href="https://github.com/modelcontextprotocol/servers"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-blue-600 hover:text-blue-800"
@@ -212,7 +212,7 @@ export default function BestMcpServersForClaudePage() {
         </p>
         <p className="mt-2">
           <a
-            href="https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search"
+            href="https://github.com/modelcontextprotocol/servers"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-blue-600 hover:text-blue-800"
@@ -242,7 +242,7 @@ export default function BestMcpServersForClaudePage() {
         </p>
         <p className="mt-2">
           <a
-            href="https://github.com/modelcontextprotocol/servers/tree/main/src/github"
+            href="https://github.com/modelcontextprotocol/servers"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-blue-600 hover:text-blue-800"
@@ -273,7 +273,7 @@ export default function BestMcpServersForClaudePage() {
         </p>
         <p className="mt-2">
           <a
-            href="https://github.com/modelcontextprotocol/servers/tree/main/src/postgres"
+            href="https://github.com/modelcontextprotocol/servers"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-blue-600 hover:text-blue-800"
@@ -304,7 +304,7 @@ export default function BestMcpServersForClaudePage() {
         </p>
         <p className="mt-2">
           <a
-            href="https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer"
+            href="https://github.com/modelcontextprotocol/servers"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-blue-600 hover:text-blue-800"

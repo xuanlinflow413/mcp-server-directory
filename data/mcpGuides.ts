@@ -22,7 +22,7 @@ export type McpGuide = {
 export const mcpGuides: McpGuide[] = [
   {
     slug: "mcp-server-examples",
-    title: "MCP Server Examples — Real Model Context Protocol Server Ideas | BestMCPServers",
+    title: "MCP Server Examples — Real Protocol Server Ideas",
     description: "Explore practical MCP server examples for files, databases, browser automation, APIs, memory, search, and developer workflows.",
     h1: "MCP Server Examples",
     eyebrow: "MCP Examples",
@@ -120,7 +120,7 @@ export const mcpGuides: McpGuide[] = [
   },
   {
     slug: "mcp-tutorial-for-beginners",
-    title: "MCP Tutorial for Beginners — Learn Model Context Protocol Step by Step | BestMCPServers",
+    title: "MCP Tutorial for Beginners — Step-by-Step Guide",
     description: "A beginner-friendly MCP tutorial explaining clients, servers, tools, resources, prompts, setup flow, examples, and safety basics.",
     h1: "MCP Tutorial for Beginners",
     eyebrow: "MCP Tutorial",
@@ -215,7 +215,7 @@ export const mcpGuides: McpGuide[] = [
   },
   {
     slug: "claude-mcp-server-config",
-    title: "Claude MCP Server Config — Configure MCP Servers in Claude Desktop | BestMCPServers",
+    title: "Claude MCP Server Config — Setup Guide",
     description: "Learn how Claude MCP server config works, where to place server entries, what commands mean, and how to troubleshoot common setup errors.",
     h1: "Claude MCP Server Config",
     eyebrow: "Claude MCP Setup",
@@ -308,7 +308,7 @@ export const mcpGuides: McpGuide[] = [
   },
   {
     slug: "mcp-security-best-practices",
-    title: "MCP Security Best Practices — Secure Model Context Protocol Servers | BestMCPServers",
+    title: "MCP Security Best Practices — Secure MCP Servers",
     description: "Review MCP security best practices for permissions, secrets, tool design, logging, approvals, sandboxing, and production deployment.",
     h1: "MCP Security Best Practices",
     eyebrow: "MCP Security",
@@ -407,7 +407,7 @@ export const mcpGuides: McpGuide[] = [
   },
   {
     slug: "python-mcp-server-example",
-    title: "Python MCP Server Example — Build a Simple Model Context Protocol Server | BestMCPServers",
+    title: "Python MCP Server Example — Simple Build Guide",
     description: "Build a simple Python MCP server example with a clear tool design, configuration notes, test prompts, and troubleshooting checklist.",
     h1: "Python MCP Server Example",
     eyebrow: "MCP Python",

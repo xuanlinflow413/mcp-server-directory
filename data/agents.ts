@@ -635,7 +635,7 @@ Draft:
   },
   {
     slug: "startup-idea-validation-agent",
-    title: "Startup Idea Validation Agent: Workflow + Prompts | BestMCPServers",
+    title: "Startup Idea Validation Agent: Workflow + Prompts",
     h1: "Startup Idea Validation Agent",
     metaDescription:
       "A reusable startup idea validation agent workflow. Test demand before building. Find real problems, talk to users, and avoid building something no one wants.",

@@ -40,6 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     route("/guides/how-to-write-veo-prompts/", 0.8, "monthly"),
     route("/tools/", 0.9, "weekly"),
     route("/tools/api/", 0.8, "monthly"),
+    route("/tools/base64-encode-decode/", 0.6, "monthly"),
     route("/agents/", 0.9, "weekly"),
     route("/rsp/", 0.9, "weekly"),
   ];

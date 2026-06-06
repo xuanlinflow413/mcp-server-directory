@@ -24,12 +24,21 @@ export const metadata: Metadata = {
       "BestMCPServers is your hub for AI tools, prompt libraries, and developer resources. Browse MCP servers, copy AI prompts, and use free online developer utilities.",
     type: "website",
     url: "https://bestmcpservers.com/",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Best MCP Servers — MCP tools, agents, and developer guides",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "BestMCPServers — AI Tools, Prompt Libraries & Developer Resources",
     description:
       "BestMCPServers is your hub for AI tools, prompt libraries, and developer resources. Browse MCP servers, copy AI prompts, and use free online developer utilities.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -44,6 +53,49 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "BestMCPServers",
+                    item: "https://bestmcpservers.com/",
+                  },
+                ],
+              },
+              {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "What is BestMCPServers?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "BestMCPServers is a directory of MCP servers, AI agents, prompt resources, developer tools, and practical MCP guides.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Are the tools free to use?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Yes. The browser developer tools on BestMCPServers are free utilities for formatting, validating, encoding, decoding, and generating useful developer assets.",
+                    },
+                  },
+                ],
+              },
+            ]),
+          }}
+        />
+      </head>
       <body className="antialiased bg-white text-slate-900">{children}</body>
     </html>
   );

@@ -213,7 +213,7 @@ export default function BrowserMcpServersPage() {
         </ul>
         <p className="mt-3">
           <a
-            href="https://github.com/modelcontextprotocol/servers/tree/main/src/puppeteer"
+            href="https://github.com/modelcontextprotocol/servers"
             target="_blank"
             rel="noopener noreferrer"
             className="text-sm text-blue-600 hover:text-blue-800"

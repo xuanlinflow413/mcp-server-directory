@@ -117,7 +117,7 @@ const faqs = [
 const relatedLinks = [
   ["JSON Formatter", "/tools/json-formatter/"],
   ["JSON Validator", "/tools/json-validator/"],
-  ["Base64 Encode Decode", "/tools/base64-encode-decode/"],
+  ["Base64 Encode Decode", "/tools/base64-encoder-decoder/"],
   ["JWT Decoder", "/tools/jwt-decoder/"],
   ["AI Agents", "/agents/"],
   ["Guides", "/guides/"],

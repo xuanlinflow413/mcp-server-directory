@@ -4,7 +4,7 @@ import { rspPrompts } from "@/data/rspPrompts";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bestmcpservers.com"),
-  title: "AI Prompt Library — Trending Photo Editing Prompts | BestMCPServers",
+  title: "AI Prompt Library — Trending Photo Editing Prompts",
   description:
     "Discover 20+ trending AI photo editing prompts. Transform your photos with RSP workflows — from cinematic looks to anime transformations, ghost edits to cyberpunk neon.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     canonical: "https://bestmcpservers.com/rsp/",
   },
   openGraph: {
-    title: "AI Prompt Library — Trending Photo Editing Prompts | BestMCPServers",
+    title: "AI Prompt Library — Trending Photo Editing Prompts",
     description:
       "Discover 20+ trending AI photo editing prompts. Transform your photos with professional RSP workflows.",
     type: "website",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Prompt Library — Trending Photo Editing Prompts | BestMCPServers",
+    title: "AI Prompt Library — Trending Photo Editing Prompts",
     description:
       "Discover 20+ trending AI photo editing prompts for cinematic, aesthetic, anime, and creative photo transformations.",
   },
