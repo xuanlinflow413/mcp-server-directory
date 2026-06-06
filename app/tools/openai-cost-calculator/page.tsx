@@ -8,7 +8,7 @@ const tool = getTool("openai-cost-calculator");
 const featureList = ["Estimate GPT API costs per day, month, and year", "Compare OpenAI model costs from local reference prices", "Calculate cost per 1,000 requests without sending data to a server"];
 const useCases = ["Chatbots and support assistants", "AI writing tools and copilots", "Agent workflows using GPT models", "High-volume extraction or classification tasks"];
 const tips = ["Cap output tokens so long generations do not dominate spend.", "Cache repeated system prompts and common answers.", "Route simple jobs to lower-cost models before using flagship models."];
-const relatedLinks = [{ href: "/tools/ai-cost-calculator/", label: "AI Cost Calculator" }, { href: "/tools/claude-cost-calculator/", label: "Claude Cost Calculator" }, { href: "/tools/gemini-cost-calculator/", label: "Gemini Cost Calculator" }, { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator" }, { href: "/ai-prd-generator/", label: "AI PRD Generator" }];
+const relatedLinks = [{ href: "/guides/how-to-estimate-openai-api-costs/", label: "How to Estimate OpenAI API Costs" }, { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator" }, { href: "/tools/claude-cost-calculator/", label: "Claude Cost Calculator" }, { href: "/tools/gemini-cost-calculator/", label: "Gemini Cost Calculator" }, { href: "/tools/ai-cost-calculator/", label: "AI Cost Calculator" }];
 
 export default function Page() {
   const schema = [
@@ -64,3 +64,4 @@ export default function Page() {
     </main>
   );
 }
+

@@ -3,9 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, BookOpen, CheckCircle2, ClipboardCheck, ShieldCheck } from "lucide-react";
 import { agentSecurityGuides, getAgentSecurityGuide } from "@/data/agentSecurityGuides";
+import { getSeoGuide, seoGuides, type SeoGuide } from "@/data/seoGuides";
 
 const baseUrl = "https://bestmcpservers.com";
-const clusterTitle = "Agent Security Guides";
+const clusterTitle = "Related guides";
 
 function slugify(text: string) {
   return text
@@ -14,29 +15,55 @@ function slugify(text: string) {
     .replace(/(^-|-$)/g, "");
 }
 
+type RenderGuide = {
+  slug: string;
+  title: string;
+  description: string;
+  h1: string;
+  eyebrow: string;
+  updated: string;
+  readingTime: string;
+  primaryKeyword: string;
+  secondaryKeywords?: string[];
+  intro: string[];
+  keyTakeaways: string[];
+  sections: Array<{ heading: string; body: string[]; bullets?: string[] }>;
+  checklist: string[];
+  faq: Array<{ question: string; answer: string }>;
+  relatedLinks?: Array<{ href: string; label: string; description: string }>;
+  primaryCta?: { href: string; label: string };
+  category?: SeoGuide["category"];
+};
+
+function findGuide(slug: string): RenderGuide | undefined {
+  return getSeoGuide(slug) ?? getAgentSecurityGuide(slug);
+}
+
 export function generateStaticParams() {
-  return agentSecurityGuides.map((guide) => ({ slug: guide.slug }));
+  return [
+    ...agentSecurityGuides.map((guide) => ({ slug: guide.slug })),
+    ...seoGuides.map((guide) => ({ slug: guide.slug })),
+  ];
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const guide = getAgentSecurityGuide(params.slug);
+  const guide = findGuide(params.slug);
   if (!guide) return {};
 
   const url = `${baseUrl}/guides/${guide.slug}/`;
+  const keywords = [
+    guide.primaryKeyword,
+    ...(guide.secondaryKeywords ?? []),
+    "BestMCPServers",
+    "AI tools",
+    "MCP servers",
+  ];
+
   return {
     metadataBase: new URL(baseUrl),
     title: guide.title,
     description: guide.description,
-    keywords: [
-      guide.primaryKeyword,
-      "agent security",
-      "prompt injection",
-      "agent monitoring",
-      "agent evaluation",
-      "agent reliability",
-      "AI agents",
-      "LLM security",
-    ],
+    keywords,
     alternates: { canonical: url },
     openGraph: {
       title: guide.title,
@@ -44,22 +71,31 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       type: "article",
       url,
       siteName: "BestMCPServers",
+      images: [{ url: "https://bestmcpservers.com/og-image.png", width: 1200, height: 630, alt: guide.h1 }],
     },
     twitter: {
       card: "summary_large_image",
       title: guide.title,
       description: guide.description,
+      images: ["https://bestmcpservers.com/og-image.png"],
     },
     robots: { index: true, follow: true },
   };
 }
 
-export default function AgentSecurityGuidePage({ params }: { params: { slug: string } }) {
-  const guide = getAgentSecurityGuide(params.slug);
+export default function GuidePage({ params }: { params: { slug: string } }) {
+  const guide = findGuide(params.slug);
   if (!guide) notFound();
 
   const url = `${baseUrl}/guides/${guide.slug}/`;
-  const siblingGuides = agentSecurityGuides.filter((item) => item.slug !== guide.slug);
+  const relatedLinks = guide.relatedLinks ?? [
+    { href: "/agents/", label: "Browse AI agents", description: "Explore agent examples and workflows." },
+    { href: "/tools/ai-cost-calculator/", label: "AI Cost Calculator", description: "Estimate model and API costs." },
+    { href: "/tools/", label: "Developer tools", description: "Use free static tools for AI builders." },
+  ];
+  const siblingGuides = seoGuides
+    .filter((item) => item.slug !== guide.slug && (!guide.category || item.category === guide.category))
+    .slice(0, 4);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -126,6 +162,13 @@ export default function AgentSecurityGuidePage({ params }: { params: { slug: str
             <span className="rounded-full bg-white/10 px-4 py-2">{guide.readingTime}</span>
             <span className="rounded-full bg-white/10 px-4 py-2">Keyword: {guide.primaryKeyword}</span>
           </div>
+          {guide.primaryCta ? (
+            <div className="mt-8">
+              <Link href={guide.primaryCta.href} className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500">
+                {guide.primaryCta.label} <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -203,21 +246,33 @@ export default function AgentSecurityGuidePage({ params }: { params: { slug: str
           <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
             <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500">{clusterTitle}</h2>
             <div className="mt-5 space-y-4">
-              {siblingGuides.map((item) => (
-                <Link key={item.slug} href={`/guides/${item.slug}/`} className="group block rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-blue-300 hover:shadow-sm">
-                  <h3 className="font-semibold text-slate-950 group-hover:text-blue-700">{item.h1}</h3>
+              {relatedLinks.map((item) => (
+                <Link key={item.href} href={item.href} className="group block rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-blue-300 hover:shadow-sm">
+                  <h3 className="font-semibold text-slate-950 group-hover:text-blue-700">{item.label}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
                 </Link>
               ))}
             </div>
           </div>
 
+          {siblingGuides.length ? (
+            <div className="mt-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+              <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500">More in this cluster</h2>
+              <div className="mt-5 space-y-3 text-sm font-semibold text-blue-700">
+                {siblingGuides.map((item) => (
+                  <Link key={item.slug} className="flex items-center justify-between gap-3" href={`/guides/${item.slug}/`}>
+                    {item.h1} <ArrowRight className="h-4 w-4 flex-none" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
           <div className="mt-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
             <h2 className="text-sm font-bold uppercase tracking-wide text-slate-500">Useful links</h2>
             <div className="mt-5 space-y-3 text-sm font-semibold text-blue-700">
-              <Link className="flex items-center justify-between" href="/agents/">Browse AI agents <ArrowRight className="h-4 w-4" /></Link>
               <Link className="flex items-center justify-between" href="/tools/ai-cost-calculator/">AI Cost Calculator <ArrowRight className="h-4 w-4" /></Link>
-              <Link className="flex items-center justify-between" href="/tools/">Developer tools <ArrowRight className="h-4 w-4" /></Link>
+              <Link className="flex items-center justify-between" href="/tools/mcp-stack-builder/">MCP Stack Builder <ArrowRight className="h-4 w-4" /></Link>
               <Link className="flex items-center justify-between" href="/guides/">All guides <ArrowRight className="h-4 w-4" /></Link>
             </div>
           </div>

@@ -8,7 +8,7 @@ const tool = getTool("claude-cost-calculator");
 const featureList = ["Estimate Claude API spend across Sonnet, Opus, and Haiku-style models", "Compare monthly cost for document-heavy workflows", "Plan high-reasoning workloads without calling the Anthropic API"];
 const useCases = ["Research agents and document analysis", "Coding assistants with long context", "Knowledge-base workflows", "Reasoning-heavy product features"];
 const tips = ["Summarize long documents before follow-up calls.", "Use Opus-class models only for the hardest tasks.", "Set output limits for analysis-heavy prompts."];
-const relatedLinks = [{ href: "/tools/ai-cost-calculator/", label: "AI Cost Calculator" }, { href: "/tools/openai-cost-calculator/", label: "OpenAI Cost Calculator" }, { href: "/tools/gemini-cost-calculator/", label: "Gemini Cost Calculator" }, { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator" }, { href: "/guides/best-mcp-servers-for-claude/", label: "Best MCP Servers for Claude" }];
+const relatedLinks = [{ href: "/guides/claude-api-cost-guide/", label: "Claude API Cost Guide" }, { href: "/guides/best-mcp-servers-for-claude/", label: "Best MCP Servers for Claude" }, { href: "/tools/openai-cost-calculator/", label: "OpenAI Cost Calculator" }, { href: "/tools/gemini-cost-calculator/", label: "Gemini Cost Calculator" }, { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator" }];
 
 export default function Page() {
   const schema = [
@@ -64,3 +64,4 @@ export default function Page() {
     </main>
   );
 }
+

@@ -8,7 +8,7 @@ const tool = getTool("ai-saas-pricing-calculator");
 const featureList = ["Estimate AI cost per active user and paid user", "Turn token spend into Starter and Pro pricing ranges", "Spot free-plan risk before unlimited usage burns budget"];
 const useCases = ["Indie AI SaaS launches", "AI wrapper and agent products", "Credit-based Pro plan design", "Free plan and fair-use planning"];
 const tips = ["Avoid unlimited free usage until you understand power-user behavior.", "Use credits or monthly caps for expensive generation features.", "Price Pro plans from paid-user cost, not average active-user cost alone."];
-const relatedLinks = [{ href: "/tools/ai-cost-calculator/", label: "AI Cost Calculator" }, { href: "/tools/openai-cost-calculator/", label: "OpenAI Cost Calculator" }, { href: "/tools/claude-cost-calculator/", label: "Claude Cost Calculator" }, { href: "/tools/gemini-cost-calculator/", label: "Gemini Cost Calculator" }, { href: "/ai-prd-generator/", label: "AI PRD Generator" }];
+const relatedLinks = [{ href: "/guides/how-to-price-an-ai-saas-product/", label: "How to Price an AI SaaS Product" }, { href: "/guides/how-to-estimate-openai-api-costs/", label: "Estimate OpenAI API Costs" }, { href: "/guides/claude-api-cost-guide/", label: "Claude API Cost Guide" }, { href: "/guides/gemini-api-cost-guide/", label: "Gemini API Cost Guide" }, { href: "/ai-prd-generator/", label: "AI PRD Generator" }];
 
 export default function Page() {
   const schema = [
@@ -64,3 +64,4 @@ export default function Page() {
     </main>
   );
 }
+

@@ -7,12 +7,12 @@ import { modelPrices } from "@/data/aiCostModels";
 const tool = getTool("ai-cost-calculator");
 
 const relatedLinks = [
-  { href: "/tools/json-formatter/", label: "JSON Formatter" },
-  { href: "/tools/json-validator/", label: "JSON Validator" },
-  { href: "/tools/base64-encode-decode/", label: "Base64 Encoder Decoder" },
-  { href: "/tools/jwt-decoder/", label: "JWT Decoder" },
-  { href: "/tools/veo-prompt-generator/", label: "Veo Prompt Generator" },
-  { href: "/agents/", label: "AI Agents" },
+  { href: "/tools/openai-cost-calculator/", label: "OpenAI Cost Calculator" },
+  { href: "/tools/claude-cost-calculator/", label: "Claude Cost Calculator" },
+  { href: "/tools/gemini-cost-calculator/", label: "Gemini Cost Calculator" },
+  { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator" },
+  { href: "/guides/how-to-price-an-ai-saas-product/", label: "How to Price an AI SaaS Product" },
+  { href: "/ai-prd-generator/", label: "AI PRD Generator" },
 ];
 
 export default function Page() {

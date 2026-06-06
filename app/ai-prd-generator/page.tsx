@@ -59,6 +59,7 @@ export default function AiPrdGeneratorPage() {
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300">Create a structured product requirements document from a product idea, or start with a focused PRD template for SaaS, AI agents, MCP servers, marketplaces, CRM software, Chrome extensions, and mobile apps.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a href="#tool" className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500">Generate a PRD</a>
+            <Link href="/tools/mcp-stack-builder/" className="rounded-xl border border-white/20 px-5 py-3 font-semibold text-white hover:bg-white/10">Build MCP stack</Link>
             <Link href="/tools/ai-cost-calculator/" className="rounded-xl border border-white/20 px-5 py-3 font-semibold text-white hover:bg-white/10">Estimate AI costs</Link>
           </div>
         </div>
@@ -93,7 +94,11 @@ export default function AiPrdGeneratorPage() {
           <p className="mt-4 max-w-3xl leading-8 text-slate-700">Use the AI PRD Generator with BestMCPServers guides and tools to move from product idea to build plan, cost estimate, and safer agent design.</p>
           <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {[
+              { title: "MCP Stack Builder", href: "/tools/mcp-stack-builder/", description: "Plan MCP server categories, setup order, and security checks after the PRD defines your agent workflow." },
+              { title: "AI SaaS Pricing Calculator", href: "/tools/ai-saas-pricing-calculator/", description: "Turn PRD usage assumptions into Starter and Pro pricing ranges." },
               { title: "AI Cost Calculator", href: "/tools/ai-cost-calculator/", description: "Estimate AI API costs before you commit to a product architecture or usage model." },
+              { title: "How to Build an MCP Stack", href: "/guides/how-to-build-an-mcp-stack/", description: "Learn how to choose MCP clients, data sources, server categories, and security boundaries." },
+              { title: "How to Price an AI SaaS Product", href: "/guides/how-to-price-an-ai-saas-product/", description: "Use model costs, gross margin, and paid conversion to plan AI SaaS pricing." },
               { title: "AI Agent PRD Template", href: "/ai-agent-prd-template/", description: "Plan agent goals, tools, permissions, memory, evaluation, and failure handling." },
               { title: "MCP Server PRD Template", href: "/mcp-server-prd-template/", description: "Define MCP server use cases, exposed tools, auth needs, schemas, risks, and launch criteria." },
               { title: "Agent Security Guide", href: "/guides/agent-security-guide/", description: "Review prompt injection, tool permissions, monitoring, and reliability risks before shipping agents." },

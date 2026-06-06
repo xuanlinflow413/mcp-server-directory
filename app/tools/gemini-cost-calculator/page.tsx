@@ -8,7 +8,7 @@ const tool = getTool("gemini-cost-calculator");
 const featureList = ["Estimate Gemini API costs for Pro and Flash-style models", "Plan long-context AI app budgets from token volume", "Compare monthly spend without uploading prompts or calling Google APIs"];
 const useCases = ["Long-context assistants", "Multimodal app planning", "Google AI product prototypes", "High-volume summarization workflows"];
 const tips = ["Summarize retrieved context before sending it to the model.", "Use Flash-style models for simple high-volume tasks.", "Watch chat history length in long sessions."];
-const relatedLinks = [{ href: "/tools/ai-cost-calculator/", label: "AI Cost Calculator" }, { href: "/tools/openai-cost-calculator/", label: "OpenAI Cost Calculator" }, { href: "/tools/claude-cost-calculator/", label: "Claude Cost Calculator" }, { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator" }, { href: "/tools/veo-prompt-generator/", label: "Veo Prompt Generator" }];
+const relatedLinks = [{ href: "/guides/gemini-api-cost-guide/", label: "Gemini API Cost Guide" }, { href: "/tools/openai-cost-calculator/", label: "OpenAI Cost Calculator" }, { href: "/tools/claude-cost-calculator/", label: "Claude Cost Calculator" }, { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator" }, { href: "/tools/ai-cost-calculator/", label: "AI Cost Calculator" }];
 
 export default function Page() {
   const schema = [
@@ -64,3 +64,4 @@ export default function Page() {
     </main>
   );
 }
+
