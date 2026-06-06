@@ -67,7 +67,7 @@ export const prdTemplates = [
     "slug": "mcp-server-prd-template",
     "name": "MCP Server PRD Template",
     "priority": "P0",
-    "title": "MCP Server PRD Template \u2014 Requirements for Model Context Protocol Tools",
+    "title": "MCP Server PRD Template \u2014 MCP Tool Requirements",
     "description": "Plan an MCP server with this PRD template. Define tools, resources, prompts, permissions, authentication, client integrations, and launch requirements.",
     "primary": "mcp server prd template",
     "secondary": [
@@ -131,7 +131,7 @@ export const prdTemplates = [
     "slug": "saas-prd-template",
     "name": "SaaS PRD Template",
     "priority": "P1",
-    "title": "SaaS PRD Template \u2014 Product Requirements Document for SaaS Products",
+    "title": "SaaS PRD Template \u2014 SaaS Product Plan",
     "description": "Use this SaaS PRD template to define users, features, pricing, onboarding, analytics, integrations, security, and launch requirements for SaaS products.",
     "primary": "saas prd template",
     "secondary": [
@@ -194,7 +194,7 @@ export const prdTemplates = [
     "slug": "marketplace-prd-template",
     "name": "Marketplace PRD Template",
     "priority": "P2",
-    "title": "Marketplace PRD Template \u2014 Requirements for Two-Sided Marketplaces",
+    "title": "Marketplace PRD Template \u2014 Marketplace Plan",
     "description": "Plan a marketplace product with this PRD template. Define buyers, sellers, listings, search, payments, trust, reviews, and marketplace launch requirements.",
     "primary": "marketplace prd template",
     "secondary": [
@@ -320,7 +320,7 @@ export const prdTemplates = [
     "slug": "chrome-extension-prd-template",
     "name": "Chrome Extension PRD Template",
     "priority": "P2",
-    "title": "Chrome Extension PRD Template \u2014 Requirements for Browser Extensions",
+    "title": "Chrome Extension PRD Template \u2014 Browser Extension Plan",
     "description": "Plan a Chrome extension with this PRD template. Define users, permissions, popup UI, content scripts, storage, privacy, and Chrome Web Store requirements.",
     "primary": "chrome extension prd template",
     "secondary": [
@@ -383,7 +383,7 @@ export const prdTemplates = [
     "slug": "mobile-app-prd-template",
     "name": "Mobile App PRD Template",
     "priority": "P1",
-    "title": "Mobile App PRD Template \u2014 Product Requirements for iOS and Android Apps",
+    "title": "Mobile App PRD Template \u2014 iOS and Android Plan",
     "description": "Use this mobile app PRD template to define users, screens, onboarding, features, notifications, analytics, permissions, and launch requirements.",
     "primary": "mobile app prd template",
     "secondary": [
