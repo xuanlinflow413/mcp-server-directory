@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { prdTemplates } from "@/data/prdTemplates";
+import AI_PRD_Generator from "./AI_PRD_Generator";
 
 const baseUrl = "https://bestmcpservers.com";
 
@@ -36,7 +37,9 @@ export default function AiPrdGeneratorPage() {
     "@type": "FAQPage",
     mainEntity: [
       { "@type": "Question", name: "What is an AI PRD Generator?", acceptedAnswer: { "@type": "Answer", text: "An AI PRD Generator helps turn a product idea into a structured product requirements document with sections for users, problems, features, constraints, acceptance criteria, and launch metrics." } },
-      { "@type": "Question", name: "Can I use these PRD templates without an account?", acceptedAnswer: { "@type": "Answer", text: "Yes. The template pages are free to read and can be used as planning references for product teams, founders, and builders." } },
+      { "@type": "Question", name: "Why does this AI PRD Generator live on BestMCPServers?", acceptedAnswer: { "@type": "Answer", text: "BestMCPServers focuses on AI builder tools, MCP server planning, agent workflows, developer utilities, cost estimation, and product requirements for software teams." } },
+      { "@type": "Question", name: "Can I use these PRD templates without an account?", acceptedAnswer: { "@type": "Answer", text: "Yes. The generator and template pages are free to use in the browser with no account, database, login, payment, or API key." } },
+      { "@type": "Question", name: "Should I use the AI Cost Calculator with the AI PRD Generator?", acceptedAnswer: { "@type": "Answer", text: "Yes. Use the AI PRD Generator first to define scope, workflows, and requirements. Then use the AI Cost Calculator to estimate model and API costs for the product you plan to build." } },
     ],
   };
 
@@ -54,6 +57,19 @@ export default function AiPrdGeneratorPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">AI product planning</p>
           <h1 className="mt-4 text-4xl font-extrabold tracking-tight sm:text-6xl">AI PRD Generator</h1>
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-300">Create a structured product requirements document from a product idea, or start with a focused PRD template for SaaS, AI agents, MCP servers, marketplaces, CRM software, Chrome extensions, and mobile apps.</p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a href="#tool" className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-500">Generate a PRD</a>
+            <Link href="/tools/ai-cost-calculator/" className="rounded-xl border border-white/20 px-5 py-3 font-semibold text-white hover:bg-white/10">Estimate AI costs</Link>
+          </div>
+        </div>
+      </section>
+      <section id="tool" className="border-b border-slate-200 bg-slate-50 py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 max-w-3xl">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-950">Generate an AI-ready PRD</h2>
+            <p className="mt-4 leading-8 text-slate-700">Product requirements for AI builders need clear users, workflows, feature boundaries, cost assumptions, security constraints, evaluation notes, and launch criteria. Fill in the fields below, generate a Markdown PRD, then refine it with the related templates and guides.</p>
+          </div>
+          <AI_PRD_Generator />
         </div>
       </section>
       <section className="py-16">
@@ -66,6 +82,26 @@ export default function AiPrdGeneratorPage() {
                 <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">{template.priority}</span>
                 <h3 className="mt-4 text-xl font-bold text-slate-950 group-hover:text-blue-700">{template.name}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{template.description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="border-t border-slate-200 bg-slate-50 py-16">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-950">Related builder tools and guides</h2>
+          <p className="mt-4 max-w-3xl leading-8 text-slate-700">Use the AI PRD Generator with BestMCPServers guides and tools to move from product idea to build plan, cost estimate, and safer agent design.</p>
+          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              { title: "AI Cost Calculator", href: "/tools/ai-cost-calculator/", description: "Estimate AI API costs before you commit to a product architecture or usage model." },
+              { title: "AI Agent PRD Template", href: "/ai-agent-prd-template/", description: "Plan agent goals, tools, permissions, memory, evaluation, and failure handling." },
+              { title: "MCP Server PRD Template", href: "/mcp-server-prd-template/", description: "Define MCP server use cases, exposed tools, auth needs, schemas, risks, and launch criteria." },
+              { title: "Agent Security Guide", href: "/guides/agent-security-guide/", description: "Review prompt injection, tool permissions, monitoring, and reliability risks before shipping agents." },
+              { title: "Agent Directory", href: "/agents/", description: "Browse agent examples and use cases when shaping your PRD requirements." },
+            ].map((item) => (
+              <Link key={item.href} href={item.href} className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-blue-300 hover:shadow-lg">
+                <h3 className="font-bold text-slate-950 group-hover:text-blue-700">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{item.description}</p>
               </Link>
             ))}
           </div>

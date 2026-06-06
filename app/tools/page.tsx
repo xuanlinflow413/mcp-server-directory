@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Wrench, FileJson, ArrowRight, ShieldCheck, Binary, KeyRound, Link2, Hash, Video, PlugZap, Code2, Database, Eye, Calculator } from "lucide-react";
+import { Wrench, FileJson, ArrowRight, ShieldCheck, Binary, KeyRound, Link2, Hash, Video, PlugZap, Code2, Database, Eye, Calculator, FileText } from "lucide-react";
 import { developerTools } from "@/data/developerTools";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bestmcpservers.com"),
   title: "Developer Tools — Free Online Utilities | BestMCPServers",
   description:
-    "Free online developer tools and API endpoints: JSON formatter, Base64 converter, JWT decoder, URL encoder, UUID generator, AI cost calculator, HTML, SQL, and Markdown utilities.",
+    "Free online developer tools and AI builder utilities: AI PRD generator, JSON formatter, Base64 converter, JWT decoder, URL encoder, UUID generator, AI cost calculator, HTML, SQL, and Markdown utilities.",
   keywords: [
     "developer tools",
+    "AI PRD generator",
+    "product requirements document",
     "json formatter",
     "json validator online",
     "base64 encoder decoder",
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Developer Tools — Free Online Utilities | BestMCPServers",
     description:
-      "Free online developer utilities for JSON, Base64, JWT, URLs, UUIDs, AI costs, HTML, SQL, and Markdown. No signup, no backend, no data sent to servers.",
+      "Free online developer and AI builder utilities for AI PRDs, JSON, Base64, JWT, URLs, UUIDs, AI costs, HTML, SQL, and Markdown. No signup, no backend, no data sent to servers.",
     type: "website",
     url: "https://bestmcpservers.com/tools/",
   },
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Developer Tools — Free Online Utilities | BestMCPServers",
     description:
-      "Free browser-only developer tools for JSON, Base64, JWT, URLs, UUIDs, AI costs, HTML, SQL, and Markdown.",
+      "Free browser-only developer tools for AI PRDs, JSON, Base64, JWT, URLs, UUIDs, AI costs, HTML, SQL, and Markdown.",
   },
   robots: {
     index: true,
@@ -125,11 +127,35 @@ export default function ToolsPage() {
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-slate-900">Developer Utilities</h2>
             <p className="mt-2 text-slate-600">
-              Format JSON, validate syntax, encode Base64, decode JWTs, encode URLs,
+              Generate AI-ready PRDs, format JSON, validate syntax, encode Base64, decode JWTs, encode URLs,
               generate UUID v4 values, estimate AI token costs, format HTML and SQL, and preview Markdown without sending data to a server.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Link
+              href="/ai-prd-generator/"
+              className="group relative rounded-2xl border border-blue-200 bg-blue-50 p-6 hover:border-blue-300 hover:shadow-lg transition-all"
+            >
+              <div className="flex items-start justify-between">
+                <div className="rounded-xl bg-blue-600 p-3">
+                  <FileText className="w-6 h-6 text-white" />
+                </div>
+                <ArrowRight className="w-5 h-5 text-blue-400 group-hover:text-blue-700 transition-colors" />
+              </div>
+              <h3 className="mt-4 text-lg font-semibold text-slate-900 group-hover:text-blue-700 transition-colors">
+                AI PRD Generator
+              </h3>
+              <p className="mt-2 text-sm text-slate-700 leading-relaxed">
+                Turn a product idea into a structured product requirements document for SaaS, AI agents, MCP servers, marketplaces, CRM tools, Chrome extensions, and mobile apps.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {["Product Planning", "AI PRD", "MCP"].map((tag) => (
+                  <span key={tag} className="rounded-full bg-white px-2.5 py-0.5 text-xs text-blue-700">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </Link>
             {developerTools.map((tool) => {
               const Icon = iconMap[tool.slug];
               return (
