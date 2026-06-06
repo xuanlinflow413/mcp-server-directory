@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Wrench, FileJson, ArrowRight, ShieldCheck, Binary, KeyRound, Link2, Hash, Video, PlugZap, Code2, Database, Eye } from "lucide-react";
+import { Wrench, FileJson, ArrowRight, ShieldCheck, Binary, KeyRound, Link2, Hash, Video, PlugZap, Code2, Database, Eye, Calculator } from "lucide-react";
 import { developerTools } from "@/data/developerTools";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bestmcpservers.com"),
   title: "Developer Tools — Free Online Utilities | BestMCPServers",
   description:
-    "Free online developer tools and API endpoints: JSON formatter, Base64 converter, JWT decoder, URL encoder, UUID generator, HTML, SQL, and Markdown utilities.",
+    "Free online developer tools and API endpoints: JSON formatter, Base64 converter, JWT decoder, URL encoder, UUID generator, AI cost calculator, HTML, SQL, and Markdown utilities.",
   keywords: [
     "developer tools",
     "json formatter",
@@ -19,6 +19,9 @@ export const metadata: Metadata = {
     "html formatter",
     "sql formatter",
     "markdown previewer",
+    "ai cost calculator",
+    "llm cost calculator",
+    "token cost calculator",
   ],
   alternates: {
     canonical: "https://bestmcpservers.com/tools/",
@@ -26,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Developer Tools — Free Online Utilities | BestMCPServers",
     description:
-      "Free online developer utilities for JSON, Base64, JWT, URLs, UUIDs, HTML, SQL, and Markdown. No signup, no backend, no data sent to servers.",
+      "Free online developer utilities for JSON, Base64, JWT, URLs, UUIDs, AI costs, HTML, SQL, and Markdown. No signup, no backend, no data sent to servers.",
     type: "website",
     url: "https://bestmcpservers.com/tools/",
   },
@@ -34,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Developer Tools — Free Online Utilities | BestMCPServers",
     description:
-      "Free browser-only developer tools for JSON, Base64, JWT, URLs, UUIDs, HTML, SQL, and Markdown.",
+      "Free browser-only developer tools for JSON, Base64, JWT, URLs, UUIDs, AI costs, HTML, SQL, and Markdown.",
   },
   robots: {
     index: true,
@@ -52,6 +55,7 @@ const iconMap = {
   "html-formatter": Code2,
   "sql-formatter": Database,
   "markdown-previewer": Eye,
+  "ai-cost-calculator": Calculator,
   "veo-prompt-generator": Video,
 };
 
@@ -122,7 +126,7 @@ export default function ToolsPage() {
             <h2 className="text-2xl font-bold text-slate-900">Developer Utilities</h2>
             <p className="mt-2 text-slate-600">
               Format JSON, validate syntax, encode Base64, decode JWTs, encode URLs,
-              generate UUID v4 values, format HTML and SQL, and preview Markdown without sending data to a server.
+              generate UUID v4 values, estimate AI token costs, format HTML and SQL, and preview Markdown without sending data to a server.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
