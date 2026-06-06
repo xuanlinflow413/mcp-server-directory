@@ -1,29 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BookOpen, ArrowRight } from "lucide-react";
+import { agentSecurityGuides } from "@/data/agentSecurityGuides";
 
 const baseUrl = "https://bestmcpservers.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: "Guides — MCP, AI Tools, Veo Prompts | BestMCPServers",
+  title: "Guides — Agent Security, MCP & AI Tools | BestMCPServers",
   description:
-    "Practical guides for MCP servers, AI-callable developer tools, ChatGPT Actions, Cursor workflows, and Google Veo prompt examples.",
+    "Practical guides for agent security, prompt injection, agent monitoring, MCP servers, AI-callable developer tools, ChatGPT Actions, and Cursor workflows.",
   alternates: { canonical: `${baseUrl}/guides/` },
   openGraph: {
-    title: "Guides — MCP, AI Tools, Veo Prompts | BestMCPServers",
-    description: "Learn how to use MCP servers, AI tool APIs, Cursor, ChatGPT Actions, and Veo prompts.",
+    title: "Guides — Agent Security, MCP & AI Tools | BestMCPServers",
+    description: "Learn agent security, prompt injection defense, monitoring, evaluation, MCP servers, AI tool APIs, Cursor, and ChatGPT Actions.",
     type: "website",
     url: `${baseUrl}/guides/`,
   },
   twitter: {
     card: "summary_large_image",
     title: "BestMCPServers Guides",
-    description: "MCP, AI tools, ChatGPT Actions, Cursor, and Veo prompt guides.",
+    description: "Agent security, MCP, AI tools, ChatGPT Actions, Cursor, and Veo prompt guides.",
   },
 };
 
 const guides = [
+  ...agentSecurityGuides.map((guide) => ({
+    title: guide.h1,
+    href: `/guides/${guide.slug}/`,
+    description: guide.description,
+    tag: "Agent Security",
+  })),
   {
     title: "MCP Server Examples",
     href: "/mcp-server-examples/",
@@ -160,7 +167,7 @@ export default function GuidesPage() {
           </div>
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">BestMCPServers Guides</h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            Practical guides for MCP servers, AI-callable developer tools, ChatGPT Actions, Cursor workflows, and Google Veo prompt generation.
+            Practical guides for agent security, prompt injection defense, agent monitoring, evaluation, MCP servers, AI-callable developer tools, ChatGPT Actions, Cursor workflows, and Google Veo prompt generation.
           </p>
         </div>
       </section>

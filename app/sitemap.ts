@@ -3,6 +3,7 @@ import { developerTools } from "@/data/developerTools";
 import { agents } from "@/data/agents";
 import { rspPrompts } from "@/data/rspPrompts";
 import { mcpGuides } from "@/data/mcpGuides";
+import { agentSecurityGuides } from "@/data/agentSecurityGuides";
 
 const baseUrl = "https://bestmcpservers.com";
 const lastModified = new Date("2026-05-30");
@@ -46,8 +47,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const toolRoutes = developerTools.map((tool) => route(`/tools/${tool.slug}/`, 0.8, "monthly"));
   const mcpGuideRoutes = mcpGuides.map((guide) => route(`/${guide.slug}/`, 0.85, "monthly"));
+  const agentSecurityGuideRoutes = agentSecurityGuides.map((guide) => route(`/guides/${guide.slug}/`, 0.85, "monthly"));
   const agentRoutes = agents.map((agent) => route(`/agents/${agent.slug}/`, 0.7, "monthly"));
   const rspRoutes = rspPrompts.map((prompt) => route(`/rsp/${prompt.slug}/`, 0.7, "monthly"));
 
-  return [...staticRoutes, ...mcpGuideRoutes, ...toolRoutes, ...agentRoutes, ...rspRoutes];
+  return [...staticRoutes, ...mcpGuideRoutes, ...agentSecurityGuideRoutes, ...toolRoutes, ...agentRoutes, ...rspRoutes];
 }
