@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Wrench, FileJson, ArrowRight, ShieldCheck, Binary, KeyRound, Link2, Hash, Video, PlugZap, Code2, Database, Eye, Calculator, FileText } from "lucide-react";
+import { Wrench, FileJson, ArrowRight, ShieldCheck, Binary, KeyRound, Link2, Hash, Video, PlugZap, Code2, Database, Eye, Calculator, FileText, DollarSign, Network } from "lucide-react";
 import { developerTools } from "@/data/developerTools";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bestmcpservers.com"),
   title: "Developer Tools — Free Online Utilities | BestMCPServers",
   description:
-    "Free online developer tools and AI builder utilities: AI PRD generator, JSON formatter, Base64 converter, JWT decoder, URL encoder, UUID generator, AI cost calculator, HTML, SQL, and Markdown utilities.",
+    "Free online developer tools and AI builder utilities: AI PRD generator, OpenAI cost calculator, Claude cost calculator, Gemini cost calculator, AI SaaS pricing calculator, MCP stack builder, JSON formatter, Base64 converter, JWT decoder, URL encoder, UUID generator, AI cost calculator, HTML, SQL, and Markdown utilities.",
   keywords: [
     "developer tools",
     "AI PRD generator",
@@ -22,6 +22,11 @@ export const metadata: Metadata = {
     "sql formatter",
     "markdown previewer",
     "ai cost calculator",
+    "openai cost calculator",
+    "claude cost calculator",
+    "gemini cost calculator",
+    "ai saas pricing calculator",
+    "mcp stack builder",
     "llm cost calculator",
     "token cost calculator",
   ],
@@ -58,6 +63,11 @@ const iconMap = {
   "sql-formatter": Database,
   "markdown-previewer": Eye,
   "ai-cost-calculator": Calculator,
+  "openai-cost-calculator": Calculator,
+  "claude-cost-calculator": Calculator,
+  "gemini-cost-calculator": Calculator,
+  "ai-saas-pricing-calculator": DollarSign,
+  "mcp-stack-builder": Network,
   "veo-prompt-generator": Video,
 };
 
@@ -127,8 +137,9 @@ export default function ToolsPage() {
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-slate-900">Developer Utilities</h2>
             <p className="mt-2 text-slate-600">
-              Generate AI-ready PRDs, format JSON, validate syntax, encode Base64, decode JWTs, encode URLs,
-              generate UUID v4 values, estimate AI token costs, format HTML and SQL, and preview Markdown without sending data to a server.
+              Generate AI-ready PRDs, estimate OpenAI, Claude, Gemini, and general LLM costs, plan AI SaaS pricing,
+              build MCP stacks, format JSON, validate syntax, encode Base64, decode JWTs, encode URLs,
+              generate UUID v4 values, format HTML and SQL, and preview Markdown without sending data to a server.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

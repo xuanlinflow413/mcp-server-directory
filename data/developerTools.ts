@@ -9,6 +9,11 @@ export type ToolSlug =
   | "sql-formatter"
   | "markdown-previewer"
   | "ai-cost-calculator"
+  | "openai-cost-calculator"
+  | "claude-cost-calculator"
+  | "gemini-cost-calculator"
+  | "ai-saas-pricing-calculator"
+  | "mcp-stack-builder"
   | "veo-prompt-generator";
 
 export type ToolConfig = {
@@ -20,7 +25,7 @@ export type ToolConfig = {
   canonical: string;
   h1: string;
   intro: string;
-  mode: "json-validator" | "base64" | "jwt" | "url" | "uuid" | "html" | "sql" | "markdown" | "ai-cost" | "json-formatter" | "veo";
+  mode: "json-validator" | "base64" | "jwt" | "url" | "uuid" | "html" | "sql" | "markdown" | "ai-cost" | "openai-cost" | "claude-cost" | "gemini-cost" | "ai-saas-pricing" | "mcp-stack" | "json-formatter" | "veo";
   tags: string[];
   sample: string;
   faqs: { question: string; answer: string }[];
@@ -103,7 +108,7 @@ export const developerTools: ToolConfig[] = [
     intro: "Paste a JSON Web Token to decode the header and payload, inspect claims, and view expiration times. This tool only decodes; it does not verify signatures.",
     mode: "jwt",
     tags: ["jwt", "decoder", "json web token", "claims"],
-    sample: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkJlc3RNQ1BTZXJ2ZXJzIiwiaWF0IjoxNzE2OTQwODAwLCJleHAiOjE4OTM0NTYwMDB9.signature",
+    sample: "eyJhbG...ture",
     faqs: [
       { question: "Does this JWT decoder verify signatures?", answer: "No. It only decodes the header and payload so you can inspect claims. It does not validate the token signature." },
       { question: "Is it safe to paste a JWT here?", answer: "Decoding runs locally in your browser, but you should still avoid pasting production secrets or sensitive user tokens into any tool." },
@@ -242,6 +247,111 @@ export const developerTools: ToolConfig[] = [
       { question: "How accurate are these estimates?", answer: "The estimates are planning numbers based on reference prices and your token assumptions. Always verify current provider pricing before budgeting production spend." },
     ],
   },
+{
+  slug: "openai-cost-calculator",
+  name: "OpenAI Cost Calculator",
+  shortName: "OpenAI Costs",
+  title: "OpenAI Cost Calculator — Estimate GPT API Costs",
+  description: "Estimate OpenAI API costs for GPT models using input tokens, output tokens, and daily requests. Calculate daily, monthly, and yearly AI spend.",
+  canonical: `${base}/tools/openai-cost-calculator/`,
+  h1: "OpenAI Cost Calculator",
+  intro: "Estimate GPT and OpenAI API spend before your AI app usage scales.",
+  mode: "openai-cost",
+  tags: ["openai cost calculator", "gpt cost calculator", "openai api pricing", "token cost"],
+  sample: "",
+  faqs: [
+    { question: "What is an OpenAI cost calculator?", answer: "An OpenAI cost calculator estimates API spend from input tokens, output tokens, model prices, and request volume." },
+    { question: "How are OpenAI API costs calculated?", answer: "OpenAI API cost is estimated by multiplying input tokens by input price and output tokens by output price, then scaling by request volume." },
+    { question: "What is the difference between input and output tokens?", answer: "Input tokens are the prompt and context you send to the model. Output tokens are the generated response returned by the model." },
+    { question: "How do I estimate monthly OpenAI cost?", answer: "Estimate average tokens per request, multiply by daily requests, apply model prices, then multiply daily spend by 30 days." },
+    { question: "How can I reduce OpenAI API costs?", answer: "Reduce prompt length, cap max output tokens, cache repeated answers, route simple tasks to cheaper models, and monitor power users." },
+    { question: "Does this tool call the OpenAI API?", answer: "No. It is a static browser calculator. It does not call OpenAI, require an API key, or upload your data." },
+  ],
+},
+{
+  slug: "claude-cost-calculator",
+  name: "Claude Cost Calculator",
+  shortName: "Claude Costs",
+  title: "Claude Cost Calculator — Estimate Anthropic API Costs",
+  description: "Estimate Claude API costs for Anthropic models using token usage and request volume. Compare Claude Sonnet and Opus monthly AI costs.",
+  canonical: `${base}/tools/claude-cost-calculator/`,
+  h1: "Claude Cost Calculator",
+  intro: "Forecast Claude Sonnet, Opus, and Haiku spend for research agents, coding assistants, and document workflows.",
+  mode: "claude-cost",
+  tags: ["claude cost calculator", "anthropic pricing", "claude token calculator", "sonnet cost"],
+  sample: "",
+  faqs: [
+    { question: "What is a Claude cost calculator?", answer: "A Claude cost calculator estimates Anthropic API spend from token usage, selected Claude model, and request volume." },
+    { question: "How are Claude API costs calculated?", answer: "Claude costs are estimated from input tokens plus output tokens multiplied by each model price per one million tokens." },
+    { question: "What is the difference between Claude Sonnet and Opus cost?", answer: "Sonnet is usually the balanced production option. Opus-class models cost more and should be reserved for harder reasoning tasks." },
+    { question: "Why can Claude costs increase quickly?", answer: "Long documents and long generated answers can create high input and output token volume, especially with expensive models." },
+    { question: "Does this tool use the Anthropic API?", answer: "No. The calculator runs locally in your browser and does not call Anthropic or require a Claude API key." },
+    { question: "How can I reduce Claude token usage?", answer: "Chunk documents, summarize context, cache repeated analysis, cap output length, and route lightweight tasks to lower-cost models." },
+  ],
+},
+{
+  slug: "gemini-cost-calculator",
+  name: "Gemini Cost Calculator",
+  shortName: "Gemini Costs",
+  title: "Gemini Cost Calculator — Estimate Google AI API Costs",
+  description: "Estimate Google Gemini API costs from input tokens, output tokens, and request volume. Calculate monthly AI spend for Gemini apps.",
+  canonical: `${base}/tools/gemini-cost-calculator/`,
+  h1: "Gemini Cost Calculator",
+  intro: "Estimate Google Gemini API spend for long-context assistants, multimodal apps, and AI product planning.",
+  mode: "gemini-cost",
+  tags: ["gemini cost calculator", "google ai pricing", "gemini api cost", "token calculator"],
+  sample: "",
+  faqs: [
+    { question: "What is a Gemini cost calculator?", answer: "A Gemini cost calculator estimates Google AI API spend from model price, token usage, and request volume." },
+    { question: "How are Gemini API costs calculated?", answer: "Gemini API estimates combine input token cost and output token cost, then multiply by the number of requests in your workload." },
+    { question: "What Gemini models are included?", answer: "This calculator includes reference Gemini Pro and Flash-style pricing rows for planning comparisons." },
+    { question: "How does long context affect Gemini cost?", answer: "Long prompts, retrieved documents, and large chat history increase input tokens and can raise monthly spend quickly." },
+    { question: "Does this tool call the Gemini API?", answer: "No. It is a static browser calculator and does not call Google APIs or upload your inputs." },
+    { question: "How can I reduce Gemini API costs?", answer: "Trim context, summarize previous turns, use smaller models for simple tasks, and set strict output token limits." },
+  ],
+},
+{
+  slug: "ai-saas-pricing-calculator",
+  name: "AI SaaS Pricing Calculator",
+  shortName: "SaaS Pricing",
+  title: "AI SaaS Pricing Calculator — Price AI Apps Without Losing Money",
+  description: "Calculate AI SaaS pricing from model costs, user usage, requests, and target gross margin. Estimate Pro plan pricing and break-even usage.",
+  canonical: `${base}/tools/ai-saas-pricing-calculator/`,
+  h1: "AI SaaS Pricing Calculator",
+  intro: "Turn token cost assumptions into SaaS pricing ranges, usage caps, and break-even planning numbers.",
+  mode: "ai-saas-pricing",
+  tags: ["ai saas pricing", "ai app pricing", "gross margin", "ai startup"],
+  sample: "",
+  faqs: [
+    { question: "What is an AI SaaS pricing calculator?", answer: "It estimates subscription pricing from AI model costs, user usage, request volume, fixed costs, and target gross margin." },
+    { question: "How do I price an AI SaaS product?", answer: "Start with model cost per user, add fixed monthly costs, choose a margin target, and set usage caps so heavy users do not erase profit." },
+    { question: "Why should AI apps avoid unlimited free usage?", answer: "Every generation has token cost. Unlimited free plans can attract heavy users who create costs before revenue exists." },
+    { question: "What gross margin should an AI SaaS target?", answer: "Many SaaS businesses aim for high gross margin, but AI apps should validate usage patterns before promising unlimited plans." },
+    { question: "Does this tool connect to Stripe?", answer: "No. It is a static planning calculator and does not connect to payments, accounts, or billing data." },
+    { question: "Is this financial advice?", answer: "No. The results are planning estimates. Verify your real costs, taxes, fees, and business assumptions before pricing." },
+  ],
+},
+{
+  slug: "mcp-stack-builder",
+  name: "MCP Stack Builder",
+  shortName: "MCP Stack",
+  title: "MCP Stack Builder — Plan MCP Servers for AI Agents",
+  description: "Build a recommended MCP server stack for Claude, Cursor, and AI agents. Choose your workflow, data sources, and security level.",
+  canonical: `${base}/tools/mcp-stack-builder/`,
+  h1: "MCP Stack Builder",
+  intro: "Plan a practical Model Context Protocol stack for AI agents without connecting accounts or calling an AI model.",
+  mode: "mcp-stack",
+  tags: ["mcp stack builder", "mcp servers", "ai agents", "claude desktop"],
+  sample: "",
+  faqs: [
+    { question: "What is an MCP stack?", answer: "An MCP stack is the set of Model Context Protocol servers, clients, data sources, and safety rules that give an AI agent useful context and tools." },
+    { question: "What does an MCP Stack Builder do?", answer: "It maps your workflow, client, data sources, and security level to recommended MCP server categories and setup steps." },
+    { question: "Does this tool install MCP servers?", answer: "No. It is a static planner. It does not install packages, connect accounts, or change local configuration." },
+    { question: "Which MCP clients are supported?", answer: "The planner includes Claude Desktop, Cursor, custom apps, and local development workflows." },
+    { question: "What security risks should I consider?", answer: "Start with read-only scopes, separate dev and production credentials, avoid secrets in config files, and audit destructive tools." },
+    { question: "Does this tool call an AI model?", answer: "No. Recommendations are generated from static rules in your browser. No AI API, login, or data upload is used." },
+  ],
+},
   {
     slug: "veo-prompt-generator",
     name: "Veo Prompt Generator",
@@ -274,3 +384,4 @@ export function getTool(slug: ToolSlug): ToolConfig {
 export function relatedTools(slug: ToolSlug): ToolConfig[] {
   return developerTools.filter((item) => item.slug !== slug).slice(0, 5);
 }
+
