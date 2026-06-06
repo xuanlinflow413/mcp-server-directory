@@ -4,7 +4,7 @@ import { rspPrompts } from "@/data/rspPrompts";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bestmcpservers.com"),
-  title: "Trending AI Photo Editing Prompts Library | RSP Collection",
+  title: "AI Prompt Library — Trending Photo Editing Prompts | BestMCPServers",
   description:
     "Discover 20+ trending AI photo editing prompts. Transform your photos with RSP workflows — from cinematic looks to anime transformations, ghost edits to cyberpunk neon.",
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     canonical: "https://bestmcpservers.com/rsp/",
   },
   openGraph: {
-    title: "Trending AI Photo Editing Prompts Library | RSP Collection",
+    title: "AI Prompt Library — Trending Photo Editing Prompts | BestMCPServers",
     description:
       "Discover 20+ trending AI photo editing prompts. Transform your photos with professional RSP workflows.",
     type: "website",
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Trending AI Photo Editing Prompts Library | RSP Collection",
+    title: "AI Prompt Library — Trending Photo Editing Prompts | BestMCPServers",
     description:
-      "Discover 20+ trending AI photo editing prompts for cinematic, aesthetic, and creative transformations.",
+      "Discover 20+ trending AI photo editing prompts for cinematic, aesthetic, anime, and creative photo transformations.",
   },
   robots: {
     index: true,
@@ -66,9 +66,33 @@ const faqs = [
   },
 ];
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://bestmcpservers.com/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Prompt Library",
+      item: "https://bestmcpservers.com/rsp/",
+    },
+  ],
+};
+
 export default function RSPLibraryPage() {
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       {/* Header */}
       <header className="border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
@@ -77,23 +101,26 @@ export default function RSPLibraryPage() {
               href="/"
               className="text-lg font-bold text-slate-900 hover:text-slate-700"
             >
-              BestMCPServers.com
+              BestMCPServers
             </Link>
+            <span className="hidden sm:inline text-xs text-slate-400 ml-2">
+              AI Tools &amp; Developer Resources
+            </span>
             <nav className="flex gap-6">
               <Link
                 href="/"
                 className="text-sm text-slate-600 hover:text-slate-900"
               >
-                Directory
+                Home
               </Link>
               <Link
                 href="/rsp/"
                 className="text-sm font-semibold text-blue-600"
               >
-                AI Prompts
+                Prompt Library
               </Link>
               <Link
-                href="/tools/json-formatter/"
+                href="/tools/"
                 className="text-sm text-slate-600 hover:text-slate-900"
               >
                 Tools
@@ -103,11 +130,26 @@ export default function RSPLibraryPage() {
         </div>
       </header>
 
+      {/* Breadcrumb */}
+      <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
+        <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
+          <ol className="flex items-center gap-2">
+            <li>
+              <Link href="/" className="hover:text-slate-900">
+                Home
+              </Link>
+            </li>
+            <li className="text-slate-300">/</li>
+            <li className="font-medium text-slate-900">Prompt Library</li>
+          </ol>
+        </nav>
+      </div>
+
       {/* Hero */}
       <section className="bg-slate-950 py-16 sm:py-24">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
-            Trending AI Photo Editing Prompts Library
+            AI Prompt Library
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-400">
             20+ ready-to-use RSP prompts for transforming your photos. From
@@ -127,6 +169,30 @@ export default function RSPLibraryPage() {
             <span className="rounded-full bg-blue-600/20 px-3 py-1 text-sm text-blue-400">
               cinematic ai photo
             </span>
+          </div>
+        </div>
+      </section>
+
+      {/* Intro Section */}
+      <section className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid gap-8 md:grid-cols-3">
+          <div className="rounded-xl border border-slate-200 bg-white p-6">
+            <h3 className="text-lg font-semibold text-slate-900">What is AI Prompt Library?</h3>
+            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+              Our AI Prompt Library is a curated collection of ready-to-use prompts for photo editing, image generation, and creative AI workflows. Each prompt is tested and optimized for popular AI tools.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-white p-6">
+            <h3 className="text-lg font-semibold text-slate-900">Why These Prompts Work</h3>
+            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+              Every prompt follows the RSP (Retouch, Style, Polish) methodology. This structured approach ensures consistent, high-quality results across different AI image editing platforms.
+            </p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-white p-6">
+            <h3 className="text-lg font-semibold text-slate-900">Popular Categories</h3>
+            <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+              Cinematic, aesthetic, anime, cyberpunk, vintage, fantasy, moody dark, glow-up, and more. New prompts added weekly based on trending styles.
+            </p>
           </div>
         </div>
       </section>
@@ -194,23 +260,23 @@ export default function RSPLibraryPage() {
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-sm text-slate-500">
-              &copy; 2026 BestMCPServers.com. All rights reserved.
+              &copy; 2026 BestMCPServers. All rights reserved.
             </p>
             <div className="flex gap-6">
               <Link
                 href="/"
                 className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
               >
-                MCP Directory
+                Home
               </Link>
               <Link
                 href="/rsp/"
                 className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
               >
-                AI Prompts
+                Prompt Library
               </Link>
               <Link
-                href="/tools/json-formatter/"
+                href="/tools/"
                 className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
               >
                 Tools

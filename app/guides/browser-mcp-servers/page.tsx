@@ -67,6 +67,18 @@ const faqs = [
 export default function BrowserMcpServersPage() {
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://bestmcpservers.com/" },
+            { "@type": "ListItem", position: 2, name: "Guides", item: "https://bestmcpservers.com/guides/" },
+            { "@type": "ListItem", position: 3, name: "Browser MCP Servers: Puppeteer, Playwright & Browserbase Compared", item: "https://bestmcpservers.com/guides/browser-mcp-servers/" },
+          ],
+        }) }}
+      />
       {/* Header */}
       <header className="border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
@@ -75,14 +87,17 @@ export default function BrowserMcpServersPage() {
               href="/"
               className="text-lg font-bold text-slate-900 hover:text-slate-700"
             >
-              BestMCPServers.com
+              BestMCPServers
             </Link>
+            <span className="hidden sm:inline text-xs text-slate-400 ml-2">
+              AI Tools &amp; Developer Resources
+            </span>
             <nav className="flex gap-6">
               <Link
                 href="/"
                 className="text-sm text-slate-600 hover:text-slate-900"
               >
-                Directory
+                Home
               </Link>
               <Link
                 href="/guides/best-mcp-servers-for-claude/"
@@ -100,6 +115,21 @@ export default function BrowserMcpServersPage() {
           </div>
         </div>
       </header>
+
+      {/* Breadcrumb */}
+      <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
+        <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
+          <ol className="flex items-center gap-2">
+            <li>
+              <Link href="/" className="hover:text-slate-900">
+                Home
+              </Link>
+            </li>
+            <li className="text-slate-300">/</li>
+            <li className="font-medium text-slate-900">Guides</li>
+          </ol>
+        </nav>
+      </div>
 
       <article className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
         {/* H1 */}

@@ -76,12 +76,12 @@ export default function PromptPage({ params }: Props) {
     },
     author: {
       "@type": "Organization",
-      name: "BestMCPServers.com",
+      name: "BestMCPServers",
       url: "https://bestmcpservers.com",
     },
     publisher: {
       "@type": "Organization",
-      name: "BestMCPServers.com",
+      name: "BestMCPServers",
       url: "https://bestmcpservers.com",
     },
     datePublished: "2026-05-28",
@@ -101,6 +101,31 @@ export default function PromptPage({ params }: Props) {
     })),
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://bestmcpservers.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Prompt Library",
+        item: "https://bestmcpservers.com/rsp/",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: prompt.h1,
+        item: `https://bestmcpservers.com/rsp/${prompt.slug}/`,
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-white">
       <script
@@ -110,6 +135,10 @@ export default function PromptPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
       {/* Header */}
@@ -123,23 +152,23 @@ export default function PromptPage({ params }: Props) {
               BestMCPServers
             </Link>
             <span className="hidden sm:inline text-xs text-slate-400 ml-2">
-              AI Tools &amp; Prompt Library
+              AI Tools &amp; Developer Resources
             </span>
             <nav className="flex gap-6">
               <Link
                 href="/"
                 className="text-sm text-slate-600 hover:text-slate-900"
               >
-                Directory
+                Home
               </Link>
               <Link
                 href="/rsp/"
                 className="text-sm font-semibold text-blue-600"
               >
-                AI Prompts
+                Prompt Library
               </Link>
               <Link
-                href="/tools/json-formatter/"
+                href="/tools/"
                 className="text-sm text-slate-600 hover:text-slate-900"
               >
                 Tools
@@ -148,6 +177,27 @@ export default function PromptPage({ params }: Props) {
           </div>
         </div>
       </header>
+
+      {/* Breadcrumb */}
+      <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
+        <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
+          <ol className="flex items-center gap-2">
+            <li>
+              <Link href="/" className="hover:text-slate-900">
+                Home
+              </Link>
+            </li>
+            <li className="text-slate-300">/</li>
+            <li>
+              <Link href="/rsp/" className="hover:text-slate-900">
+                Prompt Library
+              </Link>
+            </li>
+            <li className="text-slate-300">/</li>
+            <li className="font-medium text-slate-900">{prompt.h1}</li>
+          </ol>
+        </nav>
+      </div>
 
       <article className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
         {/* H1 */}
@@ -245,6 +295,70 @@ export default function PromptPage({ params }: Props) {
           </div>
         )}
 
+        {/* When To Use This Prompt */}
+        {prompt.whenToUse && (
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold text-slate-900">When To Use This Prompt</h2>
+            <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-6">
+              <p className="text-slate-700 leading-relaxed whitespace-pre-line">
+                {prompt.whenToUse}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Best Results Tips */}
+        {prompt.bestResultsTips && prompt.bestResultsTips.length > 0 && (
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold text-slate-900">Best Results Tips</h2>
+            <ul className="mt-6 space-y-3">
+              {prompt.bestResultsTips.map((tip, index) => (
+                <li key={index} className="flex gap-3">
+                  <svg className="h-6 w-6 shrink-0 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <p className="text-slate-600 leading-relaxed">{tip}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Before You Generate */}
+        {prompt.beforeYouGenerate && (
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold text-slate-900">Before You Generate</h2>
+            <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-6">
+              <p className="text-slate-700 leading-relaxed whitespace-pre-line">
+                {prompt.beforeYouGenerate}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Prompt Variations */}
+        {prompt.promptVariations && prompt.promptVariations.length > 0 && (
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold text-slate-900">Prompt Variations</h2>
+            <p className="mt-2 text-slate-600">Try these related versions for different creative directions.</p>
+            <div className="mt-6 space-y-6">
+              {prompt.promptVariations.map((variation, index) => (
+                <div key={index} className="rounded-xl border border-slate-200 bg-white p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-lg font-semibold text-slate-900">{variation.name}</h3>
+                    <CopyPromptButton text={variation.prompt} />
+                  </div>
+                  <div className="rounded-lg bg-slate-950 p-4 overflow-x-auto">
+                    <pre className="text-sm text-slate-300 whitespace-pre-wrap leading-relaxed">
+                      {variation.prompt}
+                    </pre>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* FAQ */}
         <div className="mt-14">
           <h2 className="text-2xl font-bold text-slate-900">
@@ -300,7 +414,7 @@ export default function PromptPage({ params }: Props) {
               href="/rsp/"
               className="font-semibold text-blue-600 hover:text-blue-800"
             >
-              Trending AI Photo Editing Prompts Library
+              AI Prompt Library
             </Link>
             . We add new RSP prompts weekly for cinematic, aesthetic, anime, and
             creative photo transformations.
@@ -313,17 +427,23 @@ export default function PromptPage({ params }: Props) {
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-sm text-slate-500">
-              &copy; 2026 BestMCPServers.com. All rights reserved.
+              &copy; 2026 BestMCPServers. All rights reserved.
             </p>
             <div className="flex gap-6">
+              <Link
+                href="/"
+                className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
+              >
+                Home
+              </Link>
               <Link
                 href="/rsp/"
                 className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
               >
-                AI Prompts
+                Prompt Library
               </Link>
               <Link
-                href="/tools/json-formatter/"
+                href="/tools/"
                 className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
               >
                 Tools

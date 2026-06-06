@@ -3,36 +3,33 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bestmcpservers.com"),
-  title: "Best MCP Servers 2026 | Curated Directory for Claude & Cursor",
+  title: "BestMCPServers — AI Tools, Prompt Libraries & Developer Resources",
   description:
-    "Curated directory of 20+ MCP servers for Claude, Cursor, and AI agents. Find, compare, and install Model Context Protocol servers.",
+    "BestMCPServers is your hub for AI tools, prompt libraries, and developer resources. Browse MCP servers, copy AI prompts, and use free online developer utilities.",
   keywords: [
     "best mcp servers",
     "mcp server list",
-    "awesome mcp servers",
-    "claude mcp servers",
-    "cursor mcp servers",
+    "ai prompt library",
+    "ai photo editing prompts",
+    "json formatter",
+    "developer tools",
     "model context protocol",
-    "mcp directory",
   ],
-  alternates: {
-    canonical: "https://bestmcpservers.com/",
-  },
   verification: {
     google: "Zscg3HMWOVmKLvzwcgZGMd9ZoVZ0VKZnlG5azDqSUF8",
   },
   openGraph: {
-    title: "Best MCP Servers 2026 | Curated Directory for Claude & Cursor",
+    title: "BestMCPServers — AI Tools, Prompt Libraries & Developer Resources",
     description:
-      "Curated directory of 20+ MCP servers for Claude, Cursor, and AI agents. Find, compare, and install Model Context Protocol servers.",
+      "BestMCPServers is your hub for AI tools, prompt libraries, and developer resources. Browse MCP servers, copy AI prompts, and use free online developer utilities.",
     type: "website",
     url: "https://bestmcpservers.com/",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Best MCP Servers 2026 | Curated Directory for Claude & Cursor",
+    title: "BestMCPServers — AI Tools, Prompt Libraries & Developer Resources",
     description:
-      "Curated directory of 20+ MCP servers for Claude, Cursor, and AI agents. Find, compare, and install Model Context Protocol servers.",
+      "BestMCPServers is your hub for AI tools, prompt libraries, and developer resources. Browse MCP servers, copy AI prompts, and use free online developer utilities.",
   },
   robots: {
     index: true,

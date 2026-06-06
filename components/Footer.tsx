@@ -1,40 +1,107 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-slate-200">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Brand */}
+          <div>
+            <p className="text-sm font-semibold text-slate-900">BestMCPServers</p>
+            <p className="mt-2 text-sm text-slate-500">
+              AI Tools &amp; Developer Resources
+            </p>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <p className="text-sm font-semibold text-slate-900">Resources</p>
+            <ul className="mt-3 space-y-2">
+              <li>
+                <Link href="/rsp/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Prompt Library
+                </Link>
+              </li>
+              <li>
+                <Link href="/agents/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Agent Library
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Developer Tools
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools/json-formatter/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  JSON Formatter
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Home
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Guides */}
+          <div>
+            <p className="text-sm font-semibold text-slate-900">Guides</p>
+            <ul className="mt-3 space-y-2">
+              <li>
+                <Link href="/guides/best-mcp-servers-for-claude/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Best MCP Servers for Claude
+                </Link>
+              </li>
+              <li>
+                <Link href="/guides/how-to-install-mcp-servers-in-cursor/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Install MCP in Cursor
+                </Link>
+              </li>
+              <li>
+                <Link href="/guides/browser-mcp-servers/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Browser MCP Servers
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* MCP */}
+          <div>
+            <p className="text-sm font-semibold text-slate-900">MCP Protocol</p>
+            <ul className="mt-3 space-y-2">
+              <li>
+                <a href="https://github.com/modelcontextprotocol" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  MCP GitHub
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/modelcontextprotocol/servers" target="_blank" rel="noopener noreferrer" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Official Servers
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-10 border-t border-slate-200 pt-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-sm text-slate-500">
-            © 2026 MCP Server Directory. All rights reserved.
+            &copy; 2026 BestMCPServers. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a
-              href="/guides/best-mcp-servers-for-claude/"
-              className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
-            >
-              Guides
-            </a>
-            <a
-              href="/tools/json-formatter/"
-              className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
-            >
+            <Link href="/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+              Home
+            </Link>
+            <Link href="/rsp/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+              Prompt Library
+            </Link>
+            <Link href="/agents/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+              Agent Library
+            </Link>
+            <Link href="/tools/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
               Tools
-            </a>
-            <a
-              href="https://github.com/modelcontextprotocol"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
-            >
-              MCP Protocol
-            </a>
-            <a
-              href="https://github.com/modelcontextprotocol/servers"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
-            >
-              Official Servers
-            </a>
+            </Link>
           </div>
         </div>
       </div>

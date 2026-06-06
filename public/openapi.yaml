@@ -1,0 +1,100 @@
+openapi: 3.1.0
+info:
+  title: BestMCPServers Tool API
+  version: 1.0.0
+  description: Public API for JSON formatting, JSON validation, Base64 encode/decode, and JWT decode utilities.
+servers:
+  - url: https://bestmcpservers.com
+    description: Production
+tags:
+  - name: JSON
+  - name: Base64
+  - name: JWT
+paths:
+  /api/json/format:
+    post:
+      tags: [JSON]
+      operationId: formatJson
+      summary: Format JSON
+      requestBody: { $ref: '#/components/requestBodies/ContentRequestBody' }
+      responses:
+        '200': { description: JSON formatted successfully }
+        '400': { $ref: '#/components/responses/ErrorResponse' }
+  /api/json/validate:
+    post:
+      tags: [JSON]
+      operationId: validateJson
+      summary: Validate JSON
+      requestBody: { $ref: '#/components/requestBodies/ContentRequestBody' }
+      responses:
+        '200': { description: JSON validation result }
+        '400': { $ref: '#/components/responses/ErrorResponse' }
+  /api/base64/encode:
+    post:
+      tags: [Base64]
+      operationId: encodeBase64
+      summary: Encode Base64
+      requestBody: { $ref: '#/components/requestBodies/ContentRequestBody' }
+      responses:
+        '200': { description: Base64 encoded successfully }
+        '400': { $ref: '#/components/responses/ErrorResponse' }
+  /api/base64/decode:
+    post:
+      tags: [Base64]
+      operationId: decodeBase64
+      summary: Decode Base64
+      requestBody: { $ref: '#/components/requestBodies/ContentRequestBody' }
+      responses:
+        '200': { description: Base64 decoded successfully }
+        '400': { $ref: '#/components/responses/ErrorResponse' }
+  /api/jwt/decode:
+    post:
+      tags: [JWT]
+      operationId: decodeJwt
+      summary: Decode JWT
+      description: Decode JWT header and payload without verifying the signature.
+      requestBody: { $ref: '#/components/requestBodies/ContentRequestBody' }
+      responses:
+        '200': { description: JWT decoded successfully }
+        '400': { $ref: '#/components/responses/ErrorResponse' }
+components:
+  requestBodies:
+    ContentRequestBody:
+      required: true
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/ContentRequest' }
+  responses:
+    ErrorResponse:
+      description: Invalid request or tool input.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/ErrorResponse' }
+  schemas:
+    ContentRequest:
+      type: object
+      required: [content]
+      additionalProperties: false
+      properties:
+        content:
+          type: string
+          minLength: 1
+          maxLength: 100000
+    ApiMeta:
+      type: object
+      required: [tool, version]
+      properties:
+        tool: { type: string }
+        version: { type: string }
+    ErrorResponse:
+      type: object
+      required: [success, error, meta]
+      properties:
+        success: { type: boolean, const: false }
+        error:
+          type: object
+          required: [code, message]
+          properties:
+            code: { type: string }
+            message: { type: string }
+        meta: { $ref: '#/components/schemas/ApiMeta' }

@@ -1,0 +1,468 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "BestMCPServers Tool API",
+    "version": "1.0.0",
+    "description": "Public API for BestMCPServers developer tools. Provides JSON formatting, JSON validation, Base64 encode/decode, and JWT decode utilities."
+  },
+  "servers": [
+    {
+      "url": "https://bestmcpservers.com",
+      "description": "Production"
+    }
+  ],
+  "tags": [
+    {
+      "name": "JSON"
+    },
+    {
+      "name": "Base64"
+    },
+    {
+      "name": "JWT"
+    }
+  ],
+  "paths": {
+    "/api/json/format": {
+      "post": {
+        "tags": [
+          "JSON"
+        ],
+        "operationId": "formatJson",
+        "summary": "Format JSON",
+        "description": "Format a JSON string with two-space indentation.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ContentRequestBody"
+        },
+        "responses": {
+          "200": {
+            "description": "JSON formatted successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonFormatResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorResponse"
+          },
+          "413": {
+            "$ref": "#/components/responses/ErrorResponse"
+          }
+        }
+      }
+    },
+    "/api/json/validate": {
+      "post": {
+        "tags": [
+          "JSON"
+        ],
+        "operationId": "validateJson",
+        "summary": "Validate JSON",
+        "description": "Validate whether a string is valid JSON.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ContentRequestBody"
+        },
+        "responses": {
+          "200": {
+            "description": "JSON validation result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JsonValidateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorResponse"
+          },
+          "413": {
+            "$ref": "#/components/responses/ErrorResponse"
+          }
+        }
+      }
+    },
+    "/api/base64/encode": {
+      "post": {
+        "tags": [
+          "Base64"
+        ],
+        "operationId": "encodeBase64",
+        "summary": "Encode Base64",
+        "description": "Encode UTF-8 text into Base64.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ContentRequestBody"
+        },
+        "responses": {
+          "200": {
+            "description": "Base64 encoded successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Base64EncodeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorResponse"
+          },
+          "413": {
+            "$ref": "#/components/responses/ErrorResponse"
+          }
+        }
+      }
+    },
+    "/api/base64/decode": {
+      "post": {
+        "tags": [
+          "Base64"
+        ],
+        "operationId": "decodeBase64",
+        "summary": "Decode Base64",
+        "description": "Decode Base64 into UTF-8 text.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ContentRequestBody"
+        },
+        "responses": {
+          "200": {
+            "description": "Base64 decoded successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Base64DecodeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorResponse"
+          },
+          "413": {
+            "$ref": "#/components/responses/ErrorResponse"
+          }
+        }
+      }
+    },
+    "/api/jwt/decode": {
+      "post": {
+        "tags": [
+          "JWT"
+        ],
+        "operationId": "decodeJwt",
+        "summary": "Decode JWT",
+        "description": "Decode JWT header and payload without verifying the signature.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ContentRequestBody"
+        },
+        "responses": {
+          "200": {
+            "description": "JWT decoded successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JwtDecodeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ErrorResponse"
+          },
+          "413": {
+            "$ref": "#/components/responses/ErrorResponse"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "requestBodies": {
+      "ContentRequestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ContentRequest"
+            },
+            "examples": {
+              "basic": {
+                "value": {
+                  "content": "{\"name\":\"BestMCPServers\"}"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "ErrorResponse": {
+        "description": "Invalid request or tool input.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "ContentRequest": {
+        "type": "object",
+        "required": [
+          "content"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100000
+          }
+        }
+      },
+      "ApiMeta": {
+        "type": "object",
+        "required": [
+          "tool",
+          "version"
+        ],
+        "properties": {
+          "tool": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          }
+        }
+      },
+      "ErrorObject": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "examples": [
+              "INVALID_JSON",
+              "INVALID_BASE64",
+              "INVALID_JWT",
+              "CONTENT_TOO_LARGE"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": [
+          "success",
+          "error",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": false
+          },
+          "error": {
+            "$ref": "#/components/schemas/ErrorObject"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMeta"
+          }
+        }
+      },
+      "JsonFormatResponse": {
+        "type": "object",
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "type": "object",
+            "required": [
+              "formatted"
+            ],
+            "properties": {
+              "formatted": {
+                "type": "string"
+              }
+            }
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMeta"
+          }
+        }
+      },
+      "JsonValidateResponse": {
+        "type": "object",
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "type": "object",
+            "required": [
+              "valid"
+            ],
+            "properties": {
+              "valid": {
+                "type": "boolean"
+              },
+              "parsed": {},
+              "error": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMeta"
+          }
+        }
+      },
+      "Base64EncodeResponse": {
+        "type": "object",
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "type": "object",
+            "required": [
+              "encoded"
+            ],
+            "properties": {
+              "encoded": {
+                "type": "string"
+              }
+            }
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMeta"
+          }
+        }
+      },
+      "Base64DecodeResponse": {
+        "type": "object",
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "type": "object",
+            "required": [
+              "decoded"
+            ],
+            "properties": {
+              "decoded": {
+                "type": "string"
+              }
+            }
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMeta"
+          }
+        }
+      },
+      "JwtDecodeResponse": {
+        "type": "object",
+        "required": [
+          "success",
+          "data",
+          "meta"
+        ],
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "const": true
+          },
+          "data": {
+            "type": "object",
+            "required": [
+              "header",
+              "payload",
+              "signature",
+              "claims",
+              "verified",
+              "warning"
+            ],
+            "properties": {
+              "header": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "payload": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "signature": {
+                "type": "string"
+              },
+              "claims": {
+                "type": "object",
+                "properties": {
+                  "exp": {},
+                  "iat": {},
+                  "nbf": {}
+                }
+              },
+              "verified": {
+                "type": "boolean",
+                "const": false
+              },
+              "warning": {
+                "type": "string"
+              }
+            }
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMeta"
+          }
+        }
+      }
+    }
+  }
+}

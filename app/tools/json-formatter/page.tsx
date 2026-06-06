@@ -100,6 +100,35 @@ export default function JsonFormatterPage() {
 
   return (
     <main className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://bestmcpservers.com/",
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Developer Tools",
+                item: "https://bestmcpservers.com/tools/",
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "JSON Formatter",
+                item: "https://bestmcpservers.com/tools/json-formatter/",
+              },
+            ],
+          }),
+        }}
+      />
       {/* Header */}
       <header className="border-b border-slate-200">
         <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
@@ -118,16 +147,16 @@ export default function JsonFormatterPage() {
                 href="/"
                 className="text-sm text-slate-600 hover:text-slate-900"
               >
-                Directory
+                Home
               </Link>
               <Link
                 href="/rsp/"
                 className="text-sm text-slate-600 hover:text-slate-900"
               >
-                AI Prompts
+                Prompt Library
               </Link>
               <Link
-                href="/tools/json-formatter/"
+                href="/tools/"
                 className="text-sm font-semibold text-blue-600"
               >
                 Tools
@@ -136,6 +165,27 @@ export default function JsonFormatterPage() {
           </div>
         </div>
       </header>
+
+      {/* Breadcrumb */}
+      <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
+        <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
+          <ol className="flex items-center gap-2">
+            <li>
+              <Link href="/" className="hover:text-slate-900">
+                Home
+              </Link>
+            </li>
+            <li className="text-slate-300">/</li>
+            <li>
+              <Link href="/tools/" className="hover:text-slate-900">
+                Developer Tools
+              </Link>
+            </li>
+            <li className="text-slate-300">/</li>
+            <li className="font-medium text-slate-900">JSON Formatter</li>
+          </ol>
+        </nav>
+      </div>
 
       {/* Hero */}
       <section className="bg-slate-950 py-16 sm:py-24">
@@ -380,6 +430,46 @@ export default function JsonFormatterPage() {
         </div>
       </section>
 
+      {/* API */}
+      <section className="border-t border-slate-200 bg-blue-50 py-12">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-blue-100 bg-white p-6 sm:p-8">
+            <div className="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-start">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">API available</p>
+                <h2 className="mt-3 text-2xl font-bold text-slate-950">Format JSON through the public API</h2>
+                <p className="mt-3 leading-7 text-slate-700">
+                  The JSON formatter is available as a web tool and as an AI-callable HTTP endpoint. Import the OpenAPI spec into ChatGPT Actions, use the curl example in scripts, or map the endpoint to the future MCP tool name <code className="rounded bg-slate-100 px-1.5 py-0.5 text-sm">format_json</code>.
+                </p>
+                <div className="mt-5 grid gap-3 text-sm sm:grid-cols-3">
+                  <div className="rounded-xl bg-blue-50 p-4">
+                    <p className="font-semibold text-slate-900">Endpoint</p>
+                    <code className="mt-1 block break-all text-blue-700">/api/json/format</code>
+                  </div>
+                  <div className="rounded-xl bg-blue-50 p-4">
+                    <p className="font-semibold text-slate-900">Operation</p>
+                    <code className="mt-1 block break-all text-blue-700">formatJson</code>
+                  </div>
+                  <div className="rounded-xl bg-blue-50 p-4">
+                    <p className="font-semibold text-slate-900">MCP name</p>
+                    <code className="mt-1 block break-all text-blue-700">format_json</code>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <pre className="overflow-x-auto rounded-2xl bg-slate-950 p-4 text-xs leading-6 text-slate-100"><code>{`curl -X POST https://bestmcpservers.com/api/json/format \\
+  -H "Content-Type: application/json" \\
+  -d '{"content":"{\\"name\\":\\"BestMCPServers\\"}"}'`}</code></pre>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Link href="/tools/api/" className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">API docs</Link>
+                  <Link href="/openapi.json" className="rounded-lg border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50">OpenAPI JSON</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ */}
       <section className="py-16 bg-white border-t border-slate-200">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -428,26 +518,26 @@ export default function JsonFormatterPage() {
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <p className="text-sm text-slate-500">
-              &copy; 2026 BestMCPServers — AI Tools &amp; Developer Utilities. All rights reserved.
+              &copy; 2026 BestMCPServers. All rights reserved.
             </p>
             <div className="flex gap-6">
               <Link
                 href="/"
                 className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
               >
-                MCP Directory
+                Home
               </Link>
               <Link
                 href="/rsp/"
                 className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
               >
-                AI Prompts
+                Prompt Library
               </Link>
               <Link
-                href="/tools/json-formatter/"
+                href="/tools/"
                 className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
               >
-                JSON Formatter
+                Tools
               </Link>
             </div>
           </div>
