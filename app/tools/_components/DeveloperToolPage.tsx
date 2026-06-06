@@ -14,6 +14,9 @@ import {
   Link2,
   RefreshCw,
   Trash2,
+  Code2,
+  Database,
+  Eye,
 } from "lucide-react";
 import type { ToolConfig } from "@/data/developerTools";
 import { relatedTools } from "@/data/developerTools";
@@ -95,6 +98,115 @@ function makeUuid(): string {
   return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c) =>
     (Number(c) ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (Number(c) / 4)))).toString(16),
   );
+}
+
+function formatHtml(value: string): string {
+  const tokens = value
+    .replace(/>\s+</g, "><")
+    .replace(/</g, "\n<")
+    .replace(/>/g, ">\n")
+    .split("\n")
+    .map((token) => token.trim())
+    .filter(Boolean);
+  let indent = 0;
+  return tokens
+    .map((token) => {
+      if (/^<\//.test(token)) indent = Math.max(indent - 1, 0);
+      const line = `${"  ".repeat(indent)}${token}`;
+      if (/^<[^!?/][^>]*[^/]?>$/.test(token) && !/^<(area|base|br|col|embed|hr|img|input|link|meta|param|source|track|wbr)\b/i.test(token)) {
+        indent += 1;
+      }
+      return line;
+    })
+    .join("\n");
+}
+
+function formatSql(value: string): string {
+  const keywords = [
+    "SELECT",
+    "FROM",
+    "WHERE",
+    "INNER JOIN",
+    "LEFT JOIN",
+    "RIGHT JOIN",
+    "FULL JOIN",
+    "JOIN",
+    "ON",
+    "GROUP BY",
+    "HAVING",
+    "ORDER BY",
+    "LIMIT",
+    "OFFSET",
+    "INSERT INTO",
+    "VALUES",
+    "UPDATE",
+    "SET",
+    "DELETE FROM",
+    "RETURNING",
+  ];
+  let sql = value.replace(/\s+/g, " ").trim();
+  keywords.forEach((keyword) => {
+    sql = sql.replace(new RegExp(`\\s+(${keyword.replace(/ /g, "\\s+")})\\s+`, "gi"), `\n$1 `);
+  });
+  return sql
+    .replace(/,\s*/g, ",\n  ")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => line.replace(/^(select|from|where|inner join|left join|right join|full join|join|on|group by|having|order by|limit|offset|insert into|values|update|set|delete from|returning)\b/i, (match) => match.toUpperCase()))
+    .join("\n");
+}
+
+function escapeHtml(value: string): string {
+  return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;");
+}
+
+function markdownToHtml(markdown: string): string {
+  const lines = markdown.split("\n");
+  const html: string[] = [];
+  let inCode = false;
+  let inList = false;
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    if (line.startsWith("```")) {
+      if (inCode) {
+        html.push("</code></pre>");
+        inCode = false;
+      } else {
+        if (inList) { html.push("</ul>"); inList = false; }
+        html.push("<pre><code>");
+        inCode = true;
+      }
+      continue;
+    }
+    if (inCode) {
+      html.push(escapeHtml(raw));
+      continue;
+    }
+    if (/^[-*]\s+/.test(line)) {
+      if (!inList) { html.push("<ul>"); inList = true; }
+      html.push(`<li>${inlineMarkdown(line.replace(/^[-*]\s+/, ""))}</li>`);
+      continue;
+    }
+    if (inList) { html.push("</ul>"); inList = false; }
+    if (!line.trim()) continue;
+    if (line.startsWith("### ")) html.push(`<h3>${inlineMarkdown(line.slice(4))}</h3>`);
+    else if (line.startsWith("## ")) html.push(`<h2>${inlineMarkdown(line.slice(3))}</h2>`);
+    else if (line.startsWith("# ")) html.push(`<h1>${inlineMarkdown(line.slice(2))}</h1>`);
+    else if (line.startsWith("> ")) html.push(`<blockquote>${inlineMarkdown(line.slice(2))}</blockquote>`);
+    else html.push(`<p>${inlineMarkdown(line)}</p>`);
+  }
+  if (inList) html.push("</ul>");
+  if (inCode) html.push("</code></pre>");
+  return html.join("\n");
+}
+
+function inlineMarkdown(value: string): string {
+  return escapeHtml(value)
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" rel="nofollow noopener" target="_blank">$1</a>');
 }
 
 export default function DeveloperToolPage({ tool }: Props) {
@@ -232,6 +344,24 @@ export default function DeveloperToolPage({ tool }: Props) {
     setStatus(`Generated ${safeCount} UUID v4 value${safeCount > 1 ? "s" : ""}.`);
   }, [count]);
 
+  const runHtmlFormat = useCallback(() => {
+    setOutput(formatHtml(input));
+    setError(null);
+    setStatus("Formatted HTML markup.");
+  }, [input]);
+
+  const runSqlFormat = useCallback(() => {
+    setOutput(formatSql(input));
+    setError(null);
+    setStatus("Formatted SQL query.");
+  }, [input]);
+
+  const runMarkdownPreview = useCallback(() => {
+    setOutput(markdownToHtml(input));
+    setError(null);
+    setStatus("Generated Markdown preview HTML.");
+  }, [input]);
+
   const buttons = (() => {
     if (tool.mode === "json-validator") {
       return [
@@ -257,6 +387,24 @@ export default function DeveloperToolPage({ tool }: Props) {
     }
     if (tool.mode === "uuid") {
       return [{ label: "Generate UUID v4", icon: Hash, onClick: runUuidGenerate, primary: true }];
+    }
+    if (tool.mode === "html") {
+      return [
+        { label: "Format HTML", icon: Code2, onClick: runHtmlFormat, primary: true },
+        { label: "Sample HTML", icon: FileJson, onClick: () => setInput(tool.sample) },
+      ];
+    }
+    if (tool.mode === "sql") {
+      return [
+        { label: "Format SQL", icon: Database, onClick: runSqlFormat, primary: true },
+        { label: "Sample SQL", icon: FileJson, onClick: () => setInput(tool.sample) },
+      ];
+    }
+    if (tool.mode === "markdown") {
+      return [
+        { label: "Preview Markdown", icon: Eye, onClick: runMarkdownPreview, primary: true },
+        { label: "Sample Markdown", icon: FileJson, onClick: () => setInput(tool.sample) },
+      ];
     }
     return [];
   })();
@@ -366,6 +514,15 @@ export default function DeveloperToolPage({ tool }: Props) {
             <div className={tool.mode === "uuid" ? "lg:col-span-2" : ""}>
               <label className="mb-2 block text-sm font-medium text-slate-700">Output</label>
               <textarea value={output} readOnly spellCheck={false} className="h-96 w-full rounded-xl border border-slate-300 bg-white p-4 font-mono text-sm text-slate-900" placeholder="Results will appear here..." />
+              {tool.mode === "markdown" && output && (
+                <div className="mt-4 rounded-xl border border-slate-200 bg-white p-5">
+                  <p className="mb-3 text-sm font-semibold text-slate-700">Rendered Preview</p>
+                  <div
+                    className="prose prose-slate max-w-none text-sm leading-7 [&_h1]:text-2xl [&_h1]:font-bold [&_h2]:text-xl [&_h2]:font-bold [&_h3]:text-lg [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_blockquote]:border-l-4 [&_blockquote]:border-slate-300 [&_blockquote]:pl-4 [&_pre]:overflow-x-auto [&_pre]:rounded-lg [&_pre]:bg-slate-950 [&_pre]:p-4 [&_pre]:text-slate-100 [&_code]:rounded [&_code]:bg-slate-100 [&_code]:px-1"
+                    dangerouslySetInnerHTML={{ __html: output }}
+                  />
+                </div>
+              )}
             </div>
           </div>
 

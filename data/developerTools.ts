@@ -5,6 +5,9 @@ export type ToolSlug =
   | "jwt-decoder"
   | "url-encoder-decoder"
   | "uuid-generator"
+  | "html-formatter"
+  | "sql-formatter"
+  | "markdown-previewer"
   | "veo-prompt-generator";
 
 export type ToolConfig = {
@@ -16,7 +19,7 @@ export type ToolConfig = {
   canonical: string;
   h1: string;
   intro: string;
-  mode: "json-validator" | "base64" | "jwt" | "url" | "uuid" | "json-formatter" | "veo";
+  mode: "json-validator" | "base64" | "jwt" | "url" | "uuid" | "html" | "sql" | "markdown" | "json-formatter" | "veo";
   tags: string[];
   sample: string;
   faqs: { question: string; answer: string }[];
@@ -149,6 +152,69 @@ export const developerTools: ToolConfig[] = [
       { question: "Are UUID v4 values guaranteed unique?", answer: "They are not mathematically guaranteed, but collisions are extremely unlikely for normal development and production use." },
       { question: "Can I download generated UUIDs?", answer: "Yes. Use the Download button to save generated UUIDs as a text file." },
       { question: "Should UUIDs be used as secrets?", answer: "No. UUIDs are identifiers, not passwords or security tokens." },
+    ],
+  },
+  {
+    slug: "html-formatter",
+    name: "HTML Formatter",
+    shortName: "HTML",
+    title: "HTML Formatter Online — Beautify and Format HTML Code",
+    description: "Free online HTML formatter. Beautify HTML markup, fix readable indentation, and copy formatted HTML instantly in your browser.",
+    canonical: `${base}/tools/html-formatter/`,
+    h1: "HTML Formatter Online",
+    intro: "Paste HTML markup to beautify tags, indentation, and nested structure for cleaner debugging, templates, and code review.",
+    mode: "html",
+    tags: ["html", "formatter", "beautifier", "markup"],
+    sample: "<main><section><h1>BestMCPServers</h1><p>Developer tools for AI builders.</p></section></main>",
+    faqs: [
+      { question: "What does an HTML formatter do?", answer: "An HTML formatter adds readable line breaks and indentation so nested tags are easier to scan and edit." },
+      { question: "Does this HTML formatter upload my code?", answer: "No. Formatting runs locally in your browser and does not require an account, backend, or database." },
+      { question: "Can I format partial HTML snippets?", answer: "Yes. You can paste a full document, component markup, email HTML snippet, or a partial template." },
+      { question: "Will this validate HTML?", answer: "This tool focuses on readable formatting. It is not a full W3C validator and may not catch every invalid tag." },
+      { question: "Can I copy or download formatted HTML?", answer: "Yes. After formatting, copy the output or download it as a text file." },
+      { question: "When should developers use an HTML beautifier?", answer: "Use it when reviewing generated markup, debugging templates, cleaning copied snippets, or documenting front-end examples." },
+    ],
+  },
+  {
+    slug: "sql-formatter",
+    name: "SQL Formatter",
+    shortName: "SQL",
+    title: "SQL Formatter Online — Beautify SQL Queries Free",
+    description: "Free online SQL formatter. Beautify SELECT queries, clauses, joins, and conditions into readable SQL for debugging and review.",
+    canonical: `${base}/tools/sql-formatter/`,
+    h1: "SQL Formatter Online",
+    intro: "Format SQL queries into readable lines for SELECT, FROM, JOIN, WHERE, GROUP BY, ORDER BY, LIMIT, INSERT, UPDATE, and DELETE workflows.",
+    mode: "sql",
+    tags: ["sql", "formatter", "query", "beautifier"],
+    sample: "select users.id, users.email, orders.total from users join orders on users.id = orders.user_id where orders.total > 100 order by orders.created_at desc limit 20;",
+    faqs: [
+      { question: "What does a SQL formatter do?", answer: "A SQL formatter adds line breaks and spacing around clauses so queries are easier to read, debug, and share." },
+      { question: "Which SQL dialects are supported?", answer: "The formatter is a lightweight browser utility for common SQL clauses. It works best with standard SQL-style SELECT, INSERT, UPDATE, and DELETE queries." },
+      { question: "Does this SQL formatter execute queries?", answer: "No. It only formats text. It never connects to a database or runs your SQL." },
+      { question: "Is my SQL sent to a server?", answer: "No. Formatting happens locally in the browser, which is useful for quick review of non-sensitive queries." },
+      { question: "Can it format JOIN and WHERE clauses?", answer: "Yes. Common clauses such as FROM, JOIN, ON, WHERE, GROUP BY, HAVING, ORDER BY, and LIMIT are moved onto readable lines." },
+      { question: "Should I paste production SQL with secrets?", answer: "Avoid pasting passwords, credentials, or private production data into any online tool, even browser-only utilities." },
+    ],
+  },
+  {
+    slug: "markdown-previewer",
+    name: "Markdown Previewer",
+    shortName: "Markdown",
+    title: "Markdown Previewer Online — Preview Markdown Instantly",
+    description: "Free online Markdown previewer. Write Markdown and preview headings, links, lists, code blocks, blockquotes, and formatted text instantly.",
+    canonical: `${base}/tools/markdown-previewer/`,
+    h1: "Markdown Previewer Online",
+    intro: "Write Markdown on the left and generate a clean HTML preview for docs, README files, blog drafts, changelogs, and prompt libraries.",
+    mode: "markdown",
+    tags: ["markdown", "previewer", "readme", "docs"],
+    sample: "# MCP Server Notes\n\n- Validate JSON config\n- Document API tools\n- Add deployment checklist\n\n```json\n{\"tool\": \"json.format\"}\n```\n\n[Visit BestMCPServers](https://bestmcpservers.com)",
+    faqs: [
+      { question: "What is a Markdown previewer?", answer: "A Markdown previewer converts Markdown syntax into a rendered preview so you can check docs before publishing." },
+      { question: "Does this support code blocks?", answer: "Yes. Fenced code blocks are shown in a preformatted code area in the preview output." },
+      { question: "Can I preview README files?", answer: "Yes. Paste README, changelog, documentation, or prompt notes to preview common Markdown formatting." },
+      { question: "Is Markdown uploaded to a server?", answer: "No. The preview is generated in your browser and does not require a backend or account." },
+      { question: "Does this use GitHub Flavored Markdown?", answer: "It supports common Markdown patterns such as headings, lists, links, blockquotes, inline code, bold, italic, and fenced code blocks. It is not a full GitHub parser." },
+      { question: "Can I copy the generated HTML?", answer: "Yes. The output area contains generated HTML that you can copy or download." },
     ],
   },
   {
