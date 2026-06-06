@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://bestmcpservers.com"),
   title: "Developer Tools — Free Online Utilities | BestMCPServers",
   description:
-    "Free online developer tools and public API endpoints. JSON formatter, validator, Base64 converter, JWT decoder, URL encoder, UUID generator, HTML formatter, SQL formatter, Markdown previewer, and AI-callable utilities.",
+    "Free online developer tools and API endpoints: JSON formatter, Base64 converter, JWT decoder, URL encoder, UUID generator, HTML, SQL, and Markdown utilities.",
   keywords: [
     "developer tools",
     "json formatter",

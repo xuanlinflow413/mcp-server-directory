@@ -509,7 +509,7 @@ Output: {
   },
   {
       "slug": "node-js-mcp-server-example",
-      "title": "Node.js MCP Server Example — Build a Simple Model Context Protocol Server | BestMCPServers",
+      "title": "Node.js MCP Server Example — Simple Build Guide",
       "description": "Build a practical Node.js MCP server example with tool design, client config notes, testing prompts, and security guardrails.",
       "h1": "Node.js MCP Server Example",
       "eyebrow": "MCP Node.js",
@@ -668,7 +668,7 @@ Output: {
     },
     {
       "slug": "mcp-security-checklist",
-      "title": "MCP Security Checklist — Review Model Context Protocol Servers Before Use | BestMCPServers",
+      "title": "MCP Security Checklist — Review Servers Before Use",
       "description": "Use this practical MCP security checklist to review permissions, tools, secrets, logging, approvals, dependencies, and deployment risks.",
       "h1": "MCP Security Checklist",
       "eyebrow": "MCP Security",
@@ -833,7 +833,7 @@ Output: {
     },
     {
       "slug": "how-to-host-mcp-server",
-      "title": "How to Host an MCP Server — Local, Private, and Remote Deployment Options | BestMCPServers",
+      "title": "How to Host an MCP Server — Deployment Guide",
       "description": "Learn how to host an MCP server safely across local development, private team environments, and remote deployment patterns.",
       "h1": "How to Host an MCP Server",
       "eyebrow": "MCP Hosting",
@@ -1151,7 +1151,7 @@ Output: {
     },
     {
       "slug": "mcp-hosting-cloudflare",
-      "title": "MCP Hosting on Cloudflare — Workers, Access, and Deployment Tradeoffs | BestMCPServers",
+      "title": "MCP Hosting on Cloudflare — Workers Deployment Guide",
       "description": "Explore MCP hosting on Cloudflare, including Workers-oriented patterns, authentication, secrets, rate limits, and production safety checks.",
       "h1": "MCP Hosting on Cloudflare",
       "eyebrow": "MCP Hosting",
