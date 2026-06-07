@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Wrench, FileJson, ArrowRight, ShieldCheck, Binary, KeyRound, Link2, Hash, Video, PlugZap, Code2, Database, Eye, Calculator, FileText, DollarSign, Network } from "lucide-react";
+import { Wrench, FileJson, ArrowRight, ShieldCheck, Binary, KeyRound, Link2, Hash, Video, PlugZap, Code2, Database, Eye, Calculator, FileText, DollarSign, Network, Settings } from "lucide-react";
 import { developerTools } from "@/data/developerTools";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bestmcpservers.com"),
   title: "Developer Tools — Free Online Utilities | BestMCPServers",
   description:
-    "Free online developer tools and AI builder utilities: AI PRD generator, OpenAI cost calculator, Claude cost calculator, Gemini cost calculator, AI SaaS pricing calculator, MCP stack builder, JSON formatter, Base64 converter, JWT decoder, URL encoder, UUID generator, AI cost calculator, HTML, SQL, and Markdown utilities.",
+    "Free online developer tools and AI builder utilities: AI PRD generator, OpenAI cost calculator, Claude cost calculator, Gemini cost calculator, AI SaaS pricing calculator, MCP stack builder, MCP config generators, JSON formatter, Base64 converter, JWT decoder, URL encoder, UUID generator, AI cost calculator, HTML, SQL, and Markdown utilities.",
   keywords: [
     "developer tools",
     "AI PRD generator",
@@ -27,6 +27,11 @@ export const metadata: Metadata = {
     "gemini cost calculator",
     "ai saas pricing calculator",
     "mcp stack builder",
+    "mcp config generator",
+    "claude desktop mcp config generator",
+    "cursor mcp config generator",
+    "mcp env template generator",
+    "mcp security checklist generator",
     "llm cost calculator",
     "token cost calculator",
   ],
@@ -68,6 +73,11 @@ const iconMap = {
   "gemini-cost-calculator": Calculator,
   "ai-saas-pricing-calculator": DollarSign,
   "mcp-stack-builder": Network,
+  "claude-desktop-mcp-config-generator": Settings,
+  "cursor-mcp-config-generator": Code2,
+  "mcp-server-config-generator": Network,
+  "mcp-env-template-generator": KeyRound,
+  "mcp-security-checklist-generator": ShieldCheck,
   "veo-prompt-generator": Video,
 };
 
@@ -138,7 +148,7 @@ export default function ToolsPage() {
             <h2 className="text-2xl font-bold text-slate-900">Developer Utilities</h2>
             <p className="mt-2 text-slate-600">
               Generate AI-ready PRDs, estimate OpenAI, Claude, Gemini, and general LLM costs, plan AI SaaS pricing,
-              build MCP stacks, format JSON, validate syntax, encode Base64, decode JWTs, encode URLs,
+              build MCP stacks, generate MCP configs and env templates, format JSON, validate syntax, encode Base64, decode JWTs, encode URLs,
               generate UUID v4 values, format HTML and SQL, and preview Markdown without sending data to a server.
             </p>
           </div>

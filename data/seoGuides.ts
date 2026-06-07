@@ -204,11 +204,12 @@ export const seoGuides: SeoGuide[] = [
     ],
     relatedLinks: [
       { href: "/tools/mcp-stack-builder/", label: "MCP Stack Builder", description: "Plan a static MCP stack from workflow and security inputs." },
-      { href: "/guides/best-mcp-servers-for-claude/", label: "Best MCP Servers for Claude", description: "Choose practical servers for Claude workflows." },
-      { href: "/guides/how-to-install-mcp-servers-in-cursor/", label: "Install MCP Servers in Cursor", description: "Set up MCP workflows in Cursor." },
-      { href: "/ai-prd-generator/", label: "AI PRD Generator", description: "Define requirements before choosing the stack." }
+      { href: "/tools/claude-desktop-mcp-config-generator/", label: "Claude Desktop MCP Config Generator", description: "Generate Claude Desktop mcpServers config templates." },
+      { href: "/tools/cursor-mcp-config-generator/", label: "Cursor MCP Config Generator", description: "Generate Cursor-oriented MCP setup drafts." },
+      { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Build generic MCP server config skeletons." },
+      { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Create a Markdown review checklist before enabling servers." }
     ],
-    primaryCta: { href: "/tools/mcp-stack-builder/", label: "Use the MCP Stack Builder" }
+    primaryCta: { href: "/tools/mcp-server-config-generator/", label: "Generate an MCP Config Template" }
   }
 ];
 

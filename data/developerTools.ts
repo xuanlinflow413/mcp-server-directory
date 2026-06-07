@@ -14,6 +14,11 @@ export type ToolSlug =
   | "gemini-cost-calculator"
   | "ai-saas-pricing-calculator"
   | "mcp-stack-builder"
+  | "claude-desktop-mcp-config-generator"
+  | "cursor-mcp-config-generator"
+  | "mcp-server-config-generator"
+  | "mcp-env-template-generator"
+  | "mcp-security-checklist-generator"
   | "veo-prompt-generator";
 
 export type ToolConfig = {
@@ -25,7 +30,7 @@ export type ToolConfig = {
   canonical: string;
   h1: string;
   intro: string;
-  mode: "json-validator" | "base64" | "jwt" | "url" | "uuid" | "html" | "sql" | "markdown" | "ai-cost" | "openai-cost" | "claude-cost" | "gemini-cost" | "ai-saas-pricing" | "mcp-stack" | "json-formatter" | "veo";
+  mode: "json-validator" | "base64" | "jwt" | "url" | "uuid" | "html" | "sql" | "markdown" | "ai-cost" | "openai-cost" | "claude-cost" | "gemini-cost" | "ai-saas-pricing" | "mcp-stack" | "mcp-config" | "mcp-env" | "mcp-security" | "json-formatter" | "veo";
   tags: string[];
   sample: string;
   faqs: { question: string; answer: string }[];
@@ -350,6 +355,106 @@ export const developerTools: ToolConfig[] = [
     { question: "Which MCP clients are supported?", answer: "The planner includes Claude Desktop, Cursor, custom apps, and local development workflows." },
     { question: "What security risks should I consider?", answer: "Start with read-only scopes, separate dev and production credentials, avoid secrets in config files, and audit destructive tools." },
     { question: "Does this tool call an AI model?", answer: "No. Recommendations are generated from static rules in your browser. No AI API, login, or data upload is used." },
+  ],
+},
+{
+  slug: "claude-desktop-mcp-config-generator",
+  name: "Claude Desktop MCP Config Generator",
+  shortName: "Claude Config",
+  title: "Claude Desktop MCP Config Generator",
+  description: "Generate a Claude Desktop MCP config template for local servers, commands, args, and environment variables. Static browser-only tool.",
+  canonical: `${base}/tools/claude-desktop-mcp-config-generator/`,
+  h1: "Claude Desktop MCP Config Generator",
+  intro: "Generate a claude_desktop_config.json planning template for local MCP servers without installing anything, connecting accounts, or pasting real secrets.",
+  mode: "mcp-config",
+  tags: ["claude desktop mcp config generator", "claude_desktop_config json", "mcp config", "browser only"],
+  sample: "",
+  faqs: [
+    { question: "What does the Claude Desktop MCP Config Generator create?", answer: "It creates a planning template for the mcpServers block in claude_desktop_config.json using a server name, command, args, and environment variable names." },
+    { question: "Does this tool edit my Claude Desktop config file?", answer: "No. It only generates text in your browser. You must review and copy the template into your local Claude Desktop configuration yourself." },
+    { question: "Should I paste real API keys into this generator?", answer: "No. Enter environment variable names such as GITHUB_TOKEN only. Keep real values in local secret storage or environment files." },
+    { question: "Can it generate filesystem and GitHub MCP examples?", answer: "Yes. Use the server type selector to generate common filesystem, GitHub, browser, database, docs, or custom server templates." },
+    { question: "Is the generated config official?", answer: "No. It is a starting template. Review the server documentation and Claude Desktop docs before using it in production." },
+  ],
+},
+{
+  slug: "cursor-mcp-config-generator",
+  name: "Cursor MCP Config Generator",
+  shortName: "Cursor Config",
+  title: "Cursor MCP Config Generator",
+  description: "Generate a Cursor MCP config template for coding workflows, local servers, GitHub tools, filesystem access, and safe setup notes.",
+  canonical: `${base}/tools/cursor-mcp-config-generator/`,
+  h1: "Cursor MCP Config Generator",
+  intro: "Create Cursor-oriented MCP config drafts and setup notes for coding assistants, repo analysis, docs lookup, issue triage, and browser testing workflows.",
+  mode: "mcp-config",
+  tags: ["cursor mcp config generator", "cursor mcp setup", "coding agents", "model context protocol"],
+  sample: "",
+  faqs: [
+    { question: "What is a Cursor MCP config generator?", answer: "It generates a copyable MCP config draft and setup notes for Cursor coding workflows such as repository analysis, docs lookup, and issue triage." },
+    { question: "Does this connect to Cursor?", answer: "No. It is a static browser tool. It does not connect to Cursor, install servers, or modify local files." },
+    { question: "Which server types can I plan?", answer: "The tool includes filesystem, GitHub, docs, browser, and custom server templates for common coding assistant workflows." },
+    { question: "Should Cursor MCP configs include real secrets?", answer: "No. Use environment variable names and keep real tokens outside shared config examples." },
+    { question: "Do I still need the Cursor setup guide?", answer: "Yes. Use this as a planning draft, then follow the current Cursor MCP setup documentation and restart Cursor after changes." },
+  ],
+},
+{
+  slug: "mcp-server-config-generator",
+  name: "MCP Server Config Generator",
+  shortName: "MCP Config",
+  title: "MCP Server Config Generator",
+  description: "Generate MCP server config templates for filesystem, GitHub, browser, database, docs, and custom Model Context Protocol servers.",
+  canonical: `${base}/tools/mcp-server-config-generator/`,
+  h1: "MCP Server Config Generator",
+  intro: "Build a generic MCP server config skeleton for Claude, Cursor, local development, documentation examples, and custom MCP clients.",
+  mode: "mcp-config",
+  tags: ["mcp server config generator", "mcp config template", "model context protocol", "json config"],
+  sample: "",
+  faqs: [
+    { question: "What does this MCP Server Config Generator output?", answer: "It outputs JSON config, README snippets, or setup checklists for common MCP server categories and client targets." },
+    { question: "Can this generate configs for any MCP client?", answer: "It focuses on the common mcpServers structure used by many clients. Always verify client-specific requirements before use." },
+    { question: "Does this install or validate MCP servers?", answer: "No. It does not install packages, call APIs, connect accounts, or validate a live server." },
+    { question: "How should I handle env variables?", answer: "Use names such as GITHUB_TOKEN or DATABASE_URL in generated examples, and store real values outside committed files." },
+    { question: "Can I use the output in documentation?", answer: "Yes. Choose README snippet output for documentation drafts, but label examples clearly and avoid real credentials." },
+  ],
+},
+{
+  slug: "mcp-env-template-generator",
+  name: "MCP Env Template Generator",
+  shortName: "MCP Env",
+  title: "MCP Env Template Generator",
+  description: "Generate safe .env.example templates for MCP servers, including API tokens, database URLs, browser settings, and secret handling notes.",
+  canonical: `${base}/tools/mcp-env-template-generator/`,
+  h1: "MCP Env Template Generator",
+  intro: "Create safe .env.example files for MCP server setups without entering real API keys, passwords, tokens, or private connection strings.",
+  mode: "mcp-env",
+  tags: ["mcp env template generator", "mcp .env example", "mcp secrets", "environment variables"],
+  sample: "",
+  faqs: [
+    { question: "What is an MCP env template?", answer: "It is a .env.example-style file listing the environment variable names an MCP server may need, without real secret values." },
+    { question: "Can I commit .env.example?", answer: "Yes. .env.example can usually be committed because it contains placeholder names only. Your real .env file should stay private." },
+    { question: "Should I paste real tokens into this tool?", answer: "No. Only enter variable names such as GITHUB_TOKEN or DATABASE_URL, never real values." },
+    { question: "Which server categories are supported?", answer: "The generator includes common GitHub, database, browser, filesystem, search, and custom server variable patterns." },
+    { question: "Does this manage secrets for me?", answer: "No. It only creates a template. Use your local environment, CI secrets, or a secret manager for actual values." },
+  ],
+},
+{
+  slug: "mcp-security-checklist-generator",
+  name: "MCP Security Checklist Generator",
+  shortName: "MCP Security",
+  title: "MCP Security Checklist Generator",
+  description: "Generate an MCP security checklist for server permissions, secrets, prompt injection, logging, approvals, and deployment readiness.",
+  canonical: `${base}/tools/mcp-security-checklist-generator/`,
+  h1: "MCP Security Checklist Generator",
+  intro: "Generate a Markdown review checklist for MCP server permissions, data sensitivity, secrets, prompt injection, logging, approvals, and deployment readiness.",
+  mode: "mcp-security",
+  tags: ["mcp security checklist generator", "mcp server security", "prompt injection", "tool permissions"],
+  sample: "",
+  faqs: [
+    { question: "What is an MCP security checklist?", answer: "It is a review aid for MCP server scope, secrets, permissions, prompt injection risk, logging, and deployment readiness." },
+    { question: "Is this checklist a security certification?", answer: "No. It is not a certification or legal/security guarantee. Use it as a structured review aid before enabling servers." },
+    { question: "When should I use this generator?", answer: "Use it before enabling servers with private data, write actions, production access, external communication, or shared team credentials." },
+    { question: "Does it store my security inputs?", answer: "No. The checklist is generated locally in the browser and is not sent to a backend." },
+    { question: "What are high-risk MCP setups?", answer: "High-risk setups include production credentials, customer data, destructive write actions, browser automation on untrusted pages, and shared team deployments." },
   ],
 },
   {

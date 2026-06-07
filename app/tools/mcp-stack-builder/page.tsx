@@ -8,7 +8,7 @@ const tool = getTool("mcp-stack-builder");
 const featureList = ["Plan MCP server categories for Claude, Cursor, and custom agents", "Map data sources to read-only stack recommendations", "Generate setup and security checklists without connecting accounts"];
 const useCases = ["Claude Desktop MCP workflows", "Cursor coding agent setups", "Internal knowledge agents", "Browser research and QA agents"];
 const tips = ["Start read-only and enable write actions only after audits pass.", "Use separate dev and production credentials.", "Never commit real tokens or secrets in MCP config examples."];
-const relatedLinks = [{ href: "/guides/how-to-build-an-mcp-stack/", label: "How to Build an MCP Stack" }, { href: "/guides/best-mcp-servers-for-claude/", label: "Best MCP Servers for Claude" }, { href: "/guides/how-to-install-mcp-servers-in-cursor/", label: "Install MCP Servers in Cursor" }, { href: "/guides/agent-security-guide/", label: "Agent Security Guide" }, { href: "/ai-prd-generator/", label: "AI PRD Generator" }];
+const relatedLinks = [{ href: "/tools/claude-desktop-mcp-config-generator/", label: "Claude Desktop MCP Config Generator" }, { href: "/tools/cursor-mcp-config-generator/", label: "Cursor MCP Config Generator" }, { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator" }, { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator" }, { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator" }, { href: "/guides/how-to-build-an-mcp-stack/", label: "How to Build an MCP Stack" }];
 
 export default function Page() {
   const schema = [
