@@ -114,6 +114,7 @@ export const mcpGuides: McpGuide[] = [
     ],
     related: [
       { title: "MCP Tutorial for Beginners", href: "/mcp-tutorial-for-beginners/", description: "Learn the basic client-server model before choosing examples." },
+      { title: "MCP Server Config Examples", href: "/guides/mcp-server-config-examples/", description: "Copy safe mcpServers JSON examples after choosing server categories." },
       { title: "Best MCP Servers for Claude", href: "/guides/best-mcp-servers-for-claude/", description: "Browse Claude-focused server recommendations." },
       { title: "Use BestMCPServers Tools with Cursor", href: "/guides/use-bestmcpservers-tools-with-cursor/", description: "Connect tool workflows to Cursor and MCP-ready patterns." }
     ]

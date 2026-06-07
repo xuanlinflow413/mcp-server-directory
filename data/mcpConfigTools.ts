@@ -83,6 +83,7 @@ export const mcpConfigTools: McpConfigTool[] = [
     relatedLinks: [
       { href: "/tools/claude-desktop-mcp-config-generator/", label: "Claude Desktop MCP Config Generator", description: "Generate a Claude-specific config template." },
       { href: "/tools/cursor-mcp-config-generator/", label: "Cursor MCP Config Generator", description: "Generate a Cursor-oriented coding workflow config." },
+      { href: "/guides/mcp-server-config-examples/", label: "MCP Server Config Examples", description: "Compare generic filesystem, GitHub, search, database, and multi-server JSON examples." },
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create placeholder secret files for generated configs." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions, secrets, and prompt injection risks." },
       { href: "/mcp-server-examples/", label: "MCP Server Examples", description: "Compare filesystem, GitHub, browser, and database examples." },
@@ -105,6 +106,7 @@ export const mcpConfigTools: McpConfigTool[] = [
       { href: "/tools/claude-desktop-mcp-config-generator/", label: "Claude Desktop MCP Config Generator", description: "Use env placeholders in Claude Desktop config examples." },
       { href: "/tools/cursor-mcp-config-generator/", label: "Cursor MCP Config Generator", description: "Use env placeholders in Cursor MCP setup drafts." },
       { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Use env names inside a config template." },
+      { href: "/guides/mcp-server-config-examples/", label: "MCP Server Config Examples", description: "See how env placeholders appear in config JSON examples." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review secret handling before sharing config." },
       { href: "/guides/how-to-build-an-mcp-stack/", label: "How to Build an MCP Stack", description: "Connect environment variables to stack planning." },
     ],
@@ -126,6 +128,7 @@ export const mcpConfigTools: McpConfigTool[] = [
       { href: "/tools/claude-desktop-mcp-config-generator/", label: "Claude Desktop MCP Config Generator", description: "Generate a config draft before reviewing risk." },
       { href: "/tools/cursor-mcp-config-generator/", label: "Cursor MCP Config Generator", description: "Review coding-agent configs before enabling write tools." },
       { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Build the JSON template that this checklist reviews." },
+      { href: "/guides/mcp-server-config-examples/", label: "MCP Server Config Examples", description: "Review generic config examples before enabling permissions." },
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create safer secret placeholder files." },
       { href: "/mcp-security-checklist/", label: "MCP Security Checklist", description: "Read the full static security checklist guide." },
     ],
