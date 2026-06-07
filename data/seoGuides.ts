@@ -211,6 +211,7 @@ export const seoGuides: SeoGuide[] = [
       { href: "/guides/cursor-mcp-config-examples/", label: "Cursor MCP Config Examples", description: "Use concrete Cursor examples after choosing stack servers and permissions." },
       { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Build generic MCP server config skeletons." },
       { href: "/guides/mcp-server-config-examples/", label: "MCP Server Config Examples", description: "Use generic JSON examples after planning clients, servers, and permissions." },
+      { href: "/guides/mcp-env-template-examples/", label: "MCP Env Template Examples", description: "Plan placeholder secrets and environment variables before setup." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Create a Markdown review checklist before enabling servers." }
     ],
     primaryCta: { href: "/tools/mcp-server-config-generator/", label: "Generate an MCP Config Template" }
@@ -319,6 +320,7 @@ export const seoGuides: SeoGuide[] = [
       { href: "/tools/claude-desktop-mcp-config-generator/", label: "Claude Desktop MCP Config Generator", description: "Generate a browser-only claude_desktop_config.json template with safe placeholders." },
       { href: "/guides/claude-desktop-mcp-config-examples/", label: "Claude Desktop MCP Config Examples", description: "Compare safe filesystem, GitHub, search, and multi-server examples before copying JSON." },
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create a companion .env.example file for secret names." },
+      { href: "/guides/mcp-env-template-examples/", label: "MCP Env Template Examples", description: "Document secret placeholders before using real local credentials." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions, secrets, and prompt injection risks before enabling servers." },
       { href: "/guides/how-to-build-an-mcp-stack/", label: "How to Build an MCP Stack", description: "Plan clients, servers, data sources, and safety boundaries before configuring Claude Desktop." },
       { href: "/guides/best-mcp-servers-for-claude/", label: "Best MCP Servers for Claude", description: "Choose useful server categories before writing the config file." }
@@ -435,6 +437,7 @@ export const seoGuides: SeoGuide[] = [
       { href: "/guides/cursor-mcp-config-examples/", label: "Cursor MCP Config Examples", description: "Compare similar MCP config examples for Cursor coding workflows." },
       { href: "/guides/best-mcp-servers-for-claude/", label: "Best MCP Servers for Claude", description: "Choose useful server categories before adding Claude Desktop config examples." },
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create companion .env.example placeholders for config secrets." },
+      { href: "/guides/mcp-env-template-examples/", label: "MCP Env Template Examples", description: "Document secret placeholders before enabling Claude Desktop examples." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions and secret handling before enabling MCP servers." }
     ],
     primaryCta: { href: "/tools/claude-desktop-mcp-config-generator/", label: "Generate a Claude Desktop MCP Config" }
@@ -478,6 +481,7 @@ export const seoGuides: SeoGuide[] = [
       { href: "/guides/mcp-server-config-examples/", label: "MCP Server Config Examples", description: "Compare generic mcpServers JSON examples before copying Cursor-specific entries." },
       { href: "/guides/claude-desktop-mcp-config-examples/", label: "Claude Desktop MCP Config Examples", description: "Compare similar MCP config examples for Claude Desktop local workflows." },
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create companion .env.example placeholders for token and API key names." },
+      { href: "/guides/mcp-env-template-examples/", label: "MCP Env Template Examples", description: "Document secret placeholders before enabling Cursor examples." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions, secrets, and prompt injection risks before enabling tools." }
     ],
     primaryCta: { href: "/tools/cursor-mcp-config-generator/", label: "Generate a Cursor MCP Config" }
@@ -520,11 +524,55 @@ export const seoGuides: SeoGuide[] = [
       { href: "/guides/claude-desktop-mcp-config-examples/", label: "Claude Desktop MCP Config Examples", description: "Compare client-specific examples for Claude Desktop." },
       { href: "/guides/cursor-mcp-config-examples/", label: "Cursor MCP Config Examples", description: "Compare client-specific examples for Cursor coding workflows." },
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create companion .env.example placeholders for config secrets." },
+      { href: "/guides/mcp-env-template-examples/", label: "MCP Env Template Examples", description: "Copy safe .env.example templates for config placeholders." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions, secrets, and prompt injection risks before enabling tools." },
       { href: "/guides/how-to-build-an-mcp-stack/", label: "How to Build an MCP Stack", description: "Plan clients, servers, data sources, and safety boundaries before configuration." },
       { href: "/mcp-server-examples/", label: "MCP Server Examples", description: "Browse server categories before copying config examples." }
     ],
     primaryCta: { href: "/tools/mcp-server-config-generator/", label: "Generate an MCP Server Config" }
+  },
+  {
+    slug: "mcp-env-template-examples",
+    category: "MCP & Agent Setup",
+    title: "MCP Env Template Examples for Safe Server Secrets",
+    description: "Copy safe MCP .env.example templates for GitHub, search, browser, database, and team secret workflows with placeholders only.",
+    h1: "MCP Env Template Examples",
+    eyebrow: "MCP secrets templates",
+    primaryKeyword: "MCP env template examples",
+    secondaryKeywords: ["MCP .env example", "MCP secrets template", "MCP server environment variables", "Model Context Protocol env variables", "MCP GitHub token env", "MCP database env example", "MCP config environment variables"],
+    updated,
+    readingTime: "10 min read",
+    intro: ["Use these MCP env template examples to document the environment variables your MCP servers need without exposing real secrets. The goal is to make config setup easier while keeping tokens, database URLs, and API keys out of public pages and commits.", "This guide pairs with MCP config JSON examples. The JSON uses placeholders such as ${GITHUB_TOKEN}; the .env.example file explains which private values a developer must provide locally.", "The examples below are independent reference templates, not official documentation for any MCP client or server package. Always verify the current server maintainer docs and your client-specific environment loading behavior before using them locally."],
+    keyTakeaways: ["Commit .env.example, not .env, and keep every value as a placeholder in public examples.", "Group environment variables by MCP server so GitHub, search/browser, and database credentials are easier to review.", "Use least-privilege credentials, rotate demo tokens, and pair env templates with a security checklist before enabling production access."],
+    sections: [
+      { heading: "What belongs in an MCP .env.example file", body: ["An MCP .env.example file documents the environment variable names that a local MCP server setup expects. It should show variable names, placeholder values, and short comments about purpose, but it should not contain real tokens, cookies, private URLs, or production credentials.", "Use the file as a companion to JSON config examples. The config references placeholders such as ${GITHUB_TOKEN}, while the .env.example tells developers which values they need to define privately on their own machine or secret manager."], bullets: ["Variable names required by MCP servers", "Safe placeholder values", "Short comments about scope or source", "No real secrets", "No private repository names or internal URLs"] },
+      { heading: "Basic MCP .env.example template", body: ["Start with only the variables used by the servers you plan to enable. A small file is easier to review than a large list of unused secrets.", "The values below are intentionally placeholders. Replace them only in a private local .env file or secret manager, not in a public example."], bullets: ["Keep names uppercase and descriptive", "Group variables by server", "Use comments for scope notes", "Avoid real tokens in examples"], code: "# MCP server environment placeholders\n# Copy this file to .env locally, then replace values privately.\n\nGITHUB_TOKEN=your_github_token_here\nBRAVE_API_KEY=your_brave_api_key_here\nDATABASE_URL=postgres://user:password@localhost:5432/example_db" },
+      { heading: "GitHub MCP env variables", body: ["GitHub MCP servers usually need a token or app credential to read repository, issue, pull request, or organization context. Create the narrowest credential that supports the workflow.", "For documentation, screenshots, static generators, and shared repos, use placeholders only. Never paste a real GitHub token into a hosted browser form or committed example."], bullets: ["Prefer read-only scopes first", "Use separate dev and production credentials", "Rotate credentials after demos", "Review write-capable tools separately"], code: "# GitHub MCP server\n# Use a narrowly scoped token for the local workflow.\nGITHUB_TOKEN=your_github_token_here\nGITHUB_OWNER=your-org-or-username\nGITHUB_REPOSITORY=example-repo" },
+      { heading: "Search and browser MCP env variables", body: ["Search and browser MCP servers may need API keys, region settings, timeout values, or browser flags. Keep these tools read-oriented unless you have reviewed prompt-injection and write-action risk.", "Because web pages and search results are untrusted content, keep browser/search credentials separate from deployment, database, or GitHub write credentials."], bullets: ["Use separate API keys for search tools", "Document timeout and headless flags", "Treat web content as untrusted", "Do not mix browsing with destructive credentials"], code: "# Search or browser MCP server\nBRAVE_API_KEY=your_brave_api_key_here\nBROWSER_HEADLESS=true\nBROWSER_TIMEOUT_MS=30000" },
+      { heading: "Database MCP env variables", body: ["Database credentials require extra care. Use a read-only role for exploration, point first tests at a sandbox database, and never publish a real connection string.", "If the database server supports schema allowlists, read-only views, or query limits, document those controls next to the environment variables so reviewers understand the safety boundary."], bullets: ["Use sandbox databases first", "Prefer read-only roles", "Avoid production connection strings", "Document schema or table boundaries"], code: "# Database MCP server\nDATABASE_URL=postgres://readonly_user:password@localhost:5432/example_db\nDATABASE_SCHEMA=public\nDATABASE_QUERY_TIMEOUT_MS=10000" },
+      { heading: "Claude Desktop config with env placeholders", body: ["The JSON config can reference environment placeholder names while the companion .env.example documents what those names mean. Client and server behavior can vary, so confirm how your MCP client provides environment variables to launched server processes.", "Use this as a documentation pattern, not as proof that every client automatically loads .env files. Follow the current client and server maintainer docs for the final local setup."], bullets: ["Keep config JSON and .env.example consistent", "Verify client-specific env loading", "Restart the MCP client after changes", "Test with one server first"], code: "{\n  \"mcpServers\": {\n    \"github\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-github\"\n      ],\n      \"env\": {\n        \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"${GITHUB_TOKEN}\"\n      }\n    }\n  }\n}" },
+      { heading: "Team-safe secret handling workflow", body: ["For a team, the safest pattern is to commit .env.example, ignore the real .env file, store production values in a secret manager, and document who owns rotation for each credential.", "Pair every MCP config change with a quick review: what can the server read, what can it write, where does the data go, and what logs might contain sensitive values?"], bullets: ["Commit .env.example only", "Add .env to .gitignore", "Store production secrets outside Git", "Assign a rotation owner", "Review logs and error redaction"], code: "# Safe repository pattern\n.env\n.env.local\n*.pem\n*.key\n\n# Commit this instead:\n.env.example" },
+      { heading: "Common MCP env template mistakes", body: ["Most env-template mistakes come from treating examples like real runtime files. Public examples should teach names and shape; private local files hold actual values.", "If an MCP server fails after adding env variables, check the exact variable names expected by the server package, confirm the client process can see them, and test the command in a terminal before debugging the assistant."], bullets: ["Committing real .env files", "Using one broad admin token for everything", "Mismatching env names between config and server docs", "Assuming every client auto-loads .env", "Leaving stale unused secrets enabled", "Printing raw secrets in logs"] }
+    ],
+    checklist: ["List only variables used by enabled MCP servers", "Use placeholders in .env.example", "Keep real .env files out of Git", "Match variable names to server maintainer docs", "Use scoped read-only credentials first", "Separate dev and production secrets", "Document rotation owner and schedule", "Redact secrets from logs and error messages", "Verify the MCP client can pass env values to server processes", "Run the MCP security checklist before production use"],
+    faq: [
+      { question: "What is an MCP .env.example file?", answer: "It is a safe template that lists environment variable names needed by MCP servers, using placeholder values instead of real secrets." },
+      { question: "Should I commit my MCP .env file?", answer: "No. Commit .env.example if useful, but keep real .env files, tokens, cookies, keys, and production connection strings out of Git." },
+      { question: "Can MCP config JSON use environment variables?", answer: "Many MCP server examples use env fields or placeholder references, but client behavior can vary. Verify how your MCP client passes environment variables to the launched server process." },
+      { question: "What placeholders should public MCP examples use?", answer: "Use names such as ${GITHUB_TOKEN}, ${BRAVE_API_KEY}, ${DATABASE_URL}, and ${NOTION_API_KEY}. Do not use real-looking keys or private internal URLs." },
+      { question: "How do I make MCP secrets safer for teams?", answer: "Use least-privilege credentials, separate dev and production values, store production secrets in a secret manager, assign a rotation owner, and redact logs." },
+      { question: "Can a static website safely generate an MCP .env.example template?", answer: "Yes, if generation happens entirely in the browser and outputs placeholder values only. It should not collect, validate, store, or upload real secrets." }
+    ],
+    relatedLinks: [
+      { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Generate a browser-only .env.example draft with placeholder secret names." },
+      { href: "/guides/mcp-server-config-examples/", label: "MCP Server Config Examples", description: "See where env placeholders appear inside mcpServers JSON examples." },
+      { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Generate config JSON that references environment placeholders." },
+      { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions, secret handling, logging, and prompt-injection risk." },
+      { href: "/guides/how-to-build-an-mcp-stack/", label: "How to Build an MCP Stack", description: "Plan clients, servers, data sources, and credentials before setup." },
+      { href: "/guides/claude-desktop-mcp-config-examples/", label: "Claude Desktop MCP Config Examples", description: "Compare Claude Desktop server entries that use safe placeholders." },
+      { href: "/guides/cursor-mcp-config-examples/", label: "Cursor MCP Config Examples", description: "Compare Cursor server entries and env compatibility notes." }
+    ],
+    primaryCta: { href: "/tools/mcp-env-template-generator/", label: "Generate an MCP .env.example Template" }
   }
 
 ];
