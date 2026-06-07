@@ -36,6 +36,7 @@ export const mcpConfigTools: McpConfigTool[] = [
     defaultEnvVars: ["EXAMPLE_TOKEN"],
     serverTypes: ["Filesystem", "GitHub", "Browser", "Database", "Docs", "Custom"],
     relatedLinks: [
+      { href: "/guides/how-to-create-claude-desktop-config-json/", label: "How to Create claude_desktop_config.json", description: "Follow the setup guide before copying a Claude Desktop MCP config." },
       { href: "/tools/cursor-mcp-config-generator/", label: "Cursor MCP Config Generator", description: "Draft a Cursor MCP setup for coding-agent workflows." },
       { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Create a generic mcpServers JSON skeleton." },
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create a safe .env.example template for secret names." },

@@ -11,7 +11,7 @@ export type SeoGuide = {
   readingTime: string;
   intro: string[];
   keyTakeaways: string[];
-  sections: Array<{ heading: string; body: string[]; bullets?: string[] }>;
+  sections: Array<{ heading: string; body: string[]; bullets?: string[]; code?: string }>;
   checklist: string[];
   faq: Array<{ question: string; answer: string }>;
   relatedLinks: Array<{ href: string; label: string; description: string }>;
@@ -205,12 +205,123 @@ export const seoGuides: SeoGuide[] = [
     relatedLinks: [
       { href: "/tools/mcp-stack-builder/", label: "MCP Stack Builder", description: "Plan a static MCP stack from workflow and security inputs." },
       { href: "/tools/claude-desktop-mcp-config-generator/", label: "Claude Desktop MCP Config Generator", description: "Generate Claude Desktop mcpServers config templates." },
+      { href: "/guides/how-to-create-claude-desktop-config-json/", label: "How to Create claude_desktop_config.json", description: "Create the Claude Desktop config file before copying server entries." },
       { href: "/tools/cursor-mcp-config-generator/", label: "Cursor MCP Config Generator", description: "Generate Cursor-oriented MCP setup drafts." },
       { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Build generic MCP server config skeletons." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Create a Markdown review checklist before enabling servers." }
     ],
     primaryCta: { href: "/tools/mcp-server-config-generator/", label: "Generate an MCP Config Template" }
+  },
+  {
+    slug: "how-to-create-claude-desktop-config-json",
+    category: "MCP & Agent Setup",
+    title: "How to Create a claude_desktop_config.json File",
+    description: "Learn how to create a claude_desktop_config.json file for Claude Desktop MCP servers, including file location, JSON structure, environment variables, and common fixes.",
+    h1: "How to Create a claude_desktop_config.json File",
+    eyebrow: "Claude Desktop MCP setup",
+    primaryKeyword: "create claude_desktop_config.json",
+    secondaryKeywords: ["claude_desktop_config.json file", "Claude Desktop MCP config", "MCP server configuration", "Claude Desktop config file location", "MCP JSON config", "add MCP server to Claude Desktop", "MCP environment variables"],
+    updated,
+    readingTime: "9 min read",
+    intro: [
+      "The claude_desktop_config.json file tells Claude Desktop which MCP servers to start and what settings each server needs. If you want to connect tools like GitHub, filesystem access, databases, browsers, or local scripts through MCP, this local JSON file is where those server definitions go.",
+      "This independent guide explains what the file does, where to create it, how the JSON is structured, and how to avoid common mistakes. It is not affiliated with or endorsed by Anthropic or Claude.",
+      "If you want a faster starting point, use the Claude Desktop MCP Config Generator, then review the output before adding it to your own local Claude Desktop setup. The generator runs in the browser and uses placeholder environment variable names instead of real secrets."
+    ],
+    keyTakeaways: [
+      "Create the file locally in the Claude Desktop config folder for your operating system.",
+      "Use a top-level mcpServers object, then add one named MCP server entry at a time.",
+      "Keep public examples safe by using placeholders such as ${GITHUB_TOKEN} instead of real API keys."
+    ],
+    sections: [
+      {
+        heading: "What is claude_desktop_config.json?",
+        body: [
+          "claude_desktop_config.json is a local configuration file used by Claude Desktop to define MCP servers. Each server entry tells Claude Desktop which command to run, which arguments to pass, and which environment variables the server needs.",
+          "A basic file contains a top-level mcpServers object. Each key inside that object is the local name of one MCP server. Choose names that are short, descriptive, and unique."
+        ],
+        bullets: ["Server name", "Command", "Command arguments", "Environment variables", "Optional working directory"],
+        code: "{\n  \"mcpServers\": {\n    \"github\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"],\n      \"env\": {\n        \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"${GITHUB_TOKEN}\"\n      }\n    }\n  }\n}"
+      },
+      {
+        heading: "Where to create the file",
+        body: [
+          "The config file is created on your own computer, not inside a website. If the file does not exist yet, create it manually with a plain text editor and save it with the exact filename claude_desktop_config.json.",
+          "Common locations are the Claude application support folder on macOS and the Claude app data folder on Windows. Paths can vary by installation, so verify against your local Claude Desktop version if the folder is missing."
+        ],
+        bullets: ["macOS: ~/Library/Application Support/Claude/claude_desktop_config.json", "Windows: %APPDATA%\\Claude\\claude_desktop_config.json", "Use plain text, not rich text", "Restart Claude Desktop after saving"]
+      },
+      {
+        heading: "Basic file structure",
+        body: [
+          "The smallest valid config has an mcpServers object. Add one server entry inside it, then validate the JSON before adding more servers.",
+          "The command field is the executable Claude Desktop should run. The args field must be an array, not a single string. Use cwd only when a server explicitly needs a working directory."
+        ],
+        bullets: ["command: executable name or path", "args: ordered command-line arguments", "env: optional key-value variables", "cwd: optional working directory"],
+        code: "{\n  \"mcpServers\": {\n    \"example-server\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"example-mcp-server\"]\n    }\n  }\n}"
+      },
+      {
+        heading: "Add environment variables safely",
+        body: [
+          "Some MCP servers require tokens, API keys, database URLs, or local settings. In shared examples, generated previews, screenshots, or documentation, use placeholder values instead of real secrets.",
+          "For your private local file, follow the server documentation for how it expects secrets. A static browser tool can generate a template, but it should not upload, store, or log your credentials."
+        ],
+        bullets: ["Use ${GITHUB_TOKEN} in public examples", "Use ${DATABASE_URL} for database placeholders", "Do not commit real claude_desktop_config.json secrets", "Separate dev and production credentials"]
+      },
+      {
+        heading: "Example config with multiple MCP servers",
+        body: [
+          "You can define more than one MCP server in the same file. Keep each server entry separate so failures are easier to debug.",
+          "Start with one read-only server, restart Claude Desktop, and confirm it works before adding filesystem, browser, database, or write-capable tools."
+        ],
+        bullets: ["Add one server at a time", "Prefer read-only scopes first", "Keep names descriptive", "Review permissions before enabling write actions"],
+        code: "{\n  \"mcpServers\": {\n    \"github\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@modelcontextprotocol/server-github\"],\n      \"env\": {\n        \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"${GITHUB_TOKEN}\"\n      }\n    },\n    \"filesystem\": {\n      \"command\": \"npx\",\n      \"args\": [\"-y\", \"@modelcontextprotocol/server-filesystem\", \"/Users/your-name/Documents\"]\n    }\n  }\n}"
+      },
+      {
+        heading: "Step-by-step setup flow",
+        body: [
+          "Choose the MCP servers you want to use, find the documented command and arguments for each server, then create or edit the Claude Desktop config file. Validate the JSON before saving and restart Claude Desktop after every change.",
+          "If you use a browser-based generator, copy the generated JSON, review it, replace placeholders with your local environment setup where appropriate, and save it manually on your own machine."
+        ],
+        bullets: ["Choose servers", "Collect command, args, and env names", "Create the file", "Validate JSON", "Restart Claude Desktop", "Test one server before adding more"]
+      },
+      {
+        heading: "Common mistakes to check",
+        body: [
+          "Most Claude Desktop MCP config problems are simple JSON, path, or dependency issues. Check the basics before replacing the whole file.",
+          "JSON does not allow comments, trailing commas, smart quotes, or unquoted keys. File paths must exist on your machine, and runtime dependencies such as Node.js must be installed if the command uses npx."
+        ],
+        bullets: ["Trailing commas", "Wrong filename", "Wrong config folder", "Smart quotes", "Missing Node.js", "Env names that do not match the server docs", "Real secrets in shared screenshots"]
+      }
+    ],
+    checklist: [
+      "The filename is exactly claude_desktop_config.json",
+      "The file is in the correct Claude Desktop config folder",
+      "The JSON has a top-level mcpServers object",
+      "Each server has a unique local name",
+      "Each server has the correct command",
+      "args is an array, not a plain string",
+      "Public examples use placeholders instead of real secrets",
+      "The JSON has no trailing commas",
+      "Claude Desktop was restarted after saving changes"
+    ],
+    faq: [
+      { question: "What does claude_desktop_config.json do?", answer: "It defines which MCP servers Claude Desktop should run locally. Each server entry tells Claude Desktop the command, arguments, and optional environment variables needed to start that MCP server." },
+      { question: "Do I need to create claude_desktop_config.json manually?", answer: "If the file does not already exist, yes. You can create it with any plain text editor. A browser-based generator can help produce the JSON, but the file still needs to be saved locally in the correct Claude Desktop config folder." },
+      { question: "Can I use real API keys in the config file?", answer: "For your private local file, some MCP servers may require real tokens or keys. For public examples, generated previews, screenshots, or documentation, never use real secrets. Use placeholders like ${GITHUB_TOKEN} or ${API_KEY}." },
+      { question: "Why is my MCP server not showing up?", answer: "Common causes include invalid JSON, the wrong file location, a misspelled command, missing dependencies, or forgetting to restart Claude Desktop after editing the file. Start with one server, validate the JSON, then add more." },
+      { question: "Can a static website create the config file automatically?", answer: "A static, browser-only site can generate JSON for you to copy or download, but it should not directly modify files on your computer. You still need to review the output and place the file in the correct local Claude Desktop config folder." }
+    ],
+    relatedLinks: [
+      { href: "/tools/claude-desktop-mcp-config-generator/", label: "Claude Desktop MCP Config Generator", description: "Generate a browser-only claude_desktop_config.json template with safe placeholders." },
+      { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create a companion .env.example file for secret names." },
+      { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions, secrets, and prompt injection risks before enabling servers." },
+      { href: "/guides/how-to-build-an-mcp-stack/", label: "How to Build an MCP Stack", description: "Plan clients, servers, data sources, and safety boundaries before configuring Claude Desktop." },
+      { href: "/guides/best-mcp-servers-for-claude/", label: "Best MCP Servers for Claude", description: "Choose useful server categories before writing the config file." }
+    ],
+    primaryCta: { href: "/tools/claude-desktop-mcp-config-generator/", label: "Generate a Claude Desktop MCP Config" }
   }
+
 ];
 
 export function getSeoGuide(slug: string) {

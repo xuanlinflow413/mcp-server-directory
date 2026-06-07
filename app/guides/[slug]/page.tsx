@@ -27,7 +27,7 @@ type RenderGuide = {
   secondaryKeywords?: string[];
   intro: string[];
   keyTakeaways: string[];
-  sections: Array<{ heading: string; body: string[]; bullets?: string[] }>;
+  sections: Array<{ heading: string; body: string[]; bullets?: string[]; code?: string }>;
   checklist: string[];
   faq: Array<{ question: string; answer: string }>;
   relatedLinks?: Array<{ href: string; label: string; description: string }>;
@@ -210,6 +210,11 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
                       </li>
                     ))}
                   </ul>
+                ) : null}
+                {section.code ? (
+                  <pre className="mt-6 overflow-x-auto rounded-2xl bg-slate-950 p-5 text-sm leading-6 text-slate-100">
+                    <code>{section.code}</code>
+                  </pre>
                 ) : null}
               </section>
             ))}
