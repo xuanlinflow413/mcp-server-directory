@@ -206,6 +206,7 @@ export const seoGuides: SeoGuide[] = [
       { href: "/tools/mcp-stack-builder/", label: "MCP Stack Builder", description: "Plan a static MCP stack from workflow and security inputs." },
       { href: "/tools/claude-desktop-mcp-config-generator/", label: "Claude Desktop MCP Config Generator", description: "Generate Claude Desktop mcpServers config templates." },
       { href: "/guides/how-to-create-claude-desktop-config-json/", label: "How to Create claude_desktop_config.json", description: "Create the Claude Desktop config file before copying server entries." },
+      { href: "/guides/claude-desktop-mcp-config-examples/", label: "Claude Desktop MCP Config Examples", description: "Use concrete Claude Desktop examples after choosing stack servers and permissions." },
       { href: "/tools/cursor-mcp-config-generator/", label: "Cursor MCP Config Generator", description: "Generate Cursor-oriented MCP setup drafts." },
       { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Build generic MCP server config skeletons." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Create a Markdown review checklist before enabling servers." }
@@ -314,10 +315,123 @@ export const seoGuides: SeoGuide[] = [
     ],
     relatedLinks: [
       { href: "/tools/claude-desktop-mcp-config-generator/", label: "Claude Desktop MCP Config Generator", description: "Generate a browser-only claude_desktop_config.json template with safe placeholders." },
+      { href: "/guides/claude-desktop-mcp-config-examples/", label: "Claude Desktop MCP Config Examples", description: "Compare safe filesystem, GitHub, search, and multi-server examples before copying JSON." },
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create a companion .env.example file for secret names." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions, secrets, and prompt injection risks before enabling servers." },
       { href: "/guides/how-to-build-an-mcp-stack/", label: "How to Build an MCP Stack", description: "Plan clients, servers, data sources, and safety boundaries before configuring Claude Desktop." },
       { href: "/guides/best-mcp-servers-for-claude/", label: "Best MCP Servers for Claude", description: "Choose useful server categories before writing the config file." }
+    ],
+    primaryCta: { href: "/tools/claude-desktop-mcp-config-generator/", label: "Generate a Claude Desktop MCP Config" }
+  },
+  {
+    slug: "claude-desktop-mcp-config-examples",
+    category: "MCP & Agent Setup",
+    title: "Claude Desktop MCP Config Examples: Filesystem, GitHub & Search",
+    description: "Copy practical Claude Desktop MCP config examples for filesystem, GitHub, search, and multiple servers with safe placeholders and troubleshooting notes.",
+    h1: "Claude Desktop MCP Config Examples",
+    eyebrow: "Claude Desktop MCP examples",
+    primaryKeyword: "Claude Desktop MCP config examples",
+    secondaryKeywords: ["Claude Desktop MCP config JSON", "Claude Desktop mcpServers examples", "MCP server config examples", "Claude Desktop filesystem MCP config", "Claude Desktop GitHub MCP config", "Claude Desktop search MCP config", "Claude Desktop multiple MCP servers", "Claude Desktop MCP troubleshooting"],
+    updated,
+    readingTime: "10 min read",
+    intro: [
+      "Use these Claude Desktop MCP config examples as starting points for common local setups: filesystem access, GitHub tools, browser or search access, and multiple MCP servers in one config file.",
+      "Replace placeholder paths and environment variables with your own local values, then restart Claude Desktop after saving the file. These examples are independent reference snippets for practical setup work and are not official Anthropic or Claude documentation.",
+      "For a safer first draft, generate a placeholder-based config in the Claude Desktop MCP Config Generator, then compare it with the examples below before copying anything into your local file."
+    ],
+    keyTakeaways: [
+      "Start with one MCP server example, confirm it works, then add additional servers.",
+      "Keep public examples safe by using placeholders such as ${GITHUB_TOKEN} and ${BRAVE_API_KEY}.",
+      "Limit filesystem paths and token scopes instead of giving Claude Desktop broad access on the first setup."
+    ],
+    sections: [
+      {
+        heading: "Before you copy a config example",
+        body: [
+          "Claude Desktop reads MCP server definitions from a local JSON config file. The important top-level key is mcpServers. Each server gets a unique name, a command, optional arguments, and optional environment variables.",
+          "Keep the JSON valid, avoid trailing commas, and never paste real API keys into public code or screenshots. Use placeholders such as ${GITHUB_TOKEN} in examples, then handle real values only in your private local setup."
+        ],
+        bullets: ["Use one top-level mcpServers object", "Give each server a clear local name", "Keep args as an array", "Use placeholders in public examples", "Restart Claude Desktop after changes"]
+      },
+      {
+        heading: "Filesystem MCP config example",
+        body: [
+          "Use a filesystem server when you want Claude Desktop to read or work with files in specific local folders. Limit access to only the directories you actually need.",
+          "Do not point a filesystem server at your entire home folder unless you understand the privacy and security tradeoffs. A narrow Documents or project path is safer for an initial test."
+        ],
+        bullets: ["Best for local documents and projects", "Use explicit folder paths", "Avoid broad home-directory access", "Test with a harmless folder first"],
+        code: "{\n  \"mcpServers\": {\n    \"filesystem\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-filesystem\",\n        \"/Users/your-name/Documents\",\n        \"/Users/your-name/Projects\"\n      ]\n    }\n  }\n}"
+      },
+      {
+        heading: "GitHub MCP config example",
+        body: [
+          "Use a GitHub server when you want Claude Desktop to inspect repositories, issues, pull requests, or other GitHub data through MCP tools.",
+          "Create a token with the minimum scopes needed for your workflow. Do not hard-code a real token in shared examples, commits, screenshots, support tickets, or client-side pages."
+        ],
+        bullets: ["Use a narrow token scope", "Prefer read-only access for first tests", "Use ${GITHUB_TOKEN} in examples", "Review write actions before enabling them"],
+        code: "{\n  \"mcpServers\": {\n    \"github\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-github\"\n      ],\n      \"env\": {\n        \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"${GITHUB_TOKEN}\"\n      }\n    }\n  }\n}"
+      },
+      {
+        heading: "Browser or search MCP config example",
+        body: [
+          "Use a search server when you want Claude Desktop to look up web results through a supported MCP server. This example uses a placeholder search API key.",
+          "Keep API keys outside static site code and only show placeholder values in browser-rendered documentation. Search results and web pages can contain untrusted instructions, so pair browser or search servers with a security checklist."
+        ],
+        bullets: ["Use placeholder API keys in examples", "Treat web content as untrusted", "Avoid sending private prompts to unknown services", "Document which search provider the server calls"],
+        code: "{\n  \"mcpServers\": {\n    \"brave-search\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-brave-search\"\n      ],\n      \"env\": {\n        \"BRAVE_API_KEY\": \"${BRAVE_API_KEY}\"\n      }\n    }\n  }\n}"
+      },
+      {
+        heading: "Multiple MCP servers in one Claude Desktop config",
+        body: [
+          "Claude Desktop can load more than one MCP server from the same config file. Give each server a clear, unique key under mcpServers.",
+          "Start with one server, confirm it works, then add the next server. This makes troubleshooting easier when a command, path, package, or token is wrong."
+        ],
+        bullets: ["Keep server names unique", "Add one server at a time", "Separate filesystem, GitHub, and search capabilities", "Remove unused servers instead of leaving stale entries enabled"],
+        code: "{\n  \"mcpServers\": {\n    \"filesystem\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-filesystem\",\n        \"/Users/your-name/Documents\",\n        \"/Users/your-name/Projects\"\n      ]\n    },\n    \"github\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-github\"\n      ],\n      \"env\": {\n        \"GITHUB_PERSONAL_ACCESS_TOKEN\": \"${GITHUB_TOKEN}\"\n      }\n    },\n    \"brave-search\": {\n      \"command\": \"npx\",\n      \"args\": [\n        \"-y\",\n        \"@modelcontextprotocol/server-brave-search\"\n      ],\n      \"env\": {\n        \"BRAVE_API_KEY\": \"${BRAVE_API_KEY}\"\n      }\n    }\n  }\n}"
+      },
+      {
+        heading: "Common Claude Desktop MCP config mistakes",
+        body: [
+          "Most config issues come from invalid JSON, wrong file location, missing Node.js or npx, unavailable server packages, incorrect local paths, or environment variables that are not set.",
+          "If Claude Desktop does not show the expected tools, validate the JSON first, confirm the command runs in your terminal, then restart Claude Desktop. Add servers one at a time instead of pasting a large config all at once."
+        ],
+        bullets: ["Trailing commas", "Wrong config folder", "Missing Node.js or npx", "Bad local folder path", "Missing environment variable", "Token scope too broad or too narrow"]
+      },
+      {
+        heading: "Use examples with a browser-only generator",
+        body: [
+          "For a static, browser-only site, keep examples as copyable documentation snippets. Do not collect, store, or render real user secrets.",
+          "A config generator should generate placeholder-based JSON in the browser and let users copy it locally. Avoid sending tokens, local paths, private repository names, or config contents to a backend service."
+        ],
+        bullets: ["Generate placeholders, not real secrets", "Copy locally", "Review before saving", "Pair config examples with a security checklist"]
+      }
+    ],
+    checklist: [
+      "Choose the MCP server you want to configure first",
+      "Confirm Node.js and npx are installed locally",
+      "Copy only one server example into Claude Desktop config at first",
+      "Replace example folder paths with real local paths you want to allow",
+      "Use placeholder environment variables in public examples",
+      "Validate the JSON before saving",
+      "Restart Claude Desktop after editing the config file",
+      "Check whether the new MCP tools appear in Claude Desktop",
+      "If something fails, remove other servers and test the failing server by itself",
+      "Never publish real tokens, private paths, or private repository names in shared configs"
+    ],
+    faq: [
+      { question: "Can I use more than one MCP server in Claude Desktop?", answer: "Yes. Add each server as a separate entry under the same mcpServers object. Use clear names such as filesystem, github, and brave-search." },
+      { question: "Why is my Claude Desktop MCP config not working?", answer: "Common causes include invalid JSON, a missing comma, a trailing comma, the wrong config file location, a missing command such as npx, a bad local folder path, or a missing API token. Validate the JSON and test one server at a time." },
+      { question: "Should I put real API keys in the config file?", answer: "Only use real secrets in your private local setup. Do not publish them in documentation, static pages, GitHub commits, screenshots, or support requests. Public examples should use placeholders like ${GITHUB_TOKEN}." },
+      { question: "Can a static website safely generate Claude Desktop MCP config JSON?", answer: "Yes, if generation happens entirely in the browser and no secrets are sent to a backend. A static generator should output copyable JSON with placeholders and let users edit sensitive values locally." },
+      { question: "Do I need to restart Claude Desktop after changing the config?", answer: "Yes. After editing the config file, restart Claude Desktop so it can reload the MCP server definitions." }
+    ],
+    relatedLinks: [
+      { href: "/tools/claude-desktop-mcp-config-generator/", label: "Claude Desktop MCP Config Generator", description: "Generate a browser-only claude_desktop_config.json template from safe placeholders." },
+      { href: "/guides/how-to-create-claude-desktop-config-json/", label: "How to Create claude_desktop_config.json", description: "Create the Claude Desktop config file before copying example server entries." },
+      { href: "/guides/how-to-build-an-mcp-stack/", label: "How to Build an MCP Stack", description: "Plan clients, servers, data sources, and permissions before configuring examples." },
+      { href: "/guides/best-mcp-servers-for-claude/", label: "Best MCP Servers for Claude", description: "Choose useful server categories before adding Claude Desktop config examples." },
+      { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create companion .env.example placeholders for config secrets." },
+      { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions and secret handling before enabling MCP servers." }
     ],
     primaryCta: { href: "/tools/claude-desktop-mcp-config-generator/", label: "Generate a Claude Desktop MCP Config" }
   }

@@ -302,6 +302,7 @@ export const mcpGuides: McpGuide[] = [
     ],
     related: [
       { title: "How to Create claude_desktop_config.json", href: "/guides/how-to-create-claude-desktop-config-json/", description: "Create and validate the Claude Desktop MCP config file." },
+      { title: "Claude Desktop MCP Config Examples", href: "/guides/claude-desktop-mcp-config-examples/", description: "Compare copy-ready Claude Desktop server entries for common MCP workflows." },
       { title: "Claude MCP Server Disconnected", href: "/claude-mcp-server-config/#troubleshooting-claude-mcp-config", description: "Start with config troubleshooting when a server disconnects." },
       { title: "Best MCP Servers for Claude", href: "/guides/best-mcp-servers-for-claude/", description: "Find server ideas for Claude workflows." },
       { title: "MCP Security Best Practices", href: "/mcp-security-best-practices/", description: "Review security before adding powerful servers." }
