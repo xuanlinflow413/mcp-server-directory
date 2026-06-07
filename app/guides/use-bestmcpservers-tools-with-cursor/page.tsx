@@ -107,6 +107,8 @@ export default function GuidePage() {
             <li><Link href="/tools/base64-encoder-decoder/" className="font-semibold text-blue-700 hover:text-blue-900">Base64 Encode Decode</Link></li>
             <li><Link href="/tools/jwt-decoder/" className="font-semibold text-blue-700 hover:text-blue-900">JWT Decoder API</Link></li>
             <li><Link href="/agents/" className="font-semibold text-blue-700 hover:text-blue-900">MCP Agents Directory</Link></li>
+            <li><Link href="/tools/cursor-mcp-config-generator/" className="font-semibold text-blue-700 hover:text-blue-900">Cursor MCP Config Generator</Link></li>
+            <li><Link href="/guides/cursor-mcp-config-examples/" className="font-semibold text-blue-700 hover:text-blue-900">Cursor MCP Config Examples</Link></li>
             <li><Link href="/guides/how-to-install-mcp-servers-in-cursor/" className="font-semibold text-blue-700 hover:text-blue-900">Install MCP Servers in Cursor</Link></li>
           </ul>
         </section>

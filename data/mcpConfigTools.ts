@@ -63,6 +63,7 @@ export const mcpConfigTools: McpConfigTool[] = [
       { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Generate a cross-client config skeleton." },
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create safe placeholder env files for Cursor MCP servers." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Check coding-agent permissions and write actions." },
+      { href: "/guides/cursor-mcp-config-examples/", label: "Cursor MCP Config Examples", description: "Compare safe filesystem, GitHub, docs, search, and multi-server Cursor config examples before copying JSON." },
       { href: "/guides/how-to-install-mcp-servers-in-cursor/", label: "Install MCP Servers in Cursor", description: "Follow the setup guide after generating your draft." },
     ],
   },

@@ -439,9 +439,12 @@ open -a Cursor  # macOS`}</code>
         </div>
 
         <div className="mt-14 rounded-xl border border-blue-200 bg-blue-50 p-6">
-          <h2 className="text-xl font-bold text-slate-900">Generate a config template</h2>
-          <p className="mt-2 text-slate-700">Generate a Cursor-oriented MCP config draft and setup notes before editing your local mcp.json file.</p>
-          <Link href="/tools/cursor-mcp-config-generator/" className="mt-4 inline-flex rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">Cursor MCP Config Generator</Link>
+          <h2 className="text-xl font-bold text-slate-900">Generate and compare config templates</h2>
+          <p className="mt-2 text-slate-700">Generate a Cursor-oriented MCP config draft, then compare it with copyable Cursor MCP config examples before editing your local mcp.json file.</p>
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+            <Link href="/tools/cursor-mcp-config-generator/" className="inline-flex rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">Cursor MCP Config Generator</Link>
+            <Link href="/guides/cursor-mcp-config-examples/" className="inline-flex rounded-lg border border-blue-200 bg-white px-4 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-100">Cursor MCP Config Examples</Link>
+          </div>
         </div>
 
         {/* Back to directory */}
