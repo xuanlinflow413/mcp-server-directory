@@ -212,6 +212,7 @@ export const seoGuides: SeoGuide[] = [
       { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Build generic MCP server config skeletons." },
       { href: "/guides/mcp-server-config-examples/", label: "MCP Server Config Examples", description: "Use generic JSON examples after planning clients, servers, and permissions." },
       { href: "/guides/mcp-env-template-examples/", label: "MCP Env Template Examples", description: "Plan placeholder secrets and environment variables before setup." },
+      { href: "/guides/mcp-security-permissions-checklist/", label: "MCP Security Permissions Checklist", description: "Review permissions, secrets, prompt injection, logging, and approvals before enabling tools." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Create a Markdown review checklist before enabling servers." }
     ],
     primaryCta: { href: "/tools/mcp-server-config-generator/", label: "Generate an MCP Config Template" }
@@ -438,6 +439,7 @@ export const seoGuides: SeoGuide[] = [
       { href: "/guides/best-mcp-servers-for-claude/", label: "Best MCP Servers for Claude", description: "Choose useful server categories before adding Claude Desktop config examples." },
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create companion .env.example placeholders for config secrets." },
       { href: "/guides/mcp-env-template-examples/", label: "MCP Env Template Examples", description: "Document secret placeholders before enabling Claude Desktop examples." },
+      { href: "/guides/mcp-security-permissions-checklist/", label: "MCP Security Permissions Checklist", description: "Review permissions, secrets, prompt injection, logging, and approvals before enabling tools." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions and secret handling before enabling MCP servers." }
     ],
     primaryCta: { href: "/tools/claude-desktop-mcp-config-generator/", label: "Generate a Claude Desktop MCP Config" }
@@ -482,6 +484,7 @@ export const seoGuides: SeoGuide[] = [
       { href: "/guides/claude-desktop-mcp-config-examples/", label: "Claude Desktop MCP Config Examples", description: "Compare similar MCP config examples for Claude Desktop local workflows." },
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create companion .env.example placeholders for token and API key names." },
       { href: "/guides/mcp-env-template-examples/", label: "MCP Env Template Examples", description: "Document secret placeholders before enabling Cursor examples." },
+      { href: "/guides/mcp-security-permissions-checklist/", label: "MCP Security Permissions Checklist", description: "Review permissions, secrets, prompt injection, logging, and approvals before enabling tools." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions, secrets, and prompt injection risks before enabling tools." }
     ],
     primaryCta: { href: "/tools/cursor-mcp-config-generator/", label: "Generate a Cursor MCP Config" }
@@ -525,6 +528,7 @@ export const seoGuides: SeoGuide[] = [
       { href: "/guides/cursor-mcp-config-examples/", label: "Cursor MCP Config Examples", description: "Compare client-specific examples for Cursor coding workflows." },
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create companion .env.example placeholders for config secrets." },
       { href: "/guides/mcp-env-template-examples/", label: "MCP Env Template Examples", description: "Copy safe .env.example templates for config placeholders." },
+      { href: "/guides/mcp-security-permissions-checklist/", label: "MCP Security Permissions Checklist", description: "Review permissions, secrets, prompt injection, logging, and approvals before enabling tools." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions, secrets, and prompt injection risks before enabling tools." },
       { href: "/guides/how-to-build-an-mcp-stack/", label: "How to Build an MCP Stack", description: "Plan clients, servers, data sources, and safety boundaries before configuration." },
       { href: "/mcp-server-examples/", label: "MCP Server Examples", description: "Browse server categories before copying config examples." }
@@ -567,13 +571,90 @@ export const seoGuides: SeoGuide[] = [
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Generate a browser-only .env.example draft with placeholder secret names." },
       { href: "/guides/mcp-server-config-examples/", label: "MCP Server Config Examples", description: "See where env placeholders appear inside mcpServers JSON examples." },
       { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Generate config JSON that references environment placeholders." },
+      { href: "/guides/mcp-security-permissions-checklist/", label: "MCP Security Permissions Checklist", description: "Review permissions, secrets, prompt injection, logging, and approvals before enabling tools." },
       { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions, secret handling, logging, and prompt-injection risk." },
       { href: "/guides/how-to-build-an-mcp-stack/", label: "How to Build an MCP Stack", description: "Plan clients, servers, data sources, and credentials before setup." },
       { href: "/guides/claude-desktop-mcp-config-examples/", label: "Claude Desktop MCP Config Examples", description: "Compare Claude Desktop server entries that use safe placeholders." },
       { href: "/guides/cursor-mcp-config-examples/", label: "Cursor MCP Config Examples", description: "Compare Cursor server entries and env compatibility notes." }
     ],
     primaryCta: { href: "/tools/mcp-env-template-generator/", label: "Generate an MCP .env.example Template" }
+  },
+  {
+    slug: "mcp-security-permissions-checklist",
+    category: "MCP & Agent Setup",
+    title: "MCP Security Permissions Checklist for Safer AI Agent Setups",
+    description: "Use this MCP security permissions checklist to review server access, secrets, prompt injection risk, logging, approvals, and rollback before enabling MCP tools.",
+    h1: "MCP Security Permissions Checklist",
+    eyebrow: "MCP permissions review",
+    primaryKeyword: "MCP security permissions checklist",
+    secondaryKeywords: ["MCP security checklist", "MCP permissions checklist", "MCP server security", "Model Context Protocol security", "MCP tool permissions", "MCP secrets checklist", "MCP prompt injection checklist", "AI agent tool security"],
+    updated,
+    readingTime: "10 min read",
+    intro: [
+      "An MCP setup can give an AI client access to files, repositories, databases, browsers, tickets, docs, and other tools. That makes permissions review part of setup, not an optional task after everything works.",
+      "This MCP security permissions checklist helps developers review what each server can read, what it can write, which secrets it needs, how prompt injection is handled, what gets logged, and how risky actions are approved before enabling tools in Claude Desktop, Cursor, custom apps, or local development workflows.",
+      "This is an independent safety-focused planning guide. It is not official documentation for any MCP client or server. Always verify the current client and server maintainer docs before using a config locally."
+    ],
+    keyTakeaways: [
+      "Start with read-only MCP access and add write tools only after approval, logging, and rollback are clear.",
+      "Never put real tokens, cookies, database URLs, or private credentials into public config examples, browser forms, screenshots, or committed files.",
+      "Treat files, web pages, issues, docs, database rows, and tool outputs as untrusted input that may contain prompt-injection attempts.",
+      "Use the browser-only MCP Security Checklist Generator to create a review checklist without uploading configs, secrets, or files."
+    ],
+    sections: [
+      { heading: "What an MCP permissions checklist should cover", body: ["A useful MCP permissions checklist connects the agent workflow to concrete access decisions. For each server, document what data it can read, what actions it can take, which credentials it uses, how outputs are logged, and who approves risky operations.", "Do not treat MCP configuration as a simple install step. A config file defines the operating boundary for an AI agent, so it should be reviewed before private files, production databases, or write-capable APIs are connected."], bullets: ["Server purpose", "Read permissions", "Write permissions", "Required secrets", "Untrusted input sources", "Logging and redaction", "Approval and rollback"] },
+      { heading: "Review server access before enabling tools", body: ["Start from the workflow, then enable only the server categories needed for that workflow. A coding assistant may need a narrow project folder and GitHub issues. A research assistant may need docs and search. Most first versions do not need broad filesystem, production database, browser, email, and deployment access all at once.", "For local tools, use explicit folder paths instead of a whole home directory. For API tools, use narrow scopes and separate credentials. For database tools, start with sandbox data or read-only roles."], bullets: ["Enable one server at a time", "Use narrow filesystem paths", "Prefer read-only API scopes", "Avoid production data for first tests", "Remove stale servers"] },
+      { heading: "Separate read-only, write, and destructive actions", body: ["Read-only tools are easier to test safely. Write-capable tools need stronger controls because an assistant may create commits, edit tickets, update records, send messages, deploy code, or delete data.", "Group actions by risk. Low-risk reads can run directly. Medium-risk writes should require review. Destructive or external-facing actions should require explicit human approval, previews, and rollback documentation."], bullets: ["Read-only first", "Preview before write", "Human approval for destructive actions", "Rollback steps before enablement", "Clear tool names for risky actions"] },
+      { heading: "Handle MCP secrets and environment variables safely", body: ["MCP servers often need tokens, API keys, database URLs, or service-account credentials. Public examples should show placeholder names only, such as ${GITHUB_TOKEN}, ${DATABASE_URL}, or ${BRAVE_API_KEY}. Real values belong in private local setup or a secret manager.", "Separate development, staging, and production credentials. Rotate credentials after demos, screen shares, leaks, or public debugging. Redact secrets from logs, errors, traces, screenshots, and support messages."], bullets: ["Use placeholders in docs", "Commit .env.example, not .env", "Use least-privilege tokens", "Separate dev and production credentials", "Redact logs and errors", "Rotate after exposure"] },
+      { heading: "Reduce prompt injection risk from untrusted content", body: ["Prompt injection matters for MCP because servers can bring external content into an agent loop. Web pages, search results, GitHub issues, docs, emails, database rows, and local files may contain instructions that try to override the user's goal or reveal secrets.", "Treat retrieved content as data, not authority. It should not be allowed to change tool permissions, request secrets, bypass approvals, or execute unrelated actions. Keep browser/search tools separated from destructive tools when possible."], bullets: ["Treat external content as untrusted", "Do not let content change permissions", "Keep browsing separate from writes", "Ignore requests to reveal secrets", "Log suspicious instructions without raw secrets"] },
+      { heading: "Log enough for debugging without leaking data", body: ["Logs are useful when a server fails to start or a tool returns unexpected output, but raw logs can leak tokens, file paths, database rows, customer data, or private repository names.", "Log structured events such as tool name, status, duration, and redacted error category. Avoid full environment dumps, raw request bodies, complete SQL results, and unredacted stack traces in shared debugging output."], bullets: ["Log tool name and status", "Redact tokens and connection strings", "Avoid env dumps", "Minimize returned fields", "Limit access to debug logs"] },
+      { heading: "Test MCP servers in a sandbox before production use", body: ["A safe first test proves that the MCP client can discover the server, call a narrow tool, handle invalid input, and fail safely. Use a harmless project folder, sample repository, sandbox database, or test account before connecting production resources.", "For write-capable tools, test the full review loop: preview, approval, execution, verification, and rollback. If the workflow cannot be rolled back, do not enable it for production data until the risk is explicitly accepted."], bullets: ["Use sample files or test repos", "Use sandbox databases", "Test invalid input", "Verify rollback", "Document production go/no-go criteria"] },
+      { heading: "Use the MCP Security Checklist Generator", body: ["The MCP Security Checklist Generator creates a Markdown review checklist from server type, data sensitivity, deployment model, write-action risk, secrets, and prompt-injection exposure. It runs entirely in the browser.", "The generator is designed for planning only. It does not ask for real tokens, upload config files, call an AI API, install MCP servers, or store inputs in a database."], bullets: ["Browser-only generation", "No login", "No uploaded configs", "No real secrets", "Copy the checklist locally", "Review official server docs before use"] }
+    ],
+    checklist: [
+      "Define the agent workflow before choosing MCP servers",
+      "Enable only the servers needed for the current workflow",
+      "Start with read-only permissions wherever possible",
+      "Use narrow filesystem paths instead of broad home-directory access",
+      "Use least-privilege API tokens and service accounts",
+      "Keep real secrets out of public examples, screenshots, browser inputs, and Git commits",
+      "Use placeholders such as ${GITHUB_TOKEN}, ${DATABASE_URL}, and ${BRAVE_API_KEY} in shared examples",
+      "Separate development, staging, and production credentials",
+      "Avoid production databases during first tests",
+      "Treat web pages, search results, tickets, issues, docs, and database rows as untrusted content",
+      "Keep browser/search tools separated from destructive tools when possible",
+      "Require human approval for write, delete, deploy, payment, email, or external-posting actions",
+      "Document rollback steps before enabling write-capable tools",
+      "Redact secrets from logs, errors, traces, and shared debugging output",
+      "Remove stale MCP servers, unused env variables, and old credentials",
+      "Rotate credentials after demos, screen shares, leaks, or public debugging",
+      "Verify client-specific config behavior before copying examples into Claude Desktop, Cursor, or another MCP client",
+      "Run a final security review before connecting production resources"
+    ],
+    faq: [
+      { question: "What is an MCP security permissions checklist?", answer: "It is a pre-launch review for MCP server access, tool permissions, credentials, prompt-injection exposure, logging, approval rules, and rollback steps." },
+      { question: "Why do MCP servers need a permissions review?", answer: "MCP servers can expose files, repositories, databases, browsers, and other tools to an AI client. Reviewing permissions before use reduces overbroad access, leaked secrets, and unsafe actions." },
+      { question: "Should I start MCP servers with read-only access?", answer: "Yes. Start read-only when possible, test the workflow, then add write-capable tools only after human approval, logging, and rollback behavior are clear." },
+      { question: "Can prompt injection affect MCP tools?", answer: "Yes. Web pages, issues, docs, messages, database rows, and file contents can include malicious instructions. Treat external content as untrusted and do not let it change permissions or reveal secrets." },
+      { question: "Should MCP config examples include real API keys?", answer: "No. Public examples should use placeholders such as ${GITHUB_TOKEN}, ${DATABASE_URL}, and ${BRAVE_API_KEY}. Real values belong only in private local setup or a secret manager." },
+      { question: "How should I handle database MCP servers safely?", answer: "Use sandbox databases first, prefer read-only roles, scope access to selected schemas or views, avoid production credentials during testing, and redact query errors or logs." },
+      { question: "Can a browser-only tool safely generate an MCP checklist?", answer: "Yes, if it runs entirely in the browser and does not require login, call an API, upload files, store inputs, or ask for real secrets." },
+      { question: "Is this official MCP documentation?", answer: "No. It is an independent planning checklist. Verify the current MCP client and server maintainer documentation before enabling any server." }
+    ],
+    relatedLinks: [
+      { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Create a browser-only MCP security review checklist with no login, upload, API call, or storage." },
+      { href: "/guides/how-to-build-an-mcp-stack/", label: "How to Build an MCP Stack", description: "Plan clients, servers, data sources, credentials, and safety boundaries before setup." },
+      { href: "/guides/mcp-server-config-examples/", label: "MCP Server Config Examples", description: "Review safe placeholder-based mcpServers JSON examples." },
+      { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Generate browser-only MCP config templates with placeholder values." },
+      { href: "/guides/mcp-env-template-examples/", label: "MCP Env Template Examples", description: "Create safer .env.example files without exposing real credentials." },
+      { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Generate placeholder-only MCP environment templates in the browser." },
+      { href: "/guides/claude-desktop-mcp-config-examples/", label: "Claude Desktop MCP Config Examples", description: "Compare Claude Desktop-oriented MCP config examples with safe placeholders." },
+      { href: "/guides/cursor-mcp-config-examples/", label: "Cursor MCP Config Examples", description: "Compare Cursor-oriented MCP config examples for developer workflows." },
+      { href: "/mcp-security-checklist/", label: "MCP Security Checklist", description: "Read the broader standalone MCP checklist before publishing server recommendations." }
+    ],
+    primaryCta: { href: "/tools/mcp-security-checklist-generator/", label: "Generate an MCP Security Checklist" }
   }
+
 
 ];
 

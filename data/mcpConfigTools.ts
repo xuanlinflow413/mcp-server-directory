@@ -132,7 +132,7 @@ export const mcpConfigTools: McpConfigTool[] = [
       { href: "/guides/mcp-server-config-examples/", label: "MCP Server Config Examples", description: "Review generic config examples before enabling permissions." },
       { href: "/guides/mcp-env-template-examples/", label: "MCP Env Template Examples", description: "Review placeholder secret templates before enabling credentials." },
       { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator", description: "Create safer secret placeholder files." },
-      { href: "/mcp-security-checklist/", label: "MCP Security Checklist", description: "Read the full static security checklist guide." },
+      { href: "/guides/mcp-security-permissions-checklist/", label: "MCP Security Permissions Checklist", description: "Read the full guide for permissions, secrets, prompt injection, logging, and approvals." },
     ],
   },
 ];
