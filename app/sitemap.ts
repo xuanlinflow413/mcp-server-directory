@@ -5,9 +5,10 @@ import { rspPrompts } from "@/data/rspPrompts";
 import { mcpGuides } from "@/data/mcpGuides";
 import { agentSecurityGuides } from "@/data/agentSecurityGuides";
 import { seoGuides } from "@/data/seoGuides";
+import { workflowPacks } from "@/data/workflowPacks";
 
 const baseUrl = "https://bestmcpservers.com";
-const lastModified = new Date("2026-05-30");
+const lastModified = new Date("2026-06-08");
 
 function route(path: string, priority: number, changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] = "monthly") {
   return {
@@ -30,6 +31,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     route("/chrome-extension-prd-template/", 0.75, "monthly"),
     route("/mobile-app-prd-template/", 0.8, "monthly"),
     route("/guides/", 0.9, "weekly"),
+    route("/workflows/", 0.95, "weekly"),
+    route("/pricing/", 0.95, "weekly"),
+    route("/pro/", 0.9, "weekly"),
     route("/guides/best-mcp-servers-for-claude/", 0.8, "monthly"),
     route("/guides/how-to-install-mcp-servers-in-cursor/", 0.8, "monthly"),
     route("/guides/use-bestmcpservers-api-with-chatgpt/", 0.8, "monthly"),
@@ -44,6 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     route("/tools/api/", 0.8, "monthly"),
     route("/agents/", 0.9, "weekly"),
     route("/rsp/", 0.9, "weekly"),
+    route("/ai-cost/", 0.9, "weekly"),
   ];
 
   const toolRoutes = developerTools.map((tool) => route(`/tools/${tool.slug}/`, 0.8, "monthly"));
@@ -52,6 +57,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const seoGuideRoutes = seoGuides.map((guide) => route(`/guides/${guide.slug}/`, 0.82, "monthly"));
   const agentRoutes = agents.map((agent) => route(`/agents/${agent.slug}/`, 0.7, "monthly"));
   const rspRoutes = rspPrompts.map((prompt) => route(`/rsp/${prompt.slug}/`, 0.7, "monthly"));
+  const workflowRoutes = workflowPacks.map((pack) => route(`/workflows/${pack.slug}/`, 0.86, "monthly"));
 
-  return [...staticRoutes, ...mcpGuideRoutes, ...agentSecurityGuideRoutes, ...seoGuideRoutes, ...toolRoutes, ...agentRoutes, ...rspRoutes];
+  return [...staticRoutes, ...mcpGuideRoutes, ...agentSecurityGuideRoutes, ...seoGuideRoutes, ...toolRoutes, ...agentRoutes, ...rspRoutes, ...workflowRoutes];
 }

@@ -1,0 +1,98 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import BillingCheckout from "@/components/BillingCheckout";
+import { getWorkflowPack, workflowPacks } from "@/data/workflowPacks";
+
+export function generateStaticParams() {
+  return workflowPacks.map((pack) => ({ slug: pack.slug }));
+}
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const pack = getWorkflowPack(params.slug);
+  if (!pack) return {};
+  const url = `https://bestmcpservers.com/workflows/${pack.slug}/`;
+  return {
+    title: pack.seoTitle,
+    description: pack.seoDescription,
+    alternates: { canonical: url },
+    openGraph: { title: pack.seoTitle, description: pack.seoDescription, url, type: "article" },
+    twitter: { card: "summary_large_image", title: pack.seoTitle, description: pack.seoDescription },
+  };
+}
+
+export default function WorkflowPackPage({ params }: { params: { slug: string } }) {
+  const pack = getWorkflowPack(params.slug);
+  if (!pack) notFound();
+
+  const faq = [
+    { q: `Who is the ${pack.title} for?`, a: pack.audience },
+    { q: "What result does this workflow sell?", a: pack.useCase },
+    { q: "Why would someone pay for it?", a: pack.whyPay },
+  ];
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: pack.seoTitle,
+    description: pack.seoDescription,
+    url: `https://bestmcpservers.com/workflows/${pack.slug}/`,
+    author: { "@type": "Organization", name: "BestMCPServers" },
+    mainEntity: faq.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })),
+  };
+
+  return (
+    <main className="bg-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <section className="bg-slate-950 px-4 py-20 text-white sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <Link href="/workflows/" className="text-sm font-semibold text-blue-300 hover:text-blue-200">← All workflow packs</Link>
+          <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_380px] lg:items-start">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">{pack.tool} Workflow Pack</p>
+              <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-6xl">{pack.title}</h1>
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">{pack.subtitle}</p>
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-xs text-slate-400">Paid willingness</p><p className="mt-1 font-bold">{pack.willingness}</p></div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-xs text-slate-400">Market size</p><p className="mt-1 font-bold">{pack.marketSize}</p></div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-xs text-slate-400">Time saved</p><p className="mt-1 font-bold">{pack.savedTime}</p></div>
+              </div>
+            </div>
+            <aside className="rounded-3xl border border-blue-300/30 bg-white p-6 text-slate-950 shadow-2xl">
+              <p className="text-sm font-semibold text-blue-700">Unlock this workflow</p>
+              <h2 className="mt-2 text-2xl font-bold">BestMCPServers Pro</h2>
+              <p className="mt-3 text-sm text-slate-600">Get copy-ready MCP stacks, implementation steps, and Pro workflow details.</p>
+              <div className="mt-6 space-y-3"><BillingCheckout plan={pack.launchPriority <= 3 ? "starter" : "pro"} label={pack.launchPriority <= 3 ? "Unlock with Starter" : "Unlock with Pro"} /><Link href="/pricing/" className="block rounded-xl border border-slate-200 px-5 py-3 text-center text-sm font-semibold hover:bg-slate-50">Compare plans</Link></div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-8 lg:grid-cols-2">
+          <div className="rounded-3xl border border-slate-200 p-8">
+            <h2 className="text-2xl font-bold text-slate-950">User profile</h2>
+            <p className="mt-4 text-slate-600">{pack.audience}</p>
+            <h2 className="mt-8 text-2xl font-bold text-slate-950">Use case</h2>
+            <p className="mt-4 text-slate-600">{pack.useCase}</p>
+            <h2 className="mt-8 text-2xl font-bold text-slate-950">Why users pay</h2>
+            <p className="mt-4 text-slate-600">{pack.whyPay}</p>
+            <p className="mt-4 rounded-2xl bg-blue-50 p-4 text-sm font-semibold text-blue-900">Price anchor: {pack.priceAnchor}</p>
+          </div>
+          <div className="rounded-3xl border border-slate-200 p-8">
+            <h2 className="text-2xl font-bold text-slate-950">Recommended MCP combination</h2>
+            <div className="mt-5 flex flex-wrap gap-2">{pack.mcpStack.map((item) => <span key={item} className="rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">{item}</span>)}</div>
+            <h2 className="mt-8 text-2xl font-bold text-slate-950">Workflow</h2>
+            <ol className="mt-5 space-y-4">{pack.workflow.map((step, index) => <li key={step} className="flex gap-3"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">{index + 1}</span><span className="text-slate-700">{step}</span></li>)}</ol>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold tracking-tight text-slate-950">FAQ</h2>
+          <div className="mt-6 grid gap-5 md:grid-cols-3">{faq.map((item) => <div key={item.q} className="rounded-2xl border border-slate-200 bg-white p-5"><h3 className="font-semibold text-slate-950">{item.q}</h3><p className="mt-2 text-sm text-slate-600">{item.a}</p></div>)}</div>
+        </div>
+      </section>
+    </main>
+  );
+}
