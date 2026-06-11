@@ -61,7 +61,7 @@ export default function WorkflowPackPage({ params }: { params: { slug: string } 
               <p className="text-sm font-semibold text-blue-700">Unlock this workflow</p>
               <h2 className="mt-2 text-2xl font-bold">BestMCPServers Pro</h2>
               <p className="mt-3 text-sm text-slate-600">Get copy-ready MCP stacks, implementation steps, and Pro workflow details.</p>
-              <div className="mt-6 space-y-3"><BillingCheckout plan={pack.launchPriority <= 3 ? "starter" : "pro"} label={pack.launchPriority <= 3 ? "Unlock with Starter" : "Unlock with Pro"} /><Link href="/pricing/" className="block rounded-xl border border-slate-200 px-5 py-3 text-center text-sm font-semibold hover:bg-slate-50">Compare plans</Link></div>
+              <div className="mt-6 space-y-3"><BillingCheckout plan={pack.launchPriority <= 3 ? "builder" : "pro"} label={pack.launchPriority <= 3 ? "Unlock with Builder Pack" : "Unlock with Pro"} /><Link href="/pricing/" className="block rounded-xl border border-slate-200 px-5 py-3 text-center text-sm font-semibold hover:bg-slate-50">Compare plans</Link></div>
             </aside>
           </div>
         </div>

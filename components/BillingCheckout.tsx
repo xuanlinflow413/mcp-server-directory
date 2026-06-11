@@ -16,7 +16,7 @@ type Plan = {
 };
 
 type Props = {
-  plan: "starter" | "pro";
+  plan: "builder" | "pro";
   label?: string;
   className?: string;
 };
@@ -71,7 +71,7 @@ export default function BillingCheckout({ plan, label, className }: Props) {
     if (status === "exchanging") return "Finishing login...";
     if (status === "loading") return "Preparing checkout...";
     if (status === "redirecting") return "Redirecting to Stripe...";
-    return label || (plan === "starter" ? "Start Starter" : "Start Pro");
+    return label || (plan === "builder" ? "Start Builder Pack" : "Start Pro");
   }, [label, plan, status]);
 
   async function startCheckout() {

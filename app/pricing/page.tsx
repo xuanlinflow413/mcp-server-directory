@@ -46,7 +46,7 @@ const jsonLd = {
   description,
   brand: { "@type": "Brand", name: "BestMCPServers" },
   offers: [
-    { "@type": "Offer", name: "Starter", price: "9", priceCurrency: "USD", availability: "https://schema.org/InStock" },
+    { "@type": "Offer", name: "Builder Pack", price: "9.99", priceCurrency: "USD", availability: "https://schema.org/InStock" },
     { "@type": "Offer", name: "Pro", price: "19", priceCurrency: "USD", availability: "https://schema.org/InStock" },
   ],
   mainEntity: faq.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })),
@@ -70,8 +70,8 @@ export default function PricingPage() {
         <div className="mt-16 grid gap-6 lg:grid-cols-2">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl">
             <div className="flex items-baseline justify-between">
-              <h2 className="text-2xl font-bold">Starter</h2>
-              <p><span className="text-4xl font-bold">$9</span><span className="text-slate-400">/mo</span></p>
+              <h2 className="text-2xl font-bold">Builder Pack</h2>
+              <p><span className="text-4xl font-bold">$9.99</span><span className="text-slate-400"> lifetime</span></p>
             </div>
             <p className="mt-4 text-slate-300">For solo developers who want the fastest path from MCP discovery to one working AI coding workflow.</p>
             <ul className="mt-6 space-y-3 text-sm text-slate-200">
@@ -80,7 +80,7 @@ export default function PricingPage() {
               <li>✓ Production safety checklist for filesystem, GitHub, browser, and database tools</li>
               <li>✓ Basic Pro updates as the MCP ecosystem changes</li>
             </ul>
-            <div className="mt-8"><BillingCheckout plan="starter" label="Start Starter with Google + Stripe" /></div>
+            <div className="mt-8"><BillingCheckout plan="builder" label="Start Builder Pack with Google + Stripe" /></div>
           </div>
 
           <div className="rounded-3xl border border-blue-400/40 bg-blue-500/10 p-8 shadow-2xl ring-1 ring-blue-400/30">
