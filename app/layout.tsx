@@ -27,10 +27,10 @@ export const metadata: Metadata = {
     url: "https://bestmcpservers.com/",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Best MCP Servers — MCP tools, agents, and developer guides",
+        alt: "BestMCPServers — MCP workflow packs for Claude Code, Cursor, and Codex",
       },
     ],
   },
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "BestMCPServers — AI Tools, Prompt Libraries & Developer Resources",
     description:
       "BestMCPServers is your hub for AI tools, prompt libraries, and developer resources. Browse MCP servers, copy AI prompts, and use free online developer utilities.",
-    images: ["/og-image.png"],
+    images: ["/og.png"],
   },
   robots: {
     index: true,
@@ -55,10 +55,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta property="og:image" content="https://bestmcpservers.com/og-image.png" />
+        <meta property="og:image" content="https://bestmcpservers.com/og.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta name="twitter:image" content="https://bestmcpservers.com/og-image.png" />
+        <meta name="twitter:image" content="https://bestmcpservers.com/og.png" />
         <Script
           defer
           data-domain="bestmcpservers.com"
