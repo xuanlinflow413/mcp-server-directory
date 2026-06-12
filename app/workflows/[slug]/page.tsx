@@ -69,10 +69,16 @@ export default function WorkflowPackPage({ params }: { params: { slug: string } 
               </div>
             </div>
             <aside className="rounded-3xl border border-blue-300/30 bg-white p-6 text-slate-950 shadow-2xl">
-              <p className="text-sm font-semibold text-blue-700">Unlock this workflow</p>
-              <h2 className="mt-2 text-2xl font-bold">BestMCPServers Pro</h2>
-              <p className="mt-3 text-sm text-slate-600">Get copy-ready MCP stacks, implementation steps, and Pro workflow details.</p>
-              <div className="mt-6 space-y-3"><BillingCheckout plan={pack.launchPriority <= 3 ? "builder" : "pro"} label={pack.launchPriority <= 3 ? "Unlock with Builder Pack" : "Unlock with Pro"} /><Link href="/pricing/" className="block rounded-xl border border-slate-200 px-5 py-3 text-center text-sm font-semibold hover:bg-slate-50">Compare plans</Link></div>
+              <p className="text-sm font-semibold text-blue-700">Use this workflow</p>
+              <h2 className="mt-2 text-2xl font-bold">Copy-ready MCP pack</h2>
+              <p className="mt-3 text-sm text-slate-600">
+                Already bought the Builder Pack? Start below: copy the prompt, paste the config into your AI coding tool, then follow the agent workflow.
+              </p>
+              <div className="mt-6 space-y-3">
+                <a href="#copy-ready-assets" className="block rounded-xl bg-blue-600 px-5 py-3 text-center text-sm font-semibold text-white hover:bg-blue-700">Start using this pack</a>
+                <BillingCheckout plan={pack.launchPriority <= 3 ? "builder" : "pro"} label={pack.launchPriority <= 3 ? "Buy Builder Pack" : "Unlock with Pro"} />
+                <Link href="/pricing/" className="block rounded-xl border border-slate-200 px-5 py-3 text-center text-sm font-semibold hover:bg-slate-50">Compare plans</Link>
+              </div>
             </aside>
           </div>
         </div>
@@ -98,7 +104,7 @@ export default function WorkflowPackPage({ params }: { params: { slug: string } 
         </div>
       </section>
 
-      <section className="border-y border-slate-200 bg-slate-50">
+      <section id="copy-ready-assets" className="border-y border-slate-200 bg-slate-50">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">Copy-ready Pro assets</p>

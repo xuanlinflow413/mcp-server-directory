@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import BillingCheckout from "@/components/BillingCheckout";
+import BuilderPackAccess from "@/components/BuilderPackAccess";
 import { workflowPacks } from "@/data/workflowPacks";
 
 const title = "BestMCPServers Pro | Production MCP Workflows for AI Coding Agents";
@@ -31,6 +33,8 @@ const jsonLd = {
 };
 
 export default function ProPage() {
+  const builderPacks = workflowPacks.filter((pack) => pack.launchPriority <= 3);
+
   return (
     <main className="bg-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -59,6 +63,10 @@ export default function ProPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <Suspense fallback={null}>
+          <BuilderPackAccess builderPacks={builderPacks} />
+        </Suspense>
+
         <h2 className="text-3xl font-bold tracking-tight text-slate-950">What Pro unlocks</h2>
         <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {workflowPacks.map((pack) => (
