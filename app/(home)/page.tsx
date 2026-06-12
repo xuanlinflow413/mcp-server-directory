@@ -26,8 +26,43 @@ const subnav = [
   { href: "#workflow-packs", label: "Workflow Packs" },
   { href: "#how-it-works", label: "How it works" },
   { href: "#pricing", label: "Pricing" },
+  { href: "#free-builder-tools", label: "Free tools" },
   { href: "#servers", label: "MCP Directory" },
   { href: "#faq", label: "FAQ" },
+];
+
+const freeBuilderGroups = [
+  {
+    title: "Plan AI cost & pricing",
+    description: "Validate the numbers before you buy or build the workflow.",
+    links: [
+      { href: "/tools/ai-cost-calculator/", label: "AI Cost Calculator" },
+      { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator" },
+      { href: "/ai-cost/", label: "AI Cost Hub" },
+    ],
+  },
+  {
+    title: "Build an MCP stack",
+    description: "Generate configs, env templates, and safety checklists before turning them into a repeatable pack.",
+    links: [
+      { href: "/tools/mcp-stack-builder/", label: "MCP Stack Builder" },
+      { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator" },
+      { href: "/tools/claude-desktop-mcp-config-generator/", label: "Claude Desktop Config Generator" },
+      { href: "/tools/cursor-mcp-config-generator/", label: "Cursor MCP Config Generator" },
+      { href: "/tools/mcp-env-template-generator/", label: "MCP Env Template Generator" },
+      { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator" },
+    ],
+  },
+  {
+    title: "Plan products and agents",
+    description: "Scope the product, agent, prompt, or guide before upgrading the implementation workflow.",
+    links: [
+      { href: "/ai-prd-generator/", label: "AI PRD Generator" },
+      { href: "/agents/", label: "AI Agent Library" },
+      { href: "/rsp/", label: "Prompt Library" },
+      { href: "/guides/", label: "Guides" },
+    ],
+  },
 ];
 
 const steps = [
@@ -235,12 +270,50 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 lg:px-8">
+      <section id="free-builder-tools" className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-3xl">
+              <p className="text-sm font-bold uppercase tracking-[0.25em] text-blue-700">Free builder tools</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Use the free tools, then upgrade the workflow</h2>
+              <p className="mt-4 text-slate-600">
+                Calculators, stack builders, config generators, PRD templates, agents, prompts, and guides stay free. Use them to scope the job; Builder and Pro packs turn the output into repeatable implementation workflows.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
+              <Link href="/tools/" className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-5 py-3 text-sm font-bold text-slate-900 transition hover:border-slate-900 hover:bg-slate-900 hover:text-white">
+                Browse all free tools
+              </Link>
+              <Link href="/pricing/" className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-blue-500">
+                Turn this into Pro
+              </Link>
+            </div>
+          </div>
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {freeBuilderGroups.map((group) => (
+              <div key={group.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                <h3 className="text-xl font-bold text-slate-950">{group.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{group.description}</p>
+                <div className="mt-6 grid gap-3">
+                  {group.links.map((item) => (
+                    <Link key={item.href} href={item.href} className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-800 transition hover:border-blue-300 hover:text-blue-700 hover:shadow-sm">
+                      <span>{item.label}</span>
+                      <span className="text-slate-400 transition group-hover:translate-x-1 group-hover:text-blue-600">→</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="servers" className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
             <p className="text-sm font-bold uppercase tracking-[0.25em] text-blue-700">MCP Directory</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Browse servers as workflow building blocks</h2>
-            <p className="mt-4 text-slate-600">The directory remains the free library for choosing tools before you assemble them into a workflow pack.</p>
+            <p className="mt-4 text-slate-600">The directory remains the free library for choosing tools before you assemble them into a Builder or Pro workflow pack.</p>
           </div>
         </div>
       </section>
