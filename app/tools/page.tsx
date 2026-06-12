@@ -79,6 +79,7 @@ const iconMap = {
   "mcp-env-template-generator": KeyRound,
   "mcp-security-checklist-generator": ShieldCheck,
   "veo-prompt-generator": Video,
+  "prompt-injection-checker": ShieldCheck,
 };
 
 export default function ToolsPage() {

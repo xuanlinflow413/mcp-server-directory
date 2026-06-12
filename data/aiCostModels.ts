@@ -12,6 +12,7 @@ export type ModelPrice = {
 
 export const modelPrices: ModelPrice[] = [
   { id: "gpt-5", name: "GPT-5", provider: "OpenAI", inputPrice: 1.25, outputPrice: 10, context: "Flagship GPT model", notes: "Use for high-quality planning, coding, and agent workflows." },
+  { id: "gpt-5-5", name: "GPT-5.5", provider: "OpenAI", inputPrice: 1.25, outputPrice: 10, context: "Latest GPT model", notes: "Updated flagship with improved reasoning and agent capabilities." },
   { id: "gpt-5-mini", name: "GPT-5 Mini", provider: "OpenAI", inputPrice: 0.25, outputPrice: 2, context: "Lower-cost GPT model", notes: "Good default for high-volume SaaS drafts, chat, and routing." },
   { id: "gpt-4o", name: "GPT-4o", provider: "OpenAI", inputPrice: 2.5, outputPrice: 10, context: "Multimodal production model", notes: "Useful when legacy GPT-4o pricing assumptions are still in your model." },
   { id: "gpt-4o-mini", name: "GPT-4o Mini", provider: "OpenAI", inputPrice: 0.15, outputPrice: 0.6, context: "Efficient GPT-4o family model", notes: "Often used for inexpensive classification, extraction, and support flows." },

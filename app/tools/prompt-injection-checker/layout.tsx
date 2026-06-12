@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
 import { getTool } from "@/data/developerTools";
 
-const tool = getTool("ai-cost-calculator");
+const tool = getTool("prompt-injection-checker");
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bestmcpservers.com"),
   title: tool.title,
   description: tool.description,
   keywords: [
-    "AI Cost Calculator",
-    "OpenAI Cost Calculator",
-    "Claude Cost Calculator",
-    "LLM Pricing Calculator",
-    "Token Cost Calculator",
-    "Gemini cost calculator",
-    "DeepSeek cost calculator",
-    "Kimi cost calculator",
-    "GPT-5.5 pricing",
-    "AI API cost estimator",
+    "Prompt Injection Checker",
+    "AI Security Scanner",
+    "Agent Security Tool",
+    "Prompt Security Audit",
+    "LLM security",
+    "jailbreak detection",
+    "prompt injection test",
+    "LLM safety scanner",
+    "system prompt leak detection",
+    "AI red team tool",
   ],
   alternates: { canonical: tool.canonical },
   openGraph: {
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
         url: "https://bestmcpservers.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "AI Cost Calculator on BestMCPServers",
+        alt: "Prompt Injection Checker on BestMCPServers",
       },
     ],
   },

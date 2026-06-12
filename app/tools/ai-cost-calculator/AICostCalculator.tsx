@@ -24,7 +24,7 @@ function calculateCost(model: ModelPrice, inputTokens: number, outputTokens: num
 }
 
 export default function AICostCalculator() {
-  const [modelId, setModelId] = useState("gpt-5-mini");
+  const [modelId, setModelId] = useState("gpt-5-5");
   const [inputTokens, setInputTokens] = useState(2500);
   const [outputTokens, setOutputTokens] = useState(800);
   const [dailyRequests, setDailyRequests] = useState(1000);
@@ -50,7 +50,7 @@ export default function AICostCalculator() {
   };
 
   const sample = () => {
-    setModelId("gpt-5-mini");
+    setModelId("gpt-5-5");
     setInputTokens(2500);
     setOutputTokens(800);
     setDailyRequests(1000);
@@ -150,7 +150,11 @@ export default function AICostCalculator() {
               Input {formatCurrency(selectedModel.inputPrice)} / 1M tokens · Output {formatCurrency(selectedModel.outputPrice)} / 1M tokens
             </p>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+              <div className="rounded-2xl bg-white/10 p-5">
+                <p className="text-sm text-slate-300">Cost Per Request</p>
+                <p className="mt-2 text-3xl font-bold">{calculated ? formatCurrency(result.daily / dailyRequests) : "$0.00"}</p>
+              </div>
               <div className="rounded-2xl bg-white/10 p-5">
                 <p className="text-sm text-slate-300">Estimated Cost Per Day</p>
                 <p className="mt-2 text-3xl font-bold">{calculated ? formatCurrency(result.daily) : "$0.00"}</p>
