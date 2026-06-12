@@ -11,9 +11,28 @@ type Props = {
 export default function BuilderPackAccess({ builderPacks }: Props) {
   const searchParams = useSearchParams();
   const isBuilderSuccess = searchParams.get("checkout") === "success" && searchParams.get("plan") === "builder";
+  const isProSuccess = searchParams.get("checkout") === "success" && searchParams.get("plan") === "pro";
 
   return (
     <>
+      {isProSuccess ? (
+        <div id="pro-active" className="mb-10 rounded-3xl border border-emerald-200 bg-emerald-50 p-6 text-emerald-950 shadow-sm">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-700">Payment received</p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight">Pro is active. Start using the full workflow library.</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-6 text-emerald-900">
+            Your $19/month Pro subscription unlocks all workflow packs and Pro-only implementation details. Use the library below; you do not need to pay again.
+          </p>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+            <Link href="#workflow-library" className="rounded-xl bg-emerald-700 px-5 py-3 text-center text-sm font-semibold text-white hover:bg-emerald-800">
+              Open workflow library
+            </Link>
+            <Link href="/workflows/" className="rounded-xl bg-white px-5 py-3 text-center text-sm font-semibold text-slate-950 shadow-sm ring-1 ring-emerald-200 hover:ring-emerald-500">
+              Browse all workflows
+            </Link>
+          </div>
+        </div>
+      ) : null}
+
       {isBuilderSuccess ? (
         <div id="builder-pack" className="mb-10 rounded-3xl border border-emerald-200 bg-emerald-50 p-6 text-emerald-950 shadow-sm">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-700">Payment received</p>

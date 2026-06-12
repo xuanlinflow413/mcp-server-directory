@@ -15,6 +15,19 @@ type Plan = {
   interval?: string;
 };
 
+type SessionData = {
+  authenticated?: boolean;
+  credits?: {
+    balance?: number;
+    lifetime_purchased?: number;
+  } | null;
+  subscription?: {
+    status?: string;
+    plan_id?: string;
+    current_period_end?: number;
+  } | null;
+};
+
 type Props = {
   plan: "builder" | "pro";
   label?: string;
@@ -49,7 +62,8 @@ function trackCtaClick(plan: Props["plan"], stage: string) {
 
 export default function BillingCheckout({ plan, label, className }: Props) {
   const [token, setToken] = useState<string | null>(null);
-  const [status, setStatus] = useState<"idle" | "exchanging" | "loading" | "redirecting" | "error">("idle");
+  const [session, setSession] = useState<SessionData | null>(null);
+  const [status, setStatus] = useState<"idle" | "exchanging" | "checking" | "loading" | "redirecting" | "error">("idle");
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -84,15 +98,73 @@ export default function BillingCheckout({ plan, label, className }: Props) {
       });
   }, []);
 
+  useEffect(() => {
+    if (!token) {
+      setSession(null);
+      return;
+    }
+
+    let cancelled = false;
+    const url = new URL(window.location.href);
+    const justReturnedFromCheckout = url.searchParams.get("checkout") === "success";
+    const delays = justReturnedFromCheckout ? [0, 1200, 3000, 6000] : [0];
+
+    async function fetchSession() {
+      setStatus((current) => (current === "idle" ? "checking" : current));
+      try {
+        const res = await fetch(`${BILLING_API}/api/auth/session`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (res.status === 401) {
+          window.localStorage.removeItem(SESSION_KEY);
+          setToken(null);
+          setSession(null);
+          setStatus("idle");
+          return;
+        }
+        if (!res.ok) throw new Error(await res.text());
+        const data = (await res.json()) as SessionData;
+        if (!cancelled) {
+          setSession(data);
+          setStatus("idle");
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setStatus("error");
+          setMessage(err instanceof Error ? err.message : "Could not verify account status");
+        }
+      }
+    }
+
+    const timers = delays.map((delay) => window.setTimeout(fetchSession, delay));
+    return () => {
+      cancelled = true;
+      timers.forEach((timer) => window.clearTimeout(timer));
+    };
+  }, [token]);
+
+  const subscriptionStatus = normalize(session?.subscription?.status);
+  const subscriptionPlanId = normalize(session?.subscription?.plan_id);
+  const hasActivePro = ["active", "trialing"].includes(subscriptionStatus) && subscriptionPlanId.includes("bestmcp") && subscriptionPlanId.includes("pro");
+  const hasBuilderAccess = hasActivePro || Number(session?.credits?.lifetime_purchased || 0) > 0;
+  const hasAccess = plan === "pro" ? hasActivePro : hasBuilderAccess;
+
   const buttonLabel = useMemo(() => {
+    if (hasAccess) return plan === "pro" ? "Pro active — open workflows" : "Builder Pack unlocked — open packs";
     if (status === "exchanging") return "Finishing login...";
+    if (status === "checking") return "Checking access...";
     if (status === "loading") return "Preparing checkout...";
     if (status === "redirecting") return "Redirecting to Stripe...";
     return label || (plan === "builder" ? "Start Builder Pack" : "Start Pro");
-  }, [label, plan, status]);
+  }, [hasAccess, label, plan, status]);
 
   async function startCheckout() {
-    trackCtaClick(plan, token ? "checkout_start" : "login_start");
+    trackCtaClick(plan, hasAccess ? "already_unlocked" : token ? "checkout_start" : "login_start");
+
+    if (hasAccess) {
+      window.location.href = plan === "pro" ? "/pro/#workflow-library" : "/pro/#builder-pack-overview";
+      return;
+    }
 
     if (!token) {
       window.location.href = loginUrl();
@@ -152,7 +224,7 @@ export default function BillingCheckout({ plan, label, className }: Props) {
       <button
         type="button"
         onClick={startCheckout}
-        disabled={status === "exchanging" || status === "loading" || status === "redirecting"}
+        disabled={status === "exchanging" || status === "checking" || status === "loading" || status === "redirecting"}
         className={className || "inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-400"}
       >
         {buttonLabel}

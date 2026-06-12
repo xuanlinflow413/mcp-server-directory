@@ -67,7 +67,7 @@ export default function ProPage() {
           <BuilderPackAccess builderPacks={builderPacks} />
         </Suspense>
 
-        <h2 className="text-3xl font-bold tracking-tight text-slate-950">What Pro unlocks</h2>
+        <h2 id="workflow-library" className="text-3xl font-bold tracking-tight text-slate-950">What Pro unlocks</h2>
         <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {workflowPacks.map((pack) => (
             <Link key={pack.slug} href={`/workflows/${pack.slug}/`} className="rounded-3xl border border-slate-200 p-6 shadow-sm transition hover:border-blue-300 hover:shadow-lg">
