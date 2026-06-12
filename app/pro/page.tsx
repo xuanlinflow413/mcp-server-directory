@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 const faq = [
-  { q: "What is included in Pro?", a: "All workflow packs, Pro-only implementation steps, MCP stack recommendations, security checklists, and future credits-ready premium generators." },
+  { q: "What is included in Pro?", a: "All workflow packs, Pro-only implementation steps, MCP stack recommendations, security checklists, and future premium generators." },
   { q: "Does Pro replace the free directory?", a: "No. The free directory stays open for SEO and discovery. Pro focuses on implementation outcomes." },
   { q: "How does purchase work?", a: "Click a Pro checkout button, sign in with Google if needed, and complete payment through Stripe Billing." },
 ];

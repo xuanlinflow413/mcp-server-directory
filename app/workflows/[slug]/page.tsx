@@ -2,18 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import BillingCheckout from "@/components/BillingCheckout";
+import WorkflowAssetGate from "@/components/WorkflowAssetGate";
 import { getWorkflowPack, workflowPacks } from "@/data/workflowPacks";
-
-function CopyBlock({ title, lines }: { title: string; lines: string[] }) {
-  return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <h3 className="text-lg font-bold text-slate-950">{title}</h3>
-      <pre className="mt-4 max-h-[420px] overflow-auto whitespace-pre-wrap rounded-xl bg-slate-950 p-4 text-sm leading-6 text-slate-100">
-        {lines.join("\n")}
-      </pre>
-    </div>
-  );
-}
 
 export function generateStaticParams() {
   return workflowPacks.map((pack) => ({ slug: pack.slug }));
@@ -72,7 +62,7 @@ export default function WorkflowPackPage({ params }: { params: { slug: string } 
               <p className="text-sm font-semibold text-blue-700">Use this workflow</p>
               <h2 className="mt-2 text-2xl font-bold">Copy-ready MCP pack</h2>
               <p className="mt-3 text-sm text-slate-600">
-                Already bought the Builder Pack? Start below: copy the prompt, paste the config into your AI coding tool, then follow the agent workflow.
+                Free pages explain the workflow. Paid access unlocks the copy-ready prompt, MCP config, and agent runbook.
               </p>
               <div className="mt-6 space-y-3">
                 <a href="#copy-ready-assets" className="block rounded-xl bg-blue-600 px-5 py-3 text-center text-sm font-semibold text-white hover:bg-blue-700">Start using this pack</a>
@@ -104,30 +94,7 @@ export default function WorkflowPackPage({ params }: { params: { slug: string } 
         </div>
       </section>
 
-      <section id="copy-ready-assets" className="border-y border-slate-200 bg-slate-50">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">Copy-ready Pro assets</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">Make this pack useful in 5 minutes</h2>
-            <p className="mt-4 text-slate-600">
-              Buyers should not receive another article. They should copy the prompt, paste the config into their AI coding tool, connect the minimum MCP stack, and run the agent workflow immediately.
-            </p>
-          </div>
-          <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
-              <h3 className="text-lg font-bold text-amber-950">Missing content / what the buyer must provide first</h3>
-              <ul className="mt-4 space-y-2 text-sm text-amber-900">
-                {pack.copyReady.missingContent.map((item) => <li key={item}>• {item}</li>)}
-              </ul>
-            </div>
-            <CopyBlock title="Copy/paste prompt" lines={pack.copyReady.prompt} />
-            <CopyBlock title="Claude Code configuration" lines={pack.copyReady.claudeCodeConfig} />
-            <CopyBlock title="Cursor configuration" lines={pack.copyReady.cursorConfig} />
-            <CopyBlock title="MCP configuration" lines={pack.copyReady.mcpConfig} />
-            <CopyBlock title="Agent workflow" lines={pack.copyReady.agentWorkflow} />
-          </div>
-        </div>
-      </section>
+      <WorkflowAssetGate slug={pack.slug} title={pack.title} launchPriority={pack.launchPriority} />
 
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">

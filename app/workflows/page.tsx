@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const faq = [
   { q: "Are these just MCP server lists?", a: "No. Each pack defines the user outcome, MCP combination, step-by-step workflow, saved time, and reason to pay." },
   { q: "Which packs should I start with?", a: "For the 72-hour MVP, start with Claude Code Repo Onboarding, Cursor Full-Stack Feature, and OpenAI Codex PR Review." },
-  { q: "Can I use these without changing my existing account system?", a: "Yes. The paid entry points reuse the existing Google OAuth, Stripe Billing, session, and credits infrastructure." },
+  { q: "Can I use these without changing my existing account system?", a: "Yes. The paid entry points reuse the existing Google OAuth, Stripe Billing, and session infrastructure." },
 ];
 
 const jsonLd = {

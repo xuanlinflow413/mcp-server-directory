@@ -258,7 +258,7 @@ export default function Home() {
                 <li>✓ Full workflow library across Claude Code, Cursor, Codex, Gemini CLI, and Hermes</li>
                 <li>✓ Pro implementation checklists and acceptance steps</li>
                 <li>✓ MCP security audit and production setup workflows</li>
-                <li>✓ Future premium generators can reuse the credits path</li>
+                <li>✓ Lifetime Builder access and Pro unlocks use the same account path</li>
               </ul>
               <div className="mt-8"><BillingCheckout plan="pro" label="Start Pro" className="inline-flex w-full items-center justify-center rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:bg-slate-500" /></div>
             </div>
