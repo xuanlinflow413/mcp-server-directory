@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import BillingCheckout from "@/components/BillingCheckout";
 import { topLaunchPacks, workflowPacks } from "@/data/workflowPacks";
 
-const title = "BestMCPServers Pro Pricing | MCP Workflow Packs for AI Coding";
-const description = "Upgrade from browsing MCP servers to shipping real AI coding workflows. Get Claude Code, Cursor, Codex, Gemini CLI, and Hermes workflow packs with production-ready MCP stacks.";
+const title = "BestMCPServers Pricing | Free Directory, Builder Pack, and Pro";
+const description = "Choose the BestMCPServers plan that fits your workflow: use the free MCP directory, unlock the Builder Pack for $9.99 one-time, or get Pro for $19/month.";
 
 export const metadata: Metadata = {
   title,
@@ -22,12 +22,12 @@ export const metadata: Metadata = {
 
 const faq = [
   {
-    q: "What am I paying for if the MCP directory is free?",
-    a: "The directory stays free. Pro sells workflow outcomes: repo onboarding, Cursor feature shipping, Codex PR review, secure MCP setup, and copy-ready operating checklists.",
+    q: "What stays free, and what is paid?",
+    a: "The directory, guides, and free tools stay free. Builder Pack is a $9.99 one-time purchase for the top workflow packs. Pro is $19/month for the full workflow library, implementation checklists, and ongoing updates.",
   },
   {
     q: "Do I need a new account?",
-    a: "No. BestMCPServers Pro reuses the existing Google OAuth, session, Stripe Billing, and credits infrastructure.",
+    a: "No. BestMCPServers uses the existing Google sign-in and secure checkout flow. You can browse free pages without paying, then upgrade only when you want a paid workflow pack.",
   },
   {
     q: "Will this lock basic SEO pages?",
@@ -42,10 +42,11 @@ const faq = [
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Product",
-  name: "BestMCPServers Pro",
+  name: "BestMCPServers Pricing",
   description,
   brand: { "@type": "Brand", name: "BestMCPServers" },
   offers: [
+    { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock" },
     { "@type": "Offer", name: "Builder Pack", price: "9.99", priceCurrency: "USD", availability: "https://schema.org/InStock" },
     { "@type": "Offer", name: "Pro", price: "19", priceCurrency: "USD", availability: "https://schema.org/InStock" },
   ],
@@ -58,33 +59,52 @@ export default function PricingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">BestMCPServers Pro</p>
-          <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-6xl">Stop browsing MCP servers. Start shipping AI workflows.</h1>
-          <p className="mt-6 text-lg leading-8 text-slate-300">The free directory helps you discover MCP servers. Pro helps you choose the right stack, configure it safely, and use it inside Claude Code, Cursor, Codex, Gemini CLI, and Hermes to ship real work.</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">Pricing</p>
+          <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-6xl">Free directory. Paid workflow packs when you need execution.</h1>
+          <p className="mt-6 text-lg leading-8 text-slate-300">Browse MCP servers for free. Upgrade only when you want copy-ready workflow packs, safety checklists, and implementation guidance for Claude Code, Cursor, Codex, Gemini CLI, and Hermes.</p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href="/workflows/" className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-100">View workflow packs</Link>
             <Link href="/pro/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">See Pro benefits</Link>
           </div>
         </div>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-2">
+        <div className="mt-16 grid gap-6 lg:grid-cols-3">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl">
-            <div className="flex items-baseline justify-between">
-              <h2 className="text-2xl font-bold">Builder Pack</h2>
-              <p><span className="text-4xl font-bold">$9.99</span><span className="text-slate-400"> lifetime</span></p>
+            <div className="flex items-baseline justify-between gap-4">
+              <h2 className="text-2xl font-bold">Free</h2>
+              <p><span className="text-4xl font-bold">$0</span></p>
             </div>
-            <p className="mt-4 text-slate-300">For solo developers who want the fastest path from MCP discovery to one working AI coding workflow.</p>
+            <p className="mt-4 text-slate-300">For browsing MCP servers, reading guides, and using free builder tools before you commit to a workflow.</p>
+            <ul className="mt-6 space-y-3 text-sm text-slate-200">
+              <li>✓ Public MCP server directory</li>
+              <li>✓ Free guides and calculators</li>
+              <li>✓ MCP stack builder and config tools</li>
+              <li>✓ No checkout required</li>
+            </ul>
+            <div className="mt-8">
+              <Link href="/#servers" className="inline-flex w-full items-center justify-center rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-950 shadow-sm transition hover:bg-slate-100">
+                Browse free directory
+              </Link>
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl">
+            <div className="flex items-baseline justify-between gap-4">
+              <h2 className="text-2xl font-bold">Builder Pack</h2>
+              <p><span className="text-4xl font-bold">$9.99</span><span className="text-slate-400"> one-time</span></p>
+            </div>
+            <p className="mt-4 text-slate-300">For solo builders who want one focused path from MCP discovery to a working AI coding workflow.</p>
             <ul className="mt-6 space-y-3 text-sm text-slate-200">
               <li>✓ Top 3 workflow packs for Claude Code, Cursor, and Codex</li>
               <li>✓ Copy-ready MCP stack recommendations</li>
-              <li>✓ Production safety checklist for filesystem, GitHub, browser, and database tools</li>
-              <li>✓ Basic Pro updates as the MCP ecosystem changes</li>
+              <li>✓ Production safety checklist</li>
+              <li>✓ One-time purchase, no monthly subscription</li>
             </ul>
-            <div className="mt-8"><BillingCheckout plan="builder" label="Start Builder Pack with Google + Stripe" /></div>
+            <div className="mt-8"><BillingCheckout plan="builder" label="Unlock Builder Pack" /></div>
           </div>
 
           <div className="rounded-3xl border border-blue-400/40 bg-blue-500/10 p-8 shadow-2xl ring-1 ring-blue-400/30">
-            <div className="flex items-baseline justify-between">
+            <div className="flex items-baseline justify-between gap-4">
               <div><p className="text-xs font-bold uppercase tracking-widest text-blue-200">Recommended</p><h2 className="mt-1 text-2xl font-bold">Pro</h2></div>
               <p><span className="text-4xl font-bold">$19</span><span className="text-slate-400">/mo</span></p>
             </div>
@@ -92,10 +112,10 @@ export default function PricingPage() {
             <ul className="mt-6 space-y-3 text-sm text-slate-200">
               <li>✓ All 10 workflow packs across Claude Code, Cursor, Codex, Gemini CLI, and Hermes</li>
               <li>✓ Pro-only implementation checklists and acceptance steps</li>
-              <li>✓ Team-ready MCP security and approval workflow</li>
-              <li>✓ Credits-ready path for future generators and premium outputs</li>
+              <li>✓ MCP security, QA, launch, and production setup workflows</li>
+              <li>✓ Updates as workflow packs improve</li>
             </ul>
-            <div className="mt-8"><BillingCheckout plan="pro" label="Start Pro with Google + Stripe" className="inline-flex w-full items-center justify-center rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:bg-slate-500" /></div>
+            <div className="mt-8"><BillingCheckout plan="pro" label="Start Pro" className="inline-flex w-full items-center justify-center rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:bg-slate-500" /></div>
           </div>
         </div>
 
