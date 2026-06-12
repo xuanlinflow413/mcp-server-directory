@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [{ url: "https://bestmcpservers.com/og.png", width: 1200, height: 630, alt: "BestMCPServers Pro Pricing" }],
   },
-  twitter: { card: "summary_large_image", title, description },
+  twitter: { card: "summary_large_image", title, description, images: ["https://bestmcpservers.com/og.png"] },
 };
 
 const faq = [

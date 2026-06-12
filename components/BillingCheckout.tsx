@@ -30,6 +30,23 @@ function normalize(value?: string) {
   return (value || "").toLowerCase();
 }
 
+function trackCtaClick(plan: Props["plan"], stage: string) {
+  if (typeof window === "undefined") return;
+  const plausible = (window as Window & {
+    plausible?: (event: string, options?: { props?: Record<string, string> }) => void;
+  }).plausible;
+  if (typeof plausible === "function") {
+    plausible("CTA Click", {
+      props: {
+        plan,
+        stage,
+        page: window.location.pathname,
+        cta: "billing_checkout",
+      },
+    });
+  }
+}
+
 export default function BillingCheckout({ plan, label, className }: Props) {
   const [token, setToken] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "exchanging" | "loading" | "redirecting" | "error">("idle");
@@ -75,6 +92,8 @@ export default function BillingCheckout({ plan, label, className }: Props) {
   }, [label, plan, status]);
 
   async function startCheckout() {
+    trackCtaClick(plan, token ? "checkout_start" : "login_start");
+
     if (!token) {
       window.location.href = loginUrl();
       return;

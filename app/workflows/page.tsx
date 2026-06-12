@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { Metadata } from "next";
+import TrackableLink from "@/components/TrackableLink";
 import { paidScenarios, workflowPacks } from "@/data/workflowPacks";
 
 const title = "MCP Workflow Packs for Claude Code, Cursor, Codex, Gemini CLI, and Hermes";
@@ -37,7 +37,7 @@ export default function WorkflowsPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">Workflow Packs</p>
           <h1 className="mt-5 max-w-4xl text-4xl font-bold tracking-tight sm:text-6xl">Buy the outcome, not the directory.</h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">BestMCPServers Pro turns MCP discovery into repeatable workflows for Claude Code, Cursor, OpenAI Codex, Gemini CLI, and Hermes.</p>
-          <div className="mt-8 flex gap-3"><Link href="/pricing/" className="rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-500">Upgrade to Pro</Link><Link href="/pro/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">View Pro</Link></div>
+          <div className="mt-8 flex gap-3"><TrackableLink href="/pricing/" className="rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-500" eventProps={{ page: "/workflows/", cta: "upgrade_to_pro", destination: "/pricing/" }}>Upgrade to Pro</TrackableLink><TrackableLink href="/pro/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10" eventProps={{ page: "/workflows/", cta: "view_pro", destination: "/pro/" }}>View Pro</TrackableLink></div>
         </div>
       </section>
 
@@ -47,13 +47,13 @@ export default function WorkflowsPage() {
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {workflowPacks.map((pack) => (
-            <Link key={pack.slug} href={`/workflows/${pack.slug}/`} className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-xl">
+            <TrackableLink key={pack.slug} href={`/workflows/${pack.slug}/`} className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-xl" eventProps={{ page: "/workflows/", cta: "workflow_pack_card", workflow: pack.slug }}>
               <div className="flex items-center justify-between"><span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">#{pack.launchPriority} {pack.tool}</span><span className="text-xs text-slate-500">{pack.difficulty} build</span></div>
               <h3 className="mt-5 text-xl font-bold text-slate-950 group-hover:text-blue-700">{pack.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600">{pack.subtitle}</p>
               <p className="mt-5 text-sm font-semibold text-slate-900">Saves: {pack.savedTime}</p>
               <p className="mt-2 text-sm text-slate-500">{pack.whyPay}</p>
-            </Link>
+            </TrackableLink>
           ))}
         </div>
       </section>

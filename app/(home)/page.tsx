@@ -1,29 +1,269 @@
 "use client";
 
 import { useState } from "react";
-import Hero from "@/components/Hero";
+import Link from "next/link";
+import BillingCheckout from "@/components/BillingCheckout";
 import CategoryNav from "@/components/CategoryNav";
-import ServerGrid from "@/components/ServerGrid";
-import InstallGuide from "@/components/InstallGuide";
-import FAQ from "@/components/FAQ";
-import GuidesSection from "@/components/GuidesSection";
 import Footer from "@/components/Footer";
+import ServerGrid from "@/components/ServerGrid";
 import { type Category } from "@/data/servers";
+import { workflowPacks } from "@/data/workflowPacks";
+
+const featuredPackSlugs = [
+  "claude-code-repo-onboarding-pack",
+  "cursor-full-stack-feature-pack",
+  "openai-codex-pr-review-pack",
+  "claude-desktop-production-mcp-pack",
+  "hermes-solo-saas-command-center-pack",
+  "mcp-security-audit-pack",
+];
+
+const featuredPacks = featuredPackSlugs
+  .map((slug) => workflowPacks.find((pack) => pack.slug === slug))
+  .filter((pack): pack is NonNullable<typeof pack> => Boolean(pack));
+
+const subnav = [
+  { href: "#workflow-packs", label: "Workflow Packs" },
+  { href: "#how-it-works", label: "How it works" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#servers", label: "MCP Directory" },
+  { href: "#faq", label: "FAQ" },
+];
+
+const steps = [
+  {
+    title: "Start with the job",
+    text: "Pick the actual work: onboard a repo, ship a Cursor feature, review a Codex PR, secure Claude Desktop, or run a solo SaaS command center.",
+  },
+  {
+    title: "Choose the MCP stack",
+    text: "Use the directory as a building block library for filesystem, GitHub, browser, docs, database, security, and analytics tools.",
+  },
+  {
+    title: "Run the workflow",
+    text: "Follow copy-ready prompts, least-privilege config notes, test/build checks, browser QA, and a final evidence report.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Is BestMCPServers still a directory?",
+    a: "Yes. The MCP Directory remains free and indexable. The homepage now explains how the directory feeds paid workflow packs for real AI coding tasks.",
+  },
+  {
+    q: "What changed in the positioning?",
+    a: "BestMCPServers is now positioned as an MCP workflow platform for Claude Code, Cursor, OpenAI Codex, Claude Desktop, and Hermes — not only a list of servers.",
+  },
+  {
+    q: "Are these workflow packs real products?",
+    a: "The public pages describe the actual pack structure already in the site: use case, MCP stack, workflow steps, saved time, prompts, config guidance, and safety checks.",
+  },
+  {
+    q: "Do you claim team seats or unlimited usage?",
+    a: "No. The homepage intentionally avoids unimplemented Team, Enterprise, Unlimited, and save-server claims.",
+  },
+  {
+    q: "Which plans are available now?",
+    a: "Builder Pack is $9.99 lifetime for the first workflow packs. Pro is $19/month for the broader workflow library and Pro implementation checklists.",
+  },
+  {
+    q: "Can I still browse MCP servers for free?",
+    a: "Yes. Directory, guides, and free developer tools stay available as public resources.",
+  },
+  {
+    q: "Which tools are covered first?",
+    a: "The MVP highlights Claude Code Repo Onboarding, Cursor Full-Stack Feature, OpenAI Codex PR Review, Claude Desktop Production MCP, Hermes Solo SaaS Command Center, and MCP Security Audit.",
+  },
+];
 
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState<Category | "all">("all");
 
   return (
-    <main className="min-h-screen">
-      <Hero />
-      <CategoryNav
-        activeCategory={activeCategory}
-        onCategoryChange={setActiveCategory}
-      />
+    <main className="min-h-screen bg-white">
+      <section className="relative overflow-hidden border-b border-slate-800 bg-slate-950 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.25),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(14,165,233,0.18),_transparent_30%)]" />
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div className="max-w-4xl">
+            <p className="inline-flex rounded-full border border-blue-400/30 bg-blue-400/10 px-4 py-2 text-sm font-semibold text-blue-200">
+              MCP + Claude Code + Cursor + Codex workflow platform
+            </p>
+            <h1 className="mt-6 text-4xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">
+              Stop browsing MCP servers. Start shipping AI coding workflows.
+            </h1>
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+              BestMCPServers turns MCP discovery into repeatable workflows for repo onboarding, full-stack feature shipping, PR review, production Claude setup, solo SaaS operations, and MCP security audits.
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/pricing/"
+                className="inline-flex items-center justify-center rounded-xl bg-blue-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-400"
+              >
+                View Builder & Pro pricing
+              </Link>
+              <Link
+                href="/workflows/"
+                className="inline-flex items-center justify-center rounded-xl border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10"
+              >
+                Browse workflow packs
+              </Link>
+              <a
+                href="#servers"
+                className="inline-flex items-center justify-center rounded-xl border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10"
+              >
+                Use the free MCP directory
+              </a>
+            </div>
+            <div className="mt-10 grid gap-4 text-sm text-slate-300 sm:grid-cols-3">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <strong className="block text-white">Directory stays free</strong>
+                MCP servers remain the building blocks.
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <strong className="block text-white">Pricing is visible</strong>
+                Builder $9.99 lifetime · Pro $19/mo.
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                <strong className="block text-white">Real workflow scope</strong>
+                No Team, Enterprise, Unlimited, or save-server claims.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 py-3 sm:px-6 lg:px-8">
+          {subnav.map((item) => (
+            <a key={item.href} href={item.href} className="whitespace-nowrap rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-900 hover:text-white">
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      <section id="workflow-packs" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-bold uppercase tracking-[0.25em] text-blue-700">Featured workflow packs</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+            Six launch-ready workflows for AI builders
+          </h2>
+          <p className="mt-4 text-slate-600">
+            Each pack connects a buyer job to a practical MCP stack, copy-ready agent prompts, config guardrails, and verification steps.
+          </p>
+        </div>
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {featuredPacks.map((pack) => (
+            <Link
+              key={pack.slug}
+              href={`/workflows/${pack.slug}/`}
+              className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-xl"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">{pack.tool}</span>
+                <span className="text-xs font-medium text-slate-500">{pack.difficulty} setup</span>
+              </div>
+              <h3 className="mt-5 text-xl font-bold text-slate-950 group-hover:text-blue-700">{pack.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{pack.subtitle}</p>
+              <div className="mt-5 rounded-2xl bg-slate-50 p-4 text-sm text-slate-700">
+                <strong className="text-slate-950">Outcome:</strong> {pack.useCase}
+              </div>
+              <p className="mt-4 text-sm font-semibold text-slate-900">Saves {pack.savedTime}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section id="how-it-works" className="border-y border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-bold uppercase tracking-[0.25em] text-blue-700">How it works</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Directory as library. Workflows as product.</h2>
+          </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {steps.map((step, index) => (
+              <div key={step.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">{index + 1}</span>
+                <h3 className="mt-5 text-xl font-bold text-slate-950">{step.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{step.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" className="bg-slate-950 text-white">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.25em] text-blue-300">Pricing</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">Pick the workflow depth you need now</h2>
+            <p className="mt-4 text-slate-300">Transparent MVP pricing for individual AI builders. No unimplemented team or enterprise promises.</p>
+          </div>
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
+              <div className="flex items-baseline justify-between gap-4">
+                <h3 className="text-2xl font-bold">Builder Pack</h3>
+                <p><span className="text-4xl font-bold">$9.99</span><span className="text-slate-400"> lifetime</span></p>
+              </div>
+              <p className="mt-4 text-slate-300">Best for validating one concrete AI coding workflow.</p>
+              <ul className="mt-6 space-y-3 text-sm text-slate-200">
+                <li>✓ Claude Code Repo Onboarding</li>
+                <li>✓ Cursor Full-Stack Feature</li>
+                <li>✓ OpenAI Codex PR Review</li>
+                <li>✓ Copy-ready MCP stack recommendations</li>
+              </ul>
+              <div className="mt-8"><BillingCheckout plan="builder" label="Start Builder Pack" /></div>
+            </div>
+            <div className="rounded-3xl border border-blue-400/40 bg-blue-500/10 p-8 ring-1 ring-blue-400/30">
+              <div className="flex items-baseline justify-between gap-4">
+                <div><p className="text-xs font-bold uppercase tracking-widest text-blue-200">Recommended</p><h3 className="mt-1 text-2xl font-bold">Pro</h3></div>
+                <p><span className="text-4xl font-bold">$19</span><span className="text-slate-400">/mo</span></p>
+              </div>
+              <p className="mt-4 text-slate-300">Best for builders running repo work, QA, security, and launch execution repeatedly.</p>
+              <ul className="mt-6 space-y-3 text-sm text-slate-200">
+                <li>✓ Full workflow library across Claude Code, Cursor, Codex, Gemini CLI, and Hermes</li>
+                <li>✓ Pro implementation checklists and acceptance steps</li>
+                <li>✓ MCP security audit and production setup workflows</li>
+                <li>✓ Future premium generators can reuse the credits path</li>
+              </ul>
+              <div className="mt-8"><BillingCheckout plan="pro" label="Start Pro" className="inline-flex w-full items-center justify-center rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:bg-slate-500" /></div>
+            </div>
+          </div>
+          <div className="mt-6 text-center">
+            <Link href="/pricing/" className="text-sm font-semibold text-blue-200 hover:text-white">Compare plans on the pricing page →</Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-bold uppercase tracking-[0.25em] text-blue-700">MCP Directory</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Browse servers as workflow building blocks</h2>
+            <p className="mt-4 text-slate-600">The directory remains the free library for choosing tools before you assemble them into a workflow pack.</p>
+          </div>
+        </div>
+      </section>
+      <CategoryNav activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
       <ServerGrid activeCategory={activeCategory} />
-      <InstallGuide />
-      <GuidesSection />
-      <FAQ />
+
+      <section id="faq" className="bg-white px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-bold uppercase tracking-[0.25em] text-blue-700">FAQ</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Straight answers for the MVP homepage</h2>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {faqs.map((item) => (
+              <div key={item.q} className="rounded-2xl border border-slate-200 p-6">
+                <h3 className="font-bold text-slate-950">{item.q}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </main>
   );
