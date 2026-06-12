@@ -4,6 +4,17 @@ import type { Metadata } from "next";
 import BillingCheckout from "@/components/BillingCheckout";
 import { getWorkflowPack, workflowPacks } from "@/data/workflowPacks";
 
+function CopyBlock({ title, lines }: { title: string; lines: string[] }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+      <h3 className="text-lg font-bold text-slate-950">{title}</h3>
+      <pre className="mt-4 max-h-[420px] overflow-auto whitespace-pre-wrap rounded-xl bg-slate-950 p-4 text-sm leading-6 text-slate-100">
+        {lines.join("\n")}
+      </pre>
+    </div>
+  );
+}
+
 export function generateStaticParams() {
   return workflowPacks.map((pack) => ({ slug: pack.slug }));
 }
@@ -88,6 +99,31 @@ export default function WorkflowPackPage({ params }: { params: { slug: string } 
       </section>
 
       <section className="border-y border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">Copy-ready Pro assets</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">Make this pack useful in 5 minutes</h2>
+            <p className="mt-4 text-slate-600">
+              Buyers should not receive another article. They should copy the prompt, paste the config into their AI coding tool, connect the minimum MCP stack, and run the agent workflow immediately.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-6 lg:grid-cols-2">
+            <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+              <h3 className="text-lg font-bold text-amber-950">What the buyer must provide first</h3>
+              <ul className="mt-4 space-y-2 text-sm text-amber-900">
+                {pack.copyReady.missingContent.map((item) => <li key={item}>• {item}</li>)}
+              </ul>
+            </div>
+            <CopyBlock title="Copy/paste prompt" lines={pack.copyReady.prompt} />
+            <CopyBlock title="Claude Code configuration" lines={pack.copyReady.claudeCodeConfig} />
+            <CopyBlock title="Cursor configuration" lines={pack.copyReady.cursorConfig} />
+            <CopyBlock title="MCP configuration" lines={pack.copyReady.mcpConfig} />
+            <CopyBlock title="Agent workflow" lines={pack.copyReady.agentWorkflow} />
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold tracking-tight text-slate-950">FAQ</h2>
           <div className="mt-6 grid gap-5 md:grid-cols-3">{faq.map((item) => <div key={item.q} className="rounded-2xl border border-slate-200 bg-white p-5"><h3 className="font-semibold text-slate-950">{item.q}</h3><p className="mt-2 text-sm text-slate-600">{item.a}</p></div>)}</div>
