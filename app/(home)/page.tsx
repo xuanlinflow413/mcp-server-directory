@@ -141,6 +141,12 @@ export default function Home() {
               >
                 Browse workflow packs
               </Link>
+              <Link
+                href="/my-purchases/"
+                className="inline-flex items-center justify-center rounded-xl border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10"
+              >
+                My purchases
+              </Link>
               <a
                 href="#servers"
                 className="inline-flex items-center justify-center rounded-xl border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10"

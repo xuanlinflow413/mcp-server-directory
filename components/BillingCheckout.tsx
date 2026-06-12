@@ -162,7 +162,7 @@ export default function BillingCheckout({ plan, label, className }: Props) {
     trackCtaClick(plan, hasAccess ? "already_unlocked" : token ? "checkout_start" : "login_start");
 
     if (hasAccess) {
-      window.location.href = plan === "pro" ? "/pro/#workflow-library" : "/pro/#builder-pack-overview";
+      window.location.href = "/my-purchases/";
       return;
     }
 
@@ -204,7 +204,7 @@ export default function BillingCheckout({ plan, label, className }: Props) {
         },
         body: JSON.stringify({
           plan_id: selected.id,
-          success_url: `${window.location.origin}/pro/?checkout=success&plan=${plan}`,
+          success_url: `${window.location.origin}/my-purchases/?checkout=success&plan=${plan}`,
           cancel_url: `${window.location.origin}/pricing/?checkout=cancelled&plan=${plan}`,
         }),
       });

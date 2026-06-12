@@ -44,7 +44,7 @@ export default function ProPage() {
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">Pro Access</p>
             <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-6xl">The paid layer for developers who want MCP outcomes.</h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">BestMCPServers Pro turns discovery into execution: choose a safe MCP stack, wire it into your AI coding tool, and use it to ship features, review PRs, verify production, and operate an AI team.</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="/workflows/" className="rounded-xl bg-white px-6 py-3 text-center text-sm font-semibold text-slate-950 hover:bg-slate-100">Browse workflows</Link><Link href="/pricing/" className="rounded-xl border border-white/20 px-6 py-3 text-center text-sm font-semibold text-white hover:bg-white/10">Compare pricing</Link></div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="/workflows/" className="rounded-xl bg-white px-6 py-3 text-center text-sm font-semibold text-slate-950 hover:bg-slate-100">Browse workflows</Link><Link href="/pricing/" className="rounded-xl border border-white/20 px-6 py-3 text-center text-sm font-semibold text-white hover:bg-white/10">Compare pricing</Link><Link href="/my-purchases/" className="rounded-xl border border-white/20 px-6 py-3 text-center text-sm font-semibold text-white hover:bg-white/10">My purchases</Link></div>
           </div>
           <div className="rounded-3xl border border-white/10 bg-white p-8 text-slate-950 shadow-2xl">
             <p className="text-sm font-semibold text-blue-700">Best value</p>

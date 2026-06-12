@@ -79,6 +79,9 @@ function LockedAssetPreview({ requiredPlan }: { requiredPlan: "builder" | "pro" 
           <Link href="/pricing/" className="inline-flex items-center justify-center rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-50">
             Compare plans
           </Link>
+          <Link href="/my-purchases/" className="inline-flex items-center justify-center rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-50">
+            My purchases
+          </Link>
         </div>
       </div>
     </div>
