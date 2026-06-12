@@ -38,7 +38,6 @@ const freeBuilderGroups = [
     links: [
       { href: "/tools/ai-cost-calculator/", label: "AI Cost Calculator" },
       { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator" },
-      { href: "/ai-cost/", label: "AI Cost Hub" },
     ],
   },
   {
