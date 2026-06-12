@@ -109,7 +109,7 @@ export default function WorkflowPackPage({ params }: { params: { slug: string } 
           </div>
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
             <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
-              <h3 className="text-lg font-bold text-amber-950">What the buyer must provide first</h3>
+              <h3 className="text-lg font-bold text-amber-950">Missing content / what the buyer must provide first</h3>
               <ul className="mt-4 space-y-2 text-sm text-amber-900">
                 {pack.copyReady.missingContent.map((item) => <li key={item}>• {item}</li>)}
               </ul>
