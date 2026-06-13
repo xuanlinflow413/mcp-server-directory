@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { getTool } from "@/data/developerTools";
 import { getMcpConfigTool } from "@/data/mcpConfigTools";
 import McpConfigGenerator from "@/app/tools/_components/McpConfigGenerator";
+import MCPConfigToolkitExportGate from "@/components/MCPConfigToolkitExportGate";
 
 const tool = getTool("mcp-security-checklist-generator");
 const mcpTool = getMcpConfigTool("mcp-security-checklist-generator");
@@ -88,6 +89,8 @@ export default function Page() {
       </section>
 
       <McpConfigGenerator tool={mcpTool} />
+
+      <MCPConfigToolkitExportGate />
 
       <section className="border-t border-slate-200 bg-slate-50 py-12">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

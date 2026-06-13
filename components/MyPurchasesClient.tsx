@@ -233,6 +233,12 @@ export default function MyPurchasesClient({ workflowPacks }: Props) {
               <p className="mt-2 text-sm leading-6 text-slate-700">Open copy-ready configs, permission matrix, environment template, and rollout checklist.</p>
               <p className="mt-4 text-sm font-semibold text-emerald-900">Open implementation pack →</p>
             </Link>
+            <Link href="/tools/mcp-server-config-generator/#premium-export" className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <p className="text-xs font-semibold uppercase tracking-widest text-emerald-700">Unlocked · MCP Config Tools</p>
+              <h3 className="mt-3 text-lg font-bold text-slate-950">MCP Config Production Toolkit</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-700">Open production-ready Claude Desktop, Cursor, env, permission, QA, and rollback assets.</p>
+              <p className="mt-4 text-sm font-semibold text-emerald-900">Open config toolkit →</p>
+            </Link>
           </div>
         </section>
       ) : null}
