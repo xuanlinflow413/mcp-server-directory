@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Calculator, CheckCircle2 } from "lucide-react";
 import { getTool } from "@/data/developerTools";
+import AIPricingCostPackExportGate from "@/components/AIPricingCostPackExportGate";
 import AISAASPricingCalculator from "./AISAASPricingCalculator";
 
 const tool = getTool("ai-saas-pricing-calculator");
@@ -55,6 +56,8 @@ export default function Page() {
       <section className="bg-slate-950 py-16 sm:py-24"><div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8"><div className="mb-6 inline-flex items-center gap-2 rounded-full bg-blue-600/20 px-4 py-1.5 text-sm font-medium text-blue-300"><Calculator className="h-4 w-4" /> AI SaaS Unit Economics</div><h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">{tool.h1}</h1><p className="mx-auto mt-6 max-w-2xl text-xl text-slate-300">{tool.intro}</p><p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-slate-400">{tool.description} Everything runs as a static browser tool with no login, database, or AI API call.</p><div className="mt-8 flex flex-wrap justify-center gap-3">{tool.tags.map((tag) => <span key={tag} className="rounded-full bg-white/10 px-3 py-1 text-sm text-slate-200">{tag}</span>)}</div><div className="mt-8"><Link href="#calculator" className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700">Use the tool <ArrowRight className="h-4 w-4" /></Link></div></div></section>
 
       <AISAASPricingCalculator />
+
+      <AIPricingCostPackExportGate />
 
       <section className="border-t border-slate-200 bg-slate-50 py-12"><div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"><div className="grid gap-6 md:grid-cols-3">{featureList.map((item) => <div key={item} className="rounded-2xl border border-slate-200 bg-white p-6"><CheckCircle2 className="h-5 w-5 text-blue-600" /><p className="mt-3 text-sm leading-6 text-slate-700">{item}</p></div>)}</div></div></section>
       <section className="py-12"><div className="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-8"><div><h2 className="text-2xl font-bold text-slate-950">Use cases</h2><div className="mt-5 grid gap-3">{useCases.map((item) => <div key={item} className="rounded-xl border border-slate-200 p-4 text-sm text-slate-700">{item}</div>)}</div></div><div><h2 className="text-2xl font-bold text-slate-950">Best practices</h2><div className="mt-5 grid gap-3">{tips.map((item) => <div key={item} className="rounded-xl border border-slate-200 p-4 text-sm text-slate-700">{item}</div>)}</div></div></div></section>

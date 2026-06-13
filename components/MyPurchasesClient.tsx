@@ -239,6 +239,12 @@ export default function MyPurchasesClient({ workflowPacks }: Props) {
               <p className="mt-2 text-sm leading-6 text-slate-700">Open production-ready Claude Desktop, Cursor, env, permission, QA, and rollback assets.</p>
               <p className="mt-4 text-sm font-semibold text-emerald-900">Open config toolkit →</p>
             </Link>
+            <Link href="/tools/ai-saas-pricing-calculator/#premium-export" className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <p className="text-xs font-semibold uppercase tracking-widest text-emerald-700">Unlocked · AI Pricing</p>
+              <h3 className="mt-3 text-lg font-bold text-slate-950">AI SaaS Pricing & Cost Pack</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-700">Open pricing memo, credit-pack rules, margin worksheet, free-plan guardrails, and launch checks.</p>
+              <p className="mt-4 text-sm font-semibold text-emerald-900">Open pricing pack →</p>
+            </Link>
           </div>
         </section>
       ) : null}

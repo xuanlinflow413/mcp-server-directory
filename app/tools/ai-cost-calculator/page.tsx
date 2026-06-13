@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Calculator, CheckCircle2 } from "lucide-react";
 import { getTool } from "@/data/developerTools";
+import AIPricingCostPackExportGate from "@/components/AIPricingCostPackExportGate";
 import AICostCalculator from "./AICostCalculator";
 import { modelPrices } from "@/data/aiCostModels";
 
@@ -108,6 +109,8 @@ export default function Page() {
       </section>
 
       <AICostCalculator />
+
+      <AIPricingCostPackExportGate />
 
       <section className="border-t border-slate-200 bg-slate-50 py-12">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
