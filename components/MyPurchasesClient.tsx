@@ -223,6 +223,20 @@ export default function MyPurchasesClient({ workflowPacks }: Props) {
         ) : null}
       </section>
 
+      {hasActivePro || hasBuilderAccess ? (
+        <section>
+          <h2 className="text-2xl font-bold tracking-tight text-slate-950">Unlocked tool implementation packs</h2>
+          <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <Link href="/tools/mcp-stack-builder/#premium-export" className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+              <p className="text-xs font-semibold uppercase tracking-widest text-emerald-700">Unlocked · MCP Stack Builder</p>
+              <h3 className="mt-3 text-lg font-bold text-slate-950">MCP Stack Implementation Pack</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-700">Open copy-ready configs, permission matrix, environment template, and rollout checklist.</p>
+              <p className="mt-4 text-sm font-semibold text-emerald-900">Open implementation pack →</p>
+            </Link>
+          </div>
+        </section>
+      ) : null}
+
       {unlockedPacks.length > 0 ? (
         <section>
           <h2 className="text-2xl font-bold tracking-tight text-slate-950">Unlocked workflow packs</h2>
