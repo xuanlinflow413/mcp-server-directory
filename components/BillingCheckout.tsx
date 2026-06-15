@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-const BILLING_API = "https://bestmcp-billing.xuanlinflow.workers.dev";
+const BILLING_API = "https://auth.bestmcpservers.com";
 const SESSION_KEY = "bestmcpservers_session_token";
 const USER_KEY = "bestmcpservers_user";
 

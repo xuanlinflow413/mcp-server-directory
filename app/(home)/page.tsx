@@ -319,6 +319,18 @@ export default function Home() {
             <p className="text-sm font-bold uppercase tracking-[0.25em] text-blue-700">MCP Directory</p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Browse servers as workflow building blocks</h2>
             <p className="mt-4 text-slate-600">The directory remains the free library for choosing tools before you assemble them into a Builder or Pro workflow pack.</p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { href: "/mcp-server-directory/", label: "MCP Server Directory" },
+                { href: "/mcp-servers-for-claude-code/", label: "MCP Servers for Claude Code" },
+                { href: "/mcp-servers-for-cursor/", label: "MCP Servers for Cursor" },
+                { href: "/mcp-server-security/", label: "MCP Server Security" },
+              ].map((item) => (
+                <Link key={item.href} href={item.href} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-800 transition hover:border-blue-300 hover:bg-white hover:text-blue-700 hover:shadow-sm">
+                  {item.label} →
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-const BILLING_API = "https://bestmcp-billing.xuanlinflow.workers.dev";
+const BILLING_API = "https://auth.bestmcpservers.com";
 
 type PagesFunctionContext = {
   request: Request;

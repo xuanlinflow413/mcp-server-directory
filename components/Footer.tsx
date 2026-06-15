@@ -33,6 +33,26 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/mcp-server-directory/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  MCP Server Directory
+                </Link>
+              </li>
+              <li>
+                <Link href="/mcp-servers-for-claude-code/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  MCP for Claude Code
+                </Link>
+              </li>
+              <li>
+                <Link href="/mcp-servers-for-cursor/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  MCP for Cursor
+                </Link>
+              </li>
+              <li>
+                <Link href="/mcp-server-security/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  MCP Server Security
+                </Link>
+              </li>
+              <li>
                 <Link href="/tools/json-formatter/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
                   JSON Formatter
                 </Link>

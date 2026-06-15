@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 
-const BILLING_API = "https://bestmcp-billing.xuanlinflow.workers.dev";
+const BILLING_API = "https://auth.bestmcpservers.com";
 const SESSION_KEY = "bestmcpservers_session_token";
 const USER_KEY = "bestmcpservers_user";
 
@@ -39,6 +39,10 @@ type Props = {
   workflowPacks: WorkflowPackSummary[];
 };
 
+type PlausibleWindow = Window & {
+  plausible?: (event: string, options?: { props?: Record<string, string> }) => void;
+};
+
 function loginUrl() {
   if (typeof window === "undefined") return `${BILLING_API}/api/auth/google`;
   return `${BILLING_API}/api/auth/google?returnUrl=${encodeURIComponent(window.location.href)}`;
@@ -54,12 +58,33 @@ function formatDate(timestamp?: number) {
   return new Intl.DateTimeFormat("en", { month: "short", day: "numeric", year: "numeric" }).format(new Date(millis));
 }
 
+function trackBillingEvent(event: string, props: Record<string, string>) {
+  if (typeof window === "undefined") return;
+  const plausible = (window as PlausibleWindow).plausible;
+  if (typeof plausible === "function") {
+    plausible(event, {
+      props: {
+        ...props,
+        page: window.location.pathname,
+        cta: "billing_checkout",
+      },
+    });
+  }
+}
+
 export default function MyPurchasesClient({ workflowPacks }: Props) {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<StoredUser | null>(null);
   const [session, setSession] = useState<SessionData | null>(null);
+  const [sessionCheck, setSessionCheck] = useState(0);
   const [status, setStatus] = useState<"idle" | "exchanging" | "checking" | "signed-out" | "error">("checking");
   const [message, setMessage] = useState("");
+  const checkoutReturnRef = useRef<{ isSuccess: boolean; plan: "builder" | "pro" | "unknown" }>({
+    isSuccess: false,
+    plan: "unknown",
+  });
+  const trackedCheckoutReturnRef = useRef(false);
+  const trackedEntitlementRef = useRef(false);
 
   useEffect(() => {
     const storedToken = window.localStorage.getItem(SESSION_KEY);
@@ -74,6 +99,11 @@ export default function MyPurchasesClient({ workflowPacks }: Props) {
     }
 
     const url = new URL(window.location.href);
+    const checkoutPlan = url.searchParams.get("plan");
+    checkoutReturnRef.current = {
+      isSuccess: url.searchParams.get("checkout") === "success",
+      plan: checkoutPlan === "builder" || checkoutPlan === "pro" ? checkoutPlan : "unknown",
+    };
     const handoffToken = url.searchParams.get("auth_token");
     if (!handoffToken) {
       if (!storedToken) setStatus("signed-out");
@@ -127,6 +157,15 @@ export default function MyPurchasesClient({ workflowPacks }: Props) {
         if (!cancelled) {
           setSession(data);
           setStatus("idle");
+
+          const checkoutReturn = checkoutReturnRef.current;
+          if (checkoutReturn.isSuccess && !trackedCheckoutReturnRef.current) {
+            trackedCheckoutReturnRef.current = true;
+            trackBillingEvent("Checkout Success", {
+              plan: checkoutReturn.plan,
+              stage: "checkout_return",
+            });
+          }
         }
       })
       .catch((err) => {
@@ -140,13 +179,31 @@ export default function MyPurchasesClient({ workflowPacks }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [token]);
+  }, [token, sessionCheck]);
 
   const subscriptionStatus = normalize(session?.subscription?.status);
   const subscriptionPlanId = normalize(session?.subscription?.plan_id);
   const hasActivePro = ["active", "trialing"].includes(subscriptionStatus) && subscriptionPlanId.includes("bestmcp") && subscriptionPlanId.includes("pro");
   const hasBuilderAccess = hasActivePro || Number(session?.credits?.lifetime_purchased || 0) > 0;
   const renewalDate = formatDate(session?.subscription?.current_period_end);
+  const checkoutReturn = checkoutReturnRef.current;
+
+  useEffect(() => {
+    if (!checkoutReturn.isSuccess || !session || trackedEntitlementRef.current) return;
+
+    const entitlement = hasActivePro ? "pro" : hasBuilderAccess ? "builder" : "none";
+    if (entitlement === "none" && sessionCheck < 3) {
+      const retryTimer = window.setTimeout(() => setSessionCheck((count) => count + 1), 2000);
+      return () => window.clearTimeout(retryTimer);
+    }
+
+    trackedEntitlementRef.current = true;
+    trackBillingEvent(entitlement === "none" ? "Entitlement Verification Failed" : "Entitlement Activated", {
+      plan: checkoutReturn.plan,
+      stage: entitlement === "none" ? "post_checkout_verification_failed" : "post_checkout_entitlement_active",
+      entitlement,
+    });
+  }, [checkoutReturn.isSuccess, checkoutReturn.plan, hasActivePro, hasBuilderAccess, session, sessionCheck]);
 
   const unlockedPacks = useMemo(() => {
     if (hasActivePro) return workflowPacks;
