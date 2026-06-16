@@ -69,6 +69,72 @@ export const audiencePages: Record<string, { title: string; description: string;
       ],
     },
   },
+  "for-customer-success": {
+    title: "Best MCP Servers for Customer Success Teams | CS Agent Stack | BestMCPServers",
+    description: "Plan MCP server stacks for customer success teams handling account context, product adoption, escalations, renewals, and safer customer operations.",
+    canonical: `${baseUrl}/for-customer-success/`,
+    config: {
+      eyebrow: "Customer Success MCP Stack",
+      h1: "Best MCP Servers for Customer Success Teams",
+      description: "Customer success teams need account context, product evidence, help-center knowledge, and escalation paths without giving an AI agent broad write access to customer systems. Use this page to design a narrower MCP stack for CS workflows.",
+      primaryCta: { href: "/for-support-agents/", label: "Compare support-agent stacks" },
+      secondaryCta: { href: "/mcp-server-security/", label: "Review MCP security" },
+      cards: [
+        { title: "Account context", text: "CRM, database, and docs servers can help CS teams summarize customer state, adoption history, open issues, and relevant product guidance." },
+        { title: "Escalation readiness", text: "Slack, GitHub, and issue-tracker servers help customer success agents prepare accurate escalation briefs instead of forwarding fragmented notes." },
+        { title: "Renewal-safe workflows", text: "CS automation should keep commercial data and customer communications scoped, logged, and reviewable before any external action." },
+      ],
+      sections: [
+        { heading: "Recommended customer success MCP categories", body: "A strong CS stack connects customer context with product and support evidence while keeping sensitive systems narrow by default.", bullets: ["CRM or customer database servers with read-only roles", "Docs and knowledge servers for adoption guidance", "Slack or team-communication servers for escalations", "Browser servers for product and help-center verification"] },
+        { heading: "Where CS teams get leverage", body: "MCP helps customer success teams move faster when an agent can gather the right context before a meeting, QBR, or escalation.", bullets: ["Account health summaries", "Renewal prep", "Implementation follow-up", "Escalation briefs"] },
+        { heading: "Customer success safety checklist", body: "CS workflows can expose contract terms, usage data, and private customer notes. Start with retrieval before allowing actions.", bullets: ["Use read-only CRM scopes first", "Redact sensitive customer details in test prompts", "Require approval before sending customer messages", "Log account lookups and generated briefs"] },
+      ],
+    },
+  },
+  "for-revenue-ops": {
+    title: "Best MCP Servers for Revenue Ops Teams | RevOps Agent Stack | BestMCPServers",
+    description: "Choose MCP servers for revenue operations workflows across CRM data, reporting, dashboards, handoffs, and safer go-to-market automation.",
+    canonical: `${baseUrl}/for-revenue-ops/`,
+    config: {
+      eyebrow: "Revenue Ops MCP Stack",
+      h1: "Best MCP Servers for Revenue Ops Teams",
+      description: "Revenue operations teams need accurate CRM context, reporting workflows, dashboard checks, and handoff automation. MCP can help, but RevOps stacks should be designed around data quality, auditability, and narrow permissions.",
+      primaryCta: { href: "/for-internal-tools/", label: "See internal-tools stacks" },
+      secondaryCta: { href: "/category/database/", label: "Browse database MCP servers" },
+      cards: [
+        { title: "CRM and pipeline context", text: "CRM and database servers can support pipeline summaries, account research, field hygiene checks, and handoff preparation." },
+        { title: "Reporting workflows", text: "Browser, database, and docs servers help RevOps agents verify dashboards, compile metric explanations, and prepare recurring reports." },
+        { title: "Controlled automation", text: "RevOps tools often touch revenue-critical records, so write access should be delayed until the workflow has review gates and audit trails." },
+      ],
+      sections: [
+        { heading: "Recommended RevOps MCP categories", body: "RevOps stacks should start with context and reporting before adding mutation tools for CRM or billing systems.", bullets: ["Read-only CRM or database servers", "Browser servers for dashboard verification", "Docs servers for process and field definitions", "Slack or email-adjacent servers for internal handoffs"] },
+        { heading: "Where RevOps teams get leverage", body: "MCP is useful when a revenue operations agent can combine account data, process docs, and dashboard evidence into a clear operational answer.", bullets: ["Pipeline inspection", "Forecast prep", "Territory or routing QA", "Sales-to-CS handoff summaries"] },
+        { heading: "Revenue ops safety checklist", body: "Treat RevOps automation as production business infrastructure. Incorrect writes can affect forecasting, routing, and compensation workflows.", bullets: ["Prefer read-only analysis first", "Require review before CRM field updates", "Separate sandbox and production credentials", "Log generated reports and source systems"] },
+      ],
+    },
+  },
+  "for-security-teams": {
+    title: "Best MCP Servers for Security Teams | Secure MCP Agent Stack | BestMCPServers",
+    description: "Design MCP server stacks for security teams reviewing permissions, logs, repositories, browser evidence, and safer agent access.",
+    canonical: `${baseUrl}/for-security-teams/`,
+    config: {
+      eyebrow: "Security Team MCP Stack",
+      h1: "Best MCP Servers for Security Teams",
+      description: "Security teams need MCP stacks that make evidence collection easier without turning agents into over-privileged operators. Use this guide to choose servers for review, investigation, and secure rollout workflows.",
+      primaryCta: { href: "/mcp-server-security/", label: "Open MCP security guide" },
+      secondaryCta: { href: "/tools/mcp-security-checklist-generator/", label: "Generate a security checklist" },
+      cards: [
+        { title: "Evidence collection", text: "GitHub, filesystem, browser, and docs servers help security teams inspect configuration, code, policy, and public evidence in one workflow." },
+        { title: "Permission review", text: "Security teams should evaluate every MCP server by scopes, environment access, logging, and whether credentials are isolated per workflow." },
+        { title: "Incident support", text: "MCP can help prepare investigation summaries, but high-risk actions should remain human-approved with clear audit trails." },
+      ],
+      sections: [
+        { heading: "Recommended security MCP categories", body: "Security-oriented MCP stacks should prioritize inspection, documentation, and evidence gathering over broad automation.", bullets: ["GitHub servers for repository and pull-request review", "Filesystem servers for local policy and config inspection", "Browser servers for public surface verification", "Docs servers for runbooks and control mapping"] },
+        { heading: "Where security teams get leverage", body: "MCP helps security teams when it reduces context switching during reviews and investigations while keeping actions constrained.", bullets: ["MCP rollout reviews", "Access-scope audits", "Incident evidence collection", "Security checklist generation"] },
+        { heading: "Security team safety checklist", body: "A security team's MCP stack should model the same least-privilege rules it recommends to the rest of the organization.", bullets: ["Use separate credentials for review workflows", "Avoid production mutation tools by default", "Record tool calls for sensitive investigations", "Keep generated reports free of raw secrets"] },
+      ],
+    },
+  },
   "for-claude": {
     title: "Best MCP Servers for Claude | Claude Desktop MCP Stack | BestMCPServers",
     description: "Find the best MCP servers for Claude Desktop workflows, including filesystem, GitHub, database, browser, and Slack server categories.",
