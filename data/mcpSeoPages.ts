@@ -3,6 +3,72 @@ import type { McpSeoPageConfig } from "@/components/McpSeoPage";
 export const baseUrl = "https://bestmcpservers.com";
 
 export const audiencePages: Record<string, { title: string; description: string; canonical: string; config: McpSeoPageConfig }> = {
+  "for-support-agents": {
+    title: "Best MCP Servers for Support Agents | Customer Support Tool Stack | BestMCPServers",
+    description: "Choose MCP servers for support agents handling tickets, docs, account lookups, browser QA, and safer customer operations.",
+    canonical: `${baseUrl}/for-support-agents/`,
+    config: {
+      eyebrow: "Support Agent MCP Stack",
+      h1: "Best MCP Servers for Support Agents",
+      description: "Support agents need fast context from docs, tickets, product surfaces, and internal systems without giving an AI agent broad unsupervised power. Use this page to design a safer MCP stack for support workflows.",
+      primaryCta: { href: "/workflows/", label: "Browse support-ready workflows" },
+      secondaryCta: { href: "/mcp-server-security/", label: "Review MCP security" },
+      cards: [
+        { title: "Docs and knowledge", text: "Browser, docs, and search servers help support agents find product guidance, troubleshooting steps, and public help-center content quickly." },
+        { title: "Customer context", text: "Ticketing, CRM, and internal database servers can help with account context, but early setups should use read-only roles and redacted test data." },
+        { title: "Safer support actions", text: "Support workflows need approval boundaries for refunds, account changes, and external messages even when the agent has rich context." },
+      ],
+      sections: [
+        { heading: "Recommended support MCP categories", body: "A practical support stack starts with evidence gathering, then adds controlled action tools only after the workflow proves safe.", bullets: ["Browser servers for live product and help-center checks", "Knowledge-base or docs servers for troubleshooting", "Read-only CRM or database servers for account lookup", "Slack or team-communication servers for escalation"] },
+        { heading: "Where support agents get leverage", body: "MCP helps support agents answer faster when they can verify current docs, inspect product state, and collect account context without manual copy-paste.", bullets: ["Ticket triage", "Troubleshooting playbooks", "Escalation preparation", "Account-history summaries"] },
+        { heading: "Support safety checklist", body: "Treat support automation as a high-trust workflow. Even read-mostly tools can expose sensitive data if the stack is scoped too broadly.", bullets: ["Use sandbox or redacted accounts first", "Keep refund or mutation flows human-approved", "Separate production and staging credentials", "Log sensitive actions with redaction"] },
+      ],
+    },
+  },
+  "for-qa-agents": {
+    title: "Best MCP Servers for QA Agents | QA and Testing Tool Stack | BestMCPServers",
+    description: "Plan MCP server stacks for QA agents doing browser checks, regression testing, bug reproduction, logs, and release verification.",
+    canonical: `${baseUrl}/for-qa-agents/`,
+    config: {
+      eyebrow: "QA Agent MCP Stack",
+      h1: "Best MCP Servers for QA Agents",
+      description: "QA agents work best when they can inspect real pages, compare expected and actual behavior, gather logs, and document evidence without being over-permissioned.",
+      primaryCta: { href: "/browser-mcp-server/", label: "Review Browser MCP Server" },
+      secondaryCta: { href: "/tools/mcp-security-checklist-generator/", label: "Generate a QA security checklist" },
+      cards: [
+        { title: "Browser-first workflows", text: "Browser MCP servers help QA agents run smoke checks, verify forms, inspect UI state, and gather screenshot-worthy evidence from live pages." },
+        { title: "Evidence collection", text: "Filesystem, logs, and issue-tracker servers can help QA agents capture repro steps, diff outputs, and structured bug reports." },
+        { title: "Release safety", text: "QA stacks should prefer read-only verification, isolated test accounts, and explicit approvals before any environment-changing action." },
+      ],
+      sections: [
+        { heading: "Recommended QA MCP categories", body: "The strongest QA stacks combine browser evidence with a few structured context tools instead of a large undifferentiated tool list.", bullets: ["Browser servers for UI and workflow checks", "Filesystem servers for logs and artifacts", "GitHub or issue servers for defect tracking", "Database servers only when schema or test data checks are needed"] },
+        { heading: "Where QA agents add value", body: "MCP makes QA agents more useful when they can verify live behavior directly instead of reasoning only from source code or test specs.", bullets: ["Regression smoke tests", "Bug reproduction", "Release verification", "Screenshot-backed bug reporting"] },
+        { heading: "QA safety checklist", body: "Quality workflows often touch staging, sandboxes, and test data. Keep those boundaries clear so an agent cannot accidentally cross into destructive production actions.", bullets: ["Use dedicated QA accounts", "Separate staging and production credentials", "Treat screenshots and logs as potentially sensitive", "Require review before state-changing test flows"] },
+      ],
+    },
+  },
+  "for-internal-tools": {
+    title: "Best MCP Servers for Internal Tools | Ops and Internal App Workflows | BestMCPServers",
+    description: "Choose MCP servers for internal tools, back-office ops, dashboards, docs, databases, and safer admin workflows.",
+    canonical: `${baseUrl}/for-internal-tools/`,
+    config: {
+      eyebrow: "Internal Tools MCP Stack",
+      h1: "Best MCP Servers for Internal Tools",
+      description: "Internal tools teams often need MCP servers for dashboards, admin docs, databases, browser checks, and workflow automation. The best stacks stay narrow because internal systems are rich in sensitive context.",
+      primaryCta: { href: "/for-developers/", label: "See developer-oriented stacks" },
+      secondaryCta: { href: "/mcp-server-directory/", label: "Browse MCP server categories" },
+      cards: [
+        { title: "Operational context", text: "Filesystem, GitHub, and docs servers help internal teams connect specs, runbooks, dashboards, and implementation details." },
+        { title: "Business systems", text: "Database, CRM, and admin-tool servers can unlock powerful workflows, but they should start with read-only roles and the minimum possible scopes." },
+        { title: "Controlled automation", text: "Internal tools often touch real business systems. Approval gates and environment separation matter more than broad autonomous reach." },
+      ],
+      sections: [
+        { heading: "Recommended internal-tools MCP categories", body: "Internal tools stacks usually need a mix of engineering context and business-system context, but not every workflow needs every server.", bullets: ["Filesystem and GitHub for implementation context", "Docs and knowledge servers for runbooks", "Read-only database or admin APIs for lookup", "Browser servers for dashboard and admin QA"] },
+        { heading: "High-value internal workflows", body: "MCP helps internal tools teams when they need one agent to connect application logic, runbooks, and operational evidence across multiple systems.", bullets: ["Ops dashboard checks", "Admin workflow QA", "Schema-aware debugging", "Incident investigation prep"] },
+        { heading: "Internal system safety rules", body: "Because internal tools often reach sensitive systems, you should design the stack around reviewability and blast-radius control from the start.", bullets: ["Use separate credentials per environment", "Prefer read-only first runs", "Keep audit logs for admin actions", "Document rollback paths for any automation"] },
+      ],
+    },
+  },
   "for-claude": {
     title: "Best MCP Servers for Claude | Claude Desktop MCP Stack | BestMCPServers",
     description: "Find the best MCP servers for Claude Desktop workflows, including filesystem, GitHub, database, browser, and Slack server categories.",
