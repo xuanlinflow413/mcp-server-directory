@@ -324,6 +324,10 @@ export default function Home() {
                 { href: "/mcp-server-directory/", label: "MCP Server Directory" },
                 { href: "/mcp-servers-for-claude-code/", label: "MCP Servers for Claude Code" },
                 { href: "/mcp-servers-for-cursor/", label: "MCP Servers for Cursor" },
+                { href: "/mcp-servers-for-codex/", label: "MCP Servers for Codex" },
+                { href: "/github-mcp-server/", label: "GitHub MCP Server" },
+                { href: "/filesystem-mcp-server/", label: "Filesystem MCP Server" },
+                { href: "/guides/browser-mcp-servers/", label: "Browser MCP Servers" },
                 { href: "/mcp-server-security/", label: "MCP Server Security" },
               ].map((item) => (
                 <Link key={item.href} href={item.href} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold text-slate-800 transition hover:border-blue-300 hover:bg-white hover:text-blue-700 hover:shadow-sm">

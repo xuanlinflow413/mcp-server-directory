@@ -479,13 +479,21 @@ export default function BrowserMcpServersPage() {
           <p className="text-slate-700">
             Browse all browser and web automation servers in our{" "}
             <Link
-              href="/"
+              href="/mcp-server-directory/"
               className="font-semibold text-blue-600 hover:text-blue-800"
             >
               MCP server directory
             </Link>
             . We also list web scraping servers like Fetch and Firecrawl that
-            complement browser automation tools.
+            complement browser automation tools. If this browser access will be
+            used by Claude, Cursor, or Codex workflows, review the{" "}
+            <Link
+              href="/mcp-server-security/"
+              className="font-semibold text-blue-600 hover:text-blue-800"
+            >
+              MCP server security checklist
+            </Link>{" "}
+            and the relevant workflow pack before giving an agent broad web access.
           </p>
         </div>
       </article>
