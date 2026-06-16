@@ -135,6 +135,72 @@ export const audiencePages: Record<string, { title: string; description: string;
       ],
     },
   },
+  "for-saas-teams": {
+    title: "Best MCP Servers for SaaS Teams | SaaS Agent Workflow Stack | BestMCPServers",
+    description: "Choose MCP servers for SaaS teams building support, product, engineering, revenue, and internal AI agent workflows.",
+    canonical: `${baseUrl}/for-saas-teams/`,
+    config: {
+      eyebrow: "SaaS Team MCP Stack",
+      h1: "Best MCP Servers for SaaS Teams",
+      description: "SaaS teams need MCP servers that connect product context, customer evidence, engineering work, and go-to-market systems without creating an over-permissioned agent stack. Use this guide to build a practical SaaS MCP rollout path.",
+      primaryCta: { href: "/workflows/", label: "Browse SaaS-ready workflow packs" },
+      secondaryCta: { href: "/for-customer-success/", label: "See customer success stacks" },
+      cards: [
+        { title: "Product and support context", text: "Browser, docs, support, and customer-context servers help SaaS teams answer product questions and prepare escalations with current evidence." },
+        { title: "Engineering workflows", text: "GitHub, filesystem, and database servers help engineering teams inspect code, issues, schemas, and operational signals in one agent workflow." },
+        { title: "Go-to-market operations", text: "CRM, Slack, and reporting-adjacent MCP servers can support handoffs, account prep, and team coordination when kept read-only at first." },
+      ],
+      sections: [
+        { heading: "Recommended SaaS MCP categories", body: "Most SaaS teams should start with a small cross-functional stack that supports support, product, and engineering workflows before expanding into write actions.", bullets: ["GitHub and filesystem servers for engineering context", "Browser and docs servers for product evidence", "CRM or customer database servers with read-only access", "Slack servers for escalation and internal handoffs"] },
+        { heading: "Where SaaS teams get leverage", body: "MCP helps SaaS teams when agents can connect fragmented systems around a real customer or product task instead of staying trapped in one tool.", bullets: ["Support escalation prep", "Bug triage and reproduction", "Account health summaries", "Internal workflow automation"] },
+        { heading: "SaaS rollout safety checklist", body: "SaaS teams often mix customer data, code, and commercial systems. Keep the rollout narrow until each workflow proves safe and useful.", bullets: ["Use sandbox credentials for early tests", "Keep production mutation tools disabled by default", "Separate customer data from public demos", "Review generated outputs before customer-facing use"] },
+      ],
+    },
+  },
+  "for-agencies": {
+    title: "Best MCP Servers for Agencies | Client Workflow Agent Stack | BestMCPServers",
+    description: "Plan MCP server stacks for agencies managing client research, reporting, websites, repositories, content, and delivery workflows.",
+    canonical: `${baseUrl}/for-agencies/`,
+    config: {
+      eyebrow: "Agency MCP Stack",
+      h1: "Best MCP Servers for Agencies",
+      description: "Agencies can use MCP servers to connect client websites, repositories, reports, docs, and delivery workflows. The best agency stacks are repeatable, client-scoped, and careful about separating credentials between accounts.",
+      primaryCta: { href: "/tools/mcp-stack-builder/", label: "Build an agency MCP stack" },
+      secondaryCta: { href: "/mcp-server-security/", label: "Review client-data safety" },
+      cards: [
+        { title: "Client research", text: "Browser, docs, and web-oriented MCP servers help agencies inspect client sites, competitor pages, public docs, and campaign assets." },
+        { title: "Delivery workflows", text: "GitHub, filesystem, and project-context servers can help agencies prepare audits, implementation notes, and handoff packages." },
+        { title: "Account separation", text: "Agency MCP stacks must keep each client isolated with separate credentials, folders, repositories, and reporting outputs." },
+      ],
+      sections: [
+        { heading: "Recommended agency MCP categories", body: "Agency stacks should be portable enough to reuse across clients but scoped enough that one client's data never leaks into another workflow.", bullets: ["Browser servers for site and competitor reviews", "Filesystem servers for client-specific folders", "GitHub servers for implementation repositories", "Docs and reporting servers for delivery notes"] },
+        { heading: "Where agencies get leverage", body: "MCP is valuable for agencies when it turns scattered client context into a repeatable research, implementation, and reporting process.", bullets: ["Website audits", "SEO and content briefs", "Technical implementation reviews", "Client status-report prep"] },
+        { heading: "Agency safety checklist", body: "Client trust depends on strict separation. Build the stack around client boundaries instead of one shared agent workspace.", bullets: ["Use one credential set per client", "Avoid mixing client files in shared folders", "Redact private analytics screenshots before reuse", "Review outputs before sending to clients"] },
+      ],
+    },
+  },
+  "for-startups": {
+    title: "Best MCP Servers for Startups | Lean AI Agent Stack | BestMCPServers",
+    description: "Choose a lean MCP server stack for startups building products, support workflows, internal tools, and founder-led automation.",
+    canonical: `${baseUrl}/for-startups/`,
+    config: {
+      eyebrow: "Startup MCP Stack",
+      h1: "Best MCP Servers for Startups",
+      description: "Startups need MCP stacks that create leverage without adding security debt. Start with a few high-signal servers for product, engineering, support, and internal operations, then expand only after workflows prove useful.",
+      primaryCta: { href: "/for-saas-teams/", label: "See SaaS team stacks" },
+      secondaryCta: { href: "/mcp-server-directory/", label: "Browse MCP server directory" },
+      cards: [
+        { title: "Small stack, high leverage", text: "Founders and early teams should start with browser, docs, GitHub, and filesystem servers before adding sensitive business systems." },
+        { title: "Product velocity", text: "MCP can help startups connect customer feedback, product docs, repo context, and release notes into faster decisions." },
+        { title: "Avoid permission debt", text: "The fastest way to create long-term risk is connecting every tool too early. Keep access narrow and document why each server exists." },
+      ],
+      sections: [
+        { heading: "Recommended startup MCP categories", body: "A lean startup MCP stack should support the highest-frequency work without requiring a complex security program on day one.", bullets: ["Browser servers for research and QA", "GitHub and filesystem servers for product engineering", "Docs servers for customer and product knowledge", "Slack servers for team coordination when needed"] },
+        { heading: "Where startups get leverage", body: "MCP works best for startups when it compresses founder or small-team workflows that otherwise require switching across many tools.", bullets: ["Customer feedback synthesis", "Bug triage", "Launch checklist prep", "Internal ops automation"] },
+        { heading: "Startup safety checklist", body: "Lean does not mean careless. Use a simple least-privilege model from the start so the stack can grow safely.", bullets: ["Use separate dev and production credentials", "Prefer read-only first", "Keep token handling outside prompts", "Document each connected server and owner"] },
+      ],
+    },
+  },
   "for-claude": {
     title: "Best MCP Servers for Claude | Claude Desktop MCP Stack | BestMCPServers",
     description: "Find the best MCP servers for Claude Desktop workflows, including filesystem, GitHub, database, browser, and Slack server categories.",
