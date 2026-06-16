@@ -69,6 +69,28 @@ export const audiencePages: Record<string, { title: string; description: string;
       ],
     },
   },
+  "github-mcp-server-for-claude": {
+    title: "GitHub MCP Server for Claude | Repo Workflows for Claude Desktop | BestMCPServers",
+    description: "Learn when GitHub MCP Server is the right fit for Claude Desktop, which workflows it unlocks, and how to keep repository access scoped and reviewable.",
+    canonical: `${baseUrl}/github-mcp-server-for-claude/`,
+    config: {
+      eyebrow: "Claude + GitHub MCP",
+      h1: "GitHub MCP Server for Claude",
+      description: "Use GitHub MCP Server with Claude when you need pull requests, issues, repo search, and hosted repository context without granting broad local machine access.",
+      primaryCta: { href: "/github-mcp-server/", label: "Open GitHub MCP Server guide" },
+      secondaryCta: { href: "/for-claude/", label: "See the Claude MCP stack" },
+      cards: [
+        { title: "Best fit", text: "GitHub MCP Server is strongest for pull requests, issue triage, repository search, and branch-aware coding workflows inside hosted repos." },
+        { title: "Why Claude users pick it", text: "Claude benefits from structured repository context when it needs code history, issue state, review threads, and remote file awareness." },
+        { title: "Main safety rule", text: "Start with least-privilege repository scopes and require human review before any write-capable action or PR mutation." },
+      ],
+      sections: [
+        { heading: "When Claude should use GitHub MCP", body: "GitHub MCP is useful when Claude needs collaboration context, hosted repository search, or PR state that local filesystem access alone cannot provide.", bullets: ["PR review and issue triage", "Remote repo search", "Branch and file context", "Repository onboarding across teams"] },
+        { heading: "How to keep GitHub access narrow", body: "Use a token scoped only to the repositories and actions Claude truly needs. Early setups should bias toward read access and explicit review before state changes.", bullets: ["Limit token scopes", "Use repo-specific access where possible", "Review before comments, labels, or merges", "Keep secrets out of repo-visible artifacts"] },
+        { heading: "Related pages", body: "Use this page as the bridge from high-intent Claude search traffic into the broader server directory and comparison content.", bullets: ["GitHub MCP Server overview", "Best MCP Servers for Claude", "Filesystem vs GitHub comparison", "Claude Desktop setup guide"] },
+      ],
+    },
+  },
   "for-developers": {
     title: "Best MCP Servers for Developers | Coding Agent Workflows | BestMCPServers",
     description: "Choose MCP servers for developer workflows: filesystem, GitHub, databases, browser automation, docs, and safe coding-agent operations.",
