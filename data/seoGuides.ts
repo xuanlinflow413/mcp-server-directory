@@ -653,7 +653,92 @@ export const seoGuides: SeoGuide[] = [
       { href: "/mcp-security-checklist/", label: "MCP Security Checklist", description: "Read the broader standalone MCP checklist before publishing server recommendations." }
     ],
     primaryCta: { href: "/tools/mcp-security-checklist-generator/", label: "Generate an MCP Security Checklist" }
+  },
+  {
+    slug: "how-to-install-mcp-server",
+    category: "MCP & Agent Setup",
+    title: "How to Install an MCP Server — Claude, Cursor, and Generic Clients",
+    description: "Learn how to install an MCP server safely, choose a client, create placeholder config, test startup, and avoid leaking secrets.",
+    h1: "How to Install an MCP Server",
+    eyebrow: "MCP install guide",
+    primaryKeyword: "how to install mcp server",
+    secondaryKeywords: ["install mcp server", "mcp server setup", "Claude MCP setup", "Cursor MCP setup", "mcpServers config"],
+    updated,
+    readingTime: "8 min read",
+    intro: [
+      "Installing an MCP server is more than copying an npm command. You need to decide which client will run it, what data it can access, where credentials live, and how you will test the server before real work.",
+      "This guide gives a safe, client-neutral setup flow for Claude Desktop, Cursor, and other MCP clients. Use placeholders in examples, then configure real values only in private local settings or platform secrets."
+    ],
+    keyTakeaways: [
+      "Choose the MCP client and workflow before installing servers.",
+      "Start with one low-risk server and one harmless test call.",
+      "Keep real tokens, database URLs, and private paths out of shared examples."
+    ],
+    sections: [
+      { heading: "1. Choose the MCP client and server", body: ["Start with the client where the workflow will happen: Claude Desktop for personal research and writing, Cursor for coding, or another client for agent infrastructure. Then choose one server category that maps to a real task.", "Avoid installing every interesting server at once. A narrow first setup makes it easier to debug startup errors and permission boundaries."], bullets: ["Claude Desktop for local assistant workflows", "Cursor for coding workflows", "Filesystem for selected folders", "GitHub for repository collaboration", "Database servers for read-only schema and query tests"] },
+      { heading: "2. Create an mcpServers config entry", body: ["Most clients use an mcpServers-style JSON object with a command, args, and optional environment variables. Public examples should use placeholder values only, such as GITHUB_TOKEN or DATABASE_URL.", "After editing config, restart the client so it can discover the server. If startup fails, check command paths, package names, permissions, and environment variable names before changing server scope."], bullets: ["Use absolute paths when the client requires them", "Keep credentials outside committed files", "Restart the MCP client after config edits", "Verify server discovery before real tasks"] },
+      { heading: "3. Test with harmless data", body: ["The first test should prove that the server starts and one low-risk tool works. Use a sample folder, test repository, sandbox database, or non-sensitive channel before production resources.", "For write-capable servers, run a preview or read-only workflow first. Do not let the first successful startup become production approval."], bullets: ["Read a sample file", "List a test repository issue", "Query a sandbox table", "Open a public documentation page", "Confirm errors do not reveal secrets"] },
+      { heading: "4. Add security review before production", body: ["Before connecting private files, production databases, or external write actions, document the server purpose, allowed data, credentials, logging behavior, approval rules, and rollback plan.", "Use the security checklist generator if you need a browser-only review artifact without uploading configs or secrets."], bullets: ["Least-privilege credentials", "Read-only roles first", "No broad home-directory access", "Human approval for writes", "Redacted logs and errors"] }
+    ],
+    checklist: ["Pick one client and one server", "Use placeholder-only public config examples", "Restart the client after config edits", "Run one harmless test call", "Keep real secrets private", "Review permissions before production data"],
+    faq: [
+      { question: "What is the easiest MCP server to install first?", answer: "A filesystem server scoped to a sample folder is often the easiest first test because it does not need third-party API credentials." },
+      { question: "Can I install MCP servers with npm?", answer: "Many servers run through npx or npm packages, but the exact command depends on the server maintainer and client config format." },
+      { question: "Where should MCP secrets go?", answer: "Real tokens and database URLs should stay in private local config, environment variables, or platform secrets, not in shared examples or committed files." },
+      { question: "Do I need a different setup for Claude and Cursor?", answer: "The server concept is the same, but client config paths, restart behavior, and UI details differ. Verify the current docs for your client." },
+      { question: "Should I connect production databases immediately?", answer: "No. Start with sandbox data or read-only roles, then review logging, scopes, and approval rules before production access." }
+    ],
+    relatedLinks: [
+      { href: "/mcp-server-directory/", label: "MCP Server Directory", description: "Browse server categories before installing." },
+      { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Generate placeholder-only config snippets in the browser." },
+      { href: "/guides/claude-desktop-mcp-setup/", label: "Claude Desktop MCP Setup", description: "Set up MCP specifically for Claude Desktop." },
+      { href: "/mcp-server-security/", label: "MCP Server Security", description: "Review permissions and safety boundaries." }
+    ],
+    primaryCta: { href: "/tools/mcp-server-config-generator/", label: "Generate MCP config" }
+  },
+  {
+    slug: "claude-desktop-mcp-setup",
+    category: "MCP & Agent Setup",
+    title: "Claude Desktop MCP Setup — Safe mcpServers Config Guide",
+    description: "Set up MCP servers in Claude Desktop with safer config patterns, restart checks, placeholder secrets, and first-test workflows.",
+    h1: "Claude Desktop MCP Setup",
+    eyebrow: "Claude Desktop setup",
+    primaryKeyword: "Claude Desktop MCP setup",
+    secondaryKeywords: ["Claude MCP setup", "Claude Desktop mcpServers", "Claude MCP config", "Claude MCP server install", "Claude Desktop tools"],
+    updated,
+    readingTime: "8 min read",
+    intro: [
+      "Claude Desktop can use MCP servers to access files, repositories, databases, browser tools, and other local or remote capabilities. The safest setup starts with a narrow workflow and one server, then expands only after testing.",
+      "This guide focuses on practical setup decisions: choosing the first server, writing placeholder-based config, restarting Claude Desktop, testing discovery, and reviewing permissions before sensitive data is connected."
+    ],
+    keyTakeaways: [
+      "Start Claude Desktop MCP with one low-risk server and one sample workflow.",
+      "Use placeholder examples for tokens and paths in any shared notes.",
+      "Review permissions before enabling broad filesystem, GitHub, database, or browser access."
+    ],
+    sections: [
+      { heading: "Plan the Claude workflow first", body: ["Decide what Claude should do before adding tools. A writing assistant may only need a docs folder. A coding assistant may need a project folder and GitHub. A data assistant may need read-only database access after sandbox testing.", "This workflow-first approach prevents a common MCP mistake: enabling broad capabilities without a task or review model."], bullets: ["Docs and knowledge-base workflows", "Repository onboarding", "Issue and PR research", "Read-only data exploration", "Browser research with isolated permissions"] },
+      { heading: "Create a Claude Desktop mcpServers entry", body: ["Claude Desktop setups commonly define server entries with command, args, and environment values. Keep public examples generic and put real values only where the local client can read them privately.", "After saving config, fully restart Claude Desktop. If the server does not appear, check the command, package install behavior, file paths, and environment variable names."], bullets: ["Use placeholder env names", "Avoid committing local Claude config", "Restart after every config change", "Test discovery before adding more servers"] },
+      { heading: "Good first Claude MCP servers", body: ["A good first server has low setup friction and low blast radius. Filesystem access scoped to a sample folder, GitHub access with limited token scopes, or a browser/search server for public docs can work well.", "For databases and team communication, start with sandbox resources and read-only permissions because mistakes can expose private data or trigger external effects."], bullets: ["Filesystem for selected folders", "GitHub for repository context", "Browser for public research", "Database only with read-only sandbox data", "Slack only with clear channel boundaries"] },
+      { heading: "Verify and secure the setup", body: ["Ask Claude to perform a harmless read, summarize what tools it can see, and explain what data it can access. Then document approvals for any write-capable actions.", "Before production use, review prompts, logs, errors, credential storage, and rollback steps. Treat external files and web pages as untrusted content."], bullets: ["Run a harmless read test", "Confirm no secrets appear in logs", "Document server purpose", "Require approval for writes", "Remove stale servers"] }
+    ],
+    checklist: ["Choose a Claude workflow", "Add one server entry", "Use placeholder-only shared examples", "Restart Claude Desktop", "Run a harmless discovery test", "Review permissions before sensitive data"],
+    faq: [
+      { question: "How do I set up MCP in Claude Desktop?", answer: "Choose a server, add it to Claude Desktop's MCP config using the client-supported format, restart Claude Desktop, then run a harmless test call." },
+      { question: "Which MCP server should Claude users install first?", answer: "A narrowly scoped filesystem server or a low-risk public research server is often a good first test." },
+      { question: "Can Claude Desktop use GitHub MCP servers?", answer: "Yes, if the server is configured correctly and the token permissions match the intended workflow." },
+      { question: "Should Claude Desktop config include real tokens in examples?", answer: "No. Shared examples should use placeholders. Real values belong only in private local settings or a secret manager." },
+      { question: "Why is my Claude MCP server not showing up?", answer: "Common causes include invalid command paths, missing packages, malformed JSON, missing environment variables, or not restarting Claude Desktop after editing config." }
+    ],
+    relatedLinks: [
+      { href: "/guides/best-mcp-servers-for-claude/", label: "Best MCP Servers for Claude", description: "Choose useful Claude server categories and workflows." },
+      { href: "/for-claude/", label: "Claude MCP Stack Hub", description: "Short hub for Claude-focused server selection." },
+      { href: "/tools/mcp-server-config-generator/", label: "MCP Server Config Generator", description: "Create placeholder-only config snippets." },
+      { href: "/tools/mcp-security-checklist-generator/", label: "MCP Security Checklist Generator", description: "Review permissions before production use." }
+    ],
+    primaryCta: { href: "/for-claude/", label: "Plan a Claude MCP stack" }
   }
+
 
 
 ];
