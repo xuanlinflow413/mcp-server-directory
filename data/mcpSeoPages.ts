@@ -157,6 +157,72 @@ export const audiencePages: Record<string, { title: string; description: string;
       ],
     },
   },
+  "for-operations-teams": {
+    title: "Best MCP Servers for Operations Teams | Ops Agent Stack | BestMCPServers",
+    description: "Plan MCP server stacks for operations teams handling dashboards, runbooks, approvals, reporting, and safer workflow automation.",
+    canonical: `${baseUrl}/for-operations-teams/`,
+    config: {
+      eyebrow: "Operations Team MCP Stack",
+      h1: "Best MCP Servers for Operations Teams",
+      description: "Operations teams need MCP servers that connect runbooks, dashboards, internal tools, and team handoffs without letting an AI agent mutate business-critical systems too early. Use this guide to design a practical ops stack.",
+      primaryCta: { href: "/for-internal-tools/", label: "See internal-tools stacks" },
+      secondaryCta: { href: "/workflows/", label: "Browse workflow packs" },
+      cards: [
+        { title: "Runbook context", text: "Docs, filesystem, and knowledge servers help operations teams keep SOPs, incident notes, and process details available inside agent workflows." },
+        { title: "Dashboard checks", text: "Browser and database-adjacent servers can support recurring dashboard review, anomaly collection, and report preparation." },
+        { title: "Approval boundaries", text: "Ops workflows often touch real customers, money, and internal systems, so action tools should stay gated until the process is proven." },
+      ],
+      sections: [
+        { heading: "Recommended operations MCP categories", body: "A strong ops stack starts with visibility and documentation before adding write-capable automation.", bullets: ["Docs servers for runbooks and SOPs", "Browser servers for dashboard checks", "Slack servers for approvals and handoffs", "Read-only database or internal-tool servers for lookup"] },
+        { heading: "Where operations teams get leverage", body: "MCP helps operations teams when agents can gather status, compare evidence, and prepare handoffs across systems without manual copy-paste.", bullets: ["Daily operations checks", "Incident prep", "Workflow exception triage", "Recurring report drafts"] },
+        { heading: "Operations safety checklist", body: "Operations workflows are high-trust even when they look routine. Keep access scoped and make handoffs reviewable.", bullets: ["Separate sandbox and production credentials", "Require approval before customer-impacting actions", "Log generated reports and source links", "Start with read-only dashboard review"] },
+      ],
+    },
+  },
+  "for-data-teams": {
+    title: "Best MCP Servers for Data Teams | Data Analyst Agent Stack | BestMCPServers",
+    description: "Choose MCP servers for data teams doing analytics, SQL review, dashboard checks, data quality workflows, and governed AI agents.",
+    canonical: `${baseUrl}/for-data-teams/`,
+    config: {
+      eyebrow: "Data Team MCP Stack",
+      h1: "Best MCP Servers for Data Teams",
+      description: "Data teams can use MCP servers to connect warehouses, dashboards, docs, notebooks, and business context. The safest stacks start read-only, make lineage visible, and avoid leaking sensitive datasets into prompts or reports.",
+      primaryCta: { href: "/category/database/", label: "Browse database MCP servers" },
+      secondaryCta: { href: "/mcp-server-security/", label: "Review MCP data safety" },
+      cards: [
+        { title: "Warehouse context", text: "Database MCP servers help analysts inspect schemas, sample safe data, and explain metrics when configured with narrow read-only roles." },
+        { title: "Dashboard evidence", text: "Browser and docs servers help data teams verify dashboards, metric definitions, and stakeholder-facing reports." },
+        { title: "Governed analysis", text: "Data workflows need clear redaction rules, query limits, source citations, and review before generated analysis is shared broadly." },
+      ],
+      sections: [
+        { heading: "Recommended data-team MCP categories", body: "Data teams should prioritize trusted context and explainability before connecting broad warehouse or BI permissions.", bullets: ["Read-only database servers for schema and query review", "Docs servers for metric definitions", "Browser servers for dashboard verification", "Filesystem servers for local analysis artifacts"] },
+        { heading: "Where data teams get leverage", body: "MCP works well when an agent can connect SQL context, metric definitions, and dashboard evidence into a traceable answer.", bullets: ["Metric debugging", "Dashboard QA", "Data quality investigation", "Stakeholder report preparation"] },
+        { heading: "Data-team safety checklist", body: "Treat connected datasets as sensitive by default. Give agents only the slices and scopes needed for the current workflow.", bullets: ["Use read-only warehouse roles", "Avoid raw PII in prompts and outputs", "Set query limits for exploratory workflows", "Cite source dashboards and tables in reports"] },
+      ],
+    },
+  },
+  "for-marketing-teams": {
+    title: "Best MCP Servers for Marketing Teams | Marketing Agent Stack | BestMCPServers",
+    description: "Plan MCP server stacks for marketing teams working on research, content, campaigns, analytics, websites, and safer AI workflows.",
+    canonical: `${baseUrl}/for-marketing-teams/`,
+    config: {
+      eyebrow: "Marketing Team MCP Stack",
+      h1: "Best MCP Servers for Marketing Teams",
+      description: "Marketing teams can use MCP servers to connect campaign docs, public research, website checks, analytics context, and content workflows. The best stacks improve speed while keeping brand, data, and publishing approvals intact.",
+      primaryCta: { href: "/for-agencies/", label: "See agency workflow stacks" },
+      secondaryCta: { href: "/tools/mcp-stack-builder/", label: "Build a marketing MCP stack" },
+      cards: [
+        { title: "Research and content", text: "Browser, docs, and filesystem servers help marketers gather public evidence, briefs, campaign notes, and content assets in one workflow." },
+        { title: "Website and SEO checks", text: "Browser and analytics-adjacent workflows can help review landing pages, metadata, internal links, and campaign QA evidence." },
+        { title: "Approval-first publishing", text: "Marketing stacks should support drafting and review before connecting tools that publish, email, or update public pages." },
+      ],
+      sections: [
+        { heading: "Recommended marketing MCP categories", body: "Marketing stacks should combine public research, owned content, and website QA without giving agents unsupervised publishing power.", bullets: ["Browser servers for SERP and landing-page checks", "Docs and filesystem servers for briefs and assets", "Analytics or dashboard workflows with read-only access", "Slack servers for campaign review handoffs"] },
+        { heading: "Where marketing teams get leverage", body: "MCP is useful when marketers can move from research to draft to QA while preserving the evidence behind each recommendation.", bullets: ["Campaign research", "Landing-page QA", "Content brief generation", "Weekly performance summaries"] },
+        { heading: "Marketing safety checklist", body: "Brand and customer trust are the main risk areas. Keep approval gates between generated work and public channels.", bullets: ["Require human review before publishing", "Use read-only analytics access", "Redact customer examples before reuse", "Keep campaign credentials outside prompts"] },
+      ],
+    },
+  },
   "for-agencies": {
     title: "Best MCP Servers for Agencies | Client Workflow Agent Stack | BestMCPServers",
     description: "Plan MCP server stacks for agencies managing client research, reporting, websites, repositories, content, and delivery workflows.",
