@@ -47,6 +47,28 @@ export const audiencePages: Record<string, { title: string; description: string;
       ],
     },
   },
+  "for-vscode": {
+    title: "Best MCP Servers for VS Code | VS Code MCP Workflow Stack | BestMCPServers",
+    description: "Plan a VS Code MCP server stack for coding, repositories, databases, browser research, and developer workflows with tighter safety boundaries.",
+    canonical: `${baseUrl}/for-vscode/`,
+    config: {
+      eyebrow: "VS Code MCP Stack",
+      h1: "Best MCP Servers for VS Code",
+      description: "Build a practical VS Code MCP stack for coding assistants, repo context, files, browser research, and data workflows without starting with broad permissions.",
+      primaryCta: { href: "/mcp-server-directory/", label: "Browse MCP servers for VS Code" },
+      secondaryCta: { href: "/guides/how-to-install-mcp-server/", label: "Install an MCP server" },
+      cards: [
+        { title: "Code workspace context", text: "Filesystem and GitHub MCP servers give VS Code assistants project files, repository history, issues, and pull-request context." },
+        { title: "Debugging and research", text: "Browser and database servers help with documentation lookup, UI checks, schema review, and read-only debugging workflows." },
+        { title: "Safer first setup", text: "A strong VS Code MCP stack starts with one repo, one folder, and least-privilege credentials rather than full-machine access." },
+      ],
+      sections: [
+        { heading: "Recommended VS Code MCP categories", body: "Most VS Code users should begin with repo-aware servers and only add external tools once the workflow clearly needs them.", bullets: ["Filesystem for selected workspaces", "GitHub for repo and PR context", "Database servers for schema-aware debugging", "Browser servers for docs and QA flows"] },
+        { heading: "When VS Code benefits from MCP", body: "MCP helps most when the assistant needs structured context beyond text completion: repository history, live docs, issue state, local files, or controlled tool access.", bullets: ["Repo onboarding", "Issue triage with implementation context", "Debugging with local config and docs", "Repeatable coding workflows with review steps"] },
+        { heading: "VS Code safety checklist", body: "Treat MCP in VS Code like a real toolchain integration: keep scopes narrow, document setup, and verify one harmless action before trusting the stack.", bullets: ["Use separate credentials per service", "Keep secrets out of committed config", "Review diffs before write actions", "Remove stale or unused servers"] },
+      ],
+    },
+  },
   "for-developers": {
     title: "Best MCP Servers for Developers | Coding Agent Workflows | BestMCPServers",
     description: "Choose MCP servers for developer workflows: filesystem, GitHub, databases, browser automation, docs, and safe coding-agent operations.",

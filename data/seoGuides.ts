@@ -655,6 +655,48 @@ export const seoGuides: SeoGuide[] = [
     primaryCta: { href: "/tools/mcp-security-checklist-generator/", label: "Generate an MCP Security Checklist" }
   },
   {
+    slug: "what-is-mcp-server",
+    category: "MCP & Agent Setup",
+    title: "What Is an MCP Server? Model Context Protocol Explained",
+    description: "Learn what an MCP server is, how Model Context Protocol works, why AI clients use it, and how to start safely with narrow permissions.",
+    h1: "What Is an MCP Server?",
+    eyebrow: "MCP basics",
+    primaryKeyword: "what is mcp server",
+    secondaryKeywords: ["model context protocol server", "what is model context protocol", "mcp server meaning", "mcp server explained"],
+    updated,
+    readingTime: "7 min read",
+    intro: [
+      "An MCP server is a tool bridge that lets an AI client such as Claude Desktop, Cursor, or another assistant access structured capabilities like files, repositories, databases, browsers, and communication systems.",
+      "Instead of pasting every detail into a chat, the client can call tools exposed by the MCP server. That makes workflows more useful, but it also means permissions, credentials, and safety boundaries matter from the start."
+    ],
+    keyTakeaways: [
+      "An MCP server gives an AI client access to tools or data sources through a structured interface.",
+      "The best first MCP setups are narrow, read-only, and tied to one real workflow.",
+      "MCP is powerful because it connects assistants to live systems, which also creates security and approval risks."
+    ],
+    sections: [
+      { heading: "What MCP means in practice", body: ["MCP stands for Model Context Protocol. In practice, an MCP server is a program that exposes tools the AI client can discover and call. Those tools might read a folder, search a repository, query a database, inspect a web page, or send a message depending on the server.", "This is different from plain prompt context because the assistant is not limited to text you paste in manually. It can ask the server for fresh, structured information while you work."], bullets: ["Files and folders", "GitHub repositories and issues", "Database schemas and queries", "Browser pages and automation", "Communication and workflow tools"] },
+      { heading: "Why people use MCP servers", body: ["MCP servers make AI assistants more useful for recurring tasks. A coding assistant can inspect repository files. A research assistant can look up documentation. A support assistant can access controlled knowledge sources or workflow tools.", "The value is highest when the assistant needs live context or external actions, not just better phrasing."], bullets: ["Repository onboarding", "Issue and pull-request workflows", "Docs and browser research", "Read-only data exploration", "Structured internal tool access"] },
+      { heading: "What makes MCP risky", body: ["Every MCP server expands what an assistant can see or do. A badly scoped filesystem server can expose too many files. An overpowered GitHub or database server can reveal private data or mutate production systems. A browser-connected tool can ingest untrusted instructions from the web.", "That is why strong MCP setups start with least-privilege permissions, private secret storage, and human review for write actions."], bullets: ["Broad file access", "Over-scoped tokens", "Production data exposure", "Prompt injection through external content", "Unsafe write or deploy actions"] },
+      { heading: "Best way to start with MCP", body: ["Start with one client, one server, and one harmless test workflow. A filesystem server pointed at a sample folder is often the easiest first step. Then add GitHub, database, browser, or communication servers only when the workflow proves useful.", "As the stack grows, document what each server can access, what credentials it uses, and which actions need approval."], bullets: ["Choose the client first", "Pick one low-risk server", "Use placeholders in shared config examples", "Run a harmless test", "Review permissions before production use"] }
+    ],
+    checklist: ["Choose the MCP client first", "Start with one narrow server", "Keep tokens and secrets private", "Run a harmless discovery test", "Document what the server can access", "Add approvals before write actions"],
+    faq: [
+      { question: "What does MCP stand for?", answer: "MCP stands for Model Context Protocol, a way for AI clients to connect to external tools and data sources through structured interfaces." },
+      { question: "What is an MCP server used for?", answer: "It is used to give an AI client access to capabilities such as files, repositories, databases, browsers, and communication tools." },
+      { question: "Is an MCP server the same as a plugin?", answer: "Not exactly. The idea overlaps with plugins or tool integrations, but MCP focuses on a protocol and a standard way for clients to discover and call tools." },
+      { question: "Which MCP server should I try first?", answer: "A narrowly scoped filesystem server is often the simplest first test because it usually needs fewer external credentials." },
+      { question: "Are MCP servers safe?", answer: "They can be safe when permissions are narrow, secrets are stored privately, and risky actions require approval. They can be dangerous when over-scoped or connected to production systems without review." }
+    ],
+    relatedLinks: [
+      { href: "/guides/how-to-install-mcp-server/", label: "How to Install an MCP Server", description: "Go from definition to a safe first setup." },
+      { href: "/mcp-server-directory/", label: "MCP Server Directory", description: "Browse categories and examples of MCP servers." },
+      { href: "/mcp-server-security/", label: "MCP Server Security", description: "Review the main permission and safety risks." },
+      { href: "/for-ai-agents/", label: "Best MCP Servers for AI Agents", description: "See how MCP stacks support agent workflows." }
+    ],
+    primaryCta: { href: "/guides/how-to-install-mcp-server/", label: "Install your first MCP server" }
+  },
+  {
     slug: "how-to-install-mcp-server",
     category: "MCP & Agent Setup",
     title: "How to Install an MCP Server — Claude, Cursor, and Generic Clients",
