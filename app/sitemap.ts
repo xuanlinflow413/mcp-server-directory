@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     route("/", 1.0, "weekly"),
     route("/ai-prd-generator/", 0.9, "weekly"),
+    route("/ai-product-manager/", 0.9, "weekly"),
     route("/ai-agent-prd-template/", 0.85, "monthly"),
     route("/mcp-server-prd-template/", 0.85, "monthly"),
     route("/saas-prd-template/", 0.8, "monthly"),

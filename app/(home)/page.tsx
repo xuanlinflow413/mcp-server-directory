@@ -57,6 +57,7 @@ const freeBuilderGroups = [
     description: "Scope the product, agent, prompt, or guide before upgrading the implementation workflow.",
     links: [
       { href: "/ai-prd-generator/", label: "AI PRD Generator" },
+      { href: "/ai-product-manager/", label: "AI Product Manager" },
       { href: "/agents/", label: "AI Agent Library" },
       { href: "/rsp/", label: "Prompt Library" },
       { href: "/guides/", label: "Guides" },
