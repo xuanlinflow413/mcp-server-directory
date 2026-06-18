@@ -34,6 +34,15 @@ const subnav = [
 
 const freeBuilderGroups = [
   {
+    title: "Design agent workflows",
+    description: "Compare workflow patterns before choosing the CLI, planning loop, website agent, or MCP stack.",
+    links: [
+      { href: "/guides/best-ai-agent-workflow-tools/", label: "Best AI Agent Workflow Tools" },
+      { href: "/workflows/", label: "Workflow Pack Library" },
+      { href: "/guides/agent-evaluation-framework/", label: "Agent Evaluation Framework" },
+    ],
+  },
+  {
     title: "Plan AI cost & pricing",
     description: "Validate the numbers before you buy or build the workflow.",
     links: [
@@ -70,6 +79,7 @@ const freeBuilderGroups = [
     links: [
       { href: "/tools/agent-permission-builder/", label: "Agent Permission Builder" },
       { href: "/tools/ai-search-visibility-checker/", label: "AI Search Visibility Checker" },
+      { href: "/guides/mcp-server-security-checklist/", label: "MCP Server Security Checklist" },
       { href: "/guides/agent-permission-builder/", label: "Agent Permission Builder Guide" },
       { href: "/guides/ai-search-visibility-checker/", label: "AI Search Visibility Checker Guide" },
       { href: "/guides/agent-security-guide/", label: "Agent Security Guide" },
@@ -257,6 +267,11 @@ export default function Home() {
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
             {[
               {
+                href: "/guides/best-ai-agent-workflow-tools/",
+                label: "Best AI Agent Workflow Tools",
+                text: "Compare coding CLIs, planning loops, website agents, and MCP workflow review tools.",
+              },
+              {
                 href: "/tools/agent-permission-builder/",
                 label: "Agent Permission Builder",
                 text: "Generate a read/write/action permission plan with approval gates and risk levels.",
@@ -267,9 +282,9 @@ export default function Home() {
                 text: "Check whether crawler, sitemap, schema, and page signals make your agent content discoverable.",
               },
               {
-                href: "/guides/agent-permission-builder/",
-                label: "Permission Builder Guide",
-                text: "Learn how to turn permissions into Pro audit reports and production-ready agent controls.",
+                href: "/guides/mcp-server-security-checklist/",
+                label: "MCP Server Security Checklist",
+                text: "Review tools, credentials, prompt-injection risk, approvals, monitoring, and launch evidence.",
               },
             ].map((item) => (
               <Link key={item.href} href={item.href} className="group rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:bg-white hover:shadow-xl">

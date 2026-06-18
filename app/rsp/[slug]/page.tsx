@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CopyPromptButton from "@/components/CopyPromptButton";
@@ -208,11 +209,13 @@ export default function PromptPage({ params }: Props) {
 
         {/* Preview Image */}
         <div className="mt-8 aspect-video rounded-xl bg-slate-100 overflow-hidden border border-slate-200">
-          <img
+          <Image
             src={prompt.previewImage}
             alt={`Preview of ${prompt.h1} — AI photo editing result`}
-            className="w-full h-full object-cover"
-            loading="eager"
+            width={1200}
+            height={675}
+            className="h-full w-full object-cover"
+            priority
           />
         </div>
 

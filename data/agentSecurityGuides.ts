@@ -816,6 +816,180 @@ export const agentSecurityGuides: AgentSecurityGuide[] = [
       { question: "Why is sitemap inclusion important?", answer: "Sitemap inclusion helps crawlers discover important public pages, especially dynamic guide or tool pages that may not receive many external links yet." },
       { question: "What should a Pro visibility report include?", answer: "It should include the checked URL, HTTP result, canonical result, sitemap result, robots status, schema notes, content gaps, and recommended fixes." }
     ]
+  },
+  {
+    slug: "mcp-server-security-checklist",
+    title: "MCP Server Security Checklist — Review Tools, Permissions & Launch Risk",
+    description: "A practical MCP server security checklist for reviewing tool scope, credentials, prompt-injection risk, approvals, monitoring, and production launch evidence.",
+    h1: "MCP Server Security Checklist",
+    eyebrow: "MCP Security",
+    updated: "2026-06-18",
+    readingTime: "12 min read",
+    primaryKeyword: "MCP server security checklist",
+    intro: [
+      "An MCP server security checklist helps teams decide whether a server is safe enough to connect to an AI agent, coding assistant, internal workflow, or production automation. The risk is not only the server package itself. The real risk is the authority the server gives to an agent: reading files, calling APIs, changing records, sending messages, running commands, or exposing private context.",
+      "Use this checklist before adding a new MCP server to Claude, Cursor, Codex, a support agent, or an internal operations workflow. It turns security review into a repeatable launch process: define the job, restrict permissions, protect credentials, test prompt injection, add approval gates, and keep evidence for future reviews.",
+      "Pair this checklist with the Agent Security Guide at /guides/agent-security-guide/, the Agent Permission Builder at /tools/agent-permission-builder/, the Permission Builder guide at /guides/agent-permission-builder/, and the MCP Security Checklist Generator at /tools/mcp-security-checklist-generator/."
+    ],
+    keyTakeaways: [
+      "Review an MCP server by the actions it enables, not only by its README or popularity.",
+      "Treat prompt injection as a permission problem whenever untrusted content can influence tool calls.",
+      "Keep a launch record with allowed scopes, denied scopes, credential handling, approval gates, tests, and owners."
+    ],
+    sections: [
+      {
+        heading: "Start with the workflow and authority model",
+        body: [
+          "Before installing an MCP server, write down the exact workflow it supports. A file server for local repo onboarding needs different controls from a browser server used to inspect public pages, a database server used for analytics, or a messaging server that can send customer replies. The checklist should begin with the business job and the action boundary.",
+          "Classify every tool call as read, draft, write, external, financial, destructive, production, or memory-related. The same server can be low risk in one workflow and high risk in another. Reading selected documentation is different from reading an entire filesystem. Drafting a reply is different from sending it."
+        ],
+        bullets: [
+          "Name the workflow, owner, environment, and expected user.",
+          "List every enabled MCP tool and the action each tool performs.",
+          "Separate read-only tools from mutation, external, or destructive tools.",
+          "Document which actions require approval before execution."
+        ]
+      },
+      {
+        heading: "Check credentials and least-privilege scopes",
+        body: [
+          "Credentials should be scoped to the smallest useful permission set. An MCP server that reads GitHub issues should not receive a token that can delete repositories. A database MCP server used for reporting should not have broad write access. If the server only needs public data, avoid private credentials entirely.",
+          "Never paste secrets into prompts, logs, generated reports, or long-term memory. Store them in the platform secret manager or local environment and reference the storage mechanism without exposing the value. Rotate credentials when server scope changes or when a review finds a risky permission."
+        ],
+        bullets: [
+          "Use read-only tokens for first launches whenever possible.",
+          "Restrict filesystem paths, database tables, API endpoints, and network destinations.",
+          "Keep secrets out of model context and audit reports; write [REDACTED] instead.",
+          "Record the credential owner and next review trigger."
+        ]
+      },
+      {
+        heading: "Test prompt injection and untrusted content paths",
+        body: [
+          "MCP servers often connect agents to untrusted content: web pages, tickets, issues, docs, files, emails, or user-submitted data. A malicious instruction inside that content should not be able to override the user, change permissions, reveal secrets, or cause unrelated tool calls.",
+          "A practical test set should include benign tasks, malicious instructions, ambiguous authority, missing permissions, and tool failures. The Agent Security Guide explains the broader threat model; this checklist turns it into a launch gate for each MCP server connection."
+        ],
+        bullets: [
+          "Verify tool outputs are treated as data, not authority.",
+          "Test pages or files that ask the agent to reveal secrets or ignore policy.",
+          "Test cross-customer or cross-project data boundaries.",
+          "Confirm the agent refuses or asks for approval when scope is unclear."
+        ]
+      },
+      {
+        heading: "Add monitoring, rollback, and review evidence",
+        body: [
+          "Security review is not finished at launch. Production MCP workflows need logs that show which server ran, which tool was called, what input summary was used, whether approval happened, and what the result was. Logs should be useful for incident response without storing raw secrets or unnecessary private data.",
+          "Keep a short review artifact for each server. It should include the reason the server exists, approved scopes, blocked scopes, tests passed, known limitations, owner, and next review date. The Agent Permission Builder can generate a starting policy, while Pro reports can turn that policy into reusable acceptance evidence."
+        ],
+        bullets: [
+          "Log tool name, caller, environment, approval status, and safe input/output summaries.",
+          "Keep a kill switch for high-risk servers and scheduled agents.",
+          "Review scopes after adding tools, changing credentials, or moving to production.",
+          "Link evidence to the workflow pack or launch checklist that uses the server."
+        ]
+      }
+    ],
+    checklist: [
+      "Define the MCP server's workflow, owner, environment, and user-facing job.",
+      "List enabled tools and classify them by read, write, external, destructive, production, financial, and memory impact.",
+      "Restrict credentials, filesystem paths, API scopes, network destinations, and data access to least privilege.",
+      "Test prompt injection, ambiguous authority, approval bypass, missing permissions, and tool failure before launch.",
+      "Record approval gates, monitoring signals, rollback steps, known risks, and next review date."
+    ],
+    faq: [
+      { question: "What is an MCP server security checklist?", answer: "It is a repeatable review process for deciding whether an MCP server has safe tool scope, credentials, approvals, monitoring, and prompt-injection defenses before an agent uses it." },
+      { question: "Is an MCP server safe if it is popular?", answer: "Popularity is not enough. You still need to review the actions it enables, the credentials it receives, the data it can access, and the workflow where it will run." },
+      { question: "Should MCP tools be read-only by default?", answer: "For first launches and public demos, read-only or draft-only tools are usually safer. Add write and external actions only with clear approval gates and rollback steps." },
+      { question: "How does the Agent Permission Builder help?", answer: "It turns the workflow, tools, data, and autonomy level into a permission policy with risk level, allowed scopes, approval gates, and default-deny rules." }
+    ]
+  },
+  {
+    slug: "best-ai-agent-workflow-tools",
+    title: "Best AI Agent Workflow Tools — CLI, Planning & Website Agents",
+    description: "Compare AI agent workflow tools for coding, planning, no-code site creation, MCP workflows, security reviews, and launch operations.",
+    h1: "Best AI Agent Workflow Tools",
+    eyebrow: "Agent Workflow Tools",
+    updated: "2026-06-18",
+    readingTime: "11 min read",
+    primaryKeyword: "AI agent workflow tools",
+    intro: [
+      "AI agent workflow tools help builders move from a chat prompt to a repeatable operating loop: plan the job, choose tools, run the agent, review outputs, protect permissions, and ship with evidence. The best tool depends on whether the workflow happens in a codebase, a planning process, a no-code website builder, or an MCP-powered internal system.",
+      "This guide groups the category by job-to-be-done instead of treating every agent tool as the same product. Coding teams need terminal and repo workflows. Solo founders need planning and launch loops. Marketing teams may need website agents. Security-conscious teams need permission builders, MCP checklists, monitoring, and visibility checks.",
+      "The trend examples below include Swytchcode CLI as a coding-agent CLI example, Deep Work Plan as a planning workflow pattern, and Framer Agents as a website-agent workflow category. They are framed conservatively: verify each vendor's current capabilities before relying on them for production automation."
+    ],
+    keyTakeaways: [
+      "Choose agent workflow tools by the workflow boundary: code, planning, website creation, MCP operations, or security review.",
+      "A strong workflow includes planning, execution, approval, monitoring, and rollback—not just model output.",
+      "Security and visibility tools turn agent workflows into launchable systems with evidence."
+    ],
+    sections: [
+      {
+        heading: "Coding agent CLI tools",
+        body: [
+          "Coding agent CLI tools run close to the repository. They are useful for repo onboarding, issue triage, test-driven fixes, PR review, and command-line automation. Swytchcode CLI fits this category as a terminal workflow layer for AI-assisted coding tasks, but teams should verify its current feature set, model support, and repository permissions before production use.",
+          "For BestMCPServers readers, the key evaluation question is not only whether the CLI can edit code. It is whether the workflow defines safe repo access, test commands, review steps, and MCP server boundaries. A coding agent should not silently gain broad filesystem or deployment access without an approval model."
+        ],
+        bullets: [
+          "Best for: repo onboarding, implementation tasks, refactors, PR preparation, and test runs.",
+          "Look for: dry-run modes, command visibility, permission prompts, file diffs, and rollback guidance.",
+          "Pair with: /workflows/ for workflow packs and /guides/mcp-server-security-checklist/ for MCP safety review.",
+          "Avoid claiming support for MCP, deployment, or enterprise controls unless the vendor documents it."
+        ]
+      },
+      {
+        heading: "Planning workflows for deep work",
+        body: [
+          "Deep Work Plan is best treated as a workflow pattern: use AI to turn an ambiguous goal into focused tasks, execution steps, review loops, and evidence. This pattern matters because many agent failures start before tool calls. If the goal is vague, the agent chooses broad tools, makes unsafe assumptions, and produces outputs that are hard to verify.",
+          "A strong planning workflow creates a short spec, decomposes tasks, identifies risks, defines acceptance checks, and limits the next action. That makes the execution agent easier to supervise and makes the output easier to QA."
+        ],
+        bullets: [
+          "Best for: solo builders, product managers, engineering leads, and agent operators.",
+          "Look for: task decomposition, acceptance criteria, context limits, and review loops.",
+          "Pair with: /guides/agent-evaluation-framework/ and /guides/ai-search-visibility-checker/ for launch evidence.",
+          "Use conservative language: planning approach, workflow pattern, or agent-assisted planning method."
+        ]
+      },
+      {
+        heading: "Website and no-code agent workflows",
+        body: [
+          "Framer Agents fit the website-agent workflow category: AI assistance for creating, editing, and iterating on Framer sites through natural-language instructions. This is different from coding-agent CLIs because the main artifact is a marketing page or website experience, not a repository diff.",
+          "No-code website agents can speed up landing page drafts, copy iteration, and design exploration. They should not be described as complete replacements for backend engineering, DevOps, security review, or complex production apps unless the product explicitly supports those capabilities."
+        ],
+        bullets: [
+          "Best for: landing pages, campaign pages, site iteration, and non-developer website workflows.",
+          "Look for: edit history, export options, design constraints, SEO controls, and review before publish.",
+          "Pair with: /guides/ai-search-visibility-checker/ before promoting the page as SEO-ready.",
+          "Avoid claiming autonomous full-stack app delivery without documented support."
+        ]
+      },
+      {
+        heading: "MCP workflow and security tools",
+        body: [
+          "MCP turns external tools into agent capabilities, so MCP workflow tools need a security layer. A workflow pack should say which servers are used, which scopes are allowed, which actions require approval, and which checks prove the workflow is ready to launch.",
+          "BestMCPServers supports this layer with free tools and guides: the Agent Permission Builder for least-privilege policies, the MCP Server Security Checklist for launch review, the AI Search Visibility Checker for crawl evidence, and workflow packs for repeatable implementation."
+        ],
+        bullets: [
+          "Best for: AI coding workflows, support automation, internal tools, research agents, and launch operations.",
+          "Look for: scoped tools, approval gates, monitoring, acceptance checks, and clear owner handoff.",
+          "Pair with: /tools/agent-permission-builder/ and /tools/mcp-security-checklist-generator/.",
+          "Use Pro templates when the team needs repeatable audit reports and acceptance evidence."
+        ]
+      }
+    ],
+    checklist: [
+      "Define the agent workflow category: coding CLI, planning, website creation, MCP operations, or security review.",
+      "Compare tools by inputs, outputs, permissions, approval gates, observability, and rollback path.",
+      "Verify current vendor capabilities before claiming MCP, deployment, enterprise, or autonomous production support.",
+      "Use security and visibility checks before turning an agent workflow into a launch process.",
+      "Keep a short decision record that explains why the tool fits the workflow and what risks remain."
+    ],
+    faq: [
+      { question: "What are AI agent workflow tools?", answer: "They are tools, CLIs, frameworks, or product workflows that help AI agents plan tasks, use tools, produce outputs, get reviewed, and ship with evidence." },
+      { question: "Are coding agent CLIs the same as website agents?", answer: "No. Coding agent CLIs operate around repositories and terminal workflows, while website agents focus on creating or editing pages and site experiences." },
+      { question: "Is Deep Work Plan a product or a workflow?", answer: "In this guide it is treated conservatively as a planning workflow pattern unless a specific vendor page is being evaluated." },
+      { question: "How should teams evaluate agent workflow tools?", answer: "Compare the workflow boundary, data access, write permissions, approval gates, monitoring, exportability, and acceptance evidence rather than relying on demos alone." }
+    ]
   }
 ];
 

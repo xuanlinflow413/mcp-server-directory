@@ -109,13 +109,20 @@ export default function AgentPermissionBuilder() {
 
         <div className="mt-8 rounded-3xl border border-blue-200 bg-blue-50 p-6 sm:flex sm:items-center sm:justify-between sm:gap-6">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Paid production layer</p>
-            <h3 className="mt-2 text-xl font-bold text-slate-950">Need deploy-ready MCP config and launch safety templates?</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-700">Upgrade to unlock production packs for config rollouts, access boundaries, and team review workflows.</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-700">Pro lead magnet</p>
+            <h3 className="mt-2 text-xl font-bold text-slate-950">Export this as a compliance-ready permission audit</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-700">The free builder creates the policy draft. Pro turns it into an audit checklist with owners, reviewed scopes, approval evidence, launch risks, and next-review dates.</p>
+            <ul className="mt-4 grid gap-2 text-sm text-slate-700 sm:grid-cols-2">
+              <li>✓ Reviewed tool and credential scope table</li>
+              <li>✓ Approval-gate checklist for risky actions</li>
+              <li>✓ Prompt-injection and bypass test prompts</li>
+              <li>✓ Evidence format for security review handoff</li>
+            </ul>
           </div>
-          <div className="mt-5 flex flex-col gap-3 sm:mt-0 sm:min-w-64">
-            <BillingCheckout plan="pro" label="Unlock Pro templates" className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700" />
-            <Link href="/pricing/" className="inline-flex items-center justify-center rounded-xl border border-blue-200 bg-white px-5 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-100">Compare plans</Link>
+          <div className="mt-5 flex flex-col gap-3 sm:mt-0 sm:min-w-72">
+            <BillingCheckout plan="pro" label="Export Pro audit report" className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700" />
+            <Link href="/guides/agent-permission-builder/" className="inline-flex items-center justify-center rounded-xl border border-blue-200 bg-white px-5 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-100">See report structure</Link>
+            <Link href="/pricing/" className="text-center text-sm font-semibold text-blue-700 hover:text-blue-900">Compare Pro pricing →</Link>
           </div>
         </div>
       </div>
