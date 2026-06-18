@@ -19,6 +19,8 @@ export type ToolSlug =
   | "mcp-server-config-generator"
   | "mcp-env-template-generator"
   | "mcp-security-checklist-generator"
+  | "agent-permission-builder"
+  | "ai-search-visibility-checker"
   | "veo-prompt-generator"
   | "prompt-injection-checker";
 
@@ -31,7 +33,7 @@ export type ToolConfig = {
   canonical: string;
   h1: string;
   intro: string;
-  mode: "json-validator" | "base64" | "jwt" | "url" | "uuid" | "html" | "sql" | "markdown" | "ai-cost" | "openai-cost" | "claude-cost" | "gemini-cost" | "ai-saas-pricing" | "mcp-stack" | "mcp-config" | "mcp-env" | "mcp-security" | "json-formatter" | "veo" | "prompt-injection";
+  mode: "json-validator" | "base64" | "jwt" | "url" | "uuid" | "html" | "sql" | "markdown" | "ai-cost" | "openai-cost" | "claude-cost" | "gemini-cost" | "ai-saas-pricing" | "mcp-stack" | "mcp-config" | "mcp-env" | "mcp-security" | "agent-permission" | "ai-search-visibility" | "json-formatter" | "veo" | "prompt-injection";
   tags: string[];
   sample: string;
   faqs: { question: string; answer: string }[];
@@ -458,6 +460,48 @@ export const developerTools: ToolConfig[] = [
     { question: "What are high-risk MCP setups?", answer: "High-risk setups include production credentials, customer data, destructive write actions, browser automation on untrusted pages, and shared team deployments." },
   ],
 },
+  {
+    slug: "agent-permission-builder",
+    name: "Agent Permission Builder",
+    shortName: "Permission Builder",
+    title: "Agent Permission Builder — Generate Safe AI Agent Permission Policies",
+    description: "Free Agent Permission Builder for AI agents and MCP tools. Generate least-privilege permission policies, approval gates, and safety checklists before shipping agents.",
+    canonical: `${base}/tools/agent-permission-builder/`,
+    h1: "Agent Permission Builder",
+    intro: "Build a least-privilege permission policy for AI agents, MCP servers, browser tools, file access, shell commands, and external APIs. Runs locally in your browser.",
+    mode: "agent-permission",
+    tags: ["agent permissions", "mcp security", "least privilege", "ai agent safety", "tool access", "approval gates"],
+    sample: "Customer support agent that can read tickets, draft replies, search internal docs, and call a refund API for orders under $50.",
+    faqs: [
+      { question: "What is an agent permission policy?", answer: "An agent permission policy defines what tools, files, APIs, and data an AI agent can access, plus which actions require human approval." },
+      { question: "Does this tool connect to my infrastructure?", answer: "No. It generates a planning policy in the browser and does not call a backend or store your input." },
+      { question: "Why use least privilege for AI agents?", answer: "Least privilege reduces blast radius when prompts are wrong, tools are misconfigured, or a prompt injection tries to trigger unsafe actions." },
+      { question: "Can I use this for MCP servers?", answer: "Yes. The output includes MCP tool boundaries, approval gates, and audit checkpoints that fit Claude Desktop, Cursor, and custom agent stacks." },
+      { question: "Is the generated policy production-ready?", answer: "It is a strong draft for review. Production teams should map it to real IAM, network, logging, and human approval controls." },
+      { question: "What is the paid upgrade?", answer: "Pro unlocks production rollout packs and templates for MCP configuration, access boundaries, and launch safety workflows." },
+    ],
+  },
+  {
+    slug: "ai-search-visibility-checker",
+    name: "AI Search Visibility Checker",
+    shortName: "AI Visibility",
+    title: "AI Search Visibility Checker — Check LLM Answer Readiness",
+    description: "Free AI Search Visibility Checker. Score whether a page is easy for ChatGPT, Perplexity, Gemini, and AI answer engines to understand and cite.",
+    canonical: `${base}/tools/ai-search-visibility-checker/`,
+    h1: "AI Search Visibility Checker",
+    intro: "Paste a landing page, docs page, or directory listing to score answer-engine readiness: entity clarity, page structure, proof points, FAQs, and citation-friendly snippets.",
+    mode: "ai-search-visibility",
+    tags: ["AI search visibility", "answer engine optimization", "GEO", "LLM SEO", "AI citations", "content audit"],
+    sample: "BestMCPServers is a curated directory of MCP servers for Claude, Cursor, and AI agents. The page lists server categories, use cases, pricing notes, setup steps, and security guidance. It includes FAQs and links to related MCP tools.",
+    faqs: [
+      { question: "What is AI search visibility?", answer: "AI search visibility measures whether answer engines can understand your entity, extract useful facts, and cite your page for relevant questions." },
+      { question: "Does this checker call ChatGPT or Gemini?", answer: "No. This MVP uses local heuristics for page structure, entities, proof, FAQs, and snippet readiness. No content is uploaded." },
+      { question: "What score is good?", answer: "A score above 80 usually means the page has clear entity framing, enough supporting facts, question coverage, and citation-friendly structure." },
+      { question: "Can this replace SEO tools?", answer: "No. It complements SEO tools by focusing on answer-engine readability and structured facts rather than keyword volume alone." },
+      { question: "What should I improve first?", answer: "Start with a clear one-sentence entity definition, concrete use cases, proof points, FAQ coverage, and concise source-like statements." },
+      { question: "What is the paid upgrade?", answer: "Pro will unlock richer report exports, page matrices, and implementation templates for AI search optimization workflows." },
+    ],
+  },
   {
     slug: "veo-prompt-generator",
     name: "Veo Prompt Generator",

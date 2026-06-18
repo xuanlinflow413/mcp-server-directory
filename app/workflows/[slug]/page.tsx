@@ -66,7 +66,7 @@ export default function WorkflowPackPage({ params }: { params: { slug: string } 
               </p>
               <div className="mt-6 space-y-3">
                 <a href="#copy-ready-assets" className="block rounded-xl bg-blue-600 px-5 py-3 text-center text-sm font-semibold text-white hover:bg-blue-700">Start using this pack</a>
-                <BillingCheckout plan={pack.launchPriority <= 3 ? "builder" : "pro"} label={pack.launchPriority <= 3 ? "Buy Builder Pack" : "Unlock with Pro"} />
+                <BillingCheckout plan="pro" label="Unlock with Pro" />
                 <Link href="/pricing/" className="block rounded-xl border border-slate-200 px-5 py-3 text-center text-sm font-semibold hover:bg-slate-50">Compare plans</Link>
               </div>
             </aside>

@@ -55,9 +55,9 @@ export default function ProPage() {
               <li>✓ Top 3 72-hour launch packs included immediately</li>
               <li>✓ MCP security approval workflow</li>
               <li>✓ Production QA and launch verification workflow</li>
-              <li>✓ Credits-ready upgrade path for future generators</li>
+              <li>✓ Builder-style workflow packs included in Pro</li>
             </ul>
-            <div className="mt-8"><BillingCheckout plan="pro" label="Start Pro with Stripe" /></div>
+            <div className="mt-8"><BillingCheckout plan="pro" label="Start Pro" /></div>
           </div>
         </div>
       </section>

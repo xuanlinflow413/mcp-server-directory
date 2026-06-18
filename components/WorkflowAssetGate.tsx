@@ -45,7 +45,7 @@ function CopyBlock({ title, lines }: { title: string; lines: string[] }) {
   );
 }
 
-function LockedAssetPreview({ requiredPlan }: { requiredPlan: "builder" | "pro" }) {
+function LockedAssetPreview() {
   return (
     <div className="mt-8 grid gap-6 lg:grid-cols-2">
       <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
@@ -72,8 +72,8 @@ function LockedAssetPreview({ requiredPlan }: { requiredPlan: "builder" | "pro" 
         </div>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
           <BillingCheckout
-            plan={requiredPlan}
-            label={requiredPlan === "builder" ? "Unlock Builder Pack" : "Unlock with Pro"}
+            plan="pro"
+            label="Unlock with Pro"
             className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-400"
           />
           <Link href="/pricing/" className="inline-flex items-center justify-center rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-50">
@@ -89,7 +89,7 @@ function LockedAssetPreview({ requiredPlan }: { requiredPlan: "builder" | "pro" 
 }
 
 export default function WorkflowAssetGate({ slug, title, launchPriority }: Props) {
-  const requiredPlan = launchPriority <= 3 ? "builder" : "pro";
+  const requiredPlan = "pro";
   const [status, setStatus] = useState<"checking" | "locked" | "unlocked" | "error">("checking");
   const [copyReady, setCopyReady] = useState<CopyReadyWorkflow | null>(null);
   const [message, setMessage] = useState("");
@@ -165,7 +165,7 @@ export default function WorkflowAssetGate({ slug, title, launchPriority }: Props
         {status === "locked" || status === "error" ? (
           <>
             {message ? <p className="mt-5 text-sm text-slate-500">{message}</p> : null}
-            <LockedAssetPreview requiredPlan={requiredPlan} />
+            <LockedAssetPreview />
           </>
         ) : null}
       </div>

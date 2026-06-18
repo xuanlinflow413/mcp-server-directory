@@ -668,6 +668,154 @@ export const agentSecurityGuides: AgentSecurityGuide[] = [
       { question: "How does memory affect AI cost?", answer: "Memory can increase input tokens when injected into prompts. Selective retrieval, concise structured memory, expiration, and pruning reduce both cost and irrelevant context." },
       { question: "How do I test agent memory systems?", answer: "Test helpful memory, stale memory, conflicting current instructions, untrusted-source memory writes, deletion, correction, and scope isolation between users or projects." }
     ]
+  },
+  {
+    slug: "agent-permission-builder",
+    title: "Agent Permission Builder Guide — Least-Privilege Scopes & Approval Gates",
+    description: "Use the Agent Permission Builder to turn agent capabilities into least-privilege scopes, approval gates, risk notes, and Pro-ready audit reports.",
+    h1: "Agent Permission Builder Guide",
+    eyebrow: "Agent Permissions",
+    updated: "2026-06-18",
+    readingTime: "9 min read",
+    primaryKeyword: "agent permission builder",
+    intro: [
+      "Agent permissions define what an AI agent can read, write, send, spend, delete, remember, or deploy. A useful permission plan is not a generic checklist. It maps each business workflow to the exact tools, data scopes, approval gates, and rollback paths the agent needs.",
+      "The Agent Permission Builder at /tools/agent-permission-builder/ helps teams create that first plan. This guide explains how to turn the generated output into a practical review process for MCP tools, coding agents, internal support agents, and production automation.",
+      "Use this guide with the Agent Security Guide, the MCP Security Audit workflow, and the Pro implementation checklists when you need a repeatable permission review instead of a one-off prompt."
+    ],
+    keyTakeaways: [
+      "Start with workflow actions, not model names: read, write, send, spend, delete, deploy, and remember.",
+      "Split preview and commit steps so users can inspect risky actions before execution.",
+      "Use Pro audit reports to turn free permission plans into repeatable acceptance evidence."
+    ],
+    sections: [
+      {
+        heading: "Map the agent workflow before granting tools",
+        body: [
+          "A permission review starts by describing the job the agent performs. Repo onboarding, PR review, customer support, QA, and marketing research all need different scopes. A coding agent may need repository read access and test execution, but not billing access. A support agent may need ticket read access and draft replies, but not refund execution without approval.",
+          "Write the workflow as a sequence of actions, then classify each action by authority. Reads are usually lower risk than writes. Drafts are lower risk than sends. Local previews are lower risk than production changes. The permission plan should make those differences visible."
+        ],
+        bullets: [
+          "Read scope: files, issues, tickets, docs, analytics, or public URLs.",
+          "Write scope: drafts, tickets, pull requests, config files, or memory records.",
+          "External action scope: emails, webhooks, deployments, purchases, or account changes.",
+          "Sensitive scope: secrets, customer data, billing, production systems, or durable memory."
+        ]
+      },
+      {
+        heading: "Define approval gates by risk level",
+        body: [
+          "Approval gates should protect actions that create external, financial, destructive, or hard-to-reverse effects. If every action asks for approval, users stop reading. If no action asks for approval, the agent can create damage before monitoring catches it.",
+          "The practical pattern is to allow low-risk reads, require review for writes, and require stronger confirmation for destructive or production actions. The approval screen should show the destination, exact action, affected records, source evidence, expected cost, and rollback path."
+        ],
+        bullets: [
+          "Low risk: read public docs, inspect selected files, format text, or draft notes.",
+          "Medium risk: create drafts, open tickets, generate pull requests, or write temporary files.",
+          "High risk: send messages, change records, modify production config, or spend money.",
+          "Critical risk: delete data, rotate credentials, move funds, or grant new access."
+        ]
+      },
+      {
+        heading: "Turn builder output into a Pro audit report",
+        body: [
+          "The free builder output is a starting point. A Pro audit report should add evidence: which tools were reviewed, which scopes were narrowed, which approval gates exist, which checks passed, and which risks remain before launch.",
+          "For teams, the report is useful because it becomes an artifact that product, engineering, security, and operations can all read. It should not expose secrets or tokens. It should describe scope boundaries and verification steps in plain language."
+        ],
+        bullets: [
+          "List each tool, allowed action, denied action, and credential scope.",
+          "Record the owner, review date, and next review trigger.",
+          "Attach acceptance checks for prompt injection, wrong-tool use, and approval bypass attempts.",
+          "Keep secrets out of reports; reference secret storage only as [REDACTED]."
+        ]
+      }
+    ],
+    checklist: [
+      "Open the Agent Permission Builder and define the agent's job, tools, data, and actions.",
+      "Classify actions into read, write, external, destructive, financial, production, and memory categories.",
+      "Add approval gates for high-impact actions and preview/commit splits for writes.",
+      "Convert the free output into a Pro audit report with owners, evidence, and acceptance checks.",
+      "Re-run the review whenever tools, credentials, scopes, or production workflows change."
+    ],
+    faq: [
+      { question: "What is an agent permission builder?", answer: "An agent permission builder is a tool for turning an AI agent workflow into scoped permissions, risk levels, approval gates, and review notes." },
+      { question: "Is least privilege only a security concern?", answer: "No. Least privilege also improves reliability because narrower tools reduce wrong actions, unclear approvals, and unexpected workflow behavior." },
+      { question: "Should agents get write access by default?", answer: "No. Start with read-only or draft-only access, then add explicit write tools with preview and approval steps when the workflow requires them." },
+      { question: "What belongs in a Pro permission report?", answer: "A Pro report should include reviewed tools, allowed scopes, denied scopes, approval gates, risk notes, acceptance checks, owners, and review dates." }
+    ]
+  },
+  {
+    slug: "ai-search-visibility-checker",
+    title: "AI Search Visibility Checker Guide — Make Agent Content Discoverable",
+    description: "Use the AI Search Visibility Checker to review sitemap, robots, schema, headings, and content signals for AI search and crawler discovery.",
+    h1: "AI Search Visibility Checker Guide",
+    eyebrow: "AI Search Visibility",
+    updated: "2026-06-18",
+    readingTime: "8 min read",
+    primaryKeyword: "AI search visibility checker",
+    intro: [
+      "AI search visibility is the practical question of whether crawlers and answer engines can discover, parse, and trust your pages. For an agent or MCP site, that means pages need clear routes, indexable HTML, canonical URLs, sitemap entries, structured content, and useful body text.",
+      "The AI Search Visibility Checker at /tools/ai-search-visibility-checker/ gives builders a quick first pass. It does not replace Search Console or server logs, but it helps catch common launch issues before a page is promoted as SEO-ready.",
+      "Use this guide when publishing new MCP workflows, security guides, permission tools, or AI agent pages. The goal is not to game AI search. The goal is to make useful pages easy to crawl, quote, and evaluate."
+    ],
+    keyTakeaways: [
+      "AI search visibility starts with crawlable pages, sitemap inclusion, canonical URLs, and clear headings.",
+      "A 200 response is not enough; verify expected title, H1, body text, and sitemap entries.",
+      "Pro reports should separate technical visibility issues from content-quality improvements."
+    ],
+    sections: [
+      {
+        heading: "Check crawl basics first",
+        body: [
+          "Before optimizing content, confirm the page can actually be discovered. The route should return a real page, not a generic app shell. The canonical URL should match the production URL. The page should appear in sitemap.xml, and robots rules should not block the path.",
+          "For static Next.js pages, a build can succeed while sitemap coverage is incomplete if a data source is not connected to sitemap generation. That is why dynamic guide systems should derive both pages and sitemap entries from the same source of truth whenever possible."
+        ],
+        bullets: [
+          "HTTP status returns 200 after redirects finish.",
+          "Title, H1, canonical, and body copy match the intended page.",
+          "Sitemap contains the exact canonical URL with trailing slash style preserved.",
+          "Robots and meta robots allow indexing for public SEO pages."
+        ]
+      },
+      {
+        heading: "Review content signals for answer engines",
+        body: [
+          "Answer engines need clear language, not just keywords. A useful page explains who it is for, what problem it solves, how to use it, what limitations apply, and which related resources support the task. For agent tools, include concrete workflow terms such as permissions, approvals, audit reports, MCP servers, crawler checks, and acceptance steps.",
+          "Structured sections, FAQs, and internal links help both users and crawlers understand the page cluster. Avoid empty landing pages that promise a tool but provide no crawlable explanation of the use case."
+        ],
+        bullets: [
+          "Use one clear H1 and descriptive H2 sections.",
+          "Explain the user task before the CTA.",
+          "Link related tools, guides, workflows, and pricing pages.",
+          "Include FAQ answers that match real search questions."
+        ]
+      },
+      {
+        heading: "Convert checks into a Pro visibility report",
+        body: [
+          "The free checker can identify likely gaps. A Pro visibility report should prioritize fixes and record evidence: status code, sitemap result, canonical result, schema result, missing content sections, and recommended remediation.",
+          "Keep the report honest. Do not claim that a page is visible in every AI answer engine from a local check alone. Report what was verified and what still requires external indexing data."
+        ],
+        bullets: [
+          "Separate verified technical facts from content recommendations.",
+          "Record the checked URL, expected H1, sitemap result, and date.",
+          "Flag pages that return generic shells or lack body content.",
+          "Use Search Console, server logs, or crawler data when available."
+        ]
+      }
+    ],
+    checklist: [
+      "Run the AI Search Visibility Checker against the production URL.",
+      "Verify status, canonical, H1, title, body copy, robots, and sitemap inclusion.",
+      "Review schema, FAQ, internal links, and content clarity for answer-engine usefulness.",
+      "Prioritize fixes by crawl blocker, metadata gap, content gap, and conversion gap.",
+      "Recheck after deployment and keep evidence separate from assumptions."
+    ],
+    faq: [
+      { question: "What is AI search visibility?", answer: "AI search visibility is the ability of crawlers and answer engines to discover, parse, understand, and cite a page based on crawlability, structure, and content usefulness." },
+      { question: "Does a visibility checker guarantee AI search rankings?", answer: "No. It verifies technical and content signals that support discovery. Ranking and citation still depend on external crawling, authority, relevance, and answer-engine behavior." },
+      { question: "Why is sitemap inclusion important?", answer: "Sitemap inclusion helps crawlers discover important public pages, especially dynamic guide or tool pages that may not receive many external links yet." },
+      { question: "What should a Pro visibility report include?", answer: "It should include the checked URL, HTTP result, canonical result, sitemap result, robots status, schema notes, content gaps, and recommended fixes." }
+    ]
   }
 ];
 

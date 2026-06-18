@@ -5,7 +5,7 @@ import MyPurchasesClient from "@/components/MyPurchasesClient";
 import { workflowPacks } from "@/data/workflowPacks";
 
 const title = "My Purchases | BestMCPServers";
-const description = "View your unlocked BestMCPServers Builder Pack and Pro workflow packs.";
+const description = "View your unlocked BestMCPServers Pro workflow packs and legacy workflow access.";
 
 export const metadata: Metadata = {
   title,

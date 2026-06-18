@@ -47,13 +47,21 @@ export default function WorkflowsPage() {
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {workflowPacks.map((pack) => (
-            <TrackableLink key={pack.slug} href={`/workflows/${pack.slug}/`} className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-xl" eventProps={{ page: "/workflows/", cta: "workflow_pack_card", workflow: pack.slug }}>
+            <article key={pack.slug} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-xl">
               <div className="flex items-center justify-between"><span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700">#{pack.launchPriority} {pack.tool}</span><span className="text-xs text-slate-500">{pack.difficulty} build</span></div>
-              <h3 className="mt-5 text-xl font-bold text-slate-950 group-hover:text-blue-700">{pack.title}</h3>
+              <h3 className="mt-5 text-xl font-bold text-slate-950">{pack.title}</h3>
               <p className="mt-3 text-sm leading-6 text-slate-600">{pack.subtitle}</p>
               <p className="mt-5 text-sm font-semibold text-slate-900">Saves: {pack.savedTime}</p>
               <p className="mt-2 text-sm text-slate-500">{pack.whyPay}</p>
-            </TrackableLink>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <TrackableLink href={`/workflows/${pack.slug}/`} className="inline-flex items-center justify-center rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-950 hover:bg-slate-50" eventProps={{ page: "/workflows/", cta: "workflow_pack_details", workflow: pack.slug }}>
+                  View details
+                </TrackableLink>
+                <TrackableLink href="/pricing/" className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-blue-700" eventProps={{ page: "/workflows/", cta: "workflow_pack_buy", workflow: pack.slug, destination: "/pricing/" }}>
+                  Unlock with Pro
+                </TrackableLink>
+              </div>
+            </article>
           ))}
         </div>
       </section>

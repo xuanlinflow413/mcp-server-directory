@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Wrench, FileJson, ArrowRight, ShieldCheck, Binary, KeyRound, Link2, Hash, Video, PlugZap, Code2, Database, Eye, Calculator, FileText, DollarSign, Network, Settings } from "lucide-react";
-import { developerTools } from "@/data/developerTools";
+import { Wrench, FileJson, ArrowRight, ShieldCheck, Binary, KeyRound, Link2, Hash, Video, PlugZap, Code2, Database, Eye, Calculator, FileText, DollarSign, Network, Settings, LockKeyhole, SearchCheck } from "lucide-react";
+import { developerTools, type ToolSlug } from "@/data/developerTools";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bestmcpservers.com"),
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   },
 };
 
-const iconMap = {
+const iconMap: Record<ToolSlug, typeof FileJson> = {
   "json-formatter": FileJson,
   "json-validator": ShieldCheck,
   "base64-encoder-decoder": Binary,
@@ -78,6 +78,8 @@ const iconMap = {
   "mcp-server-config-generator": Network,
   "mcp-env-template-generator": KeyRound,
   "mcp-security-checklist-generator": ShieldCheck,
+  "agent-permission-builder": LockKeyhole,
+  "ai-search-visibility-checker": SearchCheck,
   "veo-prompt-generator": Video,
   "prompt-injection-checker": ShieldCheck,
 };

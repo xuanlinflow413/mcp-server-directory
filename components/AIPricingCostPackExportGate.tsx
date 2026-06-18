@@ -48,7 +48,7 @@ function LockedPreview({ message }: { message: string }) {
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">Paid pricing layer</p>
         <h3 className="mt-3 text-2xl font-bold text-slate-950">Unlock the AI SaaS Pricing & Cost Pack</h3>
         <p className="mt-4 text-sm leading-6 text-slate-700">
-          The free calculators estimate costs. Builder Pack and Pro unlock a launch-ready commercial layer for pricing, credits, margins, and rollout checks.
+          The free calculators estimate costs. Pro unlocks a launch-ready commercial layer for pricing, margins, and rollout checks.
         </p>
         <ul className="mt-5 space-y-2 text-sm text-slate-700">
           <li>• Pricing decision memo</li>
@@ -70,8 +70,8 @@ function LockedPreview({ message }: { message: string }) {
         </div>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <BillingCheckout
-            plan="builder"
-            label="Unlock Builder Pack"
+            plan="pro"
+            label="Unlock with Pro"
             className="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-slate-400"
           />
           <Link href="/pricing/" className="inline-flex items-center justify-center rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-50">
@@ -95,7 +95,7 @@ export default function AIPricingCostPackExportGate() {
     const token = window.localStorage.getItem(SESSION_KEY);
     if (!token) {
       setStatus("locked");
-      setMessage("Sign in and unlock Builder Pack or Pro to view the pricing and cost pack.");
+      setMessage("Sign in and upgrade to Pro to view the pricing and cost pack.");
       return;
     }
 
@@ -136,7 +136,7 @@ export default function AIPricingCostPackExportGate() {
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-700">Premium export</p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">Turn free AI cost estimates into a launch-ready pricing pack</h2>
           <p className="mt-4 text-slate-600">
-            Keep using the free calculators for estimates. Builder Pack and Pro unlock the commercial layer: pricing memo, credit-pack rules, margin worksheet, and launch checks.
+            Keep using the free calculators for estimates. Pro unlocks the commercial layer: pricing memo, margin worksheet, and launch checks.
           </p>
         </div>
 

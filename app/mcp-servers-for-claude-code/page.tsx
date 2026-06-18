@@ -66,7 +66,7 @@ export default function Page() {
             </Link>
             <Link href="/pricing/" className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-300 hover:bg-white hover:shadow-sm">
               <h3 className="font-bold text-slate-950 group-hover:text-blue-700">Pricing</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">Compare Builder Pack lifetime access and Pro workflow access.</p>
+              <p className="mt-2 text-sm leading-6 text-slate-600">Compare free directory access and Pro workflow access.</p>
             </Link>
           </div>
         </div>

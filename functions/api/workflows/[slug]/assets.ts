@@ -95,9 +95,7 @@ export async function onRequestGet(context: PagesFunctionContext) {
     if (!allowed) {
       return fail(
         "PAYMENT_REQUIRED",
-        requiredPlan === "builder"
-          ? "Buy the Builder Pack or upgrade to Pro to unlock this workflow."
-          : "Upgrade to Pro to unlock this workflow.",
+        "Upgrade to Pro to unlock this workflow.",
         402
       );
     }

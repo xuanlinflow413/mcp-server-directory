@@ -231,7 +231,7 @@ export default function MyPurchasesClient({ workflowPacks }: Props) {
         <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">Account required</p>
         <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">Sign in to see your unlocked packs</h2>
         <p className="mt-4 max-w-2xl text-slate-600">
-          Your purchases are attached to your BestMCPServers account. Sign in with Google, then this page will show Builder Pack or Pro access without showing credits or usage counts.
+          Your purchases are attached to your BestMCPServers account. Sign in with Google, then this page will show Pro access and any legacy workflow access without showing credits or usage counts.
         </p>
         {message ? <p className="mt-4 text-sm text-red-600">{message}</p> : null}
         <a href={loginUrl()} className="mt-6 inline-flex rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-700">Sign in with Google</a>
@@ -256,18 +256,18 @@ export default function MyPurchasesClient({ workflowPacks }: Props) {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">My purchases</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">{hasActivePro ? "Pro is active" : hasBuilderAccess ? "Builder Pack is unlocked" : "No paid packs unlocked yet"}</h2>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">{hasActivePro ? "Pro is active" : hasBuilderAccess ? "Legacy workflow access is active" : "No paid workflows unlocked yet"}</h2>
             <p className="mt-4 max-w-2xl text-slate-600">
               {hasActivePro
                 ? "You can open every copy-ready workflow pack, including future Pro workflow updates."
                 : hasBuilderAccess
                   ? "You can open the top 3 Builder workflow packs with copy-ready prompts, configs, and runbooks."
-                  : "Free access lets you browse workflow previews. Unlock Builder Pack or Pro to copy the execution assets."}
+                  : "Free access lets you browse workflow previews. Upgrade to Pro to copy the execution assets."}
             </p>
             {user?.email ? <p className="mt-3 text-sm text-slate-500">Signed in as {user.email}</p> : null}
           </div>
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-700 lg:min-w-72">
-            <p><span className="font-semibold text-slate-950">Access:</span> {hasActivePro ? "Pro" : hasBuilderAccess ? "Builder Pack" : "Free"}</p>
+            <p><span className="font-semibold text-slate-950">Access:</span> {hasActivePro ? "Pro" : hasBuilderAccess ? "Legacy workflow access" : "Free"}</p>
             <p className="mt-2"><span className="font-semibold text-slate-950">Unlocked packs:</span> {unlockedPacks.length} / {workflowPacks.length}</p>
             {hasActivePro && renewalDate ? <p className="mt-2"><span className="font-semibold text-slate-950">Current period ends:</span> {renewalDate}</p> : null}
           </div>

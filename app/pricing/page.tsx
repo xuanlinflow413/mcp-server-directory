@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import BillingCheckout from "@/components/BillingCheckout";
 import { topLaunchPacks, workflowPacks } from "@/data/workflowPacks";
 
-const title = "BestMCPServers Pricing | Free Directory, Builder Pack, and Pro";
-const description = "Choose the BestMCPServers plan that fits your workflow: use the free MCP directory, unlock the Builder Pack for $9.99 one-time, or get Pro for $19/month.";
+const title = "BestMCPServers Pricing | Free Directory and Pro";
+const description = "Choose the BestMCPServers plan that fits your workflow: use the free MCP directory or upgrade to Pro for $19/month to unlock workflow packs, implementation checklists, and ongoing updates.";
 
 export const metadata: Metadata = {
   title,
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 const faq = [
   {
     q: "What stays free, and what is paid?",
-    a: "The directory, guides, and free tools stay free. Builder Pack is a $9.99 one-time purchase for the top workflow packs. Pro is $19/month for the full workflow library, implementation checklists, and ongoing updates.",
+    a: "The directory, guides, and free tools stay free. Pro is $19/month for the full workflow library, implementation checklists, and ongoing updates.",
   },
   {
     q: "Do I need a new account?",
@@ -37,6 +37,10 @@ const faq = [
     q: "Which AI coding tools are covered?",
     a: "The first workflow packs cover Claude Code, Cursor, OpenAI Codex, Gemini CLI, and Hermes.",
   },
+  {
+    q: "What makes Pro different from the free security tools?",
+    a: "Free tools help you generate a permission plan or visibility check. Pro adds workflow packs, implementation checklists, audit report structure, and repeatable acceptance steps for teams shipping agent workflows.",
+  },
 ];
 
 const jsonLd = {
@@ -47,7 +51,6 @@ const jsonLd = {
   brand: { "@type": "Brand", name: "BestMCPServers" },
   offers: [
     { "@type": "Offer", name: "Free", price: "0", priceCurrency: "USD", availability: "https://schema.org/InStock" },
-    { "@type": "Offer", name: "Builder Pack", price: "9.99", priceCurrency: "USD", availability: "https://schema.org/InStock" },
     { "@type": "Offer", name: "Pro", price: "19", priceCurrency: "USD", availability: "https://schema.org/InStock" },
   ],
   mainEntity: faq.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })),
@@ -60,7 +63,7 @@ export default function PricingPage() {
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">Pricing</p>
-          <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-6xl">Free directory. Paid workflow packs when you need execution.</h1>
+          <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-6xl">Free directory. Pro workflows when you need execution.</h1>
           <p className="mt-6 text-lg leading-8 text-slate-300">Browse MCP servers for free. Upgrade only when you want copy-ready workflow packs, safety checklists, and implementation guidance for Claude Code, Cursor, Codex, Gemini CLI, and Hermes.</p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href="/workflows/" className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-100">View workflow packs</Link>
@@ -69,7 +72,7 @@ export default function PricingPage() {
           </div>
         </div>
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-3">
+        <div className="mt-16 grid gap-6 lg:grid-cols-2">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl">
             <div className="flex items-baseline justify-between gap-4">
               <h2 className="text-2xl font-bold">Free</h2>
@@ -89,21 +92,6 @@ export default function PricingPage() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl">
-            <div className="flex items-baseline justify-between gap-4">
-              <h2 className="text-2xl font-bold">Builder Pack</h2>
-              <p><span className="text-4xl font-bold">$9.99</span><span className="text-slate-400"> one-time</span></p>
-            </div>
-            <p className="mt-4 text-slate-300">For solo builders who want one focused path from MCP discovery to a working AI coding workflow.</p>
-            <ul className="mt-6 space-y-3 text-sm text-slate-200">
-              <li>✓ Top 3 workflow packs for Claude Code, Cursor, and Codex</li>
-              <li>✓ Copy-ready MCP stack recommendations</li>
-              <li>✓ Production safety checklist</li>
-              <li>✓ One-time purchase, no monthly subscription</li>
-            </ul>
-            <div className="mt-8"><BillingCheckout plan="builder" label="Unlock Builder Pack" /></div>
-          </div>
-
           <div className="rounded-3xl border border-blue-400/40 bg-blue-500/10 p-8 shadow-2xl ring-1 ring-blue-400/30">
             <div className="flex items-baseline justify-between gap-4">
               <div><p className="text-xs font-bold uppercase tracking-widest text-blue-200">Recommended</p><h2 className="mt-1 text-2xl font-bold">Pro</h2></div>
@@ -114,6 +102,7 @@ export default function PricingPage() {
               <li>✓ All 10 workflow packs across Claude Code, Cursor, Codex, Gemini CLI, and Hermes</li>
               <li>✓ Pro-only implementation checklists and acceptance steps</li>
               <li>✓ MCP security, QA, launch, and production setup workflows</li>
+              <li>✓ Agent permission reports and AI search visibility audit workflows</li>
               <li>✓ Updates as workflow packs improve</li>
             </ul>
             <div className="mt-8"><BillingCheckout plan="pro" label="Start Pro" className="inline-flex w-full items-center justify-center rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:bg-slate-500" /></div>
@@ -130,6 +119,27 @@ export default function PricingPage() {
                 <p className="mt-2 text-sm text-slate-400">{pack.savedTime}</p>
               </Link>
             ))}
+          </div>
+        </section>
+
+        <section className="mt-16 rounded-3xl border border-blue-400/30 bg-blue-500/10 p-8">
+          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.25em] text-blue-200">Pro audit value</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight">From free checker to client-ready report</h2>
+              <p className="mt-4 leading-7 text-slate-300">
+                The free Agent Permission Builder and AI Search Visibility Checker create the first pass. Pro turns those outputs into repeatable audit workflows: scope review, risk notes, acceptance checks, and launch-ready remediation steps.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-slate-950/60 p-6">
+              <h3 className="font-bold text-white">Included in Pro workflows</h3>
+              <ul className="mt-4 space-y-3 text-sm text-slate-300">
+                <li>✓ Team audit checklist for MCP and agent permissions</li>
+                <li>✓ Pro report outline for visibility and security findings</li>
+                <li>✓ Acceptance steps before production launch</li>
+                <li>✓ No unlimited usage or unimplemented team-seat claims</li>
+              </ul>
+            </div>
           </div>
         </section>
 

@@ -152,7 +152,7 @@ export async function onRequestGet(context: PagesFunctionContext) {
     }
 
     if (!hasBuilderAccess(session)) {
-      return fail("PAYMENT_REQUIRED", "Buy the Builder Pack or upgrade to Pro to unlock this implementation pack.", 402);
+      return fail("PAYMENT_REQUIRED", "Upgrade to Pro to unlock this implementation pack.", 402);
     }
 
     return json({

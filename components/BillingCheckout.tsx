@@ -34,9 +34,9 @@ type Props = {
   className?: string;
 };
 
-function loginUrl() {
-  if (typeof window === "undefined") return `${BILLING_API}/api/auth/google`;
-  return `${BILLING_API}/api/auth/google?returnUrl=${encodeURIComponent(window.location.href)}`;
+function loginUrl(returnUrl?: string) {
+  const destination = returnUrl || (typeof window !== "undefined" ? window.location.href : "https://bestmcpservers.com/pricing/");
+  return `${BILLING_API}/api/auth/google?returnUrl=${encodeURIComponent(destination)}`;
 }
 
 function normalize(value?: string) {
@@ -150,12 +150,12 @@ export default function BillingCheckout({ plan, label, className }: Props) {
   const hasAccess = plan === "pro" ? hasActivePro : hasBuilderAccess;
 
   const buttonLabel = useMemo(() => {
-    if (hasAccess) return plan === "pro" ? "Pro active — open workflows" : "Builder Pack unlocked — open packs";
+    if (hasAccess) return plan === "pro" ? "Pro active — open workflows" : "Access active — open workflows";
     if (status === "exchanging") return "Finishing login...";
     if (status === "checking") return "Checking access...";
     if (status === "loading") return "Preparing checkout...";
     if (status === "redirecting") return "Redirecting to Stripe...";
-    return label || (plan === "builder" ? "Start Builder Pack" : "Start Pro");
+    return label || (plan === "builder" ? "Start Pro" : "Start Pro");
   }, [hasAccess, label, plan, status]);
 
   async function startCheckout() {
@@ -221,14 +221,17 @@ export default function BillingCheckout({ plan, label, className }: Props) {
 
   return (
     <div>
-      <button
-        type="button"
-        onClick={startCheckout}
-        disabled={status === "exchanging" || status === "checking" || status === "loading" || status === "redirecting"}
-        className={className || "inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-400"}
+      <a
+        href={loginUrl()}
+        onClick={(event) => {
+          event.preventDefault();
+          void startCheckout();
+        }}
+        aria-disabled={status === "exchanging" || status === "checking" || status === "loading" || status === "redirecting"}
+        className={className || "inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 aria-disabled:cursor-not-allowed aria-disabled:bg-slate-400"}
       >
         {buttonLabel}
-      </button>
+      </a>
       {status === "error" && message ? (
         <p className="mt-2 text-xs text-red-600">{message}</p>
       ) : null}

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/#servers", label: "MCP Servers" },
+  { href: "/ai-coding-tools/", label: "AI Coding" },
   { href: "/workflows/", label: "Workflows" },
   { href: "/pricing/", label: "Pricing" },
   { href: "/pro/", label: "Pro" },
@@ -36,6 +37,7 @@ export default function Header() {
                 item.href === "/"
                   ? pathname === "/"
                   : pathname.startsWith(item.href.replace("/#servers", "")) ||
+                    (item.href === "/ai-coding-tools/" && pathname.startsWith("/ai-coding-tools/")) ||
                     (item.href === "/rsp/" && pathname.startsWith("/rsp/")) ||
                     (item.href === "/tools/" && pathname.startsWith("/tools/"));
               return (

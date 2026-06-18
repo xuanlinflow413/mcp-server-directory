@@ -70,8 +70,8 @@ function LockedPreview({ message }: { message: string }) {
         </div>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <BillingCheckout
-            plan="builder"
-            label="Unlock Builder Pack"
+            plan="pro"
+            label="Unlock with Pro"
             className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-400"
           />
           <Link href="/pricing/" className="inline-flex items-center justify-center rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-50">
@@ -95,7 +95,7 @@ export default function MCPStackBuilderExportGate() {
     const token = window.localStorage.getItem(SESSION_KEY);
     if (!token) {
       setStatus("locked");
-      setMessage("Sign in and unlock Builder Pack or Pro to view the implementation assets.");
+      setMessage("Sign in and upgrade to Pro to view the implementation assets.");
       return;
     }
 
@@ -136,7 +136,7 @@ export default function MCPStackBuilderExportGate() {
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">Premium export</p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">Turn your MCP stack into copy-ready implementation assets</h2>
           <p className="mt-4 text-slate-600">
-            Keep using the free planner. Builder Pack and Pro unlock the exact setup package: configs, environment template, permission matrix, and rollout checklist.
+            Keep using the free planner. Pro unlocks the exact setup package: configs, environment template, permission matrix, and rollout checklist.
           </p>
         </div>
 

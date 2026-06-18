@@ -25,6 +25,7 @@ const featuredPacks = featuredPackSlugs
 const subnav = [
   { href: "#workflow-packs", label: "Workflow Packs" },
   { href: "#how-it-works", label: "How it works" },
+  { href: "#security-permissions", label: "Security" },
   { href: "#pricing", label: "Pricing" },
   { href: "#free-builder-tools", label: "Free tools" },
   { href: "#servers", label: "MCP Directory" },
@@ -61,6 +62,17 @@ const freeBuilderGroups = [
       { href: "/agents/", label: "AI Agent Library" },
       { href: "/rsp/", label: "Prompt Library" },
       { href: "/guides/", label: "Guides" },
+    ],
+  },
+  {
+    title: "Secure and audit agents",
+    description: "Check permissions, AI search visibility, and MCP security before turning an agent workflow loose.",
+    links: [
+      { href: "/tools/agent-permission-builder/", label: "Agent Permission Builder" },
+      { href: "/tools/ai-search-visibility-checker/", label: "AI Search Visibility Checker" },
+      { href: "/guides/agent-permission-builder/", label: "Agent Permission Builder Guide" },
+      { href: "/guides/ai-search-visibility-checker/", label: "AI Search Visibility Checker Guide" },
+      { href: "/guides/agent-security-guide/", label: "Agent Security Guide" },
     ],
   },
 ];
@@ -228,6 +240,44 @@ export default function Home() {
                 <h3 className="mt-5 text-xl font-bold text-slate-950">{step.title}</h3>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{step.text}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="security-permissions" className="border-b border-slate-200 bg-white px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-3xl">
+            <p className="text-sm font-bold uppercase tracking-[0.25em] text-blue-700">Security & permissions</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Turn agent risk into a workflow checklist</h2>
+            <p className="mt-4 text-slate-600">
+              Use free security tools to define least-privilege scopes, review AI search visibility, and then upgrade to Pro when you need audit-ready implementation steps.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {[
+              {
+                href: "/tools/agent-permission-builder/",
+                label: "Agent Permission Builder",
+                text: "Generate a read/write/action permission plan with approval gates and risk levels.",
+              },
+              {
+                href: "/tools/ai-search-visibility-checker/",
+                label: "AI Search Visibility Checker",
+                text: "Check whether crawler, sitemap, schema, and page signals make your agent content discoverable.",
+              },
+              {
+                href: "/guides/agent-permission-builder/",
+                label: "Permission Builder Guide",
+                text: "Learn how to turn permissions into Pro audit reports and production-ready agent controls.",
+              },
+            ].map((item) => (
+              <Link key={item.href} href={item.href} className="group rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:bg-white hover:shadow-xl">
+                <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-700">Security workflow</span>
+                <h3 className="mt-5 text-xl font-bold text-slate-950 group-hover:text-blue-700">{item.label}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{item.text}</p>
+                <span className="mt-5 inline-flex text-sm font-bold text-blue-700">Open resource →</span>
+              </Link>
             ))}
           </div>
         </div>
