@@ -19,6 +19,24 @@ const faq = [
   { q: "Can I use these without changing my existing account system?", a: "Yes. The paid entry points reuse the existing Google OAuth, Stripe Billing, and session infrastructure." },
 ];
 
+const guideLinks = [
+  {
+    href: "/guides/ai-agent-workflow-best-practices/",
+    label: "AI Agent Workflow Best Practices",
+    text: "Workflow contracts, approval gates, acceptance evidence, and Pro-ready implementation packs.",
+  },
+  {
+    href: "/guides/ai-sovereignty-and-private-implementation/",
+    label: "AI Sovereignty Implementation",
+    text: "Private data boundaries, scoped tools, credential limits, audit evidence, and secure rollout stages.",
+  },
+  {
+    href: "/guides/ai-cad-tools-and-agent-integration/",
+    label: "AI CAD Agent Integration Watchlist",
+    text: "A free trend guide for CAD agent signals, tool access, and future workflow-pack validation.",
+  },
+];
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -78,6 +96,23 @@ export default function WorkflowsPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="max-w-3xl">
+          <p className="text-sm font-bold uppercase tracking-[0.25em] text-blue-700">Strategy guides</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">Free guides that feed the $19/mo Pro workflow layer</h2>
+          <p className="mt-4 text-slate-600">Use these guides to scope workflow, security, and trend opportunities before upgrading to Pro implementation and audit packs.</p>
+        </div>
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {guideLinks.map((guide) => (
+            <TrackableLink key={guide.href} href={guide.href} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-blue-300 hover:shadow-xl" eventProps={{ page: "/workflows/", cta: "strategy_guide", destination: guide.href }}>
+              <h3 className="text-xl font-bold text-slate-950">{guide.label}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{guide.text}</p>
+              <span className="mt-5 inline-flex text-sm font-bold text-blue-700">Read guide →</span>
+            </TrackableLink>
+          ))}
         </div>
       </section>
 

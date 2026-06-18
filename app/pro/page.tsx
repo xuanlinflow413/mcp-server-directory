@@ -48,8 +48,8 @@ export default function ProPage() {
           </div>
           <div className="rounded-3xl border border-white/10 bg-white p-8 text-slate-950 shadow-2xl">
             <p className="text-sm font-semibold text-blue-700">Best value</p>
-            <h2 className="mt-2 text-3xl font-bold">Pro · $19/month</h2>
-            <p className="mt-3 text-slate-600">Unlock all workflow packs and Pro-only implementation details.</p>
+            <h2 className="mt-2 text-3xl font-bold">Pro · $19/mo</h2>
+            <p className="mt-3 text-slate-600">Unlock all workflow packs, security audit steps, and Pro-only implementation details.</p>
             <ul className="mt-6 space-y-3 text-sm text-slate-700">
               <li>✓ 10 workflow packs for Claude Code, Cursor, Codex, Gemini CLI, and Hermes</li>
               <li>✓ Top 3 72-hour launch packs included immediately</li>

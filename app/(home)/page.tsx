@@ -121,7 +121,7 @@ const faqs = [
   },
   {
     q: "Which plans are available now?",
-    a: "Builder Pack is $9.99 lifetime for the first workflow packs. Pro is $19/month for the broader workflow library and Pro implementation checklists.",
+    a: "Builder Pack is $9.99 lifetime for the first workflow packs. Pro is $19/mo for the broader workflow library and Pro implementation checklists.",
   },
   {
     q: "Can I still browse MCP servers for free?",
@@ -272,14 +272,29 @@ export default function Home() {
                 text: "Compare coding CLIs, planning loops, website agents, and MCP workflow review tools.",
               },
               {
+                href: "/guides/ai-agent-workflow-best-practices/",
+                label: "AI Agent Workflow Best Practices",
+                text: "Define workflow contracts, acceptance evidence, approval gates, and Pro-ready implementation packs.",
+              },
+              {
                 href: "/tools/agent-permission-builder/",
                 label: "Agent Permission Builder",
                 text: "Generate a read/write/action permission plan with approval gates and risk levels.",
               },
               {
+                href: "/guides/ai-sovereignty-and-private-implementation/",
+                label: "AI Sovereignty Implementation",
+                text: "Map private data, model, tool, credential, and evidence boundaries before agent rollout.",
+              },
+              {
                 href: "/tools/ai-search-visibility-checker/",
                 label: "AI Search Visibility Checker",
                 text: "Check whether crawler, sitemap, schema, and page signals make your agent content discoverable.",
+              },
+              {
+                href: "/guides/ai-cad-tools-and-agent-integration/",
+                label: "AI CAD Agent Integration Watchlist",
+                text: "Track AI CAD as a free trend topic before promoting it into paid workflow packs.",
               },
               {
                 href: "/guides/mcp-server-security-checklist/",

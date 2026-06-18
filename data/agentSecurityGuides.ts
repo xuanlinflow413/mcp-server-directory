@@ -990,7 +990,230 @@ export const agentSecurityGuides: AgentSecurityGuide[] = [
       { question: "Is Deep Work Plan a product or a workflow?", answer: "In this guide it is treated conservatively as a planning workflow pattern unless a specific vendor page is being evaluated." },
       { question: "How should teams evaluate agent workflow tools?", answer: "Compare the workflow boundary, data access, write permissions, approval gates, monitoring, exportability, and acceptance evidence rather than relying on demos alone." }
     ]
-  }
+  },
+
+  {
+    slug: "ai-agent-workflow-best-practices",
+    title: "AI Agent Workflow Best Practices — From Free Tools to Pro Implementation Packs",
+    description: "A practical guide to designing AI agent workflows with planning, tool boundaries, approval gates, acceptance evidence, and Pro-ready implementation packs.",
+    h1: "AI Agent Workflow Best Practices",
+    eyebrow: "Agent Workflow",
+    updated: "2026-06-18",
+    readingTime: "10 min read",
+    primaryKeyword: "AI agent workflow best practices",
+    intro: [
+      "AI agent workflow best practices help teams move from a one-off prompt to a repeatable system: define the job, choose tools, set permissions, run the work, verify the result, and keep evidence. The workflow matters more than the model name because most failures happen at the boundary between vague goals and powerful tools.",
+      "BestMCPServers treats workflow as the main product layer. The public directory, guides, and free tools help users discover options. Pro workflow packs add the implementation depth: checklists, prompts, MCP stack notes, acceptance steps, and audit-ready handoff structure.",
+      "Use this guide when you are building coding-agent flows, security-review flows, site-launch flows, or internal automation where an agent can read, write, deploy, send, remember, or spend."
+    ],
+    keyTakeaways: [
+      "Start every agent workflow with the user job, expected artifact, tool boundary, and acceptance evidence.",
+      "Split discovery from execution: free tools scope the work, Pro packs turn the scope into repeatable implementation steps.",
+      "Treat permissions, security, visibility, and QA as part of the workflow rather than optional afterthoughts."
+    ],
+    sections: [
+      {
+        heading: "Start with the workflow contract",
+        body: [
+          "A workflow contract describes what the agent is allowed to do and what output proves the job is finished. For repo onboarding, the output might be a dependency map, risk list, and first test command. For PR review, it might be a diff summary, security notes, and requested changes. For launch operations, it might be a deployed URL, build log, sitemap check, and smoke-test report.",
+          "The contract should name the source inputs, tools, approval points, expected files, verification commands, and rollback path. If these are missing, the agent has to invent the operating model while it works. That is where broad tool use and weak evidence usually enter."
+        ],
+        bullets: [
+          "Define the job: repo onboarding, feature build, PR review, security audit, QA, or launch.",
+          "Define the artifact: report, patch, pull request, deployed page, checklist, or audit record.",
+          "Define the evidence: test output, build output, live URL, status code, screenshot, or checklist result.",
+          "Define the stop condition: done, blocked, needs review, or rollback."
+        ]
+      },
+      {
+        heading: "Use free tools as the front door",
+        body: [
+          "Free SEO pages and tools should help the user understand the problem before they pay. The Agent Permission Builder scopes authority. The AI Search Visibility Checker finds crawl and content gaps. MCP config generators and stack builders help users draft a first setup without checkout friction.",
+          "The Pro upgrade should not hide the basic answer. It should add depth: implementation sequencing, reusable prompts, acceptance tests, remediation steps, and a report format a team can use repeatedly."
+        ],
+        bullets: [
+          "Free layer: directory, guides, calculators, builders, checkers, and public examples.",
+          "Pro layer: workflow packs, audit templates, acceptance gates, launch checklists, and update cadence.",
+          "Best paid trigger: the user wants to repeat the workflow across projects or clients.",
+          "Avoid vague paywalls; show the exact workflow artifact Pro improves."
+        ]
+      },
+      {
+        heading: "Add safety and visibility before scaling",
+        body: [
+          "An agent workflow is not production-ready just because the agent completed one task. It needs safety checks for permissions, prompt injection, credential scope, monitoring, and rollback. It also needs visibility checks when the output is a public page or guide that should be discovered by search and answer engines.",
+          "This is why the workflow layer links security and SEO. Permission reviews reduce operational risk. Visibility checks make the public asset crawlable. Together they create evidence that the workflow can be reused instead of manually trusted."
+        ],
+        bullets: [
+          "Run permission review before enabling write, external, destructive, or production tools.",
+          "Run visibility checks before calling a public page SEO-ready.",
+          "Keep audit evidence separate from assumptions and marketing copy.",
+          "Upgrade to Pro when the team needs the same review pattern more than once."
+        ]
+      }
+    ],
+    checklist: [
+      "Write the workflow contract: job, inputs, tools, artifact, evidence, and stop condition.",
+      "Use free tools to scope permissions, stack choices, visibility, and cost before implementation.",
+      "Add approval gates for high-impact actions and acceptance checks for every output.",
+      "Convert repeated workflows into Pro packs with prompts, checklists, and audit-ready report structure.",
+      "Re-run build, SEO, security, and smoke checks whenever the workflow changes."
+    ],
+    faq: [
+      { question: "What is an AI agent workflow?", answer: "An AI agent workflow is a repeatable process that defines the task, tools, permissions, execution steps, verification evidence, and review gates for an agent-powered job." },
+      { question: "Why not just use a better prompt?", answer: "Prompts help, but production workflows also need scoped tools, approvals, tests, monitoring, and evidence. The workflow is what makes the output reusable." },
+      { question: "What should stay free?", answer: "Discovery pages, guides, calculators, builders, and first-pass checkers should stay free so users can understand the problem before paying." },
+      { question: "What belongs in Pro?", answer: "Pro should include workflow packs, implementation checklists, acceptance steps, audit report formats, and updates that help users repeat the workflow across projects." }
+    ]
+  },
+  {
+    slug: "ai-sovereignty-and-private-implementation",
+    title: "AI Sovereignty and Private Implementation — Secure Agent Workflows",
+    description: "A practical guide to AI sovereignty for teams that need private agent workflows, scoped tools, data boundaries, audit evidence, and secure implementation paths.",
+    h1: "AI Sovereignty and Private Implementation",
+    eyebrow: "AI Sovereignty",
+    updated: "2026-06-18",
+    readingTime: "9 min read",
+    primaryKeyword: "AI sovereignty implementation",
+    intro: [
+      "AI sovereignty is the ability to control where an AI workflow runs, what data it can access, which tools it can call, and how evidence is retained. For agent teams, sovereignty is not only a policy phrase. It becomes an implementation question: model routing, data residency, secrets handling, MCP server scope, audit logs, and approval gates.",
+      "BestMCPServers frames AI sovereignty as the security branch of agent workflow design. Public guides explain the threat model. Free tools help teams draft permissions and check visibility. Pro workflow packs turn those decisions into implementation checklists and audit-ready reports.",
+      "Use this guide when a workflow touches private repositories, customer data, internal documents, production systems, regulated data, or organization-specific deployment constraints."
+    ],
+    keyTakeaways: [
+      "AI sovereignty is implemented through data boundaries, tool boundaries, credential scope, model routing, and evidence retention.",
+      "Private implementation should start read-only, then add writes, sends, deployments, and memory with explicit approvals.",
+      "Security audit value comes from verified controls, not from claims that a workflow is private by default."
+    ],
+    sections: [
+      {
+        heading: "Define the sovereignty boundary",
+        body: [
+          "The first question is what must remain under your control. It may be source code, customer records, prompts, embeddings, analytics, billing data, or deployment access. Each asset needs a boundary: where it can be processed, who can access it, how long it can be retained, and which tools can touch it.",
+          "For MCP and agent workflows, the boundary should be visible in the tool configuration. A file tool should have path limits. A database tool should have table and query limits. A browser tool should not inherit unrelated private sessions. A memory tool should not store secrets or unsupported policy changes."
+        ],
+        bullets: [
+          "Data boundary: which records, files, documents, and logs are allowed.",
+          "Tool boundary: which MCP servers and actions are enabled.",
+          "Model boundary: which providers, regions, and retention settings are acceptable.",
+          "Evidence boundary: which logs and reports can be retained without exposing secrets."
+        ]
+      },
+      {
+        heading: "Implement private workflows in stages",
+        body: [
+          "Private implementation should not begin with broad automation. Start with read-only review, then draft-only outputs, then approved writes, then production actions if the workflow proves reliable. This staging keeps the agent useful while limiting the blast radius of mistakes and prompt injection.",
+          "A Pro-ready private workflow should include a launch record: reviewed tools, allowed scopes, denied scopes, owner, approval rules, test cases, rollback steps, and known gaps. That record is more useful than a generic statement that the system is secure."
+        ],
+        bullets: [
+          "Stage 1: read-only discovery and local report generation.",
+          "Stage 2: draft outputs, pull requests, tickets, or implementation plans.",
+          "Stage 3: approved writes with preview and rollback.",
+          "Stage 4: production actions only after monitoring and acceptance tests pass."
+        ]
+      },
+      {
+        heading: "Connect sovereignty to commercial workflow packs",
+        body: [
+          "AI sovereignty is a strong conversion topic because the user often needs more than information. They need an implementation path that product, engineering, and security can agree on. Free pages can educate, but the paid asset should package the review into a repeatable workflow.",
+          "For BestMCPServers, that means linking sovereignty pages to the Agent Permission Builder, MCP Server Security Checklist, and Pro workflow packs rather than selling AI CAD or broad private AI claims as the main paid product."
+        ],
+        bullets: [
+          "Free: explain sovereignty boundaries and provide first-pass permission tools.",
+          "Pro: provide private implementation checklists, audit report templates, and acceptance gates.",
+          "Avoid: claiming compliance, privacy, or residency guarantees without verified infrastructure evidence.",
+          "Best CTA: turn this permission plan into a Pro implementation audit."
+        ]
+      }
+    ],
+    checklist: [
+      "List the private assets the agent workflow can read, write, store, send, or deploy.",
+      "Choose model, tool, data, and evidence boundaries before granting credentials.",
+      "Start with read-only and draft-only workflows before enabling approved writes.",
+      "Use the Agent Permission Builder and MCP security checklist to record controls.",
+      "Package repeated private implementation reviews into Pro audit workflows."
+    ],
+    faq: [
+      { question: "What is AI sovereignty?", answer: "AI sovereignty is control over the data, tools, models, infrastructure, and evidence used by AI workflows, especially when private or regulated assets are involved." },
+      { question: "Is AI sovereignty only about local models?", answer: "No. Local models can help, but sovereignty also depends on data access, tool scope, credential handling, logging, retention, approvals, and operational controls." },
+      { question: "How should teams start?", answer: "Start by mapping assets and actions, then launch read-only workflows before adding writes, sends, deployments, or durable memory." },
+      { question: "What should Pro include for sovereignty?", answer: "Pro should include private workflow checklists, scope review templates, approval gates, acceptance tests, and audit-ready evidence structure." }
+    ]
+  },
+  {
+    slug: "ai-cad-tools-and-agent-integration",
+    title: "AI CAD Tools and Agent Integration — Watchlist, Workflows & MCP Signals",
+    description: "A practical AI CAD guide for tracking CAD agent trends, tool-access patterns, MCP-style integrations, and why AI CAD stays an experimental topic rather than the core paid offer.",
+    h1: "AI CAD Tools and Agent Integration",
+    eyebrow: "AI CAD Watchlist",
+    updated: "2026-06-18",
+    readingTime: "8 min read",
+    primaryKeyword: "AI CAD tools",
+    intro: [
+      "AI CAD tools are emerging around design assistance, geometry generation, drawing automation, manufacturing review, and engineering copilots. For BestMCPServers, AI CAD is useful as an observation topic because it shows how specialized tools may become agent-accessible workflows over time.",
+      "It should not be the core paid offer yet. The demand, integration patterns, and buyer urgency still need observation. The safer content strategy is to publish a free trend guide, connect it to agent workflow and permission concepts, and watch whether users ask for deeper implementation assets.",
+      "Use this guide to understand where AI CAD overlaps with MCP-style tool access, what to track, and how to avoid over-positioning a topic before there is enough conversion evidence."
+    ],
+    keyTakeaways: [
+      "AI CAD is a trend and watchlist topic, not the primary paid workflow offer for BestMCPServers right now.",
+      "The useful overlap is tool access: files, design systems, geometry APIs, browser review, documentation, and approval workflows.",
+      "Measure search, clicks, and user requests before turning AI CAD into a Pro pack."
+    ],
+    sections: [
+      {
+        heading: "Why AI CAD belongs in the trend layer",
+        body: [
+          "AI CAD has real long-term potential, but many visitors searching for it may want product comparisons, design examples, or manufacturing features rather than MCP workflow implementation. That makes it risky as a core paid pillar before demand is validated.",
+          "A trend-layer page can still be useful. It captures search intent, explains the agent angle, and gives BestMCPServers a way to observe whether CAD builders want tool integration, permission design, or workflow packs."
+        ],
+        bullets: [
+          "Good fit now: free guide, trend watchlist, internal links, and search visibility tests.",
+          "Not a good fit yet: primary homepage pillar, paid Pro promise, or broad CAD automation claims.",
+          "Validation signal: repeated clicks from CAD queries into workflow, security, or permission pages.",
+          "Next step if demand persists: draft a specific CAD agent workflow pack."
+        ]
+      },
+      {
+        heading: "Where AI CAD overlaps with agent workflows",
+        body: [
+          "CAD agents need controlled access to files, project context, geometry operations, review comments, and documentation. Those are the same categories that make agent workflows risky in coding or operations: read scope, write scope, external actions, approval gates, and audit evidence.",
+          "If CAD tools expose APIs or MCP-style interfaces, the workflow should treat them like any other high-impact tool. Draft and preview operations are safer than direct design changes. File export, manufacturing handoff, and production release actions should require review."
+        ],
+        bullets: [
+          "Read scope: CAD files, specs, parts libraries, and design comments.",
+          "Write scope: proposed edits, generated drawings, annotations, and exported files.",
+          "Approval scope: manufacturing handoff, cost-impacting changes, or client deliverables.",
+          "Audit scope: who approved changes, which files changed, and what evidence was checked."
+        ]
+      },
+      {
+        heading: "How to measure whether AI CAD deserves more investment",
+        body: [
+          "Treat AI CAD as an experiment with clear signals. Watch impressions, clicks, engagement, outbound searches, internal-link paths, and whether visitors move from CAD content to permission, security, or workflow pages. If the topic only attracts passive readers, keep it free. If it attracts implementation requests, build a narrow workflow pack.",
+          "Do not claim complete AI CAD automation without verified product support. The page should say what is being observed, what is known, and what would need validation before a paid implementation asset exists."
+        ],
+        bullets: [
+          "Track: AI CAD guide visits, CTA clicks, search queries, and internal-link paths.",
+          "Qualify: whether users want product research, integration help, or paid implementation.",
+          "Decide: keep as free topic, expand guide, or create a narrow workflow pack.",
+          "Avoid: selling an AI CAD Pro promise before workflow evidence exists."
+        ]
+      }
+    ],
+    checklist: [
+      "Publish AI CAD as a free trend guide rather than a main paid pillar.",
+      "Link it to agent workflow, permission, security, and visibility resources.",
+      "Track whether visitors move from AI CAD content into implementation-focused pages.",
+      "Only create a Pro CAD workflow if repeated implementation demand appears.",
+      "Keep claims conservative and separate observed trends from verified product capabilities."
+    ],
+    faq: [
+      { question: "Is AI CAD part of BestMCPServers Pro?", answer: "Not as a core paid offer right now. AI CAD is treated as a free observation topic until there is stronger evidence of implementation demand." },
+      { question: "Why include AI CAD at all?", answer: "It is a useful trend to watch because CAD tools may expose agent-accessible workflows, APIs, file operations, and approval needs similar to MCP-enabled tools." },
+      { question: "What would make AI CAD worth a Pro workflow pack?", answer: "Repeated requests for CAD agent setup, tool integration, permission design, audit evidence, or implementation steps would justify a narrow Pro pack." },
+      { question: "What should teams be careful about?", answer: "Do not give CAD agents broad write or export authority without review, especially when changes affect manufacturing, client deliverables, cost, or safety." }
+    ]
+  },
 ];
 
 export const agentSecurityGuideLinks = agentSecurityGuides.map((guide) => ({
