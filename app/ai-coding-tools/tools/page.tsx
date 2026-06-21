@@ -35,6 +35,11 @@ export default function AiCodingToolsListPage() {
               <h2 className="mt-5 text-2xl font-bold text-slate-950 group-hover:text-blue-700">{tool.name}</h2>
               <p className="mt-2 font-medium text-slate-600">{tool.tagline}</p>
               <p className="mt-4 text-sm leading-6 text-slate-600">{tool.description}</p>
+              <div className="mt-5 grid gap-2 text-xs text-slate-600">
+                <p><span className="font-semibold text-slate-900">IDE:</span> {tool.ideSupport}</p>
+                <p><span className="font-semibold text-slate-900">Agent mode:</span> {tool.agentMode}</p>
+                <p><span className="font-semibold text-slate-900">MCP fit:</span> {tool.mcpSupport}</p>
+              </div>
               <div className="mt-5 flex flex-wrap gap-2">
                 {tool.workflowFit.slice(0, 3).map((fit) => (
                   <span key={fit} className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600">{fit}</span>

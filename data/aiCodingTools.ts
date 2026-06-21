@@ -11,6 +11,12 @@ export type AiCodingTool = {
   strengths: string[];
   limitations: string[];
   workflowFit: string[];
+  ideSupport: string;
+  modelSupport: string;
+  repoContext: string;
+  agentMode: string;
+  privacy: string;
+  mcpSupport: string;
   mcpAngle: string;
 };
 
@@ -37,6 +43,12 @@ export const aiCodingTools: AiCodingTool[] = [
     strengths: ["Native AI workflow", "Strong repo context", "Fast multi-file iteration", "Familiar VS Code base"],
     limitations: ["Requires editor switch", "Enterprise privacy review may be needed", "Extension compatibility can vary"],
     workflowFit: ["Feature implementation", "Refactoring", "Repo Q&A", "Frontend iteration"],
+    ideSupport: "Cursor editor, based on VS Code",
+    modelSupport: "Built-in premium models plus configurable model options depending on plan",
+    repoContext: "Strong indexed codebase context with chat, composer, and multi-file awareness",
+    agentMode: "Built-in agent mode for planning and editing across files",
+    privacy: "Business controls available; teams should review code indexing and data settings",
+    mcpSupport: "Supports MCP-style context workflows and pairs naturally with filesystem, GitHub, docs, browser, and database servers",
     mcpAngle: "Pairs well with filesystem, GitHub, browser, database, and docs MCP servers when teams want richer project context inside an AI editor.",
   },
   {
@@ -53,6 +65,12 @@ export const aiCodingTools: AiCodingTool[] = [
     strengths: ["Strong codebase reasoning", "Natural terminal workflow", "Good for multi-step tasks", "Evidence-first reporting"],
     limitations: ["Requires command-line comfort", "Can be slower than IDE autocomplete", "Needs clear repo guardrails"],
     workflowFit: ["Repo onboarding", "Bug fixing", "Test-backed implementation", "Code review prep"],
+    ideSupport: "Terminal-first; works alongside any editor",
+    modelSupport: "Claude model access through Anthropic plans or API-backed setups",
+    repoContext: "Reads and edits local repositories through the command line with explicit tool output",
+    agentMode: "Strong multi-step terminal agent for inspect-edit-run-report loops",
+    privacy: "Depends on account, plan, and command permissions; use repo guardrails for sensitive projects",
+    mcpSupport: "Can benefit from MCP servers for GitHub, browser QA, docs, databases, and deployment evidence",
     mcpAngle: "MCP servers can expose project docs, issue trackers, browser QA, databases, and deployment tools to make terminal agents safer and more useful.",
   },
   {
@@ -69,6 +87,12 @@ export const aiCodingTools: AiCodingTool[] = [
     strengths: ["Works in existing IDEs", "GitHub ecosystem integration", "Broad language support", "Enterprise controls"],
     limitations: ["Less AI-native than Cursor", "Suggestions can be generic", "Advanced agentic work depends on setup"],
     workflowFit: ["Autocomplete", "PR assistance", "Everyday coding", "Team rollout"],
+    ideSupport: "VS Code, Visual Studio, JetBrains, Neovim, and GitHub surfaces",
+    modelSupport: "GitHub-managed model access with plan-dependent features",
+    repoContext: "Strong GitHub context and IDE context; deeper repo automation depends on product surface",
+    agentMode: "Agentic assistance is improving across chat, workspace, and PR workflows",
+    privacy: "Business and Enterprise controls make it easier for larger teams to approve",
+    mcpSupport: "Best paired with GitHub, docs, and workflow MCP servers around team processes",
     mcpAngle: "Copilot becomes more useful when paired with repeatable MCP-backed workflows for GitHub, docs, and repository operations.",
   },
   {
@@ -85,6 +109,12 @@ export const aiCodingTools: AiCodingTool[] = [
     strengths: ["Strong autonomous workflow", "Competitive pricing", "Good for refactors", "Integrated agent experience"],
     limitations: ["Newer ecosystem", "Agent mistakes still need review", "Less mature enterprise footprint"],
     workflowFit: ["Autonomous implementation", "Refactoring", "Repo exploration", "Prototype shipping"],
+    ideSupport: "Windsurf IDE",
+    modelSupport: "Codeium-managed models and plan-dependent premium model access",
+    repoContext: "Good project context inside the IDE with Cascade-driven task state",
+    agentMode: "Cascade supports multi-step autonomous coding inside the editor",
+    privacy: "Team controls available; review indexing and workspace policies before rollout",
+    mcpSupport: "Useful with MCP-backed browser, GitHub, filesystem, and deployment checks",
     mcpAngle: "MCP can add controlled access to files, issue context, browser checks, and deployment evidence around Windsurf-style autonomous changes.",
   },
   {
@@ -101,7 +131,101 @@ export const aiCodingTools: AiCodingTool[] = [
     strengths: ["Good task delegation model", "Useful for PR review", "Strong with clear specs", "Fits async engineering workflows"],
     limitations: ["Needs tight task boundaries", "Product access and pricing can change", "Requires verification discipline"],
     workflowFit: ["PR review", "Scoped feature work", "Test fixing", "Async delegation"],
+    ideSupport: "CLI and cloud/PR-oriented workflows rather than one fixed IDE",
+    modelSupport: "OpenAI model access depending on product and API setup",
+    repoContext: "Designed for scoped repository tasks, reviews, and evidence-backed changes",
+    agentMode: "Agentic delegation for implementation, tests, and review loops",
+    privacy: "Depends on OpenAI account, workspace policy, and repository access model",
+    mcpSupport: "Pairs with MCP context for repo, issue, docs, browser QA, and release workflows",
     mcpAngle: "BestMCPServers can help teams choose MCP servers that feed Codex-style agents with repo, issue, documentation, and QA context.",
+  },
+  {
+    slug: "devin",
+    name: "Devin",
+    tagline: "Autonomous software engineering agent for delegated tasks",
+    description:
+      "Devin is an autonomous AI software engineer designed to take larger engineering tasks, work through repos, use tools, and return completed implementation attempts.",
+    bestFor: "Teams experimenting with higher-autonomy delegation for scoped engineering tickets and internal tooling tasks.",
+    pricing: "Paid product; pricing and access depend on the current Cognition offering",
+    rating: 4.4,
+    website: "https://www.cognition.ai/devin",
+    categories: ["Autonomous Agent", "Cloud Workspace", "Engineering Tasks"],
+    strengths: ["High-autonomy task execution", "Useful for delegated tickets", "Can work through multi-step implementation", "Good fit for async engineering experiments"],
+    limitations: ["Needs careful task boundaries", "Review burden remains high", "Pricing and access may not fit every small team"],
+    workflowFit: ["Delegated tickets", "Internal tools", "Repo tasks", "Async implementation"],
+    ideSupport: "Cloud agent workspace rather than a daily IDE replacement",
+    modelSupport: "Managed by Devin/Cognition; model details may change by product release",
+    repoContext: "Works from connected repositories and task context inside an agent workspace",
+    agentMode: "High-autonomy software engineering agent with planning and execution loops",
+    privacy: "Requires repository and workspace access review before production use",
+    mcpSupport: "Use MCP thinking around least-privilege repo, issue, browser, and deployment access when designing workflows",
+    mcpAngle: "Devin-style delegation benefits from the same MCP governance questions: what repo, browser, issue tracker, secret, and deploy access should an agent really have?",
+  },
+  {
+    slug: "replit-agent",
+    name: "Replit Agent",
+    tagline: "Prompt-to-app coding agent inside Replit",
+    description:
+      "Replit Agent helps builders create, modify, and deploy applications inside Replit from natural-language prompts and iterative app-building flows.",
+    bestFor: "Solo builders, students, and product teams who want a hosted browser IDE with fast app prototyping and deployment in one place.",
+    pricing: "Available through Replit plans and usage-based features depending on current packaging",
+    rating: 4.3,
+    website: "https://replit.com/agent",
+    categories: ["Hosted IDE", "App Builder", "Deployment"],
+    strengths: ["Fast prompt-to-app workflow", "Integrated hosting", "Low local setup", "Good for prototypes and demos"],
+    limitations: ["Less suited to complex existing repos", "Hosted environment constraints", "Serious production apps still need review"],
+    workflowFit: ["Prototype shipping", "Internal demos", "Learning projects", "Small web apps"],
+    ideSupport: "Replit browser IDE and hosted workspace",
+    modelSupport: "Replit-managed AI capabilities with plan-dependent access",
+    repoContext: "Strong inside Replit workspaces; external monorepos may need import and adaptation",
+    agentMode: "Prompt-to-app agent that can create files, modify code, and help deploy",
+    privacy: "Hosted workspace model; review team and project visibility settings",
+    mcpSupport: "Most useful when connected workflows define external APIs, docs, GitHub, and deployment boundaries",
+    mcpAngle: "Replit Agent is strongest when MCP-style checklists define which external services, secrets, and deployment steps the generated app should touch.",
+  },
+  {
+    slug: "factory",
+    name: "Factory",
+    tagline: "Agentic development platform for engineering workflows",
+    description:
+      "Factory focuses on AI agents for software development workflows, helping engineering teams automate coding tasks, reviews, and delivery operations.",
+    bestFor: "Engineering organizations evaluating agentic development platforms rather than single-user IDE assistants.",
+    pricing: "Commercial product; pricing depends on access and team requirements",
+    rating: 4.2,
+    website: "https://factory.ai",
+    categories: ["Agent Platform", "Engineering Automation", "Team Workflow"],
+    strengths: ["Team-oriented agent workflows", "Good fit for process automation", "Designed beyond autocomplete", "Useful for agent governance conversations"],
+    limitations: ["Less plug-and-play for solo users", "Requires platform evaluation", "Public feature set can evolve quickly"],
+    workflowFit: ["Engineering automation", "Review workflows", "Team agents", "Delivery process design"],
+    ideSupport: "Platform-oriented workflow; integration surface depends on setup",
+    modelSupport: "Managed platform model choices may vary by customer and product release",
+    repoContext: "Designed around connected engineering systems and workflow context",
+    agentMode: "Agentic workflows for coding, review, and delivery operations",
+    privacy: "Needs organization-level security, repository, and workflow access review",
+    mcpSupport: "Maps well to MCP governance for internal tools, repo systems, and delivery pipelines",
+    mcpAngle: "Factory is relevant to teams asking how MCP servers, internal tools, and coding agents should be governed as one engineering platform.",
+  },
+  {
+    slug: "cline",
+    name: "Cline",
+    tagline: "Open-source VS Code coding agent with tool use",
+    description:
+      "Cline is an open-source coding agent for VS Code that can inspect projects, edit files, run terminal commands, use browser automation, and work with multiple model providers.",
+    bestFor: "Developers who want an open-source agentic coding workflow inside VS Code with explicit approval over tool actions.",
+    pricing: "Open source; model/API costs depend on provider",
+    rating: 4.4,
+    website: "https://cline.bot",
+    categories: ["Open Source", "VS Code", "Tool Use"],
+    strengths: ["Open-source transparency", "VS Code-native workflow", "Explicit tool approval", "Provider flexibility"],
+    limitations: ["Requires configuration", "Costs depend on chosen model", "Long-running tasks need review discipline"],
+    workflowFit: ["VS Code agent work", "Tool-assisted debugging", "Local repo edits", "Model experimentation"],
+    ideSupport: "VS Code extension",
+    modelSupport: "Multiple providers depending on user configuration",
+    repoContext: "Works inside the local VS Code workspace with file and terminal context",
+    agentMode: "Agentic tool use with file edits, terminal commands, and browser actions",
+    privacy: "Open-source client, but data handling depends on selected model provider",
+    mcpSupport: "Strong fit for MCP because tool use, permissions, and external context are central to the workflow",
+    mcpAngle: "Cline users should think in MCP terms: least-privilege tools, explicit approvals, repo context, browser checks, and reproducible verification.",
   },
   {
     slug: "aider",
@@ -117,6 +241,12 @@ export const aiCodingTools: AiCodingTool[] = [
     strengths: ["Open-source control", "Git-aware workflow", "Provider flexibility", "Lightweight setup"],
     limitations: ["Less polished than commercial IDEs", "Requires CLI comfort", "Quality depends on chosen model"],
     workflowFit: ["Small repo edits", "Script changes", "CLI-first development", "Provider experimentation"],
+    ideSupport: "Terminal-first; works with any editor",
+    modelSupport: "Multiple providers and local/remote model options depending on setup",
+    repoContext: "Git-aware local repository edits with explicit diffs",
+    agentMode: "Pair-programming loop with file edits rather than full autonomous workspace by default",
+    privacy: "Depends on selected provider; local workflow gives more control over files and diffs",
+    mcpSupport: "Can be combined with MCP-style scripts and tools around docs, GitHub, tests, and release steps",
     mcpAngle: "MCP-style context and tool routing can complement Aider by standardizing the external resources and checks around terminal coding.",
   },
   {
@@ -133,6 +263,12 @@ export const aiCodingTools: AiCodingTool[] = [
     strengths: ["Model flexibility", "Custom context providers", "Works in existing IDEs", "Good for internal platforms"],
     limitations: ["Requires configuration", "Less plug-and-play", "Team governance is self-managed"],
     workflowFit: ["Private code assistance", "Internal AI platform", "Custom model rollout", "IDE chat"],
+    ideSupport: "VS Code and JetBrains extensions",
+    modelSupport: "Bring-your-own model/provider and custom assistant configurations",
+    repoContext: "Configurable context providers for code, docs, and internal sources",
+    agentMode: "Assistant workflow is highly configurable; deeper agentic behavior depends on setup",
+    privacy: "Good fit for teams that want to control providers, context, and internal policy",
+    mcpSupport: "Natural fit for MCP because configurable context and tool access are core design concerns",
     mcpAngle: "Continue aligns naturally with MCP because both emphasize configurable context and tool access for developer workflows.",
   },
 ];
@@ -159,6 +295,27 @@ export const aiCodingComparisons: AiCodingComparison[] = [
     tools: ["claude-code", "openai-codex"],
     verdict: "Choose Claude Code for hands-on terminal workflows. Choose Codex for PR-oriented delegation where task boundaries and review loops are clear.",
   },
+  {
+    slug: "cursor-vs-windsurf",
+    title: "Cursor vs Windsurf",
+    description: "Compare two AI-native IDEs for agentic coding, repo context, autonomous edits, pricing, and team rollout.",
+    tools: ["cursor", "windsurf"],
+    verdict: "Choose Cursor for the strongest AI-native VS Code-style workflow and ecosystem mindshare. Choose Windsurf when Cascade-style autonomous IDE work and lower entry pricing matter more.",
+  },
+  {
+    slug: "cline-vs-claude-code",
+    title: "Cline vs Claude Code",
+    description: "Compare an open-source VS Code coding agent with a terminal-first Claude workflow for local repos, tool use, approvals, and verification.",
+    tools: ["cline", "claude-code"],
+    verdict: "Choose Cline for open-source VS Code tool use with explicit approvals. Choose Claude Code when you prefer a terminal agent that can inspect, edit, run tests, and summarize evidence.",
+  },
+  {
+    slug: "devin-vs-replit-agent",
+    title: "Devin vs Replit Agent",
+    description: "Compare high-autonomy software engineering delegation with prompt-to-app building in a hosted browser IDE.",
+    tools: ["devin", "replit-agent"],
+    verdict: "Choose Devin for delegated engineering tickets in existing codebases. Choose Replit Agent for faster hosted prototypes, demos, and small app builds.",
+  },
 ];
 
 export const aiCodingFaqs = [
@@ -181,6 +338,11 @@ export const aiCodingFaqs = [
     question: "Should teams buy one tool or combine several?",
     answer:
       "Most teams start with one primary IDE assistant, then add a terminal or PR agent for deeper tasks. The right stack depends on editor constraints, privacy, test coverage, and review process.",
+  },
+  {
+    question: "Which AI coding tools should teams compare first?",
+    answer:
+      "Start with Cursor vs Windsurf for AI IDEs, Cline vs Claude Code for local tool-use agents, and Devin vs Replit Agent for higher-autonomy delegation versus hosted app building.",
   },
 ];
 

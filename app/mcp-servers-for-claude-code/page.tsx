@@ -25,6 +25,7 @@ export default function Page() {
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Link href="/workflows/" className="inline-flex items-center justify-center rounded-xl bg-blue-500 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-400">Browse Workflow Packs</Link>
             <Link href="/pricing/" className="inline-flex items-center justify-center rounded-xl border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10">View Pricing</Link>
+            <Link href="/ai-coding-tools/" className="inline-flex items-center justify-center rounded-xl border border-blue-300/30 px-6 py-3 text-sm font-bold text-blue-100 transition hover:bg-blue-400/10">Compare AI coding tools</Link>
           </div>
         </div>
       </section>
@@ -64,9 +65,9 @@ export default function Page() {
               <h3 className="font-bold text-slate-950 group-hover:text-blue-700">MCP security checklist</h3>
               <p className="mt-2 text-sm leading-6 text-slate-600">Review permissions, secrets, and prompt-injection exposure before production use.</p>
             </Link>
-            <Link href="/pricing/" className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-300 hover:bg-white hover:shadow-sm">
-              <h3 className="font-bold text-slate-950 group-hover:text-blue-700">Pricing</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">Compare free directory access and Pro workflow access.</p>
+            <Link href="/ai-coding-tools/" className="group rounded-2xl border border-slate-200 bg-slate-50 p-5 transition hover:border-blue-300 hover:bg-white hover:shadow-sm">
+              <h3 className="font-bold text-slate-950 group-hover:text-blue-700">Agentic AI coding tools</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">Compare Cursor, Claude Code, Codex, Devin, Replit Agent, Factory, Cline, and more.</p>
             </Link>
           </div>
         </div>

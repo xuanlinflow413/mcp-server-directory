@@ -6,6 +6,7 @@ import { mcpGuides } from "@/data/mcpGuides";
 import { agentSecurityGuides } from "@/data/agentSecurityGuides";
 import { seoGuides } from "@/data/seoGuides";
 import { workflowPacks } from "@/data/workflowPacks";
+import { aiCodingComparisons, aiCodingTools } from "@/data/aiCodingTools";
 
 const baseUrl = "https://bestmcpservers.com";
 const lastModified = new Date("2026-06-08");
@@ -33,6 +34,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     route("/mobile-app-prd-template/", 0.8, "monthly"),
     route("/guides/", 0.9, "weekly"),
     route("/workflows/", 0.95, "weekly"),
+    route("/ai-coding-tools/", 0.94, "weekly"),
+    route("/ai-coding-tools/tools/", 0.9, "weekly"),
+    route("/ai-coding-tools/finder/", 0.88, "monthly"),
     route("/pricing/", 0.95, "weekly"),
     route("/pro/", 0.9, "weekly"),
     route("/guides/best-mcp-servers-for-claude/", 0.8, "monthly"),
@@ -103,6 +107,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const agentRoutes = agents.map((agent) => route(`/agents/${agent.slug}/`, 0.7, "monthly"));
   const rspRoutes = rspPrompts.map((prompt) => route(`/rsp/${prompt.slug}/`, 0.7, "monthly"));
   const workflowRoutes = workflowPacks.map((pack) => route(`/workflows/${pack.slug}/`, 0.86, "monthly"));
+  const aiCodingToolRoutes = aiCodingTools.map((tool) => route(`/ai-coding-tools/tools/${tool.slug}/`, 0.82, "monthly"));
+  const aiCodingComparisonRoutes = aiCodingComparisons.map((comparison) => route(`/ai-coding-tools/compare/${comparison.slug}/`, 0.8, "monthly"));
 
-  return [...staticRoutes, ...mcpGuideRoutes, ...agentSecurityGuideRoutes, ...seoGuideRoutes, ...toolRoutes, ...agentRoutes, ...rspRoutes, ...workflowRoutes];
+  return [
+    ...staticRoutes,
+    ...mcpGuideRoutes,
+    ...agentSecurityGuideRoutes,
+    ...seoGuideRoutes,
+    ...toolRoutes,
+    ...agentRoutes,
+    ...rspRoutes,
+    ...workflowRoutes,
+    ...aiCodingToolRoutes,
+    ...aiCodingComparisonRoutes,
+  ];
 }

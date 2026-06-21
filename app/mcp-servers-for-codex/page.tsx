@@ -21,7 +21,7 @@ export default function Page() {
         h1: "Best MCP Servers for OpenAI Codex",
         description: "Use MCP servers to give Codex-style coding agents the right repo, GitHub, docs, browser, and security context before asking for implementation or PR review.",
         primaryCta: { href: "/workflows/openai-codex-pr-review-pack/", label: "Open Codex PR Review Pack" },
-        secondaryCta: { href: "/mcp-server-directory/", label: "Browse MCP Directory" },
+        secondaryCta: { href: "/ai-coding-tools/", label: "Compare AI coding tools" },
         cards: [
           { title: "PR review context", text: "Combine GitHub, filesystem, and docs servers so Codex can inspect changed files, linked issues, and project conventions before reviewing." },
           { title: "Evidence-first QA", text: "Add browser and testing context when the review depends on UI behavior, live routes, or generated artifacts rather than static diffs only." },
@@ -42,6 +42,11 @@ export default function Page() {
             heading: "Safety rules for Codex MCP workflows",
             body: "Treat Codex as a coding agent with tool boundaries. A server that can edit files, push commits, or call deployment APIs should have a clear approval gate and rollback path.",
             bullets: ["Prefer read-only servers for first pass review", "Do not expose raw secrets through logs or tool output", "Run builds/tests before accepting changes", "Keep production deploys separate from review-only workflows"],
+          },
+          {
+            heading: "Compare Codex with other agentic coding tools",
+            body: "If you are choosing between Codex, Claude Code, Cursor, Devin, Replit Agent, Factory, Cline, and open-source terminal agents, start with the agentic AI coding tools directory.",
+            bullets: ["Compare IDE support, repo context, model options, privacy, and MCP fit", "Use the finder to choose by team size, budget, and automation level", "Open comparison pages such as Claude Code vs Cline and Devin vs Replit Agent"],
           },
         ],
       }}

@@ -55,6 +55,9 @@ export default function AiCodingComparisonPage({ params }: Props) {
               <tr><td className="px-5 py-4 font-semibold text-slate-950">Pricing</td>{tools.map((tool) => <td key={tool!.slug} className="px-5 py-4">{tool!.pricing}</td>)}</tr>
               <tr><td className="px-5 py-4 font-semibold text-slate-950">Rating</td>{tools.map((tool) => <td key={tool!.slug} className="px-5 py-4">★ {tool!.rating}/5</td>)}</tr>
               <tr><td className="px-5 py-4 font-semibold text-slate-950">Workflow fit</td>{tools.map((tool) => <td key={tool!.slug} className="px-5 py-4">{tool!.workflowFit.join(", ")}</td>)}</tr>
+              <tr><td className="px-5 py-4 font-semibold text-slate-950">IDE support</td>{tools.map((tool) => <td key={tool!.slug} className="px-5 py-4">{tool!.ideSupport}</td>)}</tr>
+              <tr><td className="px-5 py-4 font-semibold text-slate-950">Agent mode</td>{tools.map((tool) => <td key={tool!.slug} className="px-5 py-4">{tool!.agentMode}</td>)}</tr>
+              <tr><td className="px-5 py-4 font-semibold text-slate-950">Privacy</td>{tools.map((tool) => <td key={tool!.slug} className="px-5 py-4">{tool!.privacy}</td>)}</tr>
               <tr><td className="px-5 py-4 font-semibold text-slate-950">MCP angle</td>{tools.map((tool) => <td key={tool!.slug} className="px-5 py-4">{tool!.mcpAngle}</td>)}</tr>
             </tbody>
           </table>

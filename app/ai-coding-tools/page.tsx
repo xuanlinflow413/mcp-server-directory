@@ -3,7 +3,7 @@ import Link from "next/link";
 import { aiCodingComparisons, aiCodingFaqs, aiCodingTools } from "@/data/aiCodingTools";
 
 const title = "Agentic AI Coding Tools Directory 2026 | BestMCPServers";
-const description = "Compare the best agentic AI coding tools: Cursor, Claude Code, GitHub Copilot, Windsurf, OpenAI Codex, Aider, and Continue. Find IDE agents, terminal agents, PR agents, and MCP-ready workflows.";
+const description = "Compare the best agentic AI coding tools: Cursor, Claude Code, GitHub Copilot, Windsurf, OpenAI Codex, Devin, Replit Agent, Factory, Cline, Aider, and Continue. Find IDE agents, terminal agents, PR agents, and MCP-ready workflows.";
 
 export const metadata: Metadata = {
   title,

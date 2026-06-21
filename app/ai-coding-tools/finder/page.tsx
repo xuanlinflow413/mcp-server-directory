@@ -18,6 +18,10 @@ const recommendations = [
   { need: "I want an agent to inspect the repo and run commands", pick: "Claude Code", slug: "claude-code", reason: "Best fit for terminal-first implementation with verification evidence." },
   { need: "My team already uses GitHub and multiple IDEs", pick: "GitHub Copilot", slug: "github-copilot", reason: "Lowest-friction rollout for teams standardized on GitHub." },
   { need: "I want autonomous IDE work with competitive pricing", pick: "Windsurf", slug: "windsurf", reason: "Cascade is strong for agentic IDE task execution." },
+  { need: "I want high-autonomy delegated engineering tickets", pick: "Devin", slug: "devin", reason: "Best fit when the team wants a software engineering agent to attempt scoped tasks asynchronously." },
+  { need: "I want to build and deploy small apps from prompts", pick: "Replit Agent", slug: "replit-agent", reason: "Best hosted prompt-to-app path when fast prototypes and demos matter more than local repo control." },
+  { need: "I am evaluating agent platforms for an engineering org", pick: "Factory", slug: "factory", reason: "Best fit when the buying question is workflow automation and governance, not only autocomplete." },
+  { need: "I want open-source VS Code tool use with approvals", pick: "Cline", slug: "cline", reason: "Best fit for VS Code users who want explicit control over file, terminal, and browser actions." },
   { need: "I prefer open source and terminal control", pick: "Aider", slug: "aider", reason: "Good for git-visible terminal edits with provider flexibility." },
   { need: "I need customizable context and model control", pick: "Continue", slug: "continue", reason: "Best open-source IDE assistant for internal AI platform customization." },
 ];

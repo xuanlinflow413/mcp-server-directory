@@ -24,6 +24,7 @@ const featuredPacks = featuredPackSlugs
 
 const subnav = [
   { href: "#workflow-packs", label: "Workflow Packs" },
+  { href: "#ai-coding-tools", label: "AI Coding Tools" },
   { href: "#how-it-works", label: "How it works" },
   { href: "#security-permissions", label: "Security" },
   { href: "#pricing", label: "Pricing" },
@@ -37,6 +38,8 @@ const freeBuilderGroups = [
     title: "Design agent workflows",
     description: "Compare workflow patterns before choosing the CLI, planning loop, website agent, or MCP stack.",
     links: [
+      { href: "/ai-coding-tools/", label: "Agentic AI Coding Tools Directory" },
+      { href: "/ai-coding-tools/finder/", label: "AI Coding Tools Finder" },
       { href: "/guides/best-ai-agent-workflow-tools/", label: "Best AI Agent Workflow Tools" },
       { href: "/workflows/", label: "Workflow Pack Library" },
       { href: "/guides/agent-evaluation-framework/", label: "Agent Evaluation Framework" },
@@ -165,6 +168,12 @@ export default function Home() {
                 Browse workflow packs
               </Link>
               <Link
+                href="/ai-coding-tools/"
+                className="inline-flex items-center justify-center rounded-xl border border-blue-300/30 px-6 py-3 text-sm font-bold text-blue-100 transition hover:bg-blue-400/10"
+              >
+                Compare agentic AI coding tools
+              </Link>
+              <Link
                 href="/my-purchases/"
                 className="inline-flex items-center justify-center rounded-xl border border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/10"
               >
@@ -204,6 +213,20 @@ export default function Home() {
           ))}
         </div>
       </nav>
+
+      <section id="ai-coding-tools" className="border-b border-slate-200 bg-slate-50 px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+          <div>
+            <p className="text-sm font-bold uppercase tracking-[0.25em] text-blue-700">Agentic AI coding tools</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">Compare Cursor, Claude Code, Codex, Devin, Replit Agent, Factory, Cline, and more</h2>
+            <p className="mt-4 text-slate-600">Use the new AI coding tools directory to choose between IDE agents, terminal agents, cloud software engineers, prompt-to-app builders, and open-source coding assistants before designing your MCP workflow.</p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+            <Link href="/ai-coding-tools/" className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-blue-500">Open directory</Link>
+            <Link href="/ai-coding-tools/finder/" className="inline-flex items-center justify-center rounded-xl border border-slate-300 px-5 py-3 text-sm font-bold text-slate-800 transition hover:border-blue-300 hover:text-blue-700">Use finder</Link>
+          </div>
+        </div>
+      </section>
 
       <section id="workflow-packs" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
