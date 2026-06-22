@@ -69,6 +69,21 @@ export default function AiCodingToolsFinderPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-6 md:grid-cols-2">
+          <Link href="/ai-coding-tools/best-ai-coding-agent-for-nextjs/" className="rounded-3xl border border-slate-200 p-6 transition hover:border-blue-300 hover:shadow-lg">
+            <p className="text-sm font-semibold text-blue-700">Framework use case</p>
+            <h2 className="mt-3 text-2xl font-bold text-slate-950">Best AI coding agent for Next.js</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">Choose tools for App Router projects, static export checks, Cloudflare Pages deploys, and MCP-backed QA.</p>
+          </Link>
+          <Link href="/ai-coding-tools/compare/claude-code-vs-cursor/" className="rounded-3xl border border-slate-200 p-6 transition hover:border-blue-300 hover:shadow-lg">
+            <p className="text-sm font-semibold text-blue-700">High-intent comparison</p>
+            <h2 className="mt-3 text-2xl font-bold text-slate-950">Claude Code vs Cursor</h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">Compare terminal-first agent workflows with AI-native editor workflows before choosing your default stack.</p>
+          </Link>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold tracking-tight text-slate-950">All tools covered</h2>
         <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {aiCodingTools.map((tool) => (
@@ -87,6 +102,7 @@ export default function AiCodingToolsFinderPage() {
             <p className="mt-3 max-w-2xl text-slate-300">Use the free finder to choose a tool, then unlock Pro workflow packs for repo onboarding, feature shipping, PR review, and live verification.</p>
           </div>
           <Link href="/pricing/" className="rounded-xl bg-white px-6 py-3 text-center text-sm font-semibold text-slate-950 hover:bg-slate-100">Compare Pro plans</Link>
+          <Link href="/ai-coding-tools/cost-calculator/" className="rounded-xl border border-white/20 px-6 py-3 text-center text-sm font-semibold text-white hover:bg-white/10">Estimate team cost</Link>
         </div>
       </section>
     </main>

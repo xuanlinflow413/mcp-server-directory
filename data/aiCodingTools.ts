@@ -282,6 +282,13 @@ export const aiCodingComparisons: AiCodingComparison[] = [
     verdict: "Choose Cursor for fast in-editor iteration. Choose Claude Code when you want a terminal agent to inspect, edit, run tests, and report evidence.",
   },
   {
+    slug: "claude-code-vs-cursor",
+    title: "Claude Code vs Cursor",
+    description: "Compare Claude Code and Cursor for terminal agents, AI-native IDE work, repo context, tests, privacy review, and team rollout.",
+    tools: ["claude-code", "cursor"],
+    verdict: "Choose Claude Code when your workflow starts in a terminal and needs command output, tests, and evidence reports. Choose Cursor when the team can switch to an AI-native IDE for faster in-editor feature work.",
+  },
+  {
     slug: "cursor-vs-github-copilot",
     title: "Cursor vs GitHub Copilot",
     description: "Compare Cursor's AI-native IDE experience with GitHub Copilot's broad IDE and GitHub ecosystem coverage.",

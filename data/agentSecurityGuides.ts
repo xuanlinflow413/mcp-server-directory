@@ -1214,6 +1214,120 @@ export const agentSecurityGuides: AgentSecurityGuide[] = [
       { question: "What should teams be careful about?", answer: "Do not give CAD agents broad write or export authority without review, especially when changes affect manufacturing, client deliverables, cost, or safety." }
     ]
   },
+  {
+    slug: "agent-identity-permissions-temporary-accounts",
+    title: "AI Agent Identity, Permissions & Temporary Accounts",
+    description: "Design safer AI agent identity, scoped permissions, temporary accounts, approvals, and audit trails before connecting agents to real tools.",
+    h1: "AI Agent Identity, Permissions & Temporary Accounts",
+    eyebrow: "Agent Infrastructure",
+    updated: "2026-06-23",
+    readingTime: "14 min read",
+    primaryKeyword: "AI agent permissions",
+    intro: [
+      "AI agents need identity before they need more tools. Once an agent can read repositories, call APIs, open browsers, send messages, or deploy code, teams need to answer a practical question: who is acting? A shared API key hidden in a prompt is not enough. A production agent should have a recognizable identity, narrow permissions, temporary authority when possible, and logs that show what happened.",
+      "The fastest way to make an agent dangerous is to give it a permanent human admin account. That model hides whether a human or an agent performed an action, expands blast radius, and makes incident response slow. Better systems use separate agent accounts, scoped tokens, time-boxed sessions, approval gates, and audit evidence tied to each tool call.",
+      "Use this guide with the broader Agent Security Guide at /guides/agent-security-guide/, the Agent Monitoring guide at /guides/agent-monitoring/, the Agent Evaluation Framework at /guides/agent-evaluation-framework/, and the AI Coding Tools directory at /ai-coding-tools/ when you are deciding how much access coding agents, support agents, browser agents, and internal workflow agents should receive."
+    ],
+    keyTakeaways: [
+      "Give agents their own identities instead of borrowing permanent human admin accounts.",
+      "Prefer scoped, temporary, auditable access over broad long-lived credentials.",
+      "Tie permissions to tool risk: read, draft, write, send, deploy, spend, or delete."
+    ],
+    sections: [
+      {
+        heading: "Why agent identity matters",
+        body: [
+          "Agent identity is the control plane for accountability. If an agent creates a pull request, updates a CRM record, posts a Slack message, or changes a cloud resource, the system should show that an agent performed the action, which user or workflow authorized it, and which policy allowed it. Without that separation, teams investigate incidents by guessing from timestamps and chat logs.",
+          "Identity also improves user experience. A user can trust an agent more when the UI shows its authority level: read-only research agent, draft-only support agent, repository coding agent, or deployment-capable operations agent. The label should match the actual permissions behind the scenes, not just the marketing name of the product."
+        ],
+        bullets: [
+          "Separate human users, service accounts, and AI agent accounts.",
+          "Show which workflow or user delegated authority to the agent.",
+          "Record agent identity in tickets, commits, messages, API calls, and logs.",
+          "Avoid shared admin credentials that erase accountability."
+        ]
+      },
+      {
+        heading: "Permission tiers for agent tools",
+        body: [
+          "Not every tool needs the same permission model. Reading public documentation is very different from sending customer email or deploying production code. Start by sorting tools into tiers. The first tier is read-only access. The second tier creates drafts or proposals. The third tier writes to internal systems. The fourth tier sends external communication, spends money, deploys, or deletes data.",
+          "This tiering makes approval design easier. Low-risk read actions can often run automatically. Draft actions can be visible but non-blocking. Write actions should show a review screen. External, financial, destructive, or production actions should require explicit confirmation, stronger authentication, or a separate human-controlled step."
+        ],
+        bullets: [
+          "Read: search docs, inspect files, retrieve tickets, analyze logs.",
+          "Draft: prepare PRs, write replies, create proposed records, generate reports.",
+          "Write: update issues, modify code, create database rows, change internal docs.",
+          "High impact: send, purchase, deploy, delete, rotate credentials, change access."
+        ]
+      },
+      {
+        heading: "Temporary accounts and expiring tokens",
+        body: [
+          "Temporary accounts reduce blast radius. Instead of giving an agent a permanent token that works forever, issue a time-boxed token for a specific workflow, repository, environment, or customer record. When the task ends, the authority expires. If something goes wrong, revocation is simpler and the incident window is smaller.",
+          "Temporary authority is especially useful for long-running coding agents and browser agents. A coding agent may need repository read access and a branch write token for one task, but it does not need production deploy authority every minute of the day. A browser agent may need a test account for QA, not a real customer admin session."
+        ],
+        bullets: [
+          "Use short TTLs for task-specific tokens and browser sessions.",
+          "Scope temporary credentials to repository, branch, environment, tenant, or record.",
+          "Rotate or revoke tokens automatically after completion, timeout, or policy failure.",
+          "Use synthetic test accounts for QA instead of real customer admin accounts."
+        ]
+      },
+      {
+        heading: "Approval and delegation flow",
+        body: [
+          "A good delegation flow makes authority explicit before the agent starts. The user should know which tools the agent can use, which systems it can access, what it can change without review, and which actions require approval. This is more useful than a generic consent checkbox because it maps the user's trust decision to real operational boundaries.",
+          "For coding agents, a safe default is inspect, edit branch, run tests, and prepare a report. Merge, deploy, billing changes, credential changes, and destructive commands should be separate approvals. For customer-facing agents, drafting can be automatic while sending outside the company requires review until the workflow has enough evidence and monitoring."
+        ],
+        bullets: [
+          "Show allowed tools, data scopes, spend limits, and time limits before delegation.",
+          "Use dry-run and preview modes for writes, sends, deployments, and deletes.",
+          "Require stronger approval for production, customer-facing, or financial actions.",
+          "Store the approval reason with the resulting tool call or external action."
+        ]
+      },
+      {
+        heading: "Audit logs for agent actions",
+        body: [
+          "Audit logs should connect identity, intent, tool call, evidence, approval, and result. A useful log answers: who asked, which agent acted, what permissions were active, what tool ran, what data was touched, what changed, what it cost, and whether a human approved it. These fields make incident response and product improvement much faster.",
+          "Logs should not leak secrets. Record token identifiers, permission scopes, resource IDs, and redacted summaries rather than raw credentials or private payloads. Pair audit logs with the monitoring practices in /guides/agent-monitoring/ so teams can detect unusual access patterns, repeated approval failures, and unexpected tool chains."
+        ],
+        bullets: [
+          "Capture agent ID, delegating user, tenant, workflow, tool, scope, and result.",
+          "Log approval state, approver, reason, timestamp, and affected resources.",
+          "Redact secrets, private messages, raw credentials, and unnecessary personal data.",
+          "Alert on privilege escalation, unusual tool sequences, and repeated denied actions."
+        ]
+      },
+      {
+        heading: "Cloud and SaaS account patterns",
+        body: [
+          "Cloud and SaaS systems usually already support service accounts, roles, scoped API tokens, OAuth apps, and audit logs. Agent infrastructure should use those primitives instead of bypassing them. A dedicated OAuth app or service account is easier to review than a hidden personal token. A narrow role is easier to reason about than a copied admin session.",
+          "When a provider supports delegated access, prefer consent tied to a user, team, repository, or workspace. When it does not, create the narrowest service account possible and document exactly what the agent can read, write, store, and send. Treat every new integration as part of the agent security surface, not just as a product feature."
+        ],
+        bullets: [
+          "Prefer dedicated OAuth apps, service accounts, and scoped roles.",
+          "Avoid using founder or admin personal accounts as agent identities.",
+          "Document provider scopes, token TTL, revocation path, and audit coverage.",
+          "Test permission failure paths before giving the agent broader access."
+        ]
+      }
+    ],
+    checklist: [
+      "Create separate identities for human users, services, and AI agents.",
+      "Map every agent tool to a permission tier and approval rule.",
+      "Use temporary scoped tokens for task-specific access whenever possible.",
+      "Log agent identity, delegated user, scope, approval, tool call, and result.",
+      "Reject permanent admin-style access for production agents unless there is no safer alternative."
+    ],
+    faq: [
+      { question: "Should an AI agent use a human account?", answer: "Usually no. A dedicated agent identity or service account gives better auditability, narrower permissions, and easier revocation than a permanent human admin account." },
+      { question: "What is a temporary agent account?", answer: "A temporary agent account or token is task-specific access that expires after a short time, workflow completion, timeout, or policy failure. It limits blast radius when an agent or integration behaves unexpectedly." },
+      { question: "Which agent actions need approval?", answer: "External messages, production deploys, billing changes, destructive operations, access changes, and customer-impacting writes should require explicit approval. Read-only research and draft creation can usually be lower friction." },
+      { question: "How should coding agents be scoped?", answer: "A safe default is repository read access, branch-level write access, test execution, and report generation. Merges, deploys, credential changes, and destructive commands should be separate approvals." },
+      { question: "What should an agent audit log include?", answer: "It should include agent identity, delegating user, workflow, tool name, permission scope, affected resource, approval state, timestamp, result, and redacted evidence for investigation." }
+    ]
+  },
 ];
 
 export const agentSecurityGuideLinks = agentSecurityGuides.map((guide) => ({

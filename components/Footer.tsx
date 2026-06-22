@@ -33,6 +33,36 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/ai-coding-tools/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  AI Coding Tools
+                </Link>
+              </li>
+              <li>
+                <Link href="/ai-coding-tools/cost-calculator/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  AI Coding Tool Cost Calculator
+                </Link>
+              </li>
+              <li>
+                <Link href="/ai-coding-tools/best-ai-coding-agent-for-nextjs/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  AI Coding Agent for Next.js
+                </Link>
+              </li>
+              <li>
+                <Link href="/ai-coding-tools/long-horizon-coding-agents/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Long-Horizon Coding Agents
+                </Link>
+              </li>
+              <li>
+                <Link href="/ai-coding-tools/large-codebase-ai-coding-agent/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Large Codebase AI Agents
+                </Link>
+              </li>
+              <li>
+                <Link href="/ai-coding-tools/compare/claude-code-vs-cursor/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Claude Code vs Cursor
+                </Link>
+              </li>
+              <li>
                 <Link href="/mcp-server-directory/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
                   MCP Server Directory
                 </Link>
@@ -80,8 +110,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/guides/browser-mcp-servers/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
-                  Browser MCP Servers
+                <Link href="/guides/agent-security-guide/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Agent Security Guide
+                </Link>
+              </li>
+              <li>
+                <Link href="/guides/agent-identity-permissions-temporary-accounts/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Agent Identity & Permissions
+                </Link>
+              </li>
+              <li>
+                <Link href="/guides/agent-monitoring/" className="text-sm text-slate-500 hover:text-slate-900 transition-colors">
+                  Agent Monitoring
                 </Link>
               </li>
             </ul>

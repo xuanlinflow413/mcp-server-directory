@@ -47,7 +47,11 @@ export default function AiCodingToolsPage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/ai-coding-tools/tools/" className="rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-500">Browse tools</Link>
             <Link href="/ai-coding-tools/finder/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Use the finder</Link>
-            <Link href="/ai-coding-tools/compare/cursor-vs-claude-code/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Compare Cursor vs Claude Code</Link>
+            <Link href="/ai-coding-tools/cost-calculator/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Cost calculator</Link>
+            <Link href="/ai-coding-tools/compare/claude-code-vs-cursor/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Claude Code vs Cursor</Link>
+            <Link href="/ai-coding-tools/best-ai-coding-agent-for-nextjs/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Best for Next.js</Link>
+            <Link href="/ai-coding-tools/long-horizon-coding-agents/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Long-horizon agents</Link>
+            <Link href="/ai-coding-tools/large-codebase-ai-coding-agent/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Large codebases</Link>
           </div>
         </div>
       </section>
@@ -80,12 +84,26 @@ export default function AiCodingToolsPage() {
               ["Terminal coding agent", "Claude Code and Aider fit repo-level tasks where command output and tests matter."],
               ["Team rollout", "GitHub Copilot is easiest when the team already uses GitHub and existing IDEs."],
               ["PR delegation", "OpenAI Codex-style workflows work best with scoped tickets, tests, and review gates."],
+              ["Budget planning", "Use the AI coding tool cost calculator before rolling seats out across an engineering team."],
             ].map(([heading, body]) => (
               <div key={heading} className="rounded-2xl border border-slate-200 bg-white p-5">
                 <h3 className="font-semibold text-slate-950">{heading}</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-600">{body}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="rounded-3xl border border-blue-200 bg-blue-50 p-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">Use-case guide</p>
+          <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <h2 className="max-w-3xl text-3xl font-bold tracking-tight text-slate-950">Building with Next.js?</h2>
+              <p className="mt-3 max-w-3xl text-slate-700">Compare Cursor, Claude Code, Windsurf, Copilot, Cline, and Aider for App Router work, static exports, Cloudflare Pages deploys, and MCP-backed verification loops.</p>
+            </div>
+            <Link href="/ai-coding-tools/best-ai-coding-agent-for-nextjs/" className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-500">Find the best Next.js agent →</Link>
           </div>
         </div>
       </section>
