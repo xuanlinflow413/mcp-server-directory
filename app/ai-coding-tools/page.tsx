@@ -52,6 +52,9 @@ export default function AiCodingToolsPage() {
             <Link href="/ai-coding-tools/best-ai-coding-agent-for-nextjs/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Best for Next.js</Link>
             <Link href="/ai-coding-tools/long-horizon-coding-agents/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Long-horizon agents</Link>
             <Link href="/ai-coding-tools/large-codebase-ai-coding-agent/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Large codebases</Link>
+            <Link href="/ai-coding-tools/open-source-ai-coding-agents/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Open source agents</Link>
+            <Link href="/ai-coding-tools/alternatives/claude-code/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Claude Code alternatives</Link>
+            <Link href="/ai-coding-tools/alternatives/devin/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Devin alternatives</Link>
           </div>
         </div>
       </section>

@@ -271,6 +271,28 @@ export const aiCodingTools: AiCodingTool[] = [
     mcpSupport: "Natural fit for MCP because configurable context and tool access are core design concerns",
     mcpAngle: "Continue aligns naturally with MCP because both emphasize configurable context and tool access for developer workflows.",
   },
+  {
+    slug: "openhands",
+    name: "OpenHands",
+    tagline: "Open-source software engineering agent for autonomous repo work",
+    description:
+      "OpenHands is an open-source agentic coding platform for delegating software engineering tasks, inspecting repositories, editing files, running commands, and iterating inside controlled workspaces.",
+    bestFor: "Teams and advanced builders who want an open-source alternative to hosted coding agents with more control over workspace, model, and execution boundaries.",
+    pricing: "Open source; infrastructure and model/API costs depend on deployment",
+    rating: 4.2,
+    website: "https://www.all-hands.dev",
+    categories: ["Open Source", "Autonomous Agent", "Workspace Automation"],
+    strengths: ["Open-source agent framework", "Workspace-level task execution", "Model/provider flexibility", "Good for experimentation with autonomous coding"],
+    limitations: ["Requires setup and operational review", "Needs strong sandboxing", "Less polished than commercial hosted agents"],
+    workflowFit: ["Autonomous repo tasks", "Agent platform experiments", "Internal tooling", "Open-source coding workflows"],
+    ideSupport: "Workspace and platform workflow rather than a single IDE extension",
+    modelSupport: "Bring-your-own model/provider depending on deployment and configuration",
+    repoContext: "Works from connected repositories and workspace files with explicit tool execution",
+    agentMode: "Autonomous software engineering agent with planning, file edits, commands, and iteration loops",
+    privacy: "Self-hosting can improve control, but teams must review sandbox, secrets, network, and repository permissions",
+    mcpSupport: "Strong fit for MCP-style governance because external tools, repo access, browser checks, and deployment actions need clear boundaries",
+    mcpAngle: "OpenHands is most useful when paired with MCP-style least-privilege tool access for GitHub, filesystem, browser QA, docs, and deployment evidence.",
+  },
 ];
 
 export const aiCodingComparisons: AiCodingComparison[] = [
@@ -322,6 +344,20 @@ export const aiCodingComparisons: AiCodingComparison[] = [
     description: "Compare high-autonomy software engineering delegation with prompt-to-app building in a hosted browser IDE.",
     tools: ["devin", "replit-agent"],
     verdict: "Choose Devin for delegated engineering tickets in existing codebases. Choose Replit Agent for faster hosted prototypes, demos, and small app builds.",
+  },
+  {
+    slug: "cline-vs-aider",
+    title: "Cline vs Aider",
+    description: "Compare two open-source AI coding agents for VS Code tool use, terminal edits, provider flexibility, repo control, and MCP-ready workflows.",
+    tools: ["cline", "aider"],
+    verdict: "Choose Cline when you want a VS Code agent with explicit tool approvals and browser/terminal actions. Choose Aider when you want a lightweight terminal pair programmer with git-visible edits.",
+  },
+  {
+    slug: "openhands-vs-devin",
+    title: "OpenHands vs Devin",
+    description: "Compare an open-source autonomous coding agent platform with a commercial hosted software engineering agent for repo tasks, control, and review burden.",
+    tools: ["openhands", "devin"],
+    verdict: "Choose OpenHands when open-source control, self-hosting, and experimentation matter. Choose Devin when you prefer a managed autonomous engineering product for delegated tickets.",
   },
 ];
 

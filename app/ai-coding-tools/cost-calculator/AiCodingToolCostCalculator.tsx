@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Calculator, RotateCcw, Users } from "lucide-react";
+import { Calculator, Copy, RotateCcw, Users } from "lucide-react";
 
 type ToolPlan = {
   id: string;
@@ -22,7 +22,16 @@ const toolPlans: ToolPlan[] = [
   { id: "cline", name: "Cline", plan: "Open source", monthlyPrice: 0, seatIncluded: false, typicalAddOns: "Bring your own model API spend", bestFor: "Open-source VS Code agents" },
   { id: "aider", name: "Aider", plan: "Open source", monthlyPrice: 0, seatIncluded: false, typicalAddOns: "Bring your own model API spend", bestFor: "Git-visible terminal edits" },
   { id: "continue", name: "Continue", plan: "Open source", monthlyPrice: 0, seatIncluded: false, typicalAddOns: "Hosted models or internal inference costs", bestFor: "Customizable internal assistants" },
+  { id: "openhands", name: "OpenHands", plan: "Open source", monthlyPrice: 0, seatIncluded: false, typicalAddOns: "Infrastructure, sandboxing, and model/API spend", bestFor: "Autonomous open-source agent workflows" },
 ];
+
+type UseCase = "ide" | "terminal" | "autonomous" | "open-source";
+
+type Recommendation = {
+  stack: string;
+  why: string;
+  href: string;
+};
 
 const formatCurrency = (value: number) =>
   new Intl.NumberFormat("en-US", {
@@ -38,6 +47,11 @@ export default function AiCodingToolCostCalculator() {
   const [reviewHoursSaved, setReviewHoursSaved] = useState(3);
   const [hourlyCost, setHourlyCost] = useState(80);
   const [adoptionRate, setAdoptionRate] = useState(70);
+  const [useCase, setUseCase] = useState<UseCase>("ide");
+  const [needsLocalModel, setNeedsLocalModel] = useState(false);
+  const [needsEnterpriseSecurity, setNeedsEnterpriseSecurity] = useState(false);
+  const [prefersOpenSource, setPrefersOpenSource] = useState(false);
+  const [copyStatus, setCopyStatus] = useState("Copy summary");
 
   const selectedTool = toolPlans.find((tool) => tool.id === selectedToolId) ?? toolPlans[0];
 
@@ -54,6 +68,59 @@ export default function AiCodingToolCostCalculator() {
     return { seatCost, monthlyToolCost, monthlyHoursSaved, monthlyValue, netValue, costPerDeveloper, breakevenHours };
   }, [adoptionRate, developers, extraModelSpend, hourlyCost, reviewHoursSaved, selectedTool.monthlyPrice]);
 
+  const recommendations = useMemo<Recommendation[]>(() => {
+    if (prefersOpenSource || needsLocalModel || useCase === "open-source") {
+      return [
+        { stack: "Cline + Aider", why: "Open-source VS Code approvals plus git-visible terminal edits for local control.", href: "/ai-coding-tools/compare/cline-vs-aider/" },
+        { stack: "Continue + local/internal models", why: "Best when the main constraint is custom model routing and internal context providers.", href: "/ai-coding-tools/tools/continue/" },
+        { stack: "OpenHands sandbox", why: "Use when you want autonomous open-source agent experiments with explicit workspace controls.", href: "/ai-coding-tools/tools/openhands/" },
+      ];
+    }
+
+    if (needsEnterpriseSecurity) {
+      return [
+        { stack: "GitHub Copilot Business + Claude Code", why: "Broad IDE rollout with a terminal agent reserved for verified repo tasks.", href: "/ai-coding-tools/tools/github-copilot/" },
+        { stack: "Cursor team pilot", why: "Strong indexed IDE workflow when security review approves editor migration and codebase indexing.", href: "/ai-coding-tools/tools/cursor/" },
+        { stack: "MCP-governed tool access", why: "Expose docs, GitHub, browser QA, and deploy checks through least-privilege boundaries.", href: "/guides/agent-identity-permissions-temporary-accounts/" },
+      ];
+    }
+
+    if (useCase === "terminal") {
+      return [
+        { stack: "Claude Code + Cursor", why: "Terminal evidence for implementation and an AI IDE for fast local editing.", href: "/ai-coding-tools/compare/claude-code-vs-cursor/" },
+        { stack: "Claude Code + Cline", why: "Terminal-first work paired with explicit VS Code tool approvals.", href: "/ai-coding-tools/compare/cline-vs-claude-code/" },
+        { stack: "Aider fallback", why: "Low-cost git-visible edits for scripts, small services, and provider experimentation.", href: "/ai-coding-tools/tools/aider/" },
+      ];
+    }
+
+    if (useCase === "autonomous") {
+      return [
+        { stack: "Devin + Claude Code", why: "Managed autonomous delegation plus terminal verification for sensitive production changes.", href: "/ai-coding-tools/alternatives/devin/" },
+        { stack: "OpenHands + review gates", why: "Open-source autonomous workflows when you can own sandboxing, secrets, and CI gates.", href: "/ai-coding-tools/compare/openhands-vs-devin/" },
+        { stack: "Replit Agent", why: "Fast hosted prototypes when the work is closer to prompt-to-app than existing repo maintenance.", href: "/ai-coding-tools/tools/replit-agent/" },
+      ];
+    }
+
+    return [
+      { stack: "Cursor + Claude Code", why: "Strong default for AI-native IDE work plus terminal verification on real repo tasks.", href: "/ai-coding-tools/compare/claude-code-vs-cursor/" },
+      { stack: "Windsurf + GitHub Copilot", why: "Good lower-friction comparison set for AI IDE workflows and existing GitHub teams.", href: "/ai-coding-tools/compare/cursor-vs-windsurf/" },
+      { stack: "Cost-capped open-source backup", why: "Keep Cline or Aider available for overflow and provider-flexible tasks.", href: "/ai-coding-tools/open-source-ai-coding-agents/" },
+    ];
+  }, [needsEnterpriseSecurity, needsLocalModel, prefersOpenSource, useCase]);
+
+  const summary = `${selectedTool.name} ${selectedTool.plan}: ${developers} developers, ${formatCurrency(result.monthlyToolCost)}/mo estimated total, ${formatCurrency(result.costPerDeveloper)}/developer, ${result.breakevenHours.toFixed(1)} breakeven hours. Recommended stack: ${recommendations[0].stack}.`;
+
+  const copySummary = async () => {
+    try {
+      await navigator.clipboard.writeText(summary);
+      setCopyStatus("Copied");
+      window.setTimeout(() => setCopyStatus("Copy summary"), 1800);
+    } catch {
+      setCopyStatus("Copy failed");
+      window.setTimeout(() => setCopyStatus("Copy summary"), 1800);
+    }
+  };
+
   const resetSample = () => {
     setSelectedToolId("cursor");
     setDevelopers(5);
@@ -61,6 +128,11 @@ export default function AiCodingToolCostCalculator() {
     setReviewHoursSaved(3);
     setHourlyCost(80);
     setAdoptionRate(70);
+    setUseCase("ide");
+    setNeedsLocalModel(false);
+    setNeedsEnterpriseSecurity(false);
+    setPrefersOpenSource(false);
+    setCopyStatus("Copy summary");
   };
 
   return (
@@ -84,6 +156,16 @@ export default function AiCodingToolCostCalculator() {
                 </select>
               </label>
 
+              <label className="block sm:col-span-2">
+                <span className="text-sm font-medium text-slate-700">Primary workflow</span>
+                <select value={useCase} onChange={(event) => setUseCase(event.target.value as UseCase)} className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none ring-blue-100 focus:border-blue-500 focus:ring-4">
+                  <option value="ide">AI IDE rollout</option>
+                  <option value="terminal">Terminal-first agent work</option>
+                  <option value="autonomous">Autonomous delegated tickets</option>
+                  <option value="open-source">Open-source / self-hosted stack</option>
+                </select>
+              </label>
+
               <label className="block"><span className="text-sm font-medium text-slate-700">Developers</span><input type="number" min={1} value={developers} onChange={(event) => setDevelopers(Number(event.target.value))} className="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-sm" /></label>
               <label className="block"><span className="text-sm font-medium text-slate-700">Extra model/API spend</span><input type="number" min={0} value={extraModelSpend} onChange={(event) => setExtraModelSpend(Number(event.target.value))} className="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-sm" /></label>
               <label className="block"><span className="text-sm font-medium text-slate-700">Hours saved/dev/week</span><input type="number" min={0} value={reviewHoursSaved} onChange={(event) => setReviewHoursSaved(Number(event.target.value))} className="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-sm" /></label>
@@ -91,9 +173,29 @@ export default function AiCodingToolCostCalculator() {
               <label className="block sm:col-span-2"><span className="text-sm font-medium text-slate-700">Expected adoption rate (%)</span><input type="number" min={0} max={100} value={adoptionRate} onChange={(event) => setAdoptionRate(Number(event.target.value))} className="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-sm" /></label>
             </div>
 
-            <button type="button" onClick={resetSample} className="mt-6 inline-flex items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-5 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-100">
-              <RotateCcw className="h-4 w-4" /> Reset sample
-            </button>
+            <div className="mt-5 grid gap-3 sm:grid-cols-3">
+              <label className="flex items-start gap-3 rounded-2xl border border-slate-200 p-4 text-sm text-slate-700">
+                <input type="checkbox" checked={needsLocalModel} onChange={(event) => setNeedsLocalModel(event.target.checked)} className="mt-1" />
+                <span><strong className="block text-slate-950">Local model</strong>Need local or internal inference.</span>
+              </label>
+              <label className="flex items-start gap-3 rounded-2xl border border-slate-200 p-4 text-sm text-slate-700">
+                <input type="checkbox" checked={needsEnterpriseSecurity} onChange={(event) => setNeedsEnterpriseSecurity(event.target.checked)} className="mt-1" />
+                <span><strong className="block text-slate-950">Enterprise review</strong>Security and permissions matter.</span>
+              </label>
+              <label className="flex items-start gap-3 rounded-2xl border border-slate-200 p-4 text-sm text-slate-700">
+                <input type="checkbox" checked={prefersOpenSource} onChange={(event) => setPrefersOpenSource(event.target.checked)} className="mt-1" />
+                <span><strong className="block text-slate-950">Open source</strong>Prefer inspectable agent tooling.</span>
+              </label>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <button type="button" onClick={resetSample} className="inline-flex items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-5 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-100">
+                <RotateCcw className="h-4 w-4" /> Reset sample
+              </button>
+              <button type="button" onClick={copySummary} className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+                <Copy className="h-4 w-4" /> {copyStatus}
+              </button>
+            </div>
           </div>
 
           <div className="rounded-3xl bg-slate-950 p-6 text-white shadow-sm sm:p-8">
@@ -114,6 +216,18 @@ export default function AiCodingToolCostCalculator() {
               <p className="text-sm text-blue-200">Estimated monthly value from saved engineering time</p>
               <p className="mt-2 text-4xl font-extrabold">{formatCurrency(result.monthlyValue)}</p>
               <p className="mt-3 text-sm text-slate-300">Net value: {formatCurrency(result.netValue)} after tool and model/API costs.</p>
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5">
+              <p className="text-sm font-semibold text-blue-200">Recommended stack</p>
+              <div className="mt-4 space-y-4">
+                {recommendations.map((item) => (
+                  <a key={item.stack} href={item.href} className="block rounded-xl bg-white/10 p-4 hover:bg-white/15">
+                    <span className="block font-semibold text-white">{item.stack}</span>
+                    <span className="mt-1 block text-sm leading-6 text-slate-300">{item.why}</span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
