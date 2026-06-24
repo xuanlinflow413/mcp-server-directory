@@ -1328,6 +1328,182 @@ export const agentSecurityGuides: AgentSecurityGuide[] = [
       { question: "What should an agent audit log include?", answer: "It should include agent identity, delegating user, workflow, tool name, permission scope, affected resource, approval state, timestamp, result, and redacted evidence for investigation." }
     ]
   },
+  {
+    slug: "ai-cost-governance-checklist",
+    title: "AI Cost Governance Checklist — Budgets, Routing & Usage Controls",
+    description: "A practical AI cost governance checklist for teams running LLM apps, MCP servers, and autonomous agents with model routing, budgets, alerts, and owner review.",
+    h1: "AI Cost Governance Checklist",
+    eyebrow: "AI Cost Governance",
+    updated: "2026-06-24",
+    readingTime: "11 min read",
+    primaryKeyword: "AI cost governance checklist",
+    intro: [
+      "AI cost governance is the operating system for keeping LLM spend predictable while teams ship useful agents and AI features. The goal is not to make every request cheap. The goal is to know which workflows deserve premium models, which can use cheaper routing, where costs can spike, and who owns the decision when usage crosses a threshold.",
+      "Most cost incidents are not caused by one expensive model call. They come from repeated retries, long prompts copied into every request, background jobs without caps, agents that loop through tools, and missing alerts until the invoice arrives. A governance checklist turns those risks into controls that product, engineering, and finance can review together.",
+      "Use this checklist with the AI cost calculator at /tools/ai-cost-calculator/, the agent cost management guide at /guides/agent-cost-management/, and the agent monitoring guide at /guides/agent-monitoring/ to move from rough estimates to production guardrails."
+    ],
+    keyTakeaways: [
+      "Assign an owner, budget, and model policy to every AI workflow before production traffic grows.",
+      "Measure cost per successful outcome, not only cost per token or request.",
+      "Use routing, caching, prompt trimming, retry limits, and alerts before asking teams to manually police spend."
+    ],
+    sections: [
+      {
+        heading: "Map spend to workflows and owners",
+        body: [
+          "Start with a simple inventory: each AI workflow, its user action, model provider, average prompt size, average output size, expected monthly volume, and business owner. A workflow can be a support reply, code review, research agent, document parser, enrichment job, or MCP tool chain. Without this map, cost discussions become abstract and teams optimize the wrong thing.",
+          "Ownership matters because cost is a product decision as much as an engineering decision. A premium reasoning model may be justified for a paid workflow with high conversion value. The same model may be wasteful for a background summarization job where users never see the difference."
+        ],
+        bullets: [
+          "Record workflow name, owner, model, fallback model, volume driver, and expected cost range.",
+          "Separate user-triggered requests from scheduled jobs, retries, evaluation runs, and internal automation.",
+          "Tie each workflow to a revenue, retention, quality, or operations metric.",
+          "Review orphaned AI jobs monthly and turn off flows with no active owner."
+        ]
+      },
+      {
+        heading: "Set budgets, limits, and alert thresholds",
+        body: [
+          "Budgets should exist at multiple levels: account, product, workflow, tenant, user, and background job. The right limit depends on the blast radius. A customer-facing request may need a soft warning before blocking. A runaway cron job should stop automatically once it crosses its daily cap.",
+          "Alerts should fire early enough for a human to act. A monthly invoice alert is too late. Useful alerts compare current burn rate with the expected budget curve and call out the workflow responsible for the increase."
+        ],
+        bullets: [
+          "Define daily and monthly caps for each production workflow.",
+          "Use per-user or per-tenant quotas for self-serve products.",
+          "Set retry limits and maximum tool steps for autonomous agents.",
+          "Alert on burn-rate spikes, repeated failures, and unusually long outputs."
+        ]
+      },
+      {
+        heading: "Control model routing instead of hardcoding one model",
+        body: [
+          "Cost governance improves when the product has a routing policy instead of one hardcoded model. Classify requests by complexity, risk, latency, and user value. Simple classification, rewriting, extraction, and templated replies can often use cheaper models. High-stakes reasoning, code changes, legal-sensitive text, and multi-step agents may justify a stronger model with approvals and monitoring.",
+          "A routing policy should include fallbacks. If the primary model is unavailable or too expensive for a workflow, the system should know whether to downgrade, queue, ask for confirmation, or fail gracefully."
+        ],
+        bullets: [
+          "Use cheaper models for low-risk transformations and premium models for high-value reasoning.",
+          "Route long-context requests only when the extra context materially improves the answer.",
+          "Store model choice, prompt size, output size, latency, and result quality for review.",
+          "Test fallbacks so cost controls do not silently break user workflows."
+        ]
+      },
+      {
+        heading: "Measure unit economics and refund failed AI work",
+        body: [
+          "For paid AI products, the key metric is cost per successful user outcome. A generated reply, completed research report, or accepted coding patch has different value than a failed call, timeout, or unusable draft. Treat failed AI work as a product quality and billing issue, not only a backend error.",
+          "Credit systems should only charge for real AI usage that produced a usable result. If the model call fails, the provider times out, or the app cannot return the generated output, refund the credit automatically and log the reason. This protects trust and makes cost data cleaner."
+        ],
+        bullets: [
+          "Track success, failure, timeout, user retry, and refund reason per workflow.",
+          "Do not charge for static templates, calculators, or content pages with no AI call.",
+          "Separate provider cost from application revenue and support cost.",
+          "Review high-refund workflows before scaling paid traffic."
+        ]
+      }
+    ],
+    checklist: [
+      "Create an AI workflow inventory with owner, model, volume, and business metric.",
+      "Set account, workflow, tenant, user, and background-job limits.",
+      "Add alerts for burn-rate spikes, retry storms, long outputs, and agent loops.",
+      "Define a routing policy for cheap, standard, premium, and human-review paths.",
+      "Refund credits automatically when real AI generation fails or returns no usable output."
+    ],
+    faq: [
+      { question: "What is AI cost governance?", answer: "AI cost governance is the set of ownership, budgeting, routing, monitoring, and billing controls that keeps LLM and agent spend predictable as usage grows." },
+      { question: "What is the first control to add?", answer: "Start with a workflow inventory and daily spend alerts. You cannot route, cap, or optimize spend reliably until you know which workflow is creating the cost." },
+      { question: "Should every AI request use the cheapest model?", answer: "No. Use cheaper models where quality is sufficient, but reserve stronger models for workflows where accuracy, reasoning depth, or customer value justifies the cost." },
+      { question: "How should credits work for failed AI calls?", answer: "Charge credits only when a real AI call returns a usable result. If the call fails, times out, or cannot be delivered to the user, refund the credit automatically and log the failure reason." },
+      { question: "How often should AI budgets be reviewed?", answer: "Review high-volume workflows weekly during launch and monthly once usage stabilizes. Any burn-rate spike should trigger an immediate owner review." }
+    ]
+  },
+  {
+    slug: "ai-coding-agent-security-checklist",
+    title: "AI Coding Agent Security Checklist — Repo Access, Secrets & Deploy Safety",
+    description: "A practical AI coding agent security checklist for repository permissions, secret handling, branch isolation, test execution, reviews, and deployment approvals.",
+    h1: "AI Coding Agent Security Checklist",
+    eyebrow: "Coding Agent Security",
+    updated: "2026-06-24",
+    readingTime: "12 min read",
+    primaryKeyword: "AI coding agent security checklist",
+    intro: [
+      "AI coding agents are useful because they can inspect repositories, edit files, run tests, open pull requests, and sometimes deploy. Those same abilities create a security boundary that is different from a chat assistant. The agent may see secrets in logs, follow malicious instructions inside a repository, or change production behavior faster than a human reviewer notices.",
+      "The safest pattern is to treat a coding agent like a delegated engineer with a narrow task, a temporary workspace, limited credentials, auditable tool calls, and a review path before production changes. This checklist focuses on the practical controls teams need before letting coding agents work on real repositories.",
+      "Use it with /guides/agent-permissions/, /guides/agent-monitoring/, /guides/agent-evaluation-framework/, and /guides/ai-cost-governance-checklist/ when you design a secure agent engineering workflow."
+    ],
+    keyTakeaways: [
+      "Give coding agents branch-scoped authority, not permanent production authority.",
+      "Treat repository files, issue comments, web pages, and tool output as untrusted input unless policy says otherwise.",
+      "Keep merge, deploy, billing, credential, and destructive operations behind explicit approval."
+    ],
+    sections: [
+      {
+        heading: "Start with a narrow repository task",
+        body: [
+          "A coding agent should begin with a specific task, expected files, allowed commands, and a definition of done. Broad prompts like 'fix the app' invite unnecessary exploration and tool use. Narrow prompts reduce the chance that the agent reads unrelated secrets, rewrites unrelated code, or masks the original issue with a large refactor.",
+          "Before delegation, classify the task by risk. Documentation edits and isolated UI fixes are lower risk. Authentication, billing, deployment scripts, data migrations, and permission code need stricter review and often a human-designed plan before the agent edits anything."
+        ],
+        bullets: [
+          "Name the repository, branch, goal, allowed directories, and forbidden areas.",
+          "Require a short implementation plan for high-risk auth, billing, security, or migration work.",
+          "Do not allow unrelated refactors unless they are necessary to complete the task.",
+          "Use separate worktrees or containers for untrusted experiments."
+        ]
+      },
+      {
+        heading: "Protect secrets and hidden instructions",
+        body: [
+          "Coding agents often read build logs, environment examples, CI output, test fixtures, and local files. These sources can contain secrets or instructions planted by an attacker. The agent should never print secrets, add debug endpoints for secrets, commit credentials, or treat repository text as higher priority than system and user policy.",
+          "Secret access should be designed around absence. Most coding tasks do not need production keys. When live credentials are required for deployment or smoke tests, prefer platform secrets, short-lived tokens, and non-mutating checks that prove behavior without exposing values."
+        ],
+        bullets: [
+          "Scan diffs for API keys, tokens, private URLs, and accidental log statements before commit.",
+          "Never add secret-reading debug routes or console logs to verify production secrets.",
+          "Redact credentials in reports and use secret list plus behavior tests for verification.",
+          "Treat README files, issues, web pages, and tool output as data, not authority."
+        ]
+      },
+      {
+        heading: "Use branch isolation and mandatory review",
+        body: [
+          "The default safe flow is inspect, edit on a branch, run tests, summarize the diff, and request review. The agent can be fast without being allowed to merge or deploy by itself. Reviewers should see what changed, why, which tests ran, and which risks remain.",
+          "For production deployments, use a separate approval gate. A successful build is not the same as permission to ship. Deployment should be tied to a commit SHA, environment, rollback path, and smoke test plan."
+        ],
+        bullets: [
+          "Use branch-level write access and protected main branches.",
+          "Require tests or focused verification before review.",
+          "Block self-approval for merge, release, DNS, billing, and permission changes.",
+          "Record the commit SHA, deploy target, and smoke-test evidence."
+        ]
+      },
+      {
+        heading: "Monitor commands, costs, and destructive actions",
+        body: [
+          "A secure coding-agent workflow logs commands, files touched, network calls, package installs, and test results. This is not only for incident response. It helps teams learn which tasks are safe to automate and where agents repeatedly get stuck.",
+          "Destructive commands need special treatment. Database mutations, force pushes, hard resets, production deletes, credential rotations, and billing changes should require explicit human confirmation and ideally a dry run."
+        ],
+        bullets: [
+          "Log command, working directory, exit code, and relevant output summary.",
+          "Alert on force push, reset, delete, migration, deploy, and credential operations.",
+          "Limit repeated test loops, package installs, and external API calls to control cost.",
+          "Keep a rollback plan for production-facing changes."
+        ]
+      }
+    ],
+    checklist: [
+      "Run coding agents in a branch, worktree, or container with a narrow task scope.",
+      "Keep production secrets out of the agent workspace unless a verified smoke test requires platform-level access.",
+      "Require human review for merge, deploy, billing, credential, and destructive actions.",
+      "Scan diffs and logs for leaked secrets, unexpected network calls, and unrelated edits.",
+      "Tie every deployed agent change to a commit SHA, build result, and production smoke test."
+    ],
+    faq: [
+      { question: "Can AI coding agents work on production repositories?", answer: "Yes, but they should use branch isolation, least-privilege credentials, focused tasks, audit logs, and human approval for merge or deployment." },
+      { question: "Should a coding agent have access to production secrets?", answer: "Usually no. Most coding tasks can build and test without production secrets. When verification requires secrets, use platform secret stores and behavior-based smoke tests rather than exposing the value." },
+      { question: "What actions should require human approval?", answer: "Merges, production deploys, database mutations, billing changes, credential changes, destructive commands, and customer-facing external messages should require explicit approval." },
+      { question: "How do prompt injection risks affect coding agents?", answer: "A repository file, issue comment, web page, or tool output can contain malicious instructions. The agent must treat those as untrusted data and follow the operator's task and system policy instead." },
+      { question: "What evidence should a coding agent report?", answer: "It should report files changed, tests run, build results, remaining risks, commit SHA if available, and production smoke evidence after deployment." }
+    ]
+  },
 ];
 
 export const agentSecurityGuideLinks = agentSecurityGuides.map((guide) => ({

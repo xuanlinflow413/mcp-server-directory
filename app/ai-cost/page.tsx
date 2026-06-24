@@ -293,6 +293,9 @@ export default function AICostHubPage() {
               { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator" },
               { href: "/guides/how-to-price-an-ai-saas-product/", label: "How to Price an AI SaaS Product" },
               { href: "/ai-prd-generator/", label: "AI PRD Generator" },
+              { href: "/guides/agent-cost-management/", label: "Agent Cost Management Guide" },
+              { href: "/guides/ai-cost-governance-checklist/", label: "AI Cost Governance Checklist" },
+              { href: "/guides/ai-coding-agent-security-checklist/", label: "AI Coding Agent Security Checklist" },
             ].map((link) => (
               <Link
                 key={link.href}
