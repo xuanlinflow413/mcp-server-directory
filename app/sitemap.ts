@@ -38,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     route("/ai-coding-tools/tools/", 0.9, "weekly"),
     route("/ai-coding-tools/finder/", 0.88, "monthly"),
     route("/ai-coding-tools/cost-calculator/", 0.86, "monthly"),
+    route("/ai-coding-tools/alternatives/cursor/", 0.84, "monthly"),
     route("/ai-coding-tools/best-ai-coding-agent-for-nextjs/", 0.84, "monthly"),
     route("/ai-coding-tools/long-horizon-coding-agents/", 0.84, "monthly"),
     route("/ai-coding-tools/large-codebase-ai-coding-agent/", 0.84, "monthly"),
