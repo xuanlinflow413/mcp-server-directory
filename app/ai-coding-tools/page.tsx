@@ -52,6 +52,9 @@ export default function AiCodingToolsPage() {
             <Link href="/ai-coding-tools/best-ai-coding-agent-for-nextjs/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Best for Next.js</Link>
             <Link href="/ai-coding-tools/long-horizon-coding-agents/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Long-horizon agents</Link>
             <Link href="/ai-coding-tools/large-codebase-ai-coding-agent/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Large codebases</Link>
+            <Link href="/ai-coding-tools/ai-code-security-tools/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Code security</Link>
+            <Link href="/ai-coding-tools/ai-code-review-tools/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Code review</Link>
+            <Link href="/ai-coding-tools/ai-agent-permissions-checklist/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Agent permissions</Link>
             <Link href="/ai-coding-tools/open-source-ai-coding-agents/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Open source agents</Link>
             <Link href="/ai-coding-tools/alternatives/claude-code/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Claude Code alternatives</Link>
             <Link href="/ai-coding-tools/alternatives/devin/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Devin alternatives</Link>
@@ -103,10 +106,14 @@ export default function AiCodingToolsPage() {
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">Use-case guide</p>
           <div className="mt-4 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <h2 className="max-w-3xl text-3xl font-bold tracking-tight text-slate-950">Building with Next.js?</h2>
-              <p className="mt-3 max-w-3xl text-slate-700">Compare Cursor, Claude Code, Windsurf, Copilot, Cline, and Aider for App Router work, static exports, Cloudflare Pages deploys, and MCP-backed verification loops.</p>
+              <h2 className="max-w-3xl text-3xl font-bold tracking-tight text-slate-950">Securing AI-generated code?</h2>
+              <p className="mt-3 max-w-3xl text-slate-700">Compare code security tools, AI review workflows, and agent permission rules before giving coding agents repository, GitHub, CI, or deployment access.</p>
             </div>
-            <Link href="/ai-coding-tools/best-ai-coding-agent-for-nextjs/" className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-500">Find the best Next.js agent →</Link>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/ai-coding-tools/ai-code-security-tools/" className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-500">Security tools</Link>
+              <Link href="/ai-coding-tools/ai-code-review-tools/" className="inline-flex items-center justify-center rounded-xl bg-slate-950 px-6 py-3 text-sm font-semibold text-white hover:bg-slate-800">Review tools</Link>
+              <Link href="/ai-coding-tools/ai-agent-permissions-checklist/" className="inline-flex items-center justify-center rounded-xl border border-blue-300 bg-white px-6 py-3 text-sm font-semibold text-blue-700 hover:bg-blue-100">Permissions</Link>
+            </div>
           </div>
         </div>
       </section>
