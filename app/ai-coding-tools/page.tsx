@@ -3,7 +3,7 @@ import Link from "next/link";
 import { aiCodingComparisons, aiCodingFaqs, aiCodingTools } from "@/data/aiCodingTools";
 
 const title = "Agentic AI Coding Tools Directory 2026 | BestMCPServers";
-const description = "Compare the best agentic AI coding tools: Cursor, Claude Code, GitHub Copilot, Windsurf, OpenAI Codex, Devin, Replit Agent, Factory, Cline, Aider, and Continue. Find IDE agents, terminal agents, PR agents, and MCP-ready workflows.";
+const description = "Compare the best agentic AI coding tools: Cursor, Claude Code, Gemini CLI, Roo Code, Sourcegraph Cody, GitHub Copilot, Windsurf, OpenAI Codex, Devin, Cline, Aider, and Continue. Find IDE agents, terminal agents, PR agents, and MCP-ready workflows.";
 
 export const metadata: Metadata = {
   title,
@@ -30,6 +30,10 @@ const jsonLd = {
 
 export default function AiCodingToolsPage() {
   const topTools = aiCodingTools.slice(0, 5);
+  const newToolSlugs = ["gemini-cli", "qwen-code", "roo-code", "sourcegraph-cody", "tabnine"];
+  const newTools = newToolSlugs.map((slug) => aiCodingTools.find((tool) => tool.slug === slug)).filter(Boolean);
+  const newComparisonSlugs = ["gemini-cli-vs-claude-code", "roo-code-vs-cline", "qwen-code-vs-aider", "sourcegraph-cody-vs-cursor", "tabnine-vs-github-copilot"];
+  const newComparisons = newComparisonSlugs.map((slug) => aiCodingComparisons.find((comparison) => comparison.slug === slug)).filter(Boolean);
 
   return (
     <main className="bg-white">
@@ -49,6 +53,10 @@ export default function AiCodingToolsPage() {
             <Link href="/ai-coding-tools/finder/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Use the finder</Link>
             <Link href="/ai-coding-tools/cost-calculator/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Cost calculator</Link>
             <Link href="/ai-coding-tools/compare/claude-code-vs-cursor/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Claude Code vs Cursor</Link>
+            <Link href="/ai-coding-tools/compare/gemini-cli-vs-claude-code/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Gemini CLI vs Claude Code</Link>
+            <Link href="/ai-coding-tools/compare/roo-code-vs-cline/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Roo Code vs Cline</Link>
+            <Link href="/ai-coding-tools/tools/gemini-cli/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Gemini CLI</Link>
+            <Link href="/ai-coding-tools/tools/sourcegraph-cody/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Sourcegraph Cody</Link>
             <Link href="/ai-coding-tools/best-ai-coding-agent-for-nextjs/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Best for Next.js</Link>
             <Link href="/ai-coding-tools/long-horizon-coding-agents/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Long-horizon agents</Link>
             <Link href="/ai-coding-tools/large-codebase-ai-coding-agent/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Large codebases</Link>
@@ -77,6 +85,43 @@ export default function AiCodingToolsPage() {
               <p className="mt-4 text-sm leading-6 text-slate-600">{tool.description}</p>
             </Link>
           ))}
+        </div>
+      </section>
+
+      <section className="border-y border-slate-200 bg-slate-50 px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">New 2026 pages</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">Fresh AI coding tool reviews and comparisons</h2>
+              <p className="mt-2 max-w-3xl text-slate-600">Use these new pages to compare Google, open-source, VS Code, enterprise search, and privacy-first coding workflows.</p>
+            </div>
+            <Link href="/ai-coding-tools/tools/" className="text-sm font-semibold text-blue-700 hover:text-blue-900">Browse every review →</Link>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div className="rounded-3xl border border-slate-200 bg-white p-6">
+              <h3 className="text-xl font-bold text-slate-950">New tool reviews</h3>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {newTools.map((tool) => tool && (
+                  <Link key={tool.slug} href={`/ai-coding-tools/tools/${tool.slug}/`} className="rounded-2xl border border-slate-200 p-4 transition hover:border-blue-300 hover:bg-blue-50">
+                    <p className="font-semibold text-slate-950">{tool.name}</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">{tool.tagline}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-3xl border border-slate-200 bg-white p-6">
+              <h3 className="text-xl font-bold text-slate-950">New comparison pages</h3>
+              <div className="mt-5 space-y-3">
+                {newComparisons.map((comparison) => comparison && (
+                  <Link key={comparison.slug} href={`/ai-coding-tools/compare/${comparison.slug}/`} className="block rounded-2xl border border-slate-200 p-4 transition hover:border-blue-300 hover:bg-blue-50">
+                    <p className="font-semibold text-slate-950">{comparison.title}</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">{comparison.description}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
