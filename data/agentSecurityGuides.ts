@@ -16,6 +16,7 @@ export type AgentSecurityGuide = {
   }>;
   checklist: string[];
   faq: Array<{ question: string; answer: string }>;
+  relatedLinks?: Array<{ href: string; label: string; description: string }>;
 };
 
 const sharedSecurityLinks = [
@@ -755,6 +756,7 @@ export const agentSecurityGuides: AgentSecurityGuide[] = [
     intro: [
       "AI search visibility is the practical question of whether crawlers and answer engines can discover, parse, and trust your pages. For an agent or MCP site, that means pages need clear routes, indexable HTML, canonical URLs, sitemap entries, structured content, and useful body text.",
       "The AI Search Visibility Checker at /tools/ai-search-visibility-checker/ gives builders a quick first pass. It does not replace Search Console or server logs, but it helps catch common launch issues before a page is promoted as SEO-ready.",
+      "For newly published landing pages and tool routes, pair that broader audit with the SEO Rapid Index Checker at /tools/rapid-index-checker/ to quickly triage canonical, sitemap, robots, and internal-link gaps before you wait on crawl feedback.",
       "Use this guide when publishing new MCP workflows, security guides, permission tools, or AI agent pages. The goal is not to game AI search. The goal is to make useful pages easy to crawl, quote, and evaluate."
     ],
     keyTakeaways: [
@@ -785,6 +787,7 @@ export const agentSecurityGuides: AgentSecurityGuide[] = [
         bullets: [
           "Use one clear H1 and descriptive H2 sections.",
           "Explain the user task before the CTA.",
+          "Use the SEO Rapid Index Checker for fast launch triage on newly shipped pages.",
           "Link related tools, guides, workflows, and pricing pages.",
           "Include FAQ answers that match real search questions."
         ]
@@ -815,6 +818,12 @@ export const agentSecurityGuides: AgentSecurityGuide[] = [
       { question: "Does a visibility checker guarantee AI search rankings?", answer: "No. It verifies technical and content signals that support discovery. Ranking and citation still depend on external crawling, authority, relevance, and answer-engine behavior." },
       { question: "Why is sitemap inclusion important?", answer: "Sitemap inclusion helps crawlers discover important public pages, especially dynamic guide or tool pages that may not receive many external links yet." },
       { question: "What should a Pro visibility report include?", answer: "It should include the checked URL, HTTP result, canonical result, sitemap result, robots status, schema notes, content gaps, and recommended fixes." }
+    ],
+    relatedLinks: [
+      { href: "/tools/ai-search-visibility-checker/", label: "AI Search Visibility Checker", description: "Run the broader crawl, schema, and answer-engine discovery audit." },
+      { href: "/tools/rapid-index-checker/", label: "SEO Rapid Index Checker", description: "Triage brand-new pages for canonical, sitemap, robots, and internal-link gaps before crawl data arrives." },
+      { href: "/guides/agent-security-guide/", label: "Agent Security Guide", description: "Connect launch visibility checks with broader agent risk and reliability reviews." },
+      { href: "/tools/agent-permission-builder/", label: "Agent Permission Builder", description: "Draft least-privilege scopes before publishing agent tools or workflow pages." }
     ]
   },
   {

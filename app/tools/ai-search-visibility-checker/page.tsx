@@ -16,6 +16,8 @@ export const metadata: Metadata = {
 const relatedLinks = [
   { href: "/ai-product-manager/", label: "AI Product Manager" },
   { href: "/ai-prd-generator/", label: "AI PRD Generator" },
+  { href: "/tools/rapid-index-checker/", label: "SEO Rapid Index Checker" },
+  { href: "/guides/ai-search-visibility-checker/", label: "AI Search Visibility Checker Guide" },
   { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator" },
   { href: "/workflows/", label: "AI Workflow Packs" },
   { href: "/tools/agent-permission-builder/", label: "Agent Permission Builder" },

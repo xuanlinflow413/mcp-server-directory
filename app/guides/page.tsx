@@ -74,6 +74,7 @@ const guideSections = [
       { title: "AI PRD Generator and Product-Specific PRD Templates", href: "/ai-prd-generator/", description: "Generate structured product requirements documents and browse templates for AI agents, MCP servers, SaaS, mobile apps, CRM, marketplaces, and Chrome extensions.", tag: "AI PRD" },
       { title: "Use BestMCPServers Tool API with ChatGPT Actions", href: "/guides/use-bestmcpservers-api-with-chatgpt/", description: "Import the OpenAPI spec into ChatGPT Actions and call JSON, Base64, and JWT tools.", tag: "ChatGPT Actions" },
       { title: "Use BestMCPServers Tools with Cursor and MCP", href: "/guides/use-bestmcpservers-tools-with-cursor/", description: "Connect Cursor workflows to public HTTP endpoints today and future MCP tools later.", tag: "Cursor MCP" },
+      { title: "SEO Rapid Index Checker", href: "/tools/rapid-index-checker/", description: "Check whether a newly shipped URL has crawlable status, canonical, robots, sitemap, and internal-link signals before waiting on Search Console.", tag: "SEO Indexing" },
       { title: "Veo Prompt Examples", href: "/guides/veo-prompt-examples/", description: "Copyable Google Veo prompt examples for cinematic, ad, and social videos.", tag: "Veo Prompts" },
       { title: "How to Write Veo Prompts", href: "/guides/how-to-write-veo-prompts/", description: "Learn the subject, camera, lighting, scene, style, and duration pattern for better Veo outputs.", tag: "Veo Guide" },
     ],
@@ -114,6 +115,17 @@ export default function GuidesPage() {
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">
             Practical guides for AI cost planning, SaaS pricing, MCP stack setup, agent security, MCP servers, AI-callable tools, Cursor workflows, and Veo prompt generation.
           </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <Link href="/tools/rapid-index-checker/" className="inline-flex items-center justify-center rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-400">
+              Check a page for rapid indexing risk
+            </Link>
+            <Link href="/tools/ai-search-visibility-checker/" className="inline-flex items-center justify-center rounded-xl border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
+              Run the full AI search visibility audit
+            </Link>
+            <Link href="/guides/use-bestmcpservers-tools-with-cursor/" className="inline-flex items-center justify-center rounded-xl border border-white/15 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
+              See how Cursor can use the tools
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Wrench, FileJson, ArrowRight, ShieldCheck, Binary, KeyRound, Link2, Hash, Video, PlugZap, Code2, Database, Eye, Calculator, FileText, DollarSign, Network, Settings, LockKeyhole, SearchCheck } from "lucide-react";
+import { Wrench, FileJson, ArrowRight, ShieldCheck, Binary, KeyRound, Link2, Hash, Video, PlugZap, Code2, Database, Eye, Calculator, FileText, DollarSign, Network, Settings, LockKeyhole, SearchCheck, TrendingUp } from "lucide-react";
 import { developerTools, type ToolSlug } from "@/data/developerTools";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bestmcpservers.com"),
   title: "Developer Tools — Free Online Utilities | BestMCPServers",
   description:
-    "Free online developer tools and AI builder utilities: AI PRD generator, OpenAI cost calculator, Claude cost calculator, Gemini cost calculator, AI SaaS pricing calculator, MCP stack builder, MCP config generators, JSON formatter, Base64 converter, JWT decoder, URL encoder, UUID generator, AI cost calculator, HTML, SQL, and Markdown utilities.",
+    "Free online developer tools, AI builder utilities, and SEO checkers: AI PRD generator, OpenAI cost calculator, Claude cost calculator, Gemini cost calculator, AI SaaS pricing calculator, MCP stack builder, MCP config generators, rapid index checker, AI search visibility checker, JSON formatter, Base64 converter, JWT decoder, URL encoder, UUID generator, AI cost calculator, HTML, SQL, and Markdown utilities.",
   keywords: [
     "developer tools",
     "AI PRD generator",
@@ -34,6 +34,10 @@ export const metadata: Metadata = {
     "mcp security checklist generator",
     "llm cost calculator",
     "token cost calculator",
+    "rapid index checker",
+    "seo index checker",
+    "technical seo checker",
+    "ai search visibility checker",
   ],
   alternates: {
     canonical: "https://bestmcpservers.com/tools/",
@@ -71,6 +75,7 @@ const iconMap: Record<ToolSlug, typeof FileJson> = {
   "openai-cost-calculator": Calculator,
   "claude-cost-calculator": Calculator,
   "gemini-cost-calculator": Calculator,
+  "model-routing-savings-calculator": TrendingUp,
   "ai-saas-pricing-calculator": DollarSign,
   "mcp-stack-builder": Network,
   "claude-desktop-mcp-config-generator": Settings,
@@ -80,6 +85,7 @@ const iconMap: Record<ToolSlug, typeof FileJson> = {
   "mcp-security-checklist-generator": ShieldCheck,
   "agent-permission-builder": LockKeyhole,
   "ai-search-visibility-checker": SearchCheck,
+  "rapid-index-checker": SearchCheck,
   "veo-prompt-generator": Video,
   "prompt-injection-checker": ShieldCheck,
 };
@@ -139,7 +145,7 @@ export default function ToolsPage() {
             Free Online Developer Tools
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-400">
-            A growing collection of browser utilities and public API endpoints for AI agents.
+            A growing collection of browser utilities, AI builder tools, and lightweight SEO checkers for AI agents.
             Use the web tools directly, or call JSON, Base64, and JWT endpoints from scripts and OpenAPI clients.
           </p>
         </div>
@@ -151,7 +157,7 @@ export default function ToolsPage() {
             <h2 className="text-2xl font-bold text-slate-900">Developer Utilities</h2>
             <p className="mt-2 text-slate-600">
               Generate AI-ready PRDs, estimate OpenAI, Claude, Gemini, and general LLM costs, plan AI SaaS pricing,
-              build MCP stacks, generate MCP configs and env templates, format JSON, validate syntax, encode Base64, decode JWTs, encode URLs,
+              build MCP stacks, generate MCP configs and env templates, check SEO indexability signals, audit AI search visibility, format JSON, validate syntax, encode Base64, decode JWTs, encode URLs,
               generate UUID v4 values, format HTML and SQL, and preview Markdown without sending data to a server.
             </p>
           </div>

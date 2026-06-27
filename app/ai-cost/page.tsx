@@ -75,6 +75,14 @@ const calculators = [
     color: "bg-purple-600",
   },
   {
+    href: "/tools/model-routing-savings-calculator/",
+    name: "Model Routing Savings Calculator",
+    description: "Compare all-premium model spend against a tiered routing mix to estimate monthly and yearly savings before implementation.",
+    icon: TrendingUp,
+    tag: "Routing",
+    color: "bg-emerald-600",
+  },
+  {
     href: "/tools/ai-cost-calculator/",
     name: "Kimi Cost Calculator",
     description: "Estimate Moonshot AI Kimi API costs. Compare pricing for long-context Chinese LLM workloads.",
@@ -291,6 +299,7 @@ export default function AICostHubPage() {
           <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {[
               { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator" },
+              { href: "/tools/model-routing-savings-calculator/", label: "Model Routing Savings Calculator" },
               { href: "/guides/how-to-price-an-ai-saas-product/", label: "How to Price an AI SaaS Product" },
               { href: "/ai-prd-generator/", label: "AI PRD Generator" },
               { href: "/guides/agent-cost-management/", label: "Agent Cost Management Guide" },

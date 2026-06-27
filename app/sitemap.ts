@@ -42,6 +42,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     route("/ai-coding-tools/alternatives/claude-code/", 0.84, "monthly"),
     route("/ai-coding-tools/alternatives/devin/", 0.84, "monthly"),
     route("/ai-coding-tools/open-source-ai-coding-agents/", 0.84, "monthly"),
+    route("/ai-coding-tools/local-ai-coding-agents/", 0.84, "monthly"),
+    route("/ai-coding-tools/ai-coding-agents-with-mcp-support/", 0.86, "monthly"),
     route("/ai-coding-tools/best-ai-coding-agent-for-nextjs/", 0.84, "monthly"),
     route("/ai-coding-tools/long-horizon-coding-agents/", 0.84, "monthly"),
     route("/ai-coding-tools/large-codebase-ai-coding-agent/", 0.84, "monthly"),

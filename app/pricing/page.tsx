@@ -27,7 +27,7 @@ const faq = [
   },
   {
     q: "Do I need a new account?",
-    a: "No. BestMCPServers uses the existing Google sign-in and secure checkout flow. You can browse free pages without paying, then upgrade only when you want a paid workflow pack.",
+    a: "No separate vendor account is required. BestMCPServers Account uses Google sign-in at auth.bestmcpservers.com and secure Stripe checkout, so you can browse free pages first and upgrade only when you want a paid workflow pack.",
   },
   {
     q: "Will this lock basic SEO pages?",
@@ -64,7 +64,8 @@ export default function PricingPage() {
         <div className="mx-auto max-w-4xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">Pricing</p>
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-6xl">Free directory. Pro workflows when you need execution.</h1>
-          <p className="mt-6 text-lg leading-8 text-slate-300">Browse MCP servers for free. Upgrade only when you want copy-ready workflow packs, safety checklists, and implementation guidance for Claude Code, Cursor, Codex, Gemini CLI, and Hermes.</p>
+          <p className="mt-6 text-lg leading-8 text-slate-300">Browse MCP servers for free. Upgrade through BestMCPServers Account when you want copy-ready workflow packs, safety checklists, and implementation guidance for Claude Code, Cursor, Codex, Gemini CLI, and Hermes.</p>
+          <p className="mt-4 text-sm text-slate-400">Sign-in and checkout run on <span className="font-semibold text-blue-200">auth.bestmcpservers.com</span>, the branded account center for BestMCPServers purchases.</p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link href="/workflows/" className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-100">View workflow packs</Link>
             <Link href="/pro/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">See Pro benefits</Link>
@@ -105,7 +106,7 @@ export default function PricingPage() {
               <li>✓ Agent permission reports and AI search visibility audit workflows</li>
               <li>✓ Updates as workflow packs improve</li>
             </ul>
-            <div className="mt-8"><BillingCheckout plan="pro" label="Start Pro" className="inline-flex w-full items-center justify-center rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:bg-slate-500" /></div>
+            <div className="mt-8"><BillingCheckout plan="pro" label="Continue with BestMCPServers Account" className="inline-flex w-full items-center justify-center rounded-xl bg-blue-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-400 disabled:cursor-not-allowed disabled:bg-slate-500" /></div>
           </div>
         </div>
 

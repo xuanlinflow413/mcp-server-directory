@@ -12,6 +12,7 @@ export type ToolSlug =
   | "openai-cost-calculator"
   | "claude-cost-calculator"
   | "gemini-cost-calculator"
+  | "model-routing-savings-calculator"
   | "ai-saas-pricing-calculator"
   | "mcp-stack-builder"
   | "claude-desktop-mcp-config-generator"
@@ -21,6 +22,7 @@ export type ToolSlug =
   | "mcp-security-checklist-generator"
   | "agent-permission-builder"
   | "ai-search-visibility-checker"
+  | "rapid-index-checker"
   | "veo-prompt-generator"
   | "prompt-injection-checker";
 
@@ -33,7 +35,7 @@ export type ToolConfig = {
   canonical: string;
   h1: string;
   intro: string;
-  mode: "json-validator" | "base64" | "jwt" | "url" | "uuid" | "html" | "sql" | "markdown" | "ai-cost" | "openai-cost" | "claude-cost" | "gemini-cost" | "ai-saas-pricing" | "mcp-stack" | "mcp-config" | "mcp-env" | "mcp-security" | "agent-permission" | "ai-search-visibility" | "json-formatter" | "veo" | "prompt-injection";
+  mode: "json-validator" | "base64" | "jwt" | "url" | "uuid" | "html" | "sql" | "markdown" | "ai-cost" | "openai-cost" | "claude-cost" | "gemini-cost" | "model-routing-savings" | "ai-saas-pricing" | "mcp-stack" | "mcp-config" | "mcp-env" | "mcp-security" | "agent-permission" | "ai-search-visibility" | "json-formatter" | "veo" | "prompt-injection";
   tags: string[];
   sample: string;
   faqs: { question: string; answer: string }[];
@@ -319,6 +321,27 @@ export const developerTools: ToolConfig[] = [
   ],
 },
 {
+  slug: "model-routing-savings-calculator",
+  name: "Model Routing Savings Calculator",
+  shortName: "Routing Savings",
+  title: "Model Routing Savings Calculator — Estimate LLM Routing Cost Reduction",
+  description: "Estimate how much AI teams can save by routing simple requests to cheaper models and reserving premium models for hard tasks. Compare monthly and yearly LLM routing spend instantly.",
+  canonical: `${base}/tools/model-routing-savings-calculator/`,
+  h1: "Model Routing Savings Calculator",
+  intro: "Compare all-premium model usage against a tiered routing mix so you can estimate monthly savings before you ship an AI workflow.",
+  mode: "model-routing-savings",
+  tags: ["model routing calculator", "llm routing savings", "ai cost optimization", "token budget planner", "agent cost control"],
+  sample: "",
+  faqs: [
+    { question: "What is a model routing savings calculator?", answer: "A model routing savings calculator compares the cost of sending every request to a premium model versus splitting work across premium, mid-tier, and low-cost models." },
+    { question: "Why does routing reduce AI cost?", answer: "Simple tasks like classification, extraction, and formatting usually do not need the most expensive model. Routing those requests to cheaper models can reduce monthly spend significantly." },
+    { question: "What inputs should I estimate?", answer: "Start with your average input tokens, output tokens, daily requests, and the percentage of traffic that truly needs premium reasoning versus lighter models." },
+    { question: "Does this tool call any AI API?", answer: "No. It is a browser-only planning calculator. It does not require an API key, login, or backend." },
+    { question: "Can routing hurt output quality?", answer: "It can if you route complex tasks to weak models. Use routing with validation, fallback rules, and evaluation so cost savings do not create hidden quality regressions." },
+    { question: "Who should use this calculator?", answer: "Founders, AI product teams, agent builders, and engineers planning LLM workflows can use it to decide whether routing rules are worth implementing." },
+  ],
+},
+{
   slug: "ai-saas-pricing-calculator",
   name: "AI SaaS Pricing Calculator",
   shortName: "SaaS Pricing",
@@ -500,6 +523,27 @@ export const developerTools: ToolConfig[] = [
       { question: "Can this replace SEO tools?", answer: "No. It complements SEO tools by focusing on answer-engine readability and structured facts rather than keyword volume alone." },
       { question: "What should I improve first?", answer: "Start with a clear one-sentence entity definition, concrete use cases, proof points, FAQ coverage, and concise source-like statements." },
       { question: "What is the paid upgrade?", answer: "Pro will unlock richer report exports, page matrices, and implementation templates for AI search optimization workflows." },
+    ],
+  },
+  {
+    slug: "rapid-index-checker",
+    name: "SEO Rapid Index Checker",
+    shortName: "Index Checker",
+    title: "SEO Rapid Index Checker — Triage Indexing Signals for URLs",
+    description: "Free SEO rapid index checker. Review public indexing signals like status codes, robots, canonicals, sitemap inclusion, and internal links before opening Search Console.",
+    canonical: `${base}/tools/rapid-index-checker/`,
+    h1: "SEO Rapid Index Checker",
+    intro: "Check whether a URL looks indexed, excluded, or uncertain using public signals such as robots directives, canonicals, sitemap inclusion, internal links, and page depth.",
+    mode: "ai-search-visibility",
+    tags: ["index checker", "SEO index status", "technical SEO", "sitemap audit", "canonical check", "robots check"],
+    sample: "https://example.com/blog/technical-seo-audit-template",
+    faqs: [
+      { question: "Does this index checker use Google Search Console data?", answer: "No. It uses public signals and browser-side heuristics only. Consult GSC for authoritative data when a page matters." },
+      { question: "What can this tool actually tell me?", answer: "It helps you triage likely indexed URLs, likely excluded URLs, and cases that still need manual review before you escalate into a first-party inspection workflow." },
+      { question: "Which signals matter most in this checker?", answer: "Status codes, noindex directives, canonical targets, sitemap inclusion, internal links, page depth, and URL age drive the verdict." },
+      { question: "Can this guarantee that a page is indexed?", answer: "No. The verdict is based on publicly available signals, not Google-internal indexing data." },
+      { question: "When should I still open Search Console?", answer: "Use Search Console for high-value pages, disputed cases, launch-critical URLs, or any report that needs authoritative confirmation." },
+      { question: "Is any data uploaded to a backend?", answer: "No. This MVP runs entirely in the browser and does not send your URLs to a server." },
     ],
   },
   {

@@ -50,6 +50,7 @@ const freeBuilderGroups = [
     description: "Validate the numbers before you buy or build the workflow.",
     links: [
       { href: "/tools/ai-cost-calculator/", label: "AI Cost Calculator" },
+      { href: "/tools/model-routing-savings-calculator/", label: "Model Routing Savings Calculator" },
       { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator" },
     ],
   },
@@ -78,10 +79,11 @@ const freeBuilderGroups = [
   },
   {
     title: "Secure and audit agents",
-    description: "Check permissions, AI search visibility, and MCP security before turning an agent workflow loose.",
+    description: "Check permissions, AI search visibility, and rapid index pickup before turning an agent workflow loose.",
     links: [
       { href: "/tools/agent-permission-builder/", label: "Agent Permission Builder" },
       { href: "/tools/ai-search-visibility-checker/", label: "AI Search Visibility Checker" },
+      { href: "/tools/rapid-index-checker/", label: "SEO Rapid Index Checker" },
       { href: "/guides/mcp-server-security-checklist/", label: "MCP Server Security Checklist" },
       { href: "/guides/agent-permission-builder/", label: "Agent Permission Builder Guide" },
       { href: "/guides/ai-search-visibility-checker/", label: "AI Search Visibility Checker Guide" },
@@ -172,6 +174,12 @@ export default function Home() {
                 className="inline-flex items-center justify-center rounded-xl border border-blue-300/30 px-6 py-3 text-sm font-bold text-blue-100 transition hover:bg-blue-400/10"
               >
                 Compare agentic AI coding tools
+              </Link>
+              <Link
+                href="/tools/rapid-index-checker/"
+                className="inline-flex items-center justify-center rounded-xl border border-emerald-300/30 px-6 py-3 text-sm font-bold text-emerald-100 transition hover:bg-emerald-400/10"
+              >
+                Check a page for rapid indexing risk
               </Link>
               <Link
                 href="/my-purchases/"
@@ -313,6 +321,11 @@ export default function Home() {
                 href: "/tools/ai-search-visibility-checker/",
                 label: "AI Search Visibility Checker",
                 text: "Check whether crawler, sitemap, schema, and page signals make your agent content discoverable.",
+              },
+              {
+                href: "/tools/rapid-index-checker/",
+                label: "SEO Rapid Index Checker",
+                text: "Triage whether a just-published page has the crawl, canonical, sitemap, and internal-link signals needed for faster index pickup.",
               },
               {
                 href: "/guides/ai-cad-tools-and-agent-integration/",

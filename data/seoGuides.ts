@@ -167,11 +167,120 @@ export const seoGuides: SeoGuide[] = [
     ],
     relatedLinks: [
       { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator", description: "Estimate pricing tiers from model cost and margin targets." },
+      { href: "/guides/reduce-ai-costs/", label: "How to Reduce AI Costs", description: "Use routing, caching, prompt trimming, and limits before promising unlimited usage." },
       { href: "/tools/ai-cost-calculator/", label: "AI Cost Calculator", description: "Estimate general LLM token costs." },
       { href: "/tools/openai-cost-calculator/", label: "OpenAI Cost Calculator", description: "Plan GPT API spend." },
       { href: "/ai-prd-generator/", label: "AI PRD Generator", description: "Define the product before setting pricing." }
     ],
     primaryCta: { href: "/tools/ai-saas-pricing-calculator/", label: "Use the AI SaaS Pricing Calculator" }
+  },
+  {
+    slug: "reduce-ai-costs",
+    category: "AI Cost & Pricing",
+    title: "How to Reduce AI Costs Without Breaking Product Quality",
+    description: "Learn practical ways to reduce AI API costs with model routing, prompt trimming, caching, output limits, usage caps, and cost monitoring before scale.",
+    h1: "How to Reduce AI Costs Without Breaking Product Quality",
+    eyebrow: "AI cost optimization",
+    primaryKeyword: "reduce AI costs",
+    secondaryKeywords: ["reduce AI API costs", "lower LLM costs", "AI cost optimization", "model routing savings", "LLM cost reduction", "AI usage limits", "prompt cost optimization"],
+    updated,
+    readingTime: "11 min read",
+    intro: [
+      "Reducing AI costs is not only about picking the cheapest model. The real savings usually come from matching model strength to task difficulty, sending less repeated context, caching work that does not need to be regenerated, and putting clear limits around retries, long outputs, and free-plan usage.",
+      "This guide is written for builders who already have an AI feature or are planning one. Use it after estimating baseline spend with an AI cost calculator, then decide which optimizations can lower cost without making the product feel worse."
+    ],
+    keyTakeaways: [
+      "Start with measurement: cost per feature, cost per active user, and cost per paid user are more useful than a single monthly invoice.",
+      "Model routing usually creates the largest controllable savings because simple tasks rarely need the most expensive model.",
+      "Prompt trimming, caching, output caps, and usage limits should be designed into the product before traffic grows."
+    ],
+    sections: [
+      {
+        heading: "Measure AI cost before optimizing",
+        body: [
+          "Before changing models or cutting features, split AI usage by workflow. A rewrite button, support chatbot, document summary, coding assistant, and research report all have different token shape and quality requirements.",
+          "Track request count, average input tokens, average output tokens, selected model, retries, cache hit rate, and plan type. That gives you a cost map: which features cost the most, which users create the most load, and where optimization will actually matter."
+        ],
+        bullets: ["Cost per feature", "Cost per active user", "Cost per paid user", "Input and output tokens", "Retry and regeneration rate", "Cache hit rate"]
+      },
+      {
+        heading: "Use model routing for simple tasks",
+        body: [
+          "Model routing means sending each request to the cheapest model that can do the job well enough. Classification, extraction, formatting, routing, short rewrites, and guardrail checks often work on lower-cost models. Hard reasoning, long synthesis, coding review, or high-stakes output may still need a stronger model.",
+          "A practical routing setup starts with three tiers: low-cost for simple structured tasks, balanced for normal product output, and premium for difficult or user-paid workflows. Add escalation only when a cheaper model fails a quality check."
+        ],
+        bullets: ["Low-cost tier for classification and formatting", "Balanced tier for normal generation", "Premium tier for high-value reasoning", "Escalate after validation failure", "Track quality by route"]
+      },
+      {
+        heading: "Trim prompts and repeated context",
+        body: [
+          "Many AI products pay for the same instructions and context again and again. Long system prompts, full chat history, full documents, duplicated examples, and broad retrieval chunks can quietly dominate input token cost.",
+          "Keep the stable system prompt concise, summarize older turns, retrieve only the most relevant chunks, and remove examples that do not change the output. For document workflows, send sections that matter instead of the whole source every time."
+        ],
+        bullets: ["Shorten repeated system prompts", "Summarize older chat history", "Limit retrieval chunks", "Avoid full-document resends", "Remove duplicated examples", "Use task-specific prompts"]
+      },
+      {
+        heading: "Cap outputs, retries, and regenerations",
+        body: [
+          "Output tokens are often more expensive than input tokens and are easier for users to multiply with regenerate buttons. Set max output lengths by workflow instead of letting every response become a long report.",
+          "Retries should also have a budget. If a task fails validation twice, ask the user for a narrower input or route to a paid/premium path rather than silently burning model calls."
+        ],
+        bullets: ["Set max output tokens per feature", "Use short drafts before long reports", "Limit free regenerations", "Budget validation retries", "Show paid users where extra depth is available"]
+      },
+      {
+        heading: "Cache and reuse stable results",
+        body: [
+          "If the same input produces the same useful answer, do not pay for it repeatedly. Cache deterministic transformations, summaries of unchanged documents, static FAQ answers, embeddings, and intermediate analysis that can be safely reused.",
+          "Caching needs product judgment. Do not reuse personalized, outdated, or permission-sensitive outputs across users. Store enough metadata to know when the answer should expire or be regenerated."
+        ],
+        bullets: ["Cache unchanged document summaries", "Reuse deterministic transformations", "Cache embeddings where appropriate", "Expire stale outputs", "Never share private user results across accounts"]
+      },
+      {
+        heading: "Design plans and credits around real usage",
+        body: [
+          "AI cost controls should be visible in pricing. A free plan can be useful, but unlimited generation is risky when each action has marginal cost. Use monthly credits, per-feature quotas, fair-use language, and paid add-ons when heavy usage is valuable.",
+          "For paid plans, compare estimated cost per paid user against the subscription price after payment fees and support cost. If one power user can consume more than their subscription margin, add limits or route expensive work to a higher tier."
+        ],
+        bullets: ["Monthly credits", "Feature-specific quotas", "Fair-use limits", "Paid add-on packs", "Higher tier for premium models", "Alerts for unusual usage"]
+      },
+      {
+        heading: "Use calculators before and after optimization",
+        body: [
+          "A useful workflow is baseline, optimize, then compare. First estimate current cost with the AI Cost Calculator. Then model a routing mix with the Model Routing Savings Calculator. Finally, check whether your AI SaaS pricing still protects margin.",
+          "Do not treat calculator output as an invoice forecast. It is a planning model. Verify current provider pricing, observe real token usage after launch, and revisit assumptions when product behavior changes."
+        ],
+        bullets: ["Estimate baseline model spend", "Compare routing scenarios", "Check SaaS pricing pressure", "Verify provider pricing", "Update assumptions with production telemetry"]
+      }
+    ],
+    checklist: [
+      "Break AI cost down by feature before optimizing",
+      "Measure input tokens, output tokens, retries, and regenerations",
+      "Route simple tasks to lower-cost models",
+      "Reserve premium models for high-value or hard tasks",
+      "Trim repeated prompts and excessive retrieved context",
+      "Set output caps per workflow",
+      "Cache stable summaries, transformations, and embeddings safely",
+      "Limit free-plan usage with credits or quotas",
+      "Alert on unusual usage spikes",
+      "Recheck pricing assumptions after production traffic changes"
+    ],
+    faq: [
+      { question: "What is the fastest way to reduce AI costs?", answer: "The fastest practical step is to measure cost by feature, then route simple tasks to cheaper models and cap long outputs or repeated regenerations." },
+      { question: "Does model routing reduce AI API costs?", answer: "Yes, when many requests are simple enough for lower-cost models. Keep quality checks and escalation paths so routing does not degrade important outputs." },
+      { question: "Should I cache AI responses?", answer: "Cache stable, non-sensitive results such as unchanged summaries, deterministic transformations, and embeddings. Avoid reusing private or outdated user-specific outputs." },
+      { question: "How do usage credits help AI SaaS margins?", answer: "Credits make AI consumption visible and bounded. They help prevent a small number of heavy users from consuming more model cost than their plan can support." },
+      { question: "Can prompt trimming hurt quality?", answer: "It can if you remove necessary context. Trim duplicated instructions, stale history, and irrelevant retrieval first, then test output quality on real tasks." },
+      { question: "Which calculator should I use first?", answer: "Use the AI Cost Calculator for baseline spend, the Model Routing Savings Calculator for routing scenarios, and the AI SaaS Pricing Calculator for plan economics." }
+    ],
+    relatedLinks: [
+      { href: "/tools/ai-cost-calculator/", label: "AI Cost Calculator", description: "Estimate baseline LLM spend before optimization." },
+      { href: "/tools/model-routing-savings-calculator/", label: "Model Routing Savings Calculator", description: "Compare all-premium model spend with a tiered routing mix." },
+      { href: "/tools/ai-saas-pricing-calculator/", label: "AI SaaS Pricing Calculator", description: "Check whether usage limits and subscription prices protect margin." },
+      { href: "/guides/how-to-price-an-ai-saas-product/", label: "How to Price an AI SaaS Product", description: "Connect model cost, free usage, paid conversion, and pricing tiers." },
+      { href: "/guides/how-to-estimate-openai-api-costs/", label: "Estimate OpenAI API Costs", description: "Plan GPT token spend before applying cost reduction tactics." },
+      { href: "/guides/agent-cost-management/", label: "Agent Cost Management", description: "Review cost controls for multi-step agent workflows." }
+    ],
+    primaryCta: { href: "/tools/model-routing-savings-calculator/", label: "Estimate routing savings" }
   },
   {
     slug: "how-to-build-an-mcp-stack",

@@ -5,7 +5,7 @@ import MyPurchasesClient from "@/components/MyPurchasesClient";
 import { workflowPacks } from "@/data/workflowPacks";
 
 const title = "My Purchases | BestMCPServers";
-const description = "View your unlocked BestMCPServers Pro workflow packs and legacy workflow access.";
+const description = "View your unlocked BestMCPServers Pro workflow packs through BestMCPServers Account.";
 
 export const metadata: Metadata = {
   title,
@@ -44,11 +44,12 @@ export default function MyPurchasesPage() {
 
       <section className="bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 px-4 py-16 text-white sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">Unlocked Packs</p>
-          <h1 className="mt-5 max-w-4xl text-4xl font-bold tracking-tight sm:text-6xl">Your paid workflow access in one place.</h1>
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-300">BestMCPServers Account</p>
+          <h1 className="mt-5 max-w-4xl text-4xl font-bold tracking-tight sm:text-6xl">Your paid workflow access in one branded account center.</h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-            After checkout, return here to see which copy-ready workflow packs are unlocked for your account and jump directly to the paid assets.
+            After checkout, return here to see which copy-ready workflow packs are unlocked for your BestMCPServers Account and jump directly to the paid assets.
           </p>
+          <p className="mt-4 max-w-3xl text-sm text-slate-400">Google sign-in and Stripe checkout are handled by auth.bestmcpservers.com.</p>
         </div>
       </section>
 

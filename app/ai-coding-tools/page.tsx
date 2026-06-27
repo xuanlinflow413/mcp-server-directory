@@ -56,6 +56,8 @@ export default function AiCodingToolsPage() {
             <Link href="/ai-coding-tools/ai-code-review-tools/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Code review</Link>
             <Link href="/ai-coding-tools/ai-agent-permissions-checklist/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Agent permissions</Link>
             <Link href="/ai-coding-tools/open-source-ai-coding-agents/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Open source agents</Link>
+            <Link href="/ai-coding-tools/local-ai-coding-agents/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Local agents</Link>
+            <Link href="/ai-coding-tools/ai-coding-agents-with-mcp-support/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">MCP support</Link>
             <Link href="/ai-coding-tools/alternatives/claude-code/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Claude Code alternatives</Link>
             <Link href="/ai-coding-tools/alternatives/devin/" className="rounded-xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10">Devin alternatives</Link>
           </div>

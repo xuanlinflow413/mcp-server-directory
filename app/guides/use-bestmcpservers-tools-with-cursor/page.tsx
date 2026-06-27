@@ -103,6 +103,7 @@ export default function GuidePage() {
           <h2 className="text-2xl font-bold text-slate-950">Related resources</h2>
           <ul className="mt-5 grid gap-3 sm:grid-cols-2">
             <li><Link href="/tools/api/" className="font-semibold text-blue-700 hover:text-blue-900">BestMCPServers Tool API</Link></li>
+            <li><Link href="/tools/rapid-index-checker/" className="font-semibold text-blue-700 hover:text-blue-900">SEO Rapid Index Checker</Link></li>
             <li><Link href="/tools/json-formatter/" className="font-semibold text-blue-700 hover:text-blue-900">JSON Formatter API</Link></li>
             <li><Link href="/tools/base64-encoder-decoder/" className="font-semibold text-blue-700 hover:text-blue-900">Base64 Encode Decode</Link></li>
             <li><Link href="/tools/jwt-decoder/" className="font-semibold text-blue-700 hover:text-blue-900">JWT Decoder API</Link></li>
