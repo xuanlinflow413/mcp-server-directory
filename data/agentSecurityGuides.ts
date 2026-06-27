@@ -1513,6 +1513,327 @@ export const agentSecurityGuides: AgentSecurityGuide[] = [
       { question: "What evidence should a coding agent report?", answer: "It should report files changed, tests run, build results, remaining risks, commit SHA if available, and production smoke evidence after deployment." }
     ]
   },
+  {
+    slug: "mcp-prompt-injection-defense",
+    title: "MCP Prompt Injection Defense — Protect Tool-Using Agents",
+    description: "Defend MCP-connected agents from prompt injection with untrusted-content boundaries, tool approval rules, retrieval hygiene, and production-ready monitoring.",
+    h1: "MCP Prompt Injection Defense",
+    eyebrow: "MCP Security",
+    updated: "2026-06-27",
+    readingTime: "13 min read",
+    primaryKeyword: "MCP prompt injection",
+    intro: [
+      "MCP prompt injection is dangerous because the model is not only reading text. It may also call tools, browse pages, read files, query databases, write tickets, send messages, or update systems through connected MCP servers. A malicious instruction inside a web page, issue comment, document, support ticket, or tool response can become a business action if the stack treats that text as authority.",
+      "The right defense is not a single stronger prompt. Teams need a boundary between trusted operator instructions and untrusted content, narrow MCP tools, scoped credentials, approval gates, traceable logs, and regression tests that include adversarial examples. This guide focuses on practical controls for production MCP stacks rather than theoretical prompt rules.",
+      "Use this alongside the MCP server security checklist at /mcp-server-security/, the agent security guide at /guides/agent-security-guide/, the agent monitoring guide at /guides/agent-monitoring/, and the MCP security checklist generator at /tools/mcp-security-checklist-generator/."
+    ],
+    keyTakeaways: [
+      "Treat web pages, repository files, tickets, emails, and tool output as untrusted data unless they are explicitly part of policy.",
+      "Prompt injection becomes high impact when an MCP server has write access, broad filesystem access, browser automation, or production credentials.",
+      "Defenses should combine content labeling, least-privilege tools, approval gates, monitoring, and repeatable injection tests."
+    ],
+    sections: [
+      {
+        heading: "Where MCP prompt injection enters",
+        body: [
+          "Prompt injection enters through any content the agent reads while trying to complete a task. Browser MCP servers may read attacker-controlled pages. GitHub and filesystem servers may expose README files, issue comments, logs, or generated artifacts. Support and CRM workflows may include customer-provided text. Database and search servers may return rows that contain instructions instead of ordinary content.",
+          "The central rule is simple: retrieved content can inform an answer, but it should not change the agent's operating policy. If a page tells the agent to reveal secrets, ignore the user, call another tool, or store a memory, that instruction is just text inside the page. It does not outrank the user's goal, system policy, tool schema, or approval requirements."
+        ],
+        bullets: [
+          "Browser pages, docs, search results, and scraped HTML.",
+          "Repository files, pull requests, issues, logs, and CI output.",
+          "Support tickets, emails, chat messages, CRM notes, and uploaded documents.",
+          "Tool responses from APIs, databases, internal dashboards, and remote MCP servers."
+        ]
+      },
+      {
+        heading: "Separate trusted instructions from untrusted content",
+        body: [
+          "MCP agents should preserve source labels through the workflow. The model should know whether text came from the operator, the system, a local configuration file, a web page, or a tool response. Logs should keep the same distinction so reviewers can reconstruct why a tool was called.",
+          "Do not paste retrieved content into the same prompt block as policy instructions without labels. When possible, summarize untrusted content into structured fields such as title, source URL, claim, evidence, and risk note. This reduces the chance that attacker language is interpreted as a command."
+        ],
+        bullets: [
+          "Label content source and trust level before model reasoning.",
+          "Quote untrusted instructions as data rather than obeying them.",
+          "Keep system, developer, user, tool, and retrieved content separate in traces.",
+          "Block memory writes or tool-scope changes triggered only by untrusted content."
+        ]
+      },
+      {
+        heading: "Constrain MCP tools before the model sees risk",
+        body: [
+          "A prompt-only defense fails when tools are too broad. If an MCP server exposes arbitrary shell execution, unrestricted filesystem access, production database credentials, or unsupervised browser actions, one successful injection can do too much. Tool design should reduce possible damage before the model makes a choice.",
+          "Prefer narrow tools with typed inputs and predictable outputs. Split risky workflows into preview and commit steps. Use read-only credentials for early adoption, and require explicit approval before external messages, writes, deletes, deployments, purchases, or customer-impacting actions."
+        ],
+        bullets: [
+          "Replace broad tools with task-specific tools where possible.",
+          "Use read-only scopes for browsing, search, repositories, databases, and dashboards first.",
+          "Add allowlists for filesystem paths, domains, repositories, tables, and API operations.",
+          "Require approval for write, send, delete, deploy, billing, and credential actions."
+        ]
+      },
+      {
+        heading: "Test injection as part of MCP rollout",
+        body: [
+          "Every production MCP workflow should have a small adversarial test set. Include normal tasks, pages with hidden instructions, documents that ask for secrets, tickets that request unrelated data, and tool outputs that try to change policy. The goal is not to make the model perfectly immune. The goal is to prove the product boundary holds when untrusted content behaves badly.",
+          "Run these tests when you add a server, change a system prompt, switch models, expand scopes, or enable a new write action. Record blocked attempts as regression examples so future changes do not silently reopen the same path."
+        ],
+        bullets: [
+          "A web page asks the agent to reveal credentials or hidden prompts.",
+          "A README asks the agent to run destructive commands outside the task scope.",
+          "A ticket asks the agent to query unrelated customer records.",
+          "A tool response asks the agent to write memory or call another tool."
+        ]
+      },
+      {
+        heading: "Monitor for injection-shaped behavior",
+        body: [
+          "Monitoring should connect content sources to tool decisions. If an agent reads an untrusted page and immediately attempts a write tool, external message, credential lookup, or unrelated data request, the trace should make that sequence visible. Alerting does not need to be perfect to be useful; it needs to highlight high-impact deviations before they become silent failures.",
+          "Store safe summaries of tool inputs and outputs, approval status, blocked calls, refusal reasons, and cost. Redact secrets and private data, but keep enough structure for security and product teams to review patterns over time."
+        ],
+        bullets: [
+          "Alert on tool calls that follow suspicious untrusted instructions.",
+          "Track blocked attempts to reveal prompts, secrets, credentials, or unrelated private data.",
+          "Review workflows where untrusted content precedes write or external-send tools.",
+          "Use monitoring examples to improve the injection regression set."
+        ]
+      }
+    ],
+    checklist: [
+      "Label every retrieved source as trusted or untrusted before the model uses it.",
+      "Keep high-risk MCP servers read-only until injection tests and approval gates pass.",
+      "Use scoped credentials, path allowlists, domain allowlists, and typed tool schemas.",
+      "Require review before writes, deletes, deploys, payments, external messages, and memory writes.",
+      "Log suspicious instruction patterns, blocked tool calls, approval decisions, and regression examples."
+    ],
+    faq: [
+      { question: "What is MCP prompt injection?", answer: "MCP prompt injection happens when untrusted content read through an MCP-connected workflow tries to influence the agent's instructions, tool calls, memory writes, or access to private data." },
+      { question: "Is a stronger system prompt enough to stop MCP prompt injection?", answer: "No. A stronger prompt helps, but production defense also needs source labeling, least-privilege tools, scoped credentials, approval gates, monitoring, and adversarial tests." },
+      { question: "Which MCP servers are highest risk for prompt injection?", answer: "Browser, filesystem, repository, database, email, messaging, and any write-capable server are higher risk because injected text can lead to tool calls with real side effects." },
+      { question: "Should MCP agents read arbitrary web pages?", answer: "They can, but arbitrary web pages should be treated as untrusted data. Tool calls that follow page instructions should be constrained and reviewed when they cross into sensitive actions." },
+      { question: "How do I verify defenses are working?", answer: "Create a regression set with malicious pages, documents, tickets, repository files, and tool outputs, then confirm the agent refuses unsafe instructions and keeps tool calls within scope." }
+    ],
+    relatedLinks: [
+      { href: "/mcp-server-security/", label: "MCP server security checklist", description: "Review production MCP permissions, secrets, and operational safety." },
+      { href: "/tools/mcp-security-checklist-generator/", label: "MCP security checklist generator", description: "Generate a workflow-specific MCP security checklist." },
+      { href: "/guides/agent-security-guide/", label: "Agent security guide", description: "Connect prompt injection, tool risk, monitoring, and evaluation." },
+      { href: "/guides/agent-monitoring/", label: "Agent monitoring", description: "Track tool calls, refusals, approvals, cost, and injection signals." }
+    ]
+  },
+  {
+    slug: "mcp-permission-audit",
+    title: "MCP Permission Audit — Review Scopes, Secrets & Tool Risk",
+    description: "Run an MCP permission audit before production: map server capabilities, scopes, secrets, data access, approvals, logging, and rollback paths.",
+    h1: "MCP Permission Audit",
+    eyebrow: "MCP Security",
+    updated: "2026-06-27",
+    readingTime: "12 min read",
+    primaryKeyword: "MCP permission audit",
+    intro: [
+      "An MCP permission audit answers a concrete question: what can this agent read, write, execute, send, remember, or spend through its connected servers? Teams often install MCP servers one at a time, then lose track of the combined authority created by filesystem access, browser automation, repository tools, databases, messaging, and internal APIs.",
+      "The audit should happen before production and again whenever a server, credential, model, prompt, or workflow changes. It is not paperwork for its own sake. It is how teams find overbroad scopes, secret exposure, missing approvals, weak logs, and actions that need a rollback plan.",
+      "This guide complements the MCP server security checklist at /mcp-server-security/, the checklist generator at /tools/mcp-security-checklist-generator/, and the production agent security guidance in /guides/agent-security-guide/."
+    ],
+    keyTakeaways: [
+      "Audit MCP permissions by capability and business impact, not only by server name.",
+      "Read-only access can still expose sensitive customer, code, financial, or internal data.",
+      "A useful audit produces decisions: keep, narrow, sandbox, approval-gate, monitor, or remove."
+    ],
+    sections: [
+      {
+        heading: "Inventory every MCP server and capability",
+        body: [
+          "Start with a complete inventory. For each MCP server, record what it connects to, which environment it reaches, which credential it uses, what operations it exposes, and which workflow depends on it. Avoid vague labels like 'GitHub access' or 'database access'. The audit needs to distinguish read issues from merge pull requests, inspect schema from update rows, and browse pages from submit forms.",
+          "Group capabilities into read, transform, create, update, delete, execute, send, deploy, bill, and remember. This turns a tool list into a risk map. A server with a small number of high-impact actions may deserve more review than a larger read-only server."
+        ],
+        bullets: [
+          "Server name, package/source, owner, version, and hosting model.",
+          "Credential type, scope, expiry, environment, and rotation owner.",
+          "Allowed resources such as paths, repositories, domains, tables, channels, and APIs.",
+          "Exposed operations and the business impact of each operation."
+        ]
+      },
+      {
+        heading: "Classify data and action risk",
+        body: [
+          "Not every read is low risk. A read-only server may expose customer PII, private source code, security logs, invoices, payroll data, unreleased product plans, or internal conversations. The audit should classify data sensitivity separately from action impact.",
+          "Then classify actions by reversibility. Formatting text or reading public docs is low impact. Creating a draft is usually moderate. Sending a customer message, updating CRM records, changing permissions, deploying code, deleting data, or moving money is high impact and should be gated."
+        ],
+        bullets: [
+          "Low risk: public docs, selected local examples, static calculators, read-only public pages.",
+          "Medium risk: internal docs, issue trackers, draft creation, staging dashboards, non-public reports.",
+          "High risk: customer records, source code, production databases, external messages, deployments.",
+          "Critical risk: credentials, billing, payments, payroll, destructive deletes, permission changes."
+        ]
+      },
+      {
+        heading: "Check secrets and credential handling",
+        body: [
+          "Secrets should be stored in platform secret stores or environment managers, not pasted into prompts, repository files, logs, screenshots, or generated reports. The audit should verify behavior without exposing secret values. For example, confirm a secret exists, deploy the workflow, and run a non-sensitive smoke test that proves the integration works.",
+          "Each MCP server should use a dedicated credential when possible. Shared personal tokens make incident response harder because revoking them can break unrelated systems. Production credentials should not be reused for demos, staging, or local experiments."
+        ],
+        bullets: [
+          "No secrets in prompts, code, logs, screenshots, generated artifacts, or long-term memory.",
+          "Separate credentials by environment, workflow, and server where practical.",
+          "Use expiry, rotation ownership, and revoke paths for high-risk credentials.",
+          "Verify secrets through behavior tests, not by printing or reading values."
+        ]
+      },
+      {
+        heading: "Decide approval gates and rollback paths",
+        body: [
+          "The audit should define which actions can run automatically, which require review, and which are not allowed. Approval gates should show the exact proposed action, destination, affected records, source evidence, and expected side effects. Users cannot approve safely if the screen only says the agent wants to 'continue'.",
+          "For every write-capable or external-impact action, define a rollback path before launch. If an agent updates a ticket, sends a message, changes a database row, opens a pull request, or deploys code, the team should know how to reverse, pause, or investigate that action."
+        ],
+        bullets: [
+          "Auto-allow low-risk reads and deterministic formatting.",
+          "Require review for customer-facing, production, financial, destructive, or external actions.",
+          "Require stronger confirmation for credential, permission, billing, and deletion operations.",
+          "Document rollback commands, owners, audit log locations, and kill switches."
+        ]
+      },
+      {
+        heading: "Turn audit results into a launch decision",
+        body: [
+          "A permission audit should end with clear decisions, not a long unresolved spreadsheet. Mark each server as keep, narrow, sandbox, approval-gate, monitor, replace, or remove. For unresolved risks, name the owner and the blocking evidence needed before production.",
+          "Repeat the audit when workflows evolve. The risky moment is often not first install; it is when a previously read-only agent gets a write tool, a broader credential, a new memory feature, or access to production data because the prototype worked well."
+        ],
+        bullets: [
+          "Keep: scope matches workflow and monitoring is sufficient.",
+          "Narrow: reduce paths, domains, repositories, tables, scopes, or actions.",
+          "Sandbox: restrict to staging, test accounts, or synthetic data.",
+          "Remove: server is unused, duplicated, unowned, or too broad for the value it provides."
+        ]
+      }
+    ],
+    checklist: [
+      "List every MCP server, owner, credential, environment, and exposed operation.",
+      "Classify data sensitivity and action impact separately for each capability.",
+      "Remove broad credentials, shared personal tokens, and unused servers.",
+      "Define approval gates for writes, external messages, deletes, deploys, billing, and permission changes.",
+      "Document logs, rollback paths, kill switches, and re-audit triggers."
+    ],
+    faq: [
+      { question: "What is an MCP permission audit?", answer: "It is a structured review of what each MCP server can read, write, execute, send, remember, or spend, plus the credentials, approvals, logs, and rollback paths around those capabilities." },
+      { question: "When should I audit MCP permissions?", answer: "Audit before production, after adding a server, after expanding scopes, after enabling write actions, after changing prompts or models, and after any security incident or near miss." },
+      { question: "Is read-only MCP access always safe?", answer: "No. Read-only access can still expose sensitive customer data, source code, financial records, internal docs, credentials in logs, or private conversations." },
+      { question: "Who should own an MCP permission audit?", answer: "The product or engineering owner should run it with security review for high-risk workflows. Each server should have a named owner responsible for scopes, credentials, and incident response." },
+      { question: "What should I remove first?", answer: "Remove unused servers, broad personal tokens, production write access without approval, arbitrary command execution, and any credential that is shared across unrelated workflows." }
+    ],
+    relatedLinks: [
+      { href: "/mcp-server-security/", label: "MCP server security checklist", description: "Review permissions, secrets, filesystem access, and production safety." },
+      { href: "/tools/mcp-security-checklist-generator/", label: "MCP security checklist generator", description: "Create a checklist for a specific MCP server stack." },
+      { href: "/guides/mcp-prompt-injection-defense/", label: "MCP prompt injection defense", description: "Protect tool-using agents from untrusted instructions." },
+      { href: "/for-security-teams/", label: "MCP stacks for security teams", description: "Choose safer MCP categories for security review workflows." }
+    ]
+  },
+  {
+    slug: "mcp-production-rollout-checklist",
+    title: "MCP Production Rollout Checklist — Ship Safer Agent Tooling",
+    description: "Use this MCP production rollout checklist to move from prototype to live agent workflows with scoped tools, tests, monitoring, approvals, and rollback plans.",
+    h1: "MCP Production Rollout Checklist",
+    eyebrow: "MCP Operations",
+    updated: "2026-06-27",
+    readingTime: "14 min read",
+    primaryKeyword: "MCP production checklist",
+    intro: [
+      "An MCP prototype can be useful in an afternoon, but production rollout needs a stricter path. The difference is authority. In production, an MCP-connected agent may see customer data, internal systems, source code, dashboards, support tickets, billing context, or external communication channels. That requires more than a working demo.",
+      "A practical rollout moves in stages: define the workflow, connect the minimum servers, start read-only, test normal and adversarial cases, add approvals, monitor tool calls and cost, then expand only after the evidence is stable. This checklist gives teams a production path without turning MCP adoption into a heavyweight compliance project.",
+      "Use it with /mcp-server-security/, /guides/mcp-permission-audit/, /guides/mcp-prompt-injection-defense/, /guides/agent-monitoring/, and /tools/mcp-security-checklist-generator/."
+    ],
+    keyTakeaways: [
+      "Production MCP rollout should be workflow-first, not server-first.",
+      "Start with read-only evidence gathering before enabling writes, external sends, or production mutations.",
+      "Launch requires proof: tests passed, permissions reviewed, monitoring active, approvals defined, and rollback ready."
+    ],
+    sections: [
+      {
+        heading: "Define the workflow and success evidence",
+        body: [
+          "Start with one workflow, one user group, and a concrete definition of done. A broad goal like 'give our agent company tools' creates unnecessary risk. A narrower workflow like 'prepare support escalation briefs from selected tickets, docs, and issue links' makes it possible to choose the right servers and measure whether the agent helped.",
+          "Define success evidence before rollout. Evidence can include completion rate, review time saved, correct source citations, avoided manual steps, reduced context switching, lower cost per task, or fewer handoff errors. Without this evidence, teams often expand access because the demo felt impressive rather than because the workflow proved durable."
+        ],
+        bullets: [
+          "Name the user group, workflow, systems involved, and excluded actions.",
+          "Define the expected output format and review owner.",
+          "Record success metrics, failure modes, and stop conditions.",
+          "Choose the smallest MCP server set that can complete the workflow."
+        ]
+      },
+      {
+        heading: "Stage access from read-only to controlled writes",
+        body: [
+          "The first production candidate should usually be read-only. Let the agent gather evidence, summarize, draft, compare, or prepare a handoff while humans keep final authority. Once the workflow is reliable, add controlled write tools with preview steps, approvals, and audit logs.",
+          "Avoid enabling production writes because a local demo used them successfully. Production data, latency, permissions, and user behavior are different. Staging and synthetic data should catch common issues, but final rollout still needs cautious scopes and fast rollback."
+        ],
+        bullets: [
+          "Phase 1: local or staging prototype with synthetic or redacted data.",
+          "Phase 2: production read-only access with narrow scopes and monitoring.",
+          "Phase 3: draft creation or queued actions that require human review.",
+          "Phase 4: limited writes only after regression tests and rollback paths are proven."
+        ]
+      },
+      {
+        heading: "Run pre-launch security and reliability tests",
+        body: [
+          "Pre-launch tests should cover normal tasks, missing permissions, partial tool failures, prompt injection, ambiguous requests, stale data, and cost-heavy prompts. A single happy-path demo is not enough because MCP failures often appear when tool outputs are incomplete, conflicting, malicious, or more expensive than expected.",
+          "Keep tests small but repeatable. Ten well-chosen cases that run on every prompt, model, tool, or scope change are more valuable than a one-time manual review. Include examples from real workflow failures as the system matures."
+        ],
+        bullets: [
+          "Normal task completes with expected sources and output format.",
+          "Missing credential or failed tool produces a visible, limited failure.",
+          "Untrusted content tries to change instructions or request secrets.",
+          "Cost-heavy or loop-prone request is bounded by limits and monitoring."
+        ]
+      },
+      {
+        heading: "Prepare monitoring, alerts, and incident response",
+        body: [
+          "Before rollout, confirm that every important run creates a trace. The trace should include user goal, model, server/tool calls, safe input and output summaries, approvals, refusal or failure status, latency, token usage, cost, and source references. Monitoring should be useful to product, engineering, and security teams.",
+          "Incident response should be boring and documented. Know how to disable the workflow, revoke a credential, pause a server, clear unsafe memory, identify affected records, and replay the trace. A production MCP rollout without a kill switch depends on everyone noticing problems quickly, which is not a real control."
+        ],
+        bullets: [
+          "Trace model calls, tool calls, approvals, refusals, errors, cost, and latency.",
+          "Alert on repeated failures, unusual tool chains, write spikes, and spend anomalies.",
+          "Redact secrets and unnecessary private data from logs.",
+          "Document kill switch, credential revocation, owner, and rollback instructions."
+        ]
+      },
+      {
+        heading: "Launch narrowly and review expansion evidence",
+        body: [
+          "A good launch is intentionally narrow. Limit users, workflows, environments, and actions until the evidence shows stable value. Review traces and user feedback early. If users keep correcting the same output, if tool calls fail often, if cost per task is too high, or if approvals are confusing, fix those before expanding access.",
+          "Expansion should be tied to evidence. Add one server, one action class, or one user group at a time. Re-run permission audits and injection tests after each meaningful change. The safest MCP stack is not static; it adapts as the workflow becomes better understood."
+        ],
+        bullets: [
+          "Start with a pilot group and one measurable workflow.",
+          "Review failed runs, blocked actions, approval quality, and cost per successful task.",
+          "Expand only after reliability, security, and user-value evidence is stable.",
+          "Re-audit permissions when adding servers, scopes, memory, or write actions."
+        ]
+      }
+    ],
+    checklist: [
+      "Define one production workflow, its users, expected output, excluded actions, and success metrics.",
+      "Start with the minimum MCP server set and read-only credentials where possible.",
+      "Run normal, failure, prompt-injection, permission, and cost-control tests before launch.",
+      "Enable traces, alerts, approvals, redaction, kill switch, and rollback documentation.",
+      "Launch to a narrow pilot, review evidence, then expand one capability at a time."
+    ],
+    faq: [
+      { question: "When is an MCP workflow ready for production?", answer: "It is ready when the workflow is narrow, permissions are reviewed, tests cover normal and adversarial cases, monitoring is active, approvals are defined, and rollback paths are documented." },
+      { question: "Should production MCP rollout start with write access?", answer: "Usually no. Start with read-only evidence gathering or draft creation, then add controlled writes only after reliability, security, approval, and rollback evidence is strong." },
+      { question: "What should I monitor after launch?", answer: "Monitor task completion, tool errors, unusual tool sequences, approvals, refusals, latency, token usage, cost per successful task, and prompt-injection signals." },
+      { question: "How large should the first pilot be?", answer: "Keep the first pilot small enough that traces and user feedback can be reviewed manually. One workflow and one user group is usually better than a broad company-wide launch." },
+      { question: "What triggers a new rollout review?", answer: "Adding a server, broadening credentials, enabling writes, changing models or prompts, adding memory, connecting production data, or seeing repeated failures should trigger a new review." }
+    ],
+    relatedLinks: [
+      { href: "/guides/mcp-permission-audit/", label: "MCP permission audit", description: "Map scopes, secrets, data access, approvals, and rollback paths." },
+      { href: "/guides/mcp-prompt-injection-defense/", label: "MCP prompt injection defense", description: "Defend MCP workflows from untrusted instructions." },
+      { href: "/guides/agent-monitoring/", label: "Agent monitoring", description: "Track production traces, costs, failures, and security signals." },
+      { href: "/tools/mcp-security-checklist-generator/", label: "MCP security checklist generator", description: "Generate a rollout-specific checklist for your stack." }
+    ]
+  },
 ];
 
 export const agentSecurityGuideLinks = agentSecurityGuides.map((guide) => ({
