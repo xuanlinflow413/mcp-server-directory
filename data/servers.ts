@@ -97,6 +97,15 @@ export const servers: MCPServer[] = [
     clients: ['claude', 'cursor', 'generic'],
   },
   {
+    id: 'xquik',
+    name: 'Xquik',
+    description: 'Hosted X data tools for search, profiles, extraction, monitoring, webhooks, and confirmed writes.',
+    category: 'web',
+    githubUrl: 'https://github.com/Xquik-dev/x-twitter-scraper',
+    installCommand: '{"url":"https://xquik.com/mcp","headers":{"x-api-key":"${XQUIK_API_KEY}"}}',
+    clients: ['claude', 'cursor', 'generic'],
+  },
+  {
     id: 'slack',
     name: 'Slack',
     description: 'Send and read Slack messages across channels.',
