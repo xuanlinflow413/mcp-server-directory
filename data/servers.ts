@@ -124,6 +124,15 @@ export const servers: MCPServer[] = [
     clients: ['claude', 'cursor', 'generic'],
   },
   {
+    id: 'runapi',
+    name: 'RunAPI',
+    description: 'Model catalog, pricing, prompt search, media task creation, task status, and balance checks.',
+    category: 'ai-llm',
+    githubUrl: 'https://github.com/runapi-ai/mcp',
+    installCommand: 'npx -y @runapi.ai/mcp',
+    clients: ['claude', 'cursor', 'generic'],
+  },
+  {
     id: 'aws-kb-retrieval',
     name: 'AWS KB Retrieval',
     description: 'Retrieve information from AWS Knowledge Base.',
