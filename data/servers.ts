@@ -213,4 +213,13 @@ export const servers: MCPServer[] = [
     installCommand: 'npx -y @playwright/mcp-server',
     clients: ['claude', 'cursor', 'generic'],
   },
+  {
+    id: 'agent-qa',
+    name: 'Agent QA',
+    description: 'Natural-language web and mobile regression testing with persistent test memory.',
+    category: 'browser',
+    githubUrl: 'https://github.com/vostride/agent-qa',
+    installCommand: 'npx -y agent-qa mcp',
+    clients: ['claude', 'cursor', 'generic'],
+  },
 ];
