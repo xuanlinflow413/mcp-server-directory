@@ -213,4 +213,13 @@ export const servers: MCPServer[] = [
     installCommand: 'npx -y @playwright/mcp-server',
     clients: ['claude', 'cursor', 'generic'],
   },
+  {
+    id: 'bulkpublish',
+    name: 'BulkPublish',
+    description: 'Batch social media planning, review, scheduling, and publishing.',
+    category: 'communication',
+    githubUrl: 'https://github.com/azeemkafridi/bulkpublish-api',
+    installCommand: 'Remote MCP: https://mcp.bulkpublish.com/mcp (docs: https://app.bulkpublish.com/docs)',
+    clients: ['claude', 'cursor', 'generic'],
+  },
 ];
