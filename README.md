@@ -69,6 +69,10 @@ This project is deployed on **Cloudflare Pages** with the following settings:
 | Build output directory | `out` |
 | Production branch | `main` |
 
+## Research & Data
+
+- [Statsnet](https://github.com/usenetstate/statsnet-mcp) - Background check any company in the world: registration, executives, courts and finances. Remote: `https://statsnet.co/mcp` · Registry: `io.github.usenetstate/statsnet`
+
 ## Contributing
 
 Found a new MCP server? Open an [issue](https://github.com/xuanlinflow413/mcp-server-directory/issues) or submit a PR.
